@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     78636,       1681]
-NotebookOptionsPosition[     77775,       1657]
-NotebookOutlinePosition[     78109,       1672]
-CellTagsIndexPosition[     78066,       1669]
+NotebookDataLength[     78716,       1683]
+NotebookOptionsPosition[     77854,       1659]
+NotebookOutlinePosition[     78189,       1674]
+CellTagsIndexPosition[     78146,       1671]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -25,25 +25,27 @@ Cell[BoxData[{
   RowBox[{"Remove", "[", "\"\<Global`*\>\"", "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"SetDirectory", "[", "\"\<~/sciebo/Lattice/Three_Pions\>\"", "]"}], 
+  RowBox[{
+  "SetDirectory", "[", "\"\<~/Lattice/Code/sLapH-projection-NG\>\"", "]"}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"<<", "sLapHProjection`"}]}], "Input",
  CellChangeTimes->{{3.757848909708564*^9, 3.757848923481659*^9}, {
   3.757857107582535*^9, 3.757857114933337*^9}, {3.757857164823029*^9, 
-  3.757857188696376*^9}},
- CellLabel->"In[91]:=",ExpressionUUID->"bef0a926-3d0f-4e78-8360-6655d432339f"],
+  3.757857188696376*^9}, {3.757857561618712*^9, 3.757857569060543*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"bef0a926-3d0f-4e78-8360-6655d432339f"],
 
 Cell[BoxData[
  TemplateBox[{
   "Remove","rmnsm",
    "\"There are no symbols matching \\\"\\!\\(\\*RowBox[{\\\"\\\\\\\"Global`*\
-\\\\\\\"\\\"}]\\)\\\".\"",2,91,26,19192180716131355779,"Local"},
+\\\\\\\"\\\"}]\\)\\\".\"",2,1,1,19192257739804457202,"Local"},
   "MessageTemplate"]], "Message", "MSG",
  CellChangeTimes->{
-  3.757857115510648*^9, {3.757857185022296*^9, 3.75785718981129*^9}},
+  3.757857115510648*^9, {3.757857185022296*^9, 3.75785718981129*^9}, 
+   3.7578575699249163`*^9},
  CellLabel->
   "During evaluation of \
-In[91]:=",ExpressionUUID->"793e9b09-6a8f-4ded-87e0-c5f7b3b9c494"]
+In[1]:=",ExpressionUUID->"9b7c4158-6c57-450d-8663-2537d6cf8194"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1656,7 +1658,7 @@ Cell[BoxData[
 }, Open  ]]
 },
 WindowSize->{956, 1025},
-WindowMargins->{{Automatic, 0}, {26, Automatic}},
+WindowMargins->{{16, Automatic}, {26, Automatic}},
 FrontEndVersion->"11.3 for Linux x86 (64-bit) (March 6, 2018)",
 StyleDefinitions->"Default.nb"
 ]
@@ -1672,16 +1674,16 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 523, 11, 80, "Input",ExpressionUUID->"bef0a926-3d0f-4e78-8360-6655d432339f"],
-Cell[1106, 35, 428, 10, 23, "Message",ExpressionUUID->"793e9b09-6a8f-4ded-87e0-c5f7b3b9c494"]
+Cell[580, 22, 577, 12, 80, "Input",ExpressionUUID->"bef0a926-3d0f-4e78-8360-6655d432339f"],
+Cell[1160, 36, 453, 11, 23, "Message",ExpressionUUID->"9b7c4158-6c57-450d-8663-2537d6cf8194"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[1571, 50, 385, 8, 55, "Input",ExpressionUUID->"09c39931-6aa8-4262-b9e4-022947f71dfd"],
-Cell[1959, 60, 74923, 1572, 477, "Output",ExpressionUUID->"c8f5af5a-57f4-4464-9bab-ef8c3867e8c5"]
+Cell[1650, 52, 385, 8, 55, "Input",ExpressionUUID->"09c39931-6aa8-4262-b9e4-022947f71dfd"],
+Cell[2038, 62, 74923, 1572, 477, "Output",ExpressionUUID->"c8f5af5a-57f4-4464-9bab-ef8c3867e8c5"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[76919, 1637, 277, 6, 31, "Input",ExpressionUUID->"8bcaa02a-5d5a-44d9-a55b-9721cbd5aa50"],
-Cell[77199, 1645, 560, 9, 35, "Output",ExpressionUUID->"79c63d44-3002-499d-926f-2b1367d8abb6"]
+Cell[76998, 1639, 277, 6, 31, "Input",ExpressionUUID->"8bcaa02a-5d5a-44d9-a55b-9721cbd5aa50"],
+Cell[77278, 1647, 560, 9, 35, "Output",ExpressionUUID->"79c63d44-3002-499d-926f-2b1367d8abb6"]
 }, Open  ]]
 }
 ]
