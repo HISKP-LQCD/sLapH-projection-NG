@@ -445,6 +445,8 @@ within the little group. Little groups belonging to the momenta that are
 related by a lattice rotation are equivalent to each other but contain
 different members of the original group.
 
+In my Mathematica package there is the function **`ReadDataframe`**
+
 The irrep matrices are represented in the *long format*. For instance that
 `C2x` group element in the `Eg` irrep is a $2 \times 2$ matrix that is written
 out as
@@ -454,25 +456,46 @@ $$
 
 There are two ways that one can represent tensors:
 
-1. A high-dimensional array of the actual values. Each dimension corresponds to
-   one index. Contractions are performed by looping over all indices that stay
-   and then sum up the elements along the contracted dimension.
+1.  A high-dimensional array of the actual values. Each dimension corresponds
+    to one index. Contractions are performed by looping over all indices that
+    stay and then sum up the elements along the contracted dimension.
 
-   The tracking of the index labels it a bit tedious. This also does not scale
-   well when indices are added later as the dimensionality of the arrays has to
-   be increased. Without proper labelling, this will quickly spiral out of control.
+    The tracking of the index labels it a bit tedious. This also does not scale
+    well when indices are added later as the dimensionality of the arrays has to
+    be increased. Without proper labelling, this will quickly spiral out of
+    control.
 
-   Memory usage is good, though.
+    Memory usage is good, though.
 
-2. A data frame in the *long data format*. Contractions are done by *group-by*
-   and *summarize* operations. To contract an index one groups by all the
-   indices that are to stay and summarizes the sum of the values.
+2.  A data frame in the *long data format*. Contractions are done by *group-by*
+    and *summarize* operations. To contract an index one groups by all the
+    indices that are to stay and summarizes the sum of the values.
 
-   This scheme easily scales with arbitrary many indices and adding indices
-   later on is not a problem. Memory usage is higher, though zeros can be
-   omitted easily.
+    This scheme easily scales with arbitrary many indices and adding indices
+    later on is not a problem. Memory usage is higher, though zeros can be
+    omitted easily.
 
-It seems that Mathematica has the notion of
-[`Dataset`](http://reference.wolfram.com/language/ref/Dataset.html), which
-means that one can just `Import` a CSV or TSV file and has a data frame as with
-R or Pandas.
+    It seems that Mathematica has the notion of
+    [`Dataset`](http://reference.wolfram.com/language/ref/Dataset.html), which
+    means that one can just `Import` a CSV or TSV file and has a data frame as
+    with R or Pandas. Also the `Dataset` supports having a complex matrix as
+    column type, which would allow for a hybrid approach if we wanted to.
+
+3.  There is another way, using nested
+    [`Association`](http://reference.wolfram.com/language/ref/Association.html)
+    instances. They are just like the `dict` in Python and the `std::map` in
+    C++. This way we could make associations that map from some named group
+    element to an association that maps from indices to a c-number.
+
+    As associations can be called like functions, we can really nicely work
+    with them. So let's make up a nonsense association like this:
+
+    ```mathematica
+    assoc = Association[foo -> bar, 1 -> "one", x^2 -> Association]
+    ```
+
+    When you now call `assoc[x^2]`, you get the function `Association`. Or you
+    call it with `assoc[1]` and get `"one"`. Missing keys are some sort of
+    error condition via say `Missing["KeyAbsent", bar]`.
+
+    Markus was immediately sold on this approach, and I quite like it as well.
