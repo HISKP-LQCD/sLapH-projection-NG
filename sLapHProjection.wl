@@ -66,7 +66,7 @@ ExtractMomentumFromFilename[filename_] := First[ToExpression /@ StringCases[
 ReadEulerAngles[filename_] := Module[{oh, values},
 	oh = ReadDataframe[filename];
 	values = Normal[Values /@ oh];
-	#[[1]]->{#[[2]], #[[3]], #[[4]]} & /@ values];
+	#[[1]] -> Pi * {#[[2]], #[[3]], #[[4]]} & /@ values // Association];
 
 
 EndPackage[];

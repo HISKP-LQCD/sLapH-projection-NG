@@ -401,18 +401,23 @@ operators used and their correspondence in other languages.
 
 | Long | Infix | Python | R | C++ |
 | --- | --- | --- | --- | --- |
-| [`f[x]`](http://reference.wolfram.com/language/ref/Prefix.html) | `f @ x` | `f(x)` | `f(x)` | `f(x)` |
+| [`f[x]`](http://reference.wolfram.com/language/ref/Prefix.html) | `f @ x` or `x // f` | `f(x)` | `f(x)` | `f(x)` |
 | [`Map[f, x]`](http://reference.wolfram.com/language/ref/Map.html) | `f /@ x` | `map(f, x)` | `lapply(x, f)` | `std::transform` |
 | [`Composition[f, g]`](http://reference.wolfram.com/language/ref/Composition.html) | `f @* g` | — | — | — |
 | [`Function[x, x^2]`](http://reference.wolfram.com/language/ref/Function.html) | `#^2 &` | `lambda` | `function` | `[](…){…}` |
 | [`Part[xs, i]`](http://reference.wolfram.com/language/ref/Part.html) | `xs[[i]]` | `xs[i-1]` | `xs[[i]]` | `xs[i-1]` |
-| [`Association[a -> b]`](http://reference.wolfram.com/language/ref/Association.html) | `<| a -> b |>` | `{a: b}` | `list(a = b)` | `std::map` |
+| [`Association[a -> b]`](http://reference.wolfram.com/language/ref/Association.html) | `<| a -> b |>` | `{a: b}` | `list(a = b)` | [`std::map`](https://en.cppreference.com/w/cpp/container/map) |
+| [`Dot[a, b]`](http://reference.wolfram.com/language/ref/Dot.html) | `a . b` | `a @ b` | `a %*% b` | — |
 
 Common patterns in functional programming are [*tacit
 programming*](https://en.wikipedia.org/wiki/Tacit_programming) and expressing
 loops in terms of list comprehensions or *maps*. I use some of the former and
 plenty of the latter. This might make the code harder to read for a programmer
 who is not familiar with the Wolfram Language.
+
+The functions from my `sLapHProjection` package will be explained along the way
+and typeset in bold monospace font such that they stand out and can be found
+easier (but there's always Ctrl-F).
 
 ## Group theory
 
@@ -541,3 +546,30 @@ $$ \vec d \to \Gamma \to g \to (\alpha, \beta) \to D_{\alpha\beta}^\Gamma(g) \,.
 You can think of this as a function taking a momentum vector $\vec d$ and
 giving you a new function which accepts an irrep $\Gamma$ and gives you a
 function ….
+
+### Creating the Cartesian representation
+
+In the file `Oh-elements.txt` we just have the names of the group elements and
+the Euler angles. We read those in with **`ReadEulerAngles`** and obtain a
+handy association of the form
+$$ g \to (\alpha, \beta, \gamma) \,.$$
+
+The Cartesian representation comes for free, there is
+[`EulerMatrix`](http://reference.wolfram.com/language/ref/EulerMatrix.html)
+which just takes such a vector. This will give us the mapping $g \to R_g$ that
+we need. Great, we're done here if the definition of the Euler angles matches.
+
+### Creating the spin representation
+
+The spin-$J$ representations are for free as well, we just use
+[`WignerD`](http://reference.wolfram.com/language/ref/WignerD.html) which is a
+mapping
+$$ (j, m_1, m_2, \psi, \theta, \phi) \to D^J(g) \,. $$
+
+### Clebsch-Gordan coefficients
+
+The Clebsch-Gordan coefficients are implemented as
+[`ClebschGordan`](http://reference.wolfram.com/language/ref/ClebschGordan.html),
+so this is shootin' fish in a barrel as well.
+
+
