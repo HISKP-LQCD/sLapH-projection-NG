@@ -58,4 +58,9 @@ IrrepsToAssociations[matrixElementsAssociations_] := Module[{keysIrrep, keysIrre
 DatasetToAssocations := IrrepsToAssociations @* MatrixElementsToAssociation;
 
 
+ExtractMomentumFromFilename[filename_] := First[ToExpression /@ StringCases[
+	filename,
+	RegularExpression["\\((-?\\d+),(-?\\d+),(-?\\d+)\\)"] -> {"$1", "$2", "$3"}]]
+
+
 EndPackage[];
