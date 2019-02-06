@@ -445,7 +445,10 @@ within the little group. Little groups belonging to the momenta that are
 related by a lattice rotation are equivalent to each other but contain
 different members of the original group.
 
-In my Mathematica package there is the function **`ReadDataframe`**
+In my Mathematica package there is the function **`ReadDataframe`** which reads
+such a text file. The function **`ConvertMatrixElement`** will convert that
+matrix element column into Mathematica expressions. Use **`ReadIrreps`** for a
+convenient composition.
 
 The irrep matrices are represented in the *long format*. For instance that
 `C2x` group element in the `Eg` irrep is a $2 \times 2$ matrix that is written
