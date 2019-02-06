@@ -502,3 +502,7 @@ There are two ways that one can represent tensors:
     error condition via say `Missing["KeyAbsent", bar]`.
 
     Markus was immediately sold on this approach, and I quite like it as well.
+
+I will implement Item 3 now. The $D_{\alpha\beta}^\Gamma(g)$ are now
+represented as an association of this form:
+$$ d \to \Gamma \to g \to (\alpha, \beta) \to D_{\alpha\beta}^\Gamma(g) \,. $$
