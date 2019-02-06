@@ -63,4 +63,10 @@ ExtractMomentumFromFilename[filename_] := First[ToExpression /@ StringCases[
 	RegularExpression["\\((-?\\d+),(-?\\d+),(-?\\d+)\\)"] -> {"$1", "$2", "$3"}]]
 
 
+ReadEulerAngles[filename_] := Module[{oh, values},
+	oh = ReadDataframe[filename];
+	values = Normal[Values /@ oh];
+	#[[1]]->{#[[2]], #[[3]], #[[4]]} & /@ values];
+
+
 EndPackage[];
