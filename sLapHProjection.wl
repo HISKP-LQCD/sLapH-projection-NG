@@ -51,7 +51,7 @@ MatrixElementsToAssociation[dataset_] := GroupBy[
 IrrepsToAssociations[matrixElementsAssociations_] := Module[{keysIrrep, keysIrrep2, irrep3},
 	keysIrrep = Normal @ GroupBy[Keys @ matrixElementsAssociations, #[[1]] &];
 	keysIrrep2 = #[[2]] -> # & /@ # & /@ keysIrrep;
-	irrep3 = matrixElementsAssociations[#] & /@ Association @ # & /@ keysIrrep2;
+	irrep3 = matrixElementsAssociations[Key @ #] & /@ Association @ # & /@ keysIrrep2;
 	Map[Normal, irrep3, Infinity]]
 
 
