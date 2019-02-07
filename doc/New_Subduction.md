@@ -572,4 +572,25 @@ The Clebsch-Gordan coefficients are implemented as
 [`ClebschGordan`](http://reference.wolfram.com/language/ref/ClebschGordan.html),
 so this is shootin' fish in a barrel as well.
 
+# Documentation of functions in the Mathematica module
 
+The following is a list of the functions defined in the Mathematica module
+`sLapHProjection`. From what I gathered the documentation mechanism in
+Mathematica is not as formal as say Doxygen in C++ or Rd in R. This and the
+need for a bunch of math expressions made me chose an external documentation.
+
+These functions are ordered by name to make finding stuff easy at the expense
+of a coherent reading from top to bottom.
+
+-   $\mathtt{EulerGTilde}(\vec p_\text{cm})$
+
+    Finds a set of Euler angles $(\psi, \theta, \phi)$ such that the rotation
+    matrix coverts the reference momentum into center-of-mass momentum, i.e.
+    $$\vec p_\text{cm} = R(\psi, \theta, \phi) \; \vec p_\text{ref} \,.$$ This
+    transformation is not unique, but that *should* not be a problem as we sum
+    over the little group elements anyway.
+
+-   $\mathtt{MomentumRef}(\vec p_\text{cm})$
+
+    Gives the reference momentum $\vec p_\text{ref}$ for given center-of-mass
+    momentum $\vec p_\text{cm}$.

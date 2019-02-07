@@ -7,7 +7,8 @@ are supposed to just to exercise this library. *)
 BeginPackage["sLapHProjection`"];
 
 
-ReadDataframe::usage = "Reads a CSV encoded data frame";
+(* Text IO helpers *)
+
 
 ReadDataframe[path_] := Module[{assocs, bulk, data, header},
 	data = Import[path, "CSV"];
@@ -67,6 +68,31 @@ ReadEulerAngles[filename_] := Module[{oh, values},
 	oh = ReadDataframe[filename];
 	values = Normal[Values /@ oh];
 	#[[1]] -> Pi * {#[[2]], #[[3]], #[[4]]} & /@ values // Association];
+
+
+(* Momentum transformation *)
+
+
+MomentumRefScalar[0] = {0,0,0};
+MomentumRefScalar[1] = {0,0,1};
+MomentumRefScalar[2] = {1,1,0};
+MomentumRefScalar[3] = {1,1,1};
+MomentumRefScalar[4] = {0,0,2};
+
+MomentumRef[momentumpcm_] := MomentumRefScalar[Total[momentumpcm^2]];
+
+
+MomentumTransform[momentumd_,  momentumpcm_, eulerG_] :=
+	Inverse[MatrixRgtilde[MomentumRef[momentumpcm]]] .
+		EulerMatrix[eulerG] .
+		MatrixRgtilde[MomentumRef[momentumpcm]];
+
+
+EulerGTilde[momentumpcm_] := 
+	First @ Select[Values @ eulerAngles,
+		momentumpcm == EulerMatrix[#] . MomentumRef[momentumpcm] &];
+
+MatrixRGTilde = EulerMatrix @* eulerGTilde;
 
 
 EndPackage[];
