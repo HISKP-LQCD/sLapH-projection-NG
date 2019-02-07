@@ -546,13 +546,6 @@ There are two ways that one can represent tensors:
 Markus was immediately sold on this approach 3, and I quite like it as well.
 This is now implemented.
 
-The $D_{\alpha\beta}^\Gamma(g)$ are represented as
-an association of this form:
-$$ \vec d \to \Gamma \to g \to (\alpha, \beta) \to D_{\alpha\beta}^\Gamma(g) \,. $$
-You can think of this as a function taking a momentum vector $\vec d$ and
-giving you a new function which accepts an irrep $\Gamma$ and gives you a
-function which ….
-
 ---
 
 -   **`ReadDataframe`**(filename)
@@ -585,10 +578,23 @@ function which ….
     then builds a more deeply nested `Association` which has the form
     $$ \Gamma \to g \to (\alpha, \beta) \to D_{\alpha\beta}^\Gamma(g) \,. $$
 
+-   **`DatasetToAssociations`**(dataset)
+
+    Composition of `IrrepsToAssociation` and `MatrixElementsToAssociation`.
+
 -   **`ExtractMomentumFromFilename`**(filename)
 
     Given a filename like `C2v-(0,1,1)-representations.txt` it extracts the
     three-momentum vector $\vec p_\text{cm}$.
+
+-   **`IrrepDGammaAssoc`**
+
+    The $D_{\alpha\beta}^\Gamma(g)$ are represented as an association of this
+    form:
+    $$ \vec d \to \Gamma \to g \to (\alpha, \beta) \to D_{\alpha\beta}^\Gamma(g) \,. $$
+    You can think of this as a function taking a momentum vector $\vec d$ and
+    giving you a new function which accepts an irrep $\Gamma$ and gives you a
+    function which ….
 
 ### Creating the Cartesian representation
 
@@ -611,47 +617,6 @@ we need. Great, we're done here if the definition of the Euler angles matches.
 -   **`EulerAnglesAssoc`**
 
     All the Euler angles already read in available as a global constant.
-
-### Creating the spin representation
-
-The spin-$J$ representations are for free as well, we just use
-[`WignerD`](http://reference.wolfram.com/language/ref/WignerD.html) which is a
-mapping
-$$ (j, m_1, m_2, \psi, \theta, \phi) \to D^J(g) \,. $$
-
-### Clebsch-Gordan coefficients
-
-The Clebsch-Gordan coefficients are implemented as
-[`ClebschGordan`](http://reference.wolfram.com/language/ref/ClebschGordan.html).
-We do need to implement higher Clebsch-Gordan coefficients ourselves, though.
-
-We can use this recursion relation:
-\begin{multline*}
-\langle J, M | j_1, m_1, j_2, m_2, j_3, m_3, \ldots \rangle
-\\=
-\sum_{\tilde J = |j_2 - j_3|}^{j_2 + j_3}
-\sum_{\tilde M = - \tilde J}^{\tilde J}
-\langle J, M | j_1, m_1, \tilde J, \tilde M \rangle
-\langle \tilde J, \tilde M | j_2, m_2, j_3, m_3, \ldots \rangle \,.
-\end{multline*}
-If the “$\ldots$” are empty, then we have the usual Clebsch-Gordan coefficients
-that are already available.
-
-## Spin
-
-We implement spin independent of isospin here. The spin projection will just
-create an expression that contains `SingleOperator`, which can then later be
-replaced with the actual operators used. But isospin projection gives us one
-big multi-particle operator. I let it compute with the single operators and
-then massage the expression such that the products of operators are directly
-adjacent. Then I use a pattern replacement to replace them all with one
-multi-particle operator.
-
-Markus has chosen the phase vector $\tilde \phi_\beta$ as $\delta_{\beta 1}$,
-effectively fixing the column of the irrep. In my implementation I just expose
-it as a parameter to the user and remove the sum over the $\beta$.
-
----
 
 -   **`MomentumRefScalar`**($|\vec p_\text{cm}|^2$)
 
@@ -688,6 +653,77 @@ it as a parameter to the user and remove the sum over the $\beta$.
 
     Simply computes the rotation matrix corresponding to the Euler angles from
     \texttt{EulerGTilde}.
+
+-   **`MomentumTransform`**($\vec p$, $\vec p_\text{cm}$, $(\psi, \theta, \phi)$)
+
+    The momentum transformation that is needed in the argument of the
+    single-particle operator:
+    $$ R_{\tilde g}^{-1} R_g R_{\tilde g} \,. $$
+
+### Creating the spin representation
+
+The spin-$J$ representations are for free as well, we just use
+[`WignerD`](http://reference.wolfram.com/language/ref/WignerD.html) which is a
+mapping
+$$ (j, m_1, m_2, \psi, \theta, \phi) \to D^J(g) \,. $$
+
+### Clebsch-Gordan coefficients
+
+The Clebsch-Gordan coefficients are implemented as
+[`ClebschGordan`](http://reference.wolfram.com/language/ref/ClebschGordan.html).
+We do need to implement higher Clebsch-Gordan coefficients ourselves, though.
+
+This is the relation that I came up with by figuring that we first couple two
+spins and then couple that to the next one.
+\begin{multline*}
+\langle J, M | j_1, m_1, j_2, m_2, j_3, m_3, \ldots \rangle
+\\=
+\sum_{\tilde J = |j_2 - j_3|}^{j_2 + j_3}
+\sum_{\tilde M = - \tilde J}^{\tilde J}
+\langle J, M | j_1, m_1, \tilde J, \tilde M \rangle
+\langle \tilde J, \tilde M | j_2, m_2, j_3, m_3, \ldots \rangle \,.
+\end{multline*}
+If the “$\ldots$” are empty, then we have the usual Clebsch-Gordan coefficients
+that are already available. This is the stop of the recursion.
+
+Creating a recursion relation is not easy at is seems. I have [asked on Physics
+Stack
+Exchange](https://physics.stackexchange.com/questions/459408/clebsch-gordan-coefficients-for-more-than-2-particles), and in one answer I was told that this is correct though not unique.
+
+I was pointed to the [Racah $W$
+coefficient](https://en.wikipedia.org/wiki/Racah_W-coefficient). These do not
+seem to be implemented in Mathematica, though.
+
+For coupling pions these factors will all be 1 anyway, so we could consider not
+bothering with them for just now.
+
+---
+
+-   **`HigherClebschGordan`**($\{ j_i \}$, $\{ m_i \}$, $(J, M)$)
+
+    Computes the Clebsch-Gordan coefficient for coupling all the spins $(j_i,
+    m_i)$ together to $(J, M)$. Note that the API is different from
+    `ClebschGordan` as here the $j_i$ and $m_i$ are grouped among each other
+    instead of grouped by $i$.
+
+    In contrast to `ClebschGordan` this function does not emit any warnings in
+    case the coupling is unphysical.
+
+## Spin
+
+We implement spin independent of isospin here. The spin projection will just
+create an expression that contains `SingleOperator`, which can then later be
+replaced with the actual operators used. But isospin projection gives us one
+big multi-particle operator. I let it compute with the single operators and
+then massage the expression such that the products of operators are directly
+adjacent. Then I use a pattern replacement to replace them all with one
+multi-particle operator.
+
+Markus has chosen the phase vector $\tilde \phi_\beta$ as $\delta_{\beta 1}$,
+effectively fixing the column of the irrep. In my implementation I just expose
+it as a parameter to the user and remove the sum over the $\beta$.
+
+---
 
 -   **`MakeSingleOperator`**($\vec p_i$, $\vec p_\text{cm}$, $\vec \Psi_g$,
     $J_i$, $M_i$, $i$)
