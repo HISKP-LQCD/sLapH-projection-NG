@@ -277,12 +277,14 @@ things. They stick around once the project is finished.
 For the group theory there are a few options:
 
 Copying tables
+
   ~ There are various books and papers which list all the things that we need.
   Copying them is just error-prone and we would have to check for consistency
   ourselves. Apparently the `Bethe` Maple library also has it copied from a
   paper.
 
 Maple
+
   ~ This is bad because neither the university nor the institute has have a
   license for it. We could ask the institute to buy one, though I do not
   believe that the institute can buy the student version for around 150 EUR.
@@ -291,6 +293,7 @@ Maple
   again.
 
 Mathematica
+
   ~ The university has a Mathematica campus license, so although that is
   license riddled as well, at least *we* can use it.
   
@@ -299,12 +302,14 @@ Mathematica
     construct the little groups (also known as stabilizers) but not the irreps.
 
 Sage
+
   ~ I have been looking into alternatives a bit yesterday and found that Sage
   has the group in some form that one can at least get the multiplication and
   character table, see [this
   snippet](https://sagecell.sagemath.org/?z=eJyNjrFOwzAQhvdIeQdLDLWFY0pYGApLJRgQ4gGqNjrcwzVy4mBfI_z2xIGAQB3QLb_-T9_d2bb3gVgEg8oEf-yjaoGCfW_MGF9sZwldagx2GIBwXxZ5HtRquGU3_9fUOmnnybdW31l0e34tygLGDUM17K7YWXwLxOuxs7nb1WXxpCnzx2nrfT7BN7y6PLfiopbfgfGfpsphK9nmswO5lGwp-dTDVuS_-2A74ov1AQJowsAInh0uxEzyUaVn2kyUi18qJIfptDehk5LvXo8GdGLaQYwY_5ozb774qH8A9juBiQ==&lang=sage).
 
 SciPy
+
   ~ This has Clebsch-Gordan coefficients and Wigner-3j symbols, but not
   really much more.
 
@@ -320,10 +325,12 @@ matrices contain factors like $1/\sqrt{2}$ and therefore we likely want to do
 symbolic algebra. We have these options:
 
 Maple
+
   ~ Not a good idea as we do not want to depend on it more than strictly
   needed.
 
 Mathematica
+
   ~ We have a campus license, it is a very powerful language. However it is a
   proprietary tool and our group has limited experience with it. I personally
   do not want to invest too much learning into a proprietary tool.
@@ -331,10 +338,12 @@ Mathematica
     Wigner-D matrices are available as `WignerD`.
 
 Sage
+
   ~ For what we need it will likely be overpowered. As it is a pain to install,
   we should only do that when strictly needed.
 
 SymPy
+
   ~ This would be my favorite as I and others know Python and it is free
   software.
 
@@ -346,16 +355,19 @@ Mathematica. This way we have just one code.
 ## Wick contraction
 
 Cadabra
+
   ~ While asking about Wick contractions in SymPy, the author of the
   [Cadabra](https://cadabra.science/) CAS system reached out to me offering
   help implementing Wick contractions in that system. It is programmable in
   Python.
 
 Mathematica
+
   ~ We have the [Quark Contraction Tool](https://arxiv.org/abs/1603.01576)
   already available.
 
 SymPy
+
   ~ There is `physics.secondquant.wicks`, which seems to be able to do Wick
   contractions. Also there is `physics.secondquant.contraction` which does a
   contraction between two fermionic operators.
@@ -380,16 +392,19 @@ re-packaging step just as Markus does by converting the HDF5 files from the
 sLapH contraction code into Pandas HDF5 files.
 
 C++
+
   ~ We do not really need much for projecting the data, except a HDF5 library.
   Perhaps the performance will be better if we do this in C++. But the most
   likely bottleneck is the HDF5 reading, therefore it does not matter which
   language we use.
 
 Python
+
   ~ The current projection code uses Python and Pandas. It can work with HDF5
   files.
 
 R
+
   ~ As the analysis is in R one can consider R for doing the actual projection.
   We have HDF5 routines there as well. The advantage would be that the people
   who do not know Python could work on this part of the code.
@@ -833,12 +848,104 @@ it as a parameter to the user and remove the sum over the $\beta$.
     \texttt{MakeGroupSum}(\Gamma, \alpha, \beta, \{ \vec p_i \}, \{ J_i \}, \{ M_i \}) \,.
     \end{align*}
 
-## Isospin and spin
+## Isospin
 
-The goal is to have spin and isospin independent of each other. With the
-appropriate two-particle operator defined, we need to be able to do the spin
-projection and then multi-particle operator there. To illustrate the
-replacement with pattern, let us define such a toy expression:
+Isospin and the Wick contractions are independent of the spin. Therefore we can
+do the contractions on the isospin operators and then pattern match that to the
+spin expressions. This allows us to go a bit further before connecting isospin
+and spin.
+
+We define a $\pi^+$ operator that has two spin, one color and one
+position/momentum index as follows:
+
+```mathematica
+\[Pi]Plus[s1_, s2_, c1_, x1_] :=
+    -FieldB[up, c1, s1, x1] ** (Gamma^5)[SI[{s1, s2}]] **
+    Field[dn, c1, s2, x1];
+```
+
+Similarly we define a $\pi^-$ operator:
+
+```mathematica
+\[Pi]Minus[s1_, s2_, c1_, x1_] :=
+    FieldB[dn, c1, s1, x1] ** (Gamma^5)[SI[{s1, s2}]] ** 
+    Field[up, c1, s2, x1];
+```
+
+From these we build an $I = 2$ operator.
+
+```mathematica
+\[Pi]\[Pi]I2[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
+    \[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2]; 
+```
+
+For reasons not entirely clear to me we need to define the “bar” version of
+that operator ourselves. Perhaps it is because the “quark contraction tool”
+does not know about the flavors? Anyway, the second operator is this:
+
+```mathematica
+\[Pi]\[Pi]I2Bar[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
+    \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1]; 
+```
+
+## Wick contractions
+
+With the appropriate isospin operators defined, we can perform the Wick
+contraction using the “quark contraction tool”:
+
+```mathematica
+wc = WickContract[\[Pi]\[Pi]I2Bar[s1, s2, s3, s4, c1, c2, x1, x2] **
+    \[Pi]\[Pi]I2[s5, s6, s7, s8, c5, c6, x3, x4]];
+```
+
+We can then perform the quark contractions on this:
+
+```mathematica
+qc = QuarkContract @ wc
+```
+
+When we take a look at the output (using `TraditionalForm`) we get something
+that looks like this:
+\begin{align*}
+&\text{tr}\left(\gamma^5\;S^{\text{up}}(p_4,p_1)\;\gamma^5\;S^{\text{dn}}( p_1,p_4)\right) \text{tr}\left(\gamma^5\;S^{\text{up}}(p_3,p_2)\;\gamma^5\;S^{\text{dn }}(p_2,p_3)\right)
+\\&\quad
++\text{tr}\left(\gamma^5\;S^{\text{up}}(p_3,p_1)\;\gamma^5\;S^{\text{dn}}(p_1,p_3)\right) \text{tr}\left(\gamma^5\;S^{\text{up}}(p_4,p_2)\;\gamma^5\;S^{\text{dn }}(p_2,p_4)\right)
+\\&\quad
+-\text{tr}\left(\gamma^5\;S^{\text{dn}}(p_2,p_3)\;\gamma^5\;S^{\text{up}}(p_4,p_2)\;\gamma^5\;S^{\text{dn}}(p_1, p_4)\;\gamma^5\;S^{\text{up}}(p_3,p_1)\right)
+\\&\quad
+-\text{tr}\left(\gamma^5\;S^{\text{up}}(p_4,p_1)\;\gamma^5\;S^{\text{dn}}(p_2,p_4)\;\gamma^5\;S^{\text{up}}(p_3,p_2)\;\gamma^5\;S^{\text{dn}}(p_1,p_3)\right)
+\end{align*}
+
+Unfortunately Mathematica does not give this output directly like that, it
+needs `TeXForm` and these replacements in Vim to get it as above:
+
+```
+s/\\text{Gamma}/\\gamma/g
+s/trace/tr/g
+s/\\text{x\(\d\)}/p_\1/g
+s/\./\\;/g
+```
+
+The result is something that we will recognize as “C4cD” and “C4cC”. If we are
+at zero momentum and there is no distinction between them, this can be
+simplified down further to
+$$ 2 \cdot \text{C4cD} - 2 \cdot \text{C4cC} \,. $$
+In this general case we cannot do that, though.
+
+## Wick contraction and spin
+
+We now have an operator that is projected with spin. And we have the Wick
+contraction which already has the isospin incorporated into it. One big
+difference is that the spin operator is at sink only, whereas the Wick
+contraction is a full correlation function already.
+
+As a next step we just build a full correlation function from the spin
+operators, namely writing $O O^\dagger$. This has all the factors that we need,
+we just have to replace the formed products of single-particle creation and
+annihilation operators with the output from the Wick contraction.
+
+We will use pattern replacement for that. As a toy example, we take this
+expression:
 
 ```mathematica
 toy = f[x] ** f[y];
@@ -852,7 +959,42 @@ operator. We can do this directly with a pattern replacement:
 toy /. f[a_] ** f[b_] -> g[a, b]
 ```
 
-The result is `g[x, y]`, as desired. The same works with more complicated expressions
+The result is `g[x, y]`, as desired. The same works with more complicated
+expressions with more factors.
+
+The replacement that we want to apply is the following:
+
+```mathematica
+repl :=  qc /. x1 -> #1 /. x2 -> #2 /. x3 -> #3 /. x4 -> #4 &
+```
+
+This is a function that takes four momenta. It then takes the quark contraction
+`qc` and replace the four position/momentum labels with the arguments. The
+function `ReplaceSingleOperatorScalarWick` accepts the correlator of spin
+operators and this replacement function and gives us the variant with concrete
+momenta. We obtain
+\begin{align*}
+&
+\text{tr}\left(\gamma^5\;S^{\text{up}}(\{0,1,1\},\{1,0,0\})\;\gamma^5\;S^{\text{dn}}(\{1,0,0\},\{0,1,1\})\right)
+\\&\qquad\times
+\text{tr}\left(\gamma^5\;S^{\text{up}}(\{1,0,0\},\{0,1,1\})\;\gamma^5\;S^{\text{dn}}(\{0,1,1\},\{1,0,0\})\right)
+\\&\quad
++\text{tr}\left(\gamma^5\;S^{\text{up}}(\{0,1,1\},\{0,1,1\})\;\gamma^5\;S^{\text{dn}}(\{0,1,1\},\{0,1,1\})\right)
+\\&\qquad\times
+\text{tr}\left(\gamma^5\;S^{\text{up}}(\{1,0,0\},\{1,0,0\})\;\gamma^5\;S^{\text{dn}}(\{1,0,0\},\{1,0,0\})\right)
+\\&\quad
+-\text{tr}\big(\gamma^5\;S^{\text{dn}}(\{1,0,0\},\{0,1,1\})\;\gamma^5\;S^{\text{up}}(\{1,0,0\},\{1,0,0\})
+\\&\qquad\times
+\gamma^5\;S^{\text{dn}}(\{0,1,1\},\{1,0,0\})\;\gamma^5\;S^{\text{up}}(\{0,1,1\},\{0,1,1\})\big)
+\\&\quad
+-\text{tr}\big(\gamma^5\;S^{\text{up}}(\{1,0,0\},\{0,1,1\})\;\gamma^5\;S^{\text{dn}}(\{1,0,0\},\{1,0,0\})
+\\&\qquad\times
+\gamma^5\;S^{\text{up}}(\{0,1,1\},\{1,0,0\})\;\gamma^5\;S^{\text{dn}}(\{0,1,1\},\{0,1,1\})\big)
+\,.
+\end{align*}
+
+This is now very close to the stuff that we actually compute, we should be able
+to get HDF5 dataset names out of that expression.
 
 ---
 
@@ -869,6 +1011,18 @@ The result is `g[x, y]`, as desired. The same works with more complicated expres
 
     ```mathematica
     \[Pi]\[Pi]I1[s1, s2, s3, s4, c1, c2, #1, #2] &
+    ```
+
+-   **`ReplaceSingleOperatorScalarWick`**(expression, replacement)
+
+    Replaces expression from two to two particles like this one:
+
+    ```mathematica
+    ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
+    ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] ** 
+    ConjugateTranspose[
+      ConjugateTranspose[SingleOperator[1, 0, 0, p3_]] **
+      ConjugateTranspose[SingleOperator[2, 0, 0, p4_]]] ->
     ```
 
 # Tests

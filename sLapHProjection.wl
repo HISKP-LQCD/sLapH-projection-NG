@@ -155,6 +155,15 @@ ReplaceSingleOperatorScalar[expr_, repl_] :=
   expr /. ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
     ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] -> ConjugateTranspose[repl[p2, p1]]
 
+ReplaceSingleOperatorScalarWick[expr_, repl_] := 
+  expr /.
+    ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
+    ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] ** 
+    ConjugateTranspose[
+      ConjugateTranspose[SingleOperator[1, 0, 0, p3_]] **
+      ConjugateTranspose[SingleOperator[2, 0, 0, p4_]]] ->
+    repl[p1, p2, p3, p4]
+
 
 EndPackage[];
 
