@@ -121,12 +121,12 @@ MakeMultiOperator[momentapi_, eulerG_, spinsJi_, spinsMi_] := Module[{momentumpc
 	NonCommutativeMultiply @@ parts];
 
 
-MakeGroupSum[irrep_, momentapi_, spinsJi_, spinsMi_] := Module[{groupSummands},
+MakeGroupSum[irrep_, irrepRow_, irrepCol_, momentapi_, spinsJi_, spinsMi_] := Module[{groupSummands},
 	groupSummands = Module[{name, values, eulerG},
 		name = Keys @ #;
 		values = Values @ #;
 		eulerG = EulerAnglesAssoc[[Key @ name]];
-		(* TODO Multiply with irrep! *)
+		Conjugate[values[[Key @ {irrepRow, irrepCol}]]] *
 		MakeMultiOperator[momentapi, eulerG, spinsJi, spinsMi]
 	] & /@ IrrepDGammaAssoc[[Key @ Total @ momentapi]][[Key @ irrep]];
 	Plus @@ groupSummands];

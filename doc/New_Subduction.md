@@ -630,12 +630,32 @@ so this is shootin' fish in a barrel as well.
 
 ## Spin
 
+We implement spin independent of isospin here. We 
+
 ---
+
+-   **`MomentumRefScalar`**($|\vec p_\text{cm}|^2$)
+
+    Gives the reference momentum. These are hand-chosen to be:
+    $$
+    \begin{aligned}
+    0 &\to (0, 0, 0) \\
+    1 &\to (0, 0, 1) \\
+    2 &\to (1, 1, 0) \\
+    3 &\to (1, 1, 1) \\
+    4 &\to (0, 0, 2) \,.
+    \end{aligned}
+    $$
+
+    This only works only up to $|\vec p_\text{cm}|^2 \leq 8$ because after that
+    the mapping is not unique any more, one can write 9 as $9 = 0^2 + 0^2 +
+    3^2$ but also as $9 = 2^2 + 2^2 + 1^2$.
 
 -   **`MomentumRef`**($\vec p_\text{cm}$)
 
     Gives the reference momentum $\vec p_\text{ref}$ for given center-of-mass
-    momentum $\vec p_\text{cm}$.
+    momentum $\vec p_\text{cm}$. As this function is implmented via
+    `MomentumRefScalar`, the same restrictions apply.
 
 -   **`EulerGTilde`**($\vec p_\text{cm}$)
 
@@ -725,7 +745,7 @@ so this is shootin' fish in a barrel as well.
      ConjugateTranspose[SingleOperator[2, 1, 0, {-Cos[1], -Sin[1], 0}]]
     ```
 
--   **`MakeGroupSum`**($\Gamma$, $\{ \vec p_i \}$, $\{ J_i \}$, $\{ M_i \}$)
+-   **`MakeGroupSum`**($\Gamma$, $\alpha$, $\beta$, $\{ \vec p_i \}$, $\{ J_i \}$, $\{ M_i \}$)
 
     This computes the sum over the group elements:
     $$
@@ -733,6 +753,8 @@ so this is shootin' fish in a barrel as well.
     D_{\alpha\beta}^\Gamma(g)^* \;
     \mathtt{MakeMultiOperator}(\{ \vec p_i \}, \vec \Psi_g, \{ J_i \}, \{ M_i \})
     $$
+
+    The center-of-mass momentum is computed as the sum of the individual momenta.
 
 ---
 
@@ -751,3 +773,8 @@ O_\Gamma^{\alpha}(\vec p_\text{cm})^\dagger &=
 \\&\quad\times
 \,.
 ```
+
+### Tests
+
+- Physical non-coupling
+- Cross-Irrep
