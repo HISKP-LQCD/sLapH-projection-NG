@@ -8,8 +8,9 @@ abstract: >
   code](https://github.com/HISKP-LQCD/sLapH-projection) only works for the
   $\rho$ resonance. We want to extend it to multiple particles and arbitrary
   isospin. This note contains the architecture and a survey of possible
-  programming languages and libraries for the implementation. Everything that
-  is going to be implemented will be written out here.
+  programming languages and libraries for the implementation. Also the design
+  and implementation is covered here, including documentation for all functions
+  in the Mathematica package.
 urlcolor: blue
 ...
 
@@ -429,6 +430,10 @@ the official documentation is too much overhead for my little package.
 Therefore I chose to explain the functions from my `sLapHProjection` package
 towards the end of each section in this document.
 
+Since the Wolfram Language is a functional one, the most straightforward way to
+define a constant is as a function with zero arguments. In Haskell there is no
+distinction between constants and argumentless functions at all.
+
 ## Group theory
 
 ### Data format for group elements and irreps
@@ -587,7 +592,7 @@ This is now implemented.
     Given a filename like `C2v-(0,1,1)-representations.txt` it extracts the
     three-momentum vector $\vec p_\text{cm}$.
 
--   **`IrrepDGammaAssoc`**
+-   **`IrrepDGammaAssoc`**()
 
     The $D_{\alpha\beta}^\Gamma(g)$ are represented as an association of this
     form:
@@ -614,7 +619,7 @@ we need. Great, we're done here if the definition of the Euler angles matches.
     form
     $$ g \to (\alpha, \beta, \gamma) \,.$$
 
--   **`EulerAnglesAssoc`**
+-   **`EulerAnglesAssoc`**()
 
     All the Euler angles already read in available as a global constant.
 
@@ -828,7 +833,7 @@ it as a parameter to the user and remove the sum over the $\beta$.
     \texttt{MakeGroupSum}(\Gamma, \alpha, \beta, \{ \vec p_i \}, \{ J_i \}, \{ M_i \}) \,.
     \end{align*}
 
-### Tests
+# Tests
 
 - Physical non-coupling
 - Cross-Irrep

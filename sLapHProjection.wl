@@ -3,7 +3,6 @@
 (* This is the library which contains most of the functionality. The notebooks
 are supposed to just to exercise this library. *)
 
-
 BeginPackage["sLapHProjection`"];
 
 
@@ -45,7 +44,7 @@ irrepFiles = FileNames["Single-cover/*-*-representations.txt"];
 irrepDatasets = ReadIrreps /@ irrepFiles;
 irrepAssocs = DatasetToAssocations /@ irrepDatasets;
 momenta = ExtractMomentumFromFilename /@ irrepFiles;
-IrrepDGammaAssoc = AssociationThread[momenta, irrepAssocs];
+IrrepDGammaAssoc[] = AssociationThread[momenta, irrepAssocs];
 
 
 (* Irrep reading utilities that are not used *)
@@ -71,7 +70,7 @@ ReadEulerAngles[filename_] := Module[{oh, values},
   values = Normal[Values /@ oh];
   #[[1]] -> Pi * {#[[2]], #[[3]], #[[4]]} & /@ values // Association];
   
-EulerAnglesAssoc = ReadEulerAngles["Single-cover/Oh-elements.txt"];
+EulerAnglesAssoc[] = ReadEulerAngles["Single-cover/Oh-elements.txt"];
 
 (* Momentum transformation *)
 
@@ -84,7 +83,7 @@ MomentumRefScalar[4] = {0,0,2};
 MomentumRef[momentumpcm_] := MomentumRefScalar[Total[momentumpcm^2]];
 
 EulerGTilde[momentumpcm_] := 
-  First @ Select[Values @ EulerAnglesAssoc,
+  First @ Select[Values @ EulerAnglesAssoc[],
     momentumpcm == EulerMatrix[#] . MomentumRef[momentumpcm] &];
 
 MatrixRGTilde = EulerMatrix @* EulerGTilde;
@@ -131,10 +130,10 @@ MakeGroupSum[irrep_, irrepRow_, irrepCol_, momentapi_, spinsJi_, spinsMi_] := Mo
   groupSummands = Module[{name, values, eulerG},
     name = Keys @ #;
     values = Values @ #;
-    eulerG = EulerAnglesAssoc[[Key @ name]];
+    eulerG = EulerAnglesAssoc[][[Key @ name]];
     Conjugate[values[[Key @ {irrepRow, irrepCol}]]] *
     MakeMultiOperator[momentapi, eulerG, spinsJi, spinsMi]
-  ] & /@ IrrepDGammaAssoc[[Key @ Total @ momentapi]][[Key @ irrep]];
+  ] & /@ IrrepDGammaAssoc[][[Key @ Total @ momentapi]][[Key @ irrep]];
   Plus @@ groupSummands];
 
 MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, phasePhiM_] :=
@@ -151,4 +150,4 @@ MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, pha
 
 EndPackage[];
 
-(* vim: set ft=mma sts=2 sw=2 :*)
+(* vim: set cc=100 ft=mma sts=2 sw=2 :*)
