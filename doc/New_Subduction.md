@@ -546,7 +546,9 @@ There are two ways that one can represent tensors:
 
     Markus was immediately sold on this approach, and I quite like it as well.
 
-I have implemented Item 3. The following functions are created for this:
+I have implemented Item 3.
+
+---
 
 -   **`ReadDataframe`**(filename)
 
@@ -600,7 +602,7 @@ The Cartesian representation comes for free, there is
 which just takes such a vector. This will give us the mapping $g \to R_g$ that
 we need. Great, we're done here if the definition of the Euler angles matches.
 
-Functions:
+---
 
 -   **`ReadEulerAngles`**(filename)
 
@@ -627,7 +629,7 @@ so this is shootin' fish in a barrel as well.
 
 ## Spin
 
-Functions:
+---
 
 -   **`MomentumRef`**($\vec p_\text{cm}$)
 
@@ -714,3 +716,28 @@ Functions:
         SingleOperator[1, 1, 1, {Sin[1], -Cos[1], 1}]]) ** 
      ConjugateTranspose[SingleOperator[2, 1, 0, {-Cos[1], -Sin[1], 0}]]
     ```
+---
+
+```
+O_\Gamma^{\alpha}(\vec p_\text{cm})^\dagger &=
+\sum_{M=-J}^J
+\phi_M
+\left[
+\prod_{i=1}^{N_\text{p}}
+\sum_{M_i=-J}^J
+\right]
+\langle J, M | J_1, M_1, \ldots, J_{N_\text P}, M_{N_\text P} \rangle
+\\&\quad\times
+\sum_{\beta=1}^{\mathop{\mathrm{nrow}(\Gamma)}}
+\tilde\phi_\beta 
+\sum_{g \in \mathop{\mathrm{LG}}(\vec p_\text{cm})}
+D_{\alpha\beta}^\Gamma(g)^*
+\\&\quad\times
+\prod_{i=1}^{N_\text{p}}
+\sum_{M_i'=-J_i}^{J_i}
+\sum_{M_i''=-J_i}^{J_i}
+D_{M_i' M_i}^{J_i}(g) \;
+D_{M_i'' M_i'}^{J_i}(\tilde g) \;
+O_{i M_i''}^{J_i}(R_{\tilde g}^{-1} R_g R_{\tilde g} \vec p_i)^\dagger
+\,.
+```

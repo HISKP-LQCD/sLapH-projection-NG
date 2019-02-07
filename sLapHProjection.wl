@@ -64,6 +64,13 @@ ExtractMomentumFromFilename[filename_] := First[ToExpression /@ StringCases[
 	RegularExpression["\\((-?\\d+),(-?\\d+),(-?\\d+)\\)"] -> {"$1", "$2", "$3"}]]
 
 
+irrepFiles = FileNames["Single-cover/*-*-representations.txt"];
+irrepDatasets = ReadIrreps /@ irrepFiles;
+irrepAssocs = DatasetToAssocations /@ irrepDatasets;
+momenta = ExtractMomentumFromFilename /@ irrepFiles;
+IrrepDGammaAssoc = AssociationThread[momenta, irrepAssocs];
+
+
 ReadEulerAngles[filename_] := Module[{oh, values},
 	oh = ReadDataframe[filename];
 	values = Normal[Values /@ oh];
@@ -112,6 +119,16 @@ MakeMultiOperator[momentapi_, eulerG_, spinsJi_, spinsMi_] := Module[{momentumpc
 	parts = MakeSingleOperator[momentapi[[#]], momentumpcm, eulerG, spinsJi[[#]], spinsMi[[#]], #] & /@
 		Range[1, Length[momentapi]];
 	NonCommutativeMultiply @@ parts];
+
+
+MakeGroupSum[irrep_, momentapi_, spinsJi_, spinsMi_] := Module[{groupSummands},
+	groupSummands = Module[{name, values, eulerG},
+		name = Keys @ #;
+		values = Values @ #;
+		eulerG = EulerAnglesAssoc[[Key @ name]];
+		MakeMultiOperator[momentapi, eulerG, spinsJi, spinsMi]
+	] & /@ IrrepDGammaAssoc[[Key @ Total @ momentapi]][[Key @ irrep]];
+	Plus @@ groupSummands];
 
 
 EndPackage[];
