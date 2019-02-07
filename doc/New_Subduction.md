@@ -291,10 +291,11 @@ Maple
 
 Mathematica
   ~ The university has a Mathematica campus license, so although that is
-  license riddled as well, at least *we* can use it. The octahedral group is
-  not directly available in Mathematica but I managed to get it via the
-  representation as a permutation group. I can also construct the little groups
-  (also known as stabilizers) but not the irreps.
+  license riddled as well, at least *we* can use it.
+  
+    The octahedral group is not directly available in Mathematica but I managed
+    to get it via the representation as a permutation group. I can also
+    construct the little groups (also known as stabilizers) but not the irreps.
 
 Sage
   ~ I have been looking into alternatives a bit yesterday and found that Sage
@@ -356,11 +357,13 @@ Mathematica
 SymPy
   ~ There is `physics.secondquant.wicks`, which seems to be able to do Wick
   contractions. Also there is `physics.secondquant.contraction` which does a
-  contraction between two fermionic operators. I have spend the afternoon of
-  2019-01-29 looking into it, but the definition of the fermion creation and
-  annihilation operators seem to not support a tensorial structure, at least
-  not with the Wick contractions provided. I have asked a [question on Stack
-  Overflow](https://stackoverflow.com/q/54426941/653152) about this.
+  contraction between two fermionic operators.
+
+    I have spend the afternoon of 2019-01-29 looking into it, but the
+    definition of the fermion creation and annihilation operators seem to not
+    support a tensorial structure, at least not with the Wick contractions
+    provided. I have asked a [question on Stack
+    Overflow](https://stackoverflow.com/q/54426941/653152) about this.
 
 We have chosen Mathematica for this step due to the great “Quark Contraction
 Tool”.
@@ -489,11 +492,6 @@ different members of the original group.
 
 ### Reading the lattice irreps
 
-In my Mathematica package there is the function **`ReadDataframe`** which reads
-such a text file. The function **`ConvertMatrixElement`** will convert that
-matrix element column into Mathematica expressions. Use **`ReadIrreps`** for a
-convenient composition.
-
 The irrep matrices are represented in the *long format*. For instance that
 `C2x` group element in the `Eg` irrep is a $2 \times 2$ matrix that is written
 out as
@@ -545,9 +543,15 @@ There are two ways that one can represent tensors:
     call it with `assoc[1]` and get `"one"`. Missing keys are some sort of
     error condition via say `Missing["KeyAbsent", bar]`.
 
-    Markus was immediately sold on this approach, and I quite like it as well.
+Markus was immediately sold on this approach 3, and I quite like it as well.
+This is now implemented.
 
-I have implemented Item 3.
+The $D_{\alpha\beta}^\Gamma(g)$ are represented as
+an association of this form:
+$$ \vec d \to \Gamma \to g \to (\alpha, \beta) \to D_{\alpha\beta}^\Gamma(g) \,. $$
+You can think of this as a function taking a momentum vector $\vec d$ and
+giving you a new function which accepts an irrep $\Gamma$ and gives you a
+function which ….
 
 ---
 
@@ -586,13 +590,6 @@ I have implemented Item 3.
     Given a filename like `C2v-(0,1,1)-representations.txt` it extracts the
     three-momentum vector $\vec p_\text{cm}$.
 
-The $D_{\alpha\beta}^\Gamma(g)$ are represented as
-an association of this form:
-$$ \vec d \to \Gamma \to g \to (\alpha, \beta) \to D_{\alpha\beta}^\Gamma(g) \,. $$
-You can think of this as a function taking a momentum vector $\vec d$ and
-giving you a new function which accepts an irrep $\Gamma$ and gives you a
-function ….
-
 ### Creating the Cartesian representation
 
 In the file `Oh-elements.txt` we just have the names of the group elements and
@@ -625,8 +622,20 @@ $$ (j, m_1, m_2, \psi, \theta, \phi) \to D^J(g) \,. $$
 ### Clebsch-Gordan coefficients
 
 The Clebsch-Gordan coefficients are implemented as
-[`ClebschGordan`](http://reference.wolfram.com/language/ref/ClebschGordan.html),
-so this is shootin' fish in a barrel as well.
+[`ClebschGordan`](http://reference.wolfram.com/language/ref/ClebschGordan.html).
+We do need to implement higher Clebsch-Gordan coefficients ourselves, though.
+
+We can use this recursion relation:
+\begin{multline*}
+\langle J, M | j_1, m_1, j_2, m_2, j_3, m_3, \ldots \rangle
+\\=
+\sum_{\tilde J = |j_2 - j_3|}^{j_2 + j_3}
+\sum_{\tilde M = - \tilde J}^{\tilde J}
+\langle J, M | j_1, m_1, \tilde J, \tilde M \rangle
+\langle \tilde J, \tilde M | j_2, m_2, j_3, m_3, \ldots \rangle \,.
+\end{multline*}
+If the “$\ldots$” are empty, then we have the usual Clebsch-Gordan coefficients
+that are already available.
 
 ## Spin
 
