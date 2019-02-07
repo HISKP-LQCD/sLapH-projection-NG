@@ -113,7 +113,7 @@ O_\Gamma^{\alpha}(\vec p_\text{cm})^\dagger &=
 \phi_M
 \left[
 \prod_{i=1}^{N_\text{p}}
-\sum_{M_i=-J}^J
+\sum_{M_i=-{J_i}}^{J_i}
 \right]
 \langle J, M | J_1, M_1, \ldots, J_{N_\text P}, M_{N_\text P} \rangle
 \\&\quad\times
@@ -630,7 +630,17 @@ so this is shootin' fish in a barrel as well.
 
 ## Spin
 
-We implement spin independent of isospin here. We 
+We implement spin independent of isospin here. The spin projection will just
+create an expression that contains `SingleOperator`, which can then later be
+replaced with the actual operators used. But isospin projection gives us one
+big multi-particle operator. I let it compute with the single operators and
+then massage the expression such that the products of operators are directly
+adjacent. Then I use a pattern replacement to replace them all with one
+multi-particle operator.
+
+Markus has chosen the phase vector $\tilde \phi_\beta$ as $\delta_{\beta 1}$,
+effectively fixing the column of the irrep. In my implementation I just expose
+it as a parameter to the user and remove the sum over the $\beta$.
 
 ---
 
@@ -756,23 +766,22 @@ We implement spin independent of isospin here. We
 
     The center-of-mass momentum is computed as the sum of the individual momenta.
 
----
+-   **`MakeMagneticSum`**($\Gamma$, $\alpha$, $\beta$, $\{ \vec p_i \}$, $\{ J_i \}$, $\phi$)
 
-```
-O_\Gamma^{\alpha}(\vec p_\text{cm})^\dagger &=
-\sum_{M=-J}^J
-\phi_M
-\left[
-\prod_{i=1}^{N_\text{p}}
-\sum_{M_i=-J}^J
-\right]
-\langle J, M | J_1, M_1, \ldots, J_{N_\text P}, M_{N_\text P} \rangle
-\\&\quad\times
-\sum_{\beta=1}^{\mathop{\mathrm{nrow}(\Gamma)}}
-\tilde\phi_\beta 
-\\&\quad\times
-\,.
-```
+    This function performs the sum over all the magnetic quantum numbers $M$
+    and $\{ M_i \}$. The resulting expression is
+    \begin{align*}
+    O_\Gamma^{J\alpha\beta}(\vec p_\text{cm})^\dagger &=
+    \sum_{M=-J}^J
+    \phi_M
+    \left[
+    \prod_{i=1}^{N_\text{p}}
+    \sum_{M_i=-J_i}^{J_i}
+    \right]
+    \langle J, M | J_1, M_1, \ldots, J_{N_\text P}, M_{N_\text P} \rangle
+    \\&\quad\times
+    \texttt{MakeGroupSum}(\Gamma, \alpha, \beta, \{ \vec p_i \}, \{ J_i \}, \{ M_i \}) \,.
+    \end{align*}
 
 ### Tests
 
