@@ -833,6 +833,44 @@ it as a parameter to the user and remove the sum over the $\beta$.
     \texttt{MakeGroupSum}(\Gamma, \alpha, \beta, \{ \vec p_i \}, \{ J_i \}, \{ M_i \}) \,.
     \end{align*}
 
+## Isospin and spin
+
+The goal is to have spin and isospin independent of each other. With the
+appropriate two-particle operator defined, we need to be able to do the spin
+projection and then multi-particle operator there. To illustrate the
+replacement with pattern, let us define such a toy expression:
+
+```mathematica
+toy = f[x] ** f[y];
+```
+
+The `f` stands for the function `SingleOperator` with all its arguments. We
+want to replace it with the function `g`, which stands for the multi-particle
+operator. We can do this directly with a pattern replacement:
+
+```mathematica
+toy /. f[a_] ** f[b_] -> g[a, b]
+```
+
+The result is `g[x, y]`, as desired. The same works with more complicated expressions
+
+---
+
+-   **`ReplaceSingleOperatorScalar`**(expression, replacement)
+
+    Takes the *expression* stemming from `MakeGroupSum` for just scalar
+    particles and replaces all the occurences of
+    `ConjugateTranspose[SingleOperator[…]]` and replaces it with a single
+    multi-particle operator. The *replacement* has to be a function taking the
+    two momentum arguments.
+
+    For the $\rho$-channel we use a two-pion operator and therefore our
+    *replacement* is the following function:
+
+    ```mathematica
+    \[Pi]\[Pi]I1[s1, s2, s3, s4, c1, c2, #1, #2] &
+    ```
+
 # Tests
 
 - Physical non-coupling

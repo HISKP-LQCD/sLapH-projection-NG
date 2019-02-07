@@ -68,7 +68,8 @@ MatrixLongToActual[dataset_] := GroupBy[
 ReadEulerAngles[filename_] := Module[{oh, values},
   oh = ReadDataframe[filename];
   values = Normal[Values /@ oh];
-  #[[1]] -> Pi * {#[[2]], #[[3]], #[[4]]} & /@ values // Association];
+  #[[1]] -> Pi * {ToExpression @ #[[2]], ToExpression @ #[[3]], ToExpression @ #[[4]]} & /@
+    values // Association];
   
 EulerAnglesAssoc[] = ReadEulerAngles["Single-cover/Oh-elements.txt"];
 
@@ -146,6 +147,13 @@ MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, pha
     {spinsMi1, -spinsJi[[1]], spinsJi[[1]]},
     {spinsMi2, -spinsJi[[2]], spinsJi[[2]]}],
   {spinM, -spinJ, spinJ}];
+
+
+(* Isospin and Spin *)
+
+ReplaceSingleOperatorScalar[expr_, repl_] := 
+  expr /. ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
+    ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] -> ConjugateTranspose[repl[p2, p1]]
 
 
 EndPackage[];
