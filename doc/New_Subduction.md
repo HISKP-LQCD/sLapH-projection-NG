@@ -397,17 +397,21 @@ and implementation of the different tasks along the way.
 
 As the Wolfram Language is very functional and I know some Haskell, I made
 great use of this. The following table gives you pointers to some of the
-operators used and their correspondence in other languages.
+operators used and their correspondence in other languages. Mathematica
+functions are in general hyperlinked directly to the official documentation.
+You can also just type `?x` to get the help for `x`.
 
-| Long | Infix | Python | R | C++ |
+| Long | Infix | Python | R |
 | --- | --- | --- | --- | --- |
-| [`f[x]`](http://reference.wolfram.com/language/ref/Prefix.html) | `f @ x` or `x // f` | `f(x)` | `f(x)` | `f(x)` |
-| [`Map[f, x]`](http://reference.wolfram.com/language/ref/Map.html) | `f /@ x` | `map(f, x)` | `lapply(x, f)` | `std::transform` |
-| [`Composition[f, g]`](http://reference.wolfram.com/language/ref/Composition.html) | `f @* g` | — | — | — |
-| [`Function[x, x^2]`](http://reference.wolfram.com/language/ref/Function.html) | `#^2 &` | `lambda` | `function` | `[](…){…}` |
-| [`Part[xs, i]`](http://reference.wolfram.com/language/ref/Part.html) | `xs[[i]]` | `xs[i-1]` | `xs[[i]]` | `xs[i-1]` |
-| [`Association[a -> b]`](http://reference.wolfram.com/language/ref/Association.html) | `<| a -> b |>` | `{a: b}` | `list(a = b)` | [`std::map`](https://en.cppreference.com/w/cpp/container/map) |
-| [`Dot[a, b]`](http://reference.wolfram.com/language/ref/Dot.html) | `a . b` | `a @ b` | `a %*% b` | — |
+| [`f[x]`](http://reference.wolfram.com/language/ref/Prefix.html) | `f @ x` or `x // f` | `f(x)` | `f(x)` |
+| [`Apply[f, a]`](http://reference.wolfram.com/language/ref/Apply.html) | `f @@ a` | `f(*a)` | `do.call(f, a)` |
+| [`Map[f, x]`](http://reference.wolfram.com/language/ref/Map.html) | `f /@ x` | `map(f, x)` | `lapply(x, f)` |
+| [`Composition[f, g]`](http://reference.wolfram.com/language/ref/Composition.html) | `f @* g` | — | — |
+| [`Function[x, x^2]`](http://reference.wolfram.com/language/ref/Function.html) | `#^2 &` | `lambda` | `function` |
+| [`Part[xs, i]`](http://reference.wolfram.com/language/ref/Part.html) | `xs[[i]]` | `xs[i-1]` | `xs[[i]]` |
+| [`Association[a -> b]`](http://reference.wolfram.com/language/ref/Association.html) | `<| a -> b |>` | `{a: b}` | `list(a = b)` |
+| [`Dot[a, b]`](http://reference.wolfram.com/language/ref/Dot.html) | `a . b` | `a @ b` | `a %*% b` |
+| [`NonCommutativeMultiply[a, b]`](http://reference.wolfram.com/language/ref/NonCommutativeMultiply.html) | `a ** b` | — | — |
 
 Common patterns in functional programming are [*tacit
 programming*](https://en.wikipedia.org/wiki/Tacit_programming) and expressing
@@ -667,8 +671,46 @@ Functions:
 
     The function `SingleOperator` is just a placeholder defined next.
 
+    We can also take a more interesting case where the Wigner $D^J$ matrices
+    are not so simple.
+
+    ```mathematica
+    MakeSingleOperator[{0, 0, 1}, {1, 1, 1}, Pi {1/2, 1/2, 0}, 2, 0, 1]
+    ```
+
+    We then get the following linear combination of operators:
+
+    ```mathematica
+    -(1/2) Sqrt[3/2]
+       ConjugateTranspose[SingleOperator[1, 2, -2, {0, 1, 0}]] - 
+     1/2 ConjugateTranspose[SingleOperator[1, 2, 0, {0, 1, 0}]] - 
+     1/2 Sqrt[3/2] ConjugateTranspose[SingleOperator[1, 2, 2, {0, 1, 0}]]
+   ```
+
 -   **`SingleOperator`**($i$, $J_i$, $M_i$, $\vec p$)
 
     Just a placeholder without a definition. It holds the single particle
     operator $O_{i M_i}^{J_i}(\vec p)$. These will later be replaced with the
     isospin projected operators.
+
+-   **`MakeMultiOperator`**($\{ \vec p_i \}$, $\vec \Psi_g$, $\{ J_i \}$, $\{
+    M_i \}$)
+
+    Creates the multi particle operator as a product of single particle
+    operators. The center-of-mass momentum $\vec p_\text{cm}$ is taken to be
+    the sum of the individual momenta $\vec p_i$.
+
+    For example we use the following code:
+
+    ```mathematica
+    MakeMultiOperator[{{1, 1, 1} - {1, 0, 0}, {1, 0, 0}}, {1, 0, Pi},
+        {1, 1}, {1, 0}]
+    ```
+
+    This then gives us the following product of two single operators:
+
+    ```
+    (-E^I ConjugateTranspose[
+        SingleOperator[1, 1, 1, {Sin[1], -Cos[1], 1}]]) ** 
+     ConjugateTranspose[SingleOperator[2, 1, 0, {-Cos[1], -Sin[1], 0}]]
+    ```

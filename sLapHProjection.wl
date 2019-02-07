@@ -107,4 +107,11 @@ MakeSingleOperator[momentumpi_, momentumpcm_, eulerG_, spinJi_, spinMi_, i_] :=
 			{spinMi2, -spinJi, spinJi}]];
 
 
+MakeMultiOperator[momentapi_, eulerG_, spinsJi_, spinsMi_] := Module[{momentumpcm, parts},
+	momentumpcm = Total[momentapi];
+	parts = MakeSingleOperator[momentapi[[#]], momentumpcm, eulerG, spinsJi[[#]], spinsMi[[#]], #] & /@
+		Range[1, Length[momentapi]];
+	NonCommutativeMultiply @@ parts];
+
+
 EndPackage[];
