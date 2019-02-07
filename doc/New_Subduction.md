@@ -412,6 +412,7 @@ You can also just type `?x` to get the help for `x`.
 | [`Association[a -> b]`](http://reference.wolfram.com/language/ref/Association.html) | `<| a -> b |>` | `{a: b}` | `list(a = b)` |
 | [`Dot[a, b]`](http://reference.wolfram.com/language/ref/Dot.html) | `a . b` | `a @ b` | `a %*% b` |
 | [`NonCommutativeMultiply[a, b]`](http://reference.wolfram.com/language/ref/NonCommutativeMultiply.html) | `a ** b` | — | — |
+| [`ReplaceAll`](http://reference.wolfram.com/language/ref/ReplaceAll.html) | `/.` | — | — |
 
 Common patterns in functional programming are [*tacit
 programming*](https://en.wikipedia.org/wiki/Tacit_programming) and expressing
@@ -702,6 +703,13 @@ so this is shootin' fish in a barrel as well.
     operators. The center-of-mass momentum $\vec p_\text{cm}$ is taken to be
     the sum of the individual momenta $\vec p_i$.
 
+    It corresponds to this expression:
+
+    $$
+    \prod_{i=1}^{N_\text{p}}
+    \mathtt{SingleOperator}(i, J_i, M_i, \vec p) \,.
+    $$
+
     For example we use the following code:
 
     ```mathematica
@@ -716,6 +724,16 @@ so this is shootin' fish in a barrel as well.
         SingleOperator[1, 1, 1, {Sin[1], -Cos[1], 1}]]) ** 
      ConjugateTranspose[SingleOperator[2, 1, 0, {-Cos[1], -Sin[1], 0}]]
     ```
+
+-   **`MakeGroupSum`**($\Gamma$, $\{ \vec p_i \}$, $\{ J_i \}$, $\{ M_i \}$)
+
+    This computes the sum over the group elements:
+    $$
+    \sum_{g \in \mathop{\mathrm{LG}}(\vec p_\text{cm})}
+    D_{\alpha\beta}^\Gamma(g)^* \;
+    \mathtt{MakeMultiOperator}(\{ \vec p_i \}, \vec \Psi_g, \{ J_i \}, \{ M_i \})
+    $$
+
 ---
 
 ```
@@ -730,14 +748,6 @@ O_\Gamma^{\alpha}(\vec p_\text{cm})^\dagger &=
 \\&\quad\times
 \sum_{\beta=1}^{\mathop{\mathrm{nrow}(\Gamma)}}
 \tilde\phi_\beta 
-\sum_{g \in \mathop{\mathrm{LG}}(\vec p_\text{cm})}
-D_{\alpha\beta}^\Gamma(g)^*
 \\&\quad\times
-\prod_{i=1}^{N_\text{p}}
-\sum_{M_i'=-J_i}^{J_i}
-\sum_{M_i''=-J_i}^{J_i}
-D_{M_i' M_i}^{J_i}(g) \;
-D_{M_i'' M_i'}^{J_i}(\tilde g) \;
-O_{i M_i''}^{J_i}(R_{\tilde g}^{-1} R_g R_{\tilde g} \vec p_i)^\dagger
 \,.
 ```

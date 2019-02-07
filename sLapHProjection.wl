@@ -126,6 +126,7 @@ MakeGroupSum[irrep_, momentapi_, spinsJi_, spinsMi_] := Module[{groupSummands},
 		name = Keys @ #;
 		values = Values @ #;
 		eulerG = EulerAnglesAssoc[[Key @ name]];
+		(* TODO Multiply with irrep! *)
 		MakeMultiOperator[momentapi, eulerG, spinsJi, spinsMi]
 	] & /@ IrrepDGammaAssoc[[Key @ Total @ momentapi]][[Key @ irrep]];
 	Plus @@ groupSummands];
