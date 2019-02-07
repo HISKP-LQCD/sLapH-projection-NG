@@ -415,9 +415,11 @@ loops in terms of list comprehensions or *maps*. I use some of the former and
 plenty of the latter. This might make the code harder to read for a programmer
 who is not familiar with the Wolfram Language.
 
-The functions from my `sLapHProjection` package will be explained along the way
-and typeset in bold monospace font such that they stand out and can be found
-easier (but there's always Ctrl-F).
+From what I gathered the built-in documentation mechanism in Mathematica is not
+as formal as say Doxygen in C++ or Rd in R. The formal one which is used for
+the official documentation is too much overhead for my little package.
+Therefore I chose to explain the functions from my `sLapHProjection` package
+towards the end of each section in this document.
 
 ## Group theory
 
@@ -540,7 +542,44 @@ There are two ways that one can represent tensors:
 
     Markus was immediately sold on this approach, and I quite like it as well.
 
-I have implemented Item 3. The $D_{\alpha\beta}^\Gamma(g)$ are represented as
+I have implemented Item 3. The following functions are created for this:
+
+-   **`ReadDataframe`**(filename)
+
+    Reads a CSV formatted table with a header and generates a `Dataset` from
+    it.
+
+-   **`ConvertMatrixElement`**(dataset)
+
+    The matrix elements of the irreducible representations,
+    $D^\Gamma_{\alpha\beta}(g)$ are stored as strings in the CSV file. Using
+    `ToExpression` these are parsed into Mathematica symbols. This function
+    takes the dataset and replaces the “matrix element” column with the parsed
+    one.
+
+-   **`ReadIrreps`**(filename)
+
+    The composition of `ConvertMatrixElement` and `ReadDataframe`.
+
+-   **`MatrixElementsToAssociation`**(dataset)
+
+    Converts the “row”, “col” and “matrix element” into mappings of the form
+    $(\alpha, \beta) \to D^\Gamma_{\alpha\beta}(g)$. The result is a `Dataset`
+    with just one row per irrep and little group element and an `Association`
+    which contains all the matrix elements.
+
+-   **`IrrepsToAssociation`**(matrixElementsAssociations)
+
+    Continuing with the result from `MatrixElementsToAssociation` this function
+    then builds a more deeply nested `Association` which has the form
+    $$ \Gamma \to g \to (\alpha, \beta) \to D_{\alpha\beta}^\Gamma(g) \,. $$
+
+-   **`ExtractMomentumFromFilename`**(filename)
+
+    Given a filename like `C2v-(0,1,1)-representations.txt` it extracts the
+    three-momentum vector $\vec p_\text{cm}$.
+
+The $D_{\alpha\beta}^\Gamma(g)$ are represented as
 an association of this form:
 $$ \vec d \to \Gamma \to g \to (\alpha, \beta) \to D_{\alpha\beta}^\Gamma(g) \,. $$
 You can think of this as a function taking a momentum vector $\vec d$ and
@@ -550,14 +589,24 @@ function ….
 ### Creating the Cartesian representation
 
 In the file `Oh-elements.txt` we just have the names of the group elements and
-the Euler angles. We read those in with **`ReadEulerAngles`** and obtain a
-handy association of the form
-$$ g \to (\alpha, \beta, \gamma) \,.$$
+the Euler angles.
 
 The Cartesian representation comes for free, there is
 [`EulerMatrix`](http://reference.wolfram.com/language/ref/EulerMatrix.html)
 which just takes such a vector. This will give us the mapping $g \to R_g$ that
 we need. Great, we're done here if the definition of the Euler angles matches.
+
+Functions:
+
+-   **`ReadEulerAngles`**(filename)
+
+    Reads the file with Euler angles and produces a handy association of the
+    form
+    $$ g \to (\alpha, \beta, \gamma) \,.$$
+
+-   **`EulerAnglesAssoc`**
+
+    All the Euler angles already read in available as a global constant.
 
 ### Creating the spin representation
 
@@ -572,17 +621,16 @@ The Clebsch-Gordan coefficients are implemented as
 [`ClebschGordan`](http://reference.wolfram.com/language/ref/ClebschGordan.html),
 so this is shootin' fish in a barrel as well.
 
-# Documentation of functions in the Mathematica module
+## Spin
 
-The following is a list of the functions defined in the Mathematica module
-`sLapHProjection`. From what I gathered the documentation mechanism in
-Mathematica is not as formal as say Doxygen in C++ or Rd in R. This and the
-need for a bunch of math expressions made me chose an external documentation.
+Functions:
 
-These functions are ordered by name to make finding stuff easy at the expense
-of a coherent reading from top to bottom.
+-   **`MomentumRef`**($\vec p_\text{cm}$)
 
--   $\mathtt{EulerGTilde}(\vec p_\text{cm})$
+    Gives the reference momentum $\vec p_\text{ref}$ for given center-of-mass
+    momentum $\vec p_\text{cm}$.
+
+-   **`EulerGTilde`**($\vec p_\text{cm}$)
 
     Finds a set of Euler angles $(\psi, \theta, \phi)$ such that the rotation
     matrix coverts the reference momentum into center-of-mass momentum, i.e.
@@ -590,7 +638,37 @@ of a coherent reading from top to bottom.
     transformation is not unique, but that *should* not be a problem as we sum
     over the little group elements anyway.
 
--   $\mathtt{MomentumRef}(\vec p_\text{cm})$
+-   **`MatrixRGTilde`**($\vec p_\text{cm}$)
 
-    Gives the reference momentum $\vec p_\text{ref}$ for given center-of-mass
-    momentum $\vec p_\text{cm}$.
+    Simply computes the rotation matrix corresponding to the Euler angles from
+    \texttt{EulerGTilde}.
+
+-   **`MakeSingleOperator`**($\vec p_i$, $\vec p_\text{cm}$, $\vec \Psi_g$,
+    $J_i$, $M_i$, $i$)
+
+    Creates an appropriate linear combination of the single particle operator
+    $O$ from
+    $$
+    \sum_{M_i'=-J_i}^{J_i}
+    \sum_{M_i''=-J_i}^{J_i}
+    D_{M_i' M_i}^{J_i}(g) \;
+    D_{M_i'' M_i'}^{J_i}(\tilde g) \;
+    O_{i M_i''}^{J_i}(R_{\tilde g}^{-1} R_g R_{\tilde g} \vec p_i)^\dagger \,.
+    $$
+    The group element $g$ is specified via its Euler angles $\vec \Psi_g$.
+
+    For instance taking $\vec p_i = (1, 1, 1)$, $\vec p_\text{cm} = (1, 1, 1)$,
+    $\vec \Psi_g = (\pi/2, 1, 1)$, $J_i = 1$, $M_i = 1$, $i = 1$ gives us the
+    following expression:
+
+    ```mathematica
+    I ConjugateTranspose[SingleOperator[1, 1, -1, {1, 1, -1}]]
+    ```
+
+    The function `SingleOperator` is just a placeholder defined next.
+
+-   **`SingleOperator`**($i$, $J_i$, $M_i$, $\vec p$)
+
+    Just a placeholder without a definition. It holds the single particle
+    operator $O_{i M_i}^{J_i}(\vec p)$. These will later be replaced with the
+    isospin projected operators.

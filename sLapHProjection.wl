@@ -68,6 +68,8 @@ ReadEulerAngles[filename_] := Module[{oh, values},
 	oh = ReadDataframe[filename];
 	values = Normal[Values /@ oh];
 	#[[1]] -> Pi * {#[[2]], #[[3]], #[[4]]} & /@ values // Association];
+	
+EulerAnglesAssoc = ReadEulerAngles["Single-cover/Oh-elements.txt"];
 
 
 (* Momentum transformation *)
@@ -82,17 +84,27 @@ MomentumRefScalar[4] = {0,0,2};
 MomentumRef[momentumpcm_] := MomentumRefScalar[Total[momentumpcm^2]];
 
 
-MomentumTransform[momentumd_,  momentumpcm_, eulerG_] :=
-	Inverse[MatrixRgtilde[MomentumRef[momentumpcm]]] .
-		EulerMatrix[eulerG] .
-		MatrixRgtilde[MomentumRef[momentumpcm]];
-
-
 EulerGTilde[momentumpcm_] := 
-	First @ Select[Values @ eulerAngles,
+	First @ Select[Values @ EulerAnglesAssoc,
 		momentumpcm == EulerMatrix[#] . MomentumRef[momentumpcm] &];
 
-MatrixRGTilde = EulerMatrix @* eulerGTilde;
+MatrixRGTilde = EulerMatrix @* EulerGTilde;
+
+MomentumTransform[momentumd_,  momentumpcm_, eulerG_] :=
+	Inverse[MatrixRGTilde[MomentumRef[momentumpcm]]] .
+		EulerMatrix[eulerG] .
+		MatrixRGTilde[MomentumRef[momentumpcm]];
+
+
+MakeSingleOperator[momentumpi_, momentumpcm_, eulerG_, spinJi_, spinMi_, i_] :=
+	Module[{eulerGtilde},
+		eulerGtilde = EulerAngles[MatrixRGTilde[momentumpcm]];
+		Sum[
+			WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]], eulerG[[2]], eulerG[[3]]] 
+			WignerD[{spinJi, spinMi2, spinMi1}, eulerGtilde[[1]], eulerGtilde[[2]], eulerGtilde[[3]]]
+			ConjugateTranspose[SingleOperator[i, spinJi, spinMi2, MomentumTransform[momentumpi, momentumpcm, eulerG] . momentumpi]],
+			{spinMi1, -spinJi, spinJi},
+			{spinMi2, -spinJi, spinJi}]];
 
 
 EndPackage[];
