@@ -165,7 +165,27 @@ ReplaceSingleOperatorScalarWick[expr_, repl_] :=
     repl[p1, p2, p3, p4]
 
 
-(* Contractions *)
+(* Trace normalization *)
+
+RotateGammaToFront[expr_] := If[MatchQ[expr[[1]], qct`Gamma^_], expr, RotateLeft[expr]];
+
+Starts[traceContent_] := ReplaceAll[#[[2]][[2]] & /@ traceContent[[2 ;; ;; 2]], {Dot -> List}];
+
+IndexOfFirst[traceContent_] := Ordering[Starts[traceContent], 1, 
+  ReplaceAll[#1, {so[i_] :> i, si[i_] :> 1000 + i}] < 
+    ReplaceAll[#2, {so[i_] :> i, si[i_] :> 1000 + i}] &][[1]];
+
+NormalizeTrace[traceContent_] := With[{tr2 = RotateGammaToFront @ traceContent},
+  RotateLeft[tr2, 2 * (IndexOfFirst[tr2] - 1)]];
+
+NormalizeTraceRecursive[expr_] := If[Length[expr] == 0,
+  expr,
+  If[MatchQ[expr, qct`trace[_]],
+    qct`trace[NormalizeTrace[expr[[1]]]], 
+    NormalizeTraceRecursive /@ expr]];
+
+
+(* Wick contractions *)
 
 MakeTemplate[n_] := StringRiffle[
  Table["g`g" <> ToString @ i <> "`.p`x" <> ToString @ i <> "`.d000", {i, 1, n}], "_"]
@@ -189,10 +209,10 @@ DatasetNameRules[] = {
       "x4" -> "`psi" <> ToString @ si3 <> "`"|>],
 
   (* C4cC *)
-  qct`trace[qct`Gamma^g2_ . qct`DE[{"dn", "dn"}, {so[so2_], si[si1_]}].
+  qct`trace[qct`Gamma^g1_ . qct`DE[{"up", "up"}, {si[si1_], so[so1_]}].
+    qct`Gamma^g2_ . qct`DE[{"dn", "dn"}, {so[so2_], si[si1_]}].
     qct`Gamma^g3_ . qct`DE[{"up", "up"}, {si[si2_], so[so2_]}].
-    qct`Gamma^g4_ . qct`DE[{"dn", "dn"}, {so[so1_], si[si2_]}].
-    qct`Gamma^g1_ . qct`DE[{"up", "up"}, {si[si1_], so[so1_]}]] :>
+    qct`Gamma^g4_ . qct`DE[{"dn", "dn"}, {so[so1_], si[si2_]}] ] :>
   TemplateApply[
     "C4cC_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,

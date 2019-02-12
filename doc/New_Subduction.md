@@ -930,6 +930,55 @@ simplified down further to
 $$ 2 \cdot \text{C4cD} - 2 \cdot \text{C4cC} \,. $$
 In this general case we cannot do that, though.
 
+### Normalizing trace expressions
+
+The trace is cyclic. Therefore similar expressions can be equivalent. The trace
+expression used, `trace` from `qct`, does not let Mathematica know that it is
+cyclic. Therefore we manually cycle them until the propagator starting from the
+lowest vertex (to be defined) is the second element. The first element shall be
+the $\Gamma$-structure. The first vertex is the source vertex with the lowest
+number. If there is no source vertex, then the lowest sink vertex is to be
+used.
+
+---
+
+-   **`RotateGammaToFront`**(expression)
+
+    Takes an expression like 
+
+    ```mathematica
+    Gamma^5.DE[{"dn", "dn"}, {so[2], si[1]}].
+        Gamma^5.DE[{"up", "up"}, {si[2], so[2]}]
+    ```
+
+    and cyclicly permutes the expression if it does not start with a `Gamma`.
+    The resulting expression always start with `Gamma`.
+
+-   **`Starts`**(traceContent)
+
+    Gives the starting times of the propagators in the trace content
+    expression. The result could look like this:
+
+    ```mathematica
+    {si[1], so[2], si[2], so[1]}
+    ```
+
+-   **`IndexOfFirst`**(traceContent)
+
+    Determines which propagator should be the first one in the expression. If
+    the result is $n$, then the whole expression should be rotated left by $2(n
+    - 1)$ iterations.
+
+-   **`NormalizeTrace`**(traceContent)
+
+    Cyclicly permutes the trace such that the Dirac structure corresponding to
+    the first vertex is at the front.
+
+-   **`NormalizeTraceRecursive`**(expression)
+
+    Recursively traverses an expression and applies `NormalizeTrace` on every
+    `trace` expression encountered.
+
 ### Contractions into dataset name templates
 
 At the stage of the Wick contractions we still know which labels correspond to
