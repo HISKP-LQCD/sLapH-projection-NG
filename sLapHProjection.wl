@@ -148,6 +148,12 @@ MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, pha
     {spinsMi2, -spinsJi[[2]], spinsJi[[2]]}],
   {spinM, -spinJ, spinJ}];
 
+ExtractMomenta[expr_] := 
+  ReplaceAll[
+    expr /. ConjugateTranspose[SingleOperator[_, _, _, p_]] -> p, 
+    NonCommutativeMultiply -> List];
+
+
 
 (* Trace normalization *)
 
@@ -222,6 +228,14 @@ ReplaceSingleOperatorScalarWick[expr_, repl_] :=
       ConjugateTranspose[SingleOperator[2, 0, 0, p4_]]] ->
     repl[p1, p2, p3, p4]
 
+MomentumToString[p_] := StringJoin[ToString /@ p];
+
+MomentumPluginRecursive[rules_, templateExpr_] := 
+  If[AtomQ[templateExpr],
+    If[StringQ[templateExpr],
+      TemplateApply[templateExpr, Association[rules]],
+      templateExpr],
+    MomentumPluginRecursive[rules, #] & /@ templateExpr];
 
 EndPackage[];
 

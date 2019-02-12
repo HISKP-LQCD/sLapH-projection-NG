@@ -846,6 +846,10 @@ it as a parameter to the user and remove the sum over the $\beta$.
     \texttt{MakeGroupSum}(\Gamma, \alpha, \beta, \{ \vec p_i \}, \{ J_i \}, \{ M_i \}) \,.
     \end{align*}
 
+-   **`ExtractMomenta`**(expr)
+
+    Extracts all the momenta from the `SingleOperator`s used.
+
 ## Isospin
 
 Isospin and the Wick contractions are independent of the spin. Therefore we can
@@ -1078,7 +1082,6 @@ can insert the momenta corresponding to the spin projected operators.
     "C2cD_uu_g5.p`pso1`.d000_g5.p`psi1`.d000"
     ```
 
-
 ## Wick contraction and spin
 
 We now have an operator that is projected with spin. And we have the Wick
@@ -1162,14 +1165,35 @@ to get HDF5 dataset names out of that expression.
 
 -   **`ReplaceSingleOperatorScalarWick`**(expression, replacement)
 
-    Replaces expression from two to two particles like this one:
+    Replaces *expression* from two to two particles like this one
 
     ```mathematica
     ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
     ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] ** 
     ConjugateTranspose[
       ConjugateTranspose[SingleOperator[1, 0, 0, p3_]] **
-      ConjugateTranspose[SingleOperator[2, 0, 0, p4_]]] ->
+      ConjugateTranspose[SingleOperator[2, 0, 0, p4_]]]
+    ```
+
+    with the *replacement* being evaluated with the momenta as:
+
+    ```
+    replacement[p1, p2, p3, p4]
+    ```
+
+-   **`MomentumToString`**($\vec p$)
+
+    Converts an integer momentum vector like `{1, 0, -1}` into the string
+    `10-1`.
+
+-   **`MomentumPluginRecursive`**(rules, templateExpression)
+
+    Recursively traverses through the *template expression* and replaces the
+    momenta with the rules. The *rules* must be an [`Association`] of this form:
+
+    ```mathematica
+    <|"psi1" -> "011", "psi2" -> "100",
+      "pso1" -> "011", "pso2" -> "100"|>
     ```
 
 # Tests
