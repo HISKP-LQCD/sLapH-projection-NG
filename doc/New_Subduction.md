@@ -940,6 +940,11 @@ the $\Gamma$-structure. The first vertex is the source vertex with the lowest
 number. If there is no source vertex, then the lowest sink vertex is to be
 used.
 
+The key observation is that [expressions can be used like
+lists](https://reference.wolfram.com/language/tutorial/PartsOfExpressions.html).
+With this we can access the different parts of expressions. The arguments of a
+function are subexpressions.
+
 ---
 
 -   **`RotateGammaToFront`**(expression)
@@ -978,6 +983,16 @@ used.
 
     Recursively traverses an expression and applies `NormalizeTrace` on every
     `trace` expression encountered.
+
+    The recursion can encounter three cases:
+
+    - The length of the expression is zero, it is just a simple number or so.
+      In that case the value is just the expression given.
+
+    - The expresssion matches `trace[_]`, where `_` is a placeholder. In this
+      case the argument is run through `NormalizeTrace`.
+
+    - Else this function is mapped over all parts of the expression.
 
 ### Contractions into dataset name templates
 

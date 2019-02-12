@@ -149,22 +149,6 @@ MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, pha
   {spinM, -spinJ, spinJ}];
 
 
-(* Isospin and Spin *)
-
-ReplaceSingleOperatorScalar[expr_, repl_] := 
-  expr /. ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
-    ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] -> ConjugateTranspose[repl[p2, p1]]
-
-ReplaceSingleOperatorScalarWick[expr_, repl_] := 
-  expr /.
-    ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
-    ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] ** 
-    ConjugateTranspose[
-      ConjugateTranspose[SingleOperator[1, 0, 0, p3_]] **
-      ConjugateTranspose[SingleOperator[2, 0, 0, p4_]]] ->
-    repl[p1, p2, p3, p4]
-
-
 (* Trace normalization *)
 
 RotateGammaToFront[expr_] := If[MatchQ[expr[[1]], qct`Gamma^_], expr, RotateLeft[expr]];
@@ -178,7 +162,7 @@ IndexOfFirst[traceContent_] := Ordering[Starts[traceContent], 1,
 NormalizeTrace[traceContent_] := With[{tr2 = RotateGammaToFront @ traceContent},
   RotateLeft[tr2, 2 * (IndexOfFirst[tr2] - 1)]];
 
-NormalizeTraceRecursive[expr_] := If[Length[expr] == 0,
+NormalizeTraceRecursive[expr_] := If[AtomQ @ expr,
   expr,
   If[MatchQ[expr, qct`trace[_]],
     qct`trace[NormalizeTrace[expr[[1]]]], 
@@ -221,6 +205,22 @@ DatasetNameRules[] = {
       "x3" -> "`pso" <> ToString @ so4 <> "`",
       "x4" -> "`psi" <> ToString @ si3 <> "`"|>]
 }
+
+
+(* Isospin and Spin *)
+
+ReplaceSingleOperatorScalar[expr_, repl_] := 
+  expr /. ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
+    ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] -> ConjugateTranspose[repl[p2, p1]]
+
+ReplaceSingleOperatorScalarWick[expr_, repl_] := 
+  expr /.
+    ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
+    ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] ** 
+    ConjugateTranspose[
+      ConjugateTranspose[SingleOperator[1, 0, 0, p3_]] **
+      ConjugateTranspose[SingleOperator[2, 0, 0, p4_]]] ->
+    repl[p1, p2, p3, p4]
 
 
 EndPackage[];
