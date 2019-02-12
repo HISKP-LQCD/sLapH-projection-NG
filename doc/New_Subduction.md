@@ -422,16 +422,19 @@ You can also just type `?x` to get the help for `x`.
 
 | Long | Infix | Python | R |
 | --- | --- | --- | --- | --- |
-| [`f[x]`](http://reference.wolfram.com/language/ref/Prefix.html) | `f @ x` or `x // f` | `f(x)` | `f(x)` |
-| [`Apply[f, a]`](http://reference.wolfram.com/language/ref/Apply.html) | `f @@ a` | `f(*a)` | `do.call(f, a)` |
-| [`Map[f, x]`](http://reference.wolfram.com/language/ref/Map.html) | `f /@ x` | `map(f, x)` | `lapply(x, f)` |
-| [`Composition[f, g]`](http://reference.wolfram.com/language/ref/Composition.html) | `f @* g` | — | — |
-| [`Function[x, x^2]`](http://reference.wolfram.com/language/ref/Function.html) | `#^2 &` | `lambda` | `function` |
-| [`Part[xs, i]`](http://reference.wolfram.com/language/ref/Part.html) | `xs[[i]]` | `xs[i-1]` | `xs[[i]]` |
-| [`Association[a -> b]`](http://reference.wolfram.com/language/ref/Association.html) | `<| a -> b |>` | `{a: b}` | `list(a = b)` |
-| [`Dot[a, b]`](http://reference.wolfram.com/language/ref/Dot.html) | `a . b` | `a @ b` | `a %*% b` |
-| [`NonCommutativeMultiply[a, b]`](http://reference.wolfram.com/language/ref/NonCommutativeMultiply.html) | `a ** b` | — | — |
-| [`ReplaceAll`](http://reference.wolfram.com/language/ref/ReplaceAll.html) | `/.` | — | — |
+| [`f`]`[x]` | `f @ x` or `x // f` | `f(x)` | `f(x)` |
+| [`Apply`]`[f, a]` | `f @@ a` | `f(*a)` | `do.call(f, a)` |
+| [`Map`]`[f, x]` | `f /@ x` | `map(f, x)` | `lapply(x, f)` |
+| [`Composition`]`[f, g]` | `f @* g` | — | — |
+| [`Function`]`[x, x^2]` | `#^2 &` | `lambda` | `function` |
+| [`Part`]`[xs, i]` | `xs[[i]]` | `xs[i-1]` | `xs[[i]]` |
+| [`Rule`] | `->` | — | — |
+| [`RuleDelayed`] | `:>` | — | — |
+| [`Association`]`[a -> b]` | `<| a -> b |>` | `{a: b}` | `list(a = b)` |
+| [`Dot`]`[a, b]` | `a . b` | `a @ b` | `a %*% b` |
+| [`NonCommutativeMultiply`] | `**` | — | — |
+| [`ReplaceAll`] | `/.` | — | — |
+| [`StringJoin`] | `<>` | `+` | 'paste0' |
 
 Common patterns in functional programming are [*tacit
 programming*](https://en.wikipedia.org/wiki/Tacit_programming) and expressing
@@ -540,17 +543,15 @@ There are two ways that one can represent tensors:
     later on is not a problem. Memory usage is higher, though zeros can be
     omitted easily.
 
-    It seems that Mathematica has the notion of
-    [`Dataset`](http://reference.wolfram.com/language/ref/Dataset.html), which
-    means that one can just `Import` a CSV or TSV file and has a data frame as
-    with R or Pandas. Also the `Dataset` supports having a complex matrix as
-    column type, which would allow for a hybrid approach if we wanted to.
+    It seems that Mathematica has the notion of [`Dataset`], which means that
+    one can just `Import` a CSV or TSV file and has a data frame as with R or
+    Pandas. Also the `Dataset` supports having a complex matrix as column type,
+    which would allow for a hybrid approach if we wanted to.
 
-3.  There is another way, using nested
-    [`Association`](http://reference.wolfram.com/language/ref/Association.html)
-    instances. They are just like the `dict` in Python and the `std::map` in
-    C++. This way we could make associations that map from some named group
-    element to an association that maps from indices to a c-number.
+3.  There is another way, using nested [`Association`] instances. They are just
+    like the `dict` in Python and the `std::map` in C++. This way we could make
+    associations that map from some named group element to an association that
+    maps from indices to a c-number.
 
     As associations can be called like functions, we can really nicely work
     with them. So let's make up a nonsense association like this:
@@ -621,10 +622,9 @@ This is now implemented.
 In the file `Oh-elements.txt` we just have the names of the group elements and
 the Euler angles.
 
-The Cartesian representation comes for free, there is
-[`EulerMatrix`](http://reference.wolfram.com/language/ref/EulerMatrix.html)
-which just takes such a vector. This will give us the mapping $g \to R_g$ that
-we need. Great, we're done here if the definition of the Euler angles matches.
+The Cartesian representation comes for free, there is [`EulerMatrix`] which
+just takes such a vector. This will give us the mapping $g \to R_g$ that we
+need. Great, we're done here if the definition of the Euler angles matches.
 
 ---
 
@@ -682,16 +682,14 @@ we need. Great, we're done here if the definition of the Euler angles matches.
 
 ### Creating the spin representation
 
-The spin-$J$ representations are for free as well, we just use
-[`WignerD`](http://reference.wolfram.com/language/ref/WignerD.html) which is a
-mapping
+The spin-$J$ representations are for free as well, we just use [`WignerD`]
+which is a mapping
 $$ (j, m_1, m_2, \psi, \theta, \phi) \to D^J(g) \,. $$
 
 ### Clebsch-Gordan coefficients
 
-The Clebsch-Gordan coefficients are implemented as
-[`ClebschGordan`](http://reference.wolfram.com/language/ref/ClebschGordan.html).
-We do need to implement higher Clebsch-Gordan coefficients ourselves, though.
+The Clebsch-Gordan coefficients are implemented as [`ClebschGordan`]. We do
+need to implement higher Clebsch-Gordan coefficients ourselves, though.
 
 This is the relation that I came up with by figuring that we first couple two
 spins and then couple that to the next one.
@@ -919,7 +917,7 @@ that looks like this:
 Unfortunately Mathematica does not give this output directly like that, it
 needs `TeXForm` and these replacements in Vim to get it as above:
 
-```
+```vim
 s/\\text{Gamma}/\\gamma/g
 s/trace/tr/g
 s/\\text{x\(\d\)}/p_\1/g
@@ -931,6 +929,91 @@ at zero momentum and there is no distinction between them, this can be
 simplified down further to
 $$ 2 \cdot \text{C4cD} - 2 \cdot \text{C4cC} \,. $$
 In this general case we cannot do that, though.
+
+### Contractions into dataset name templates
+
+At the stage of the Wick contractions we still know which labels correspond to
+source and sink vertices. We can track this information by adding the undefined
+functions `so` and `si` which label the source and sink vertices instead of
+`x1` and so on. The contractions are then defined with operators evaluated like
+so:
+
+```mathematica
+wc = WickContract[\[Pi]\[Pi]I2Bar[s1, s2, s3, s4, c1, c2, so[1], so[2]] **
+    \[Pi]\[Pi]I2[s5, s6, s7, s8, c5, c6, si[1], si[2]]];
+```
+
+In the contracted form we have propagator expressions like these:
+
+```mathematica
+DE[{up, up}, {si[1], so[2]}
+```
+
+These have to be mapped to HDF5 dataset names. Actually they have to be mapped
+to templates ([`StringTemplate`]) that can then be used with [`TemplateApply`]
+to insert the momenta. The following replacement can be used to replace an
+expression with a `C4cD` diagram:
+
+
+```mathematica
+qc /. trace[Gamma^g1_ .DE[{f1_, f1_}, {si[si1_], so[so2_]}].
+     Gamma^g2_ .DE[{f2_, f2_}, {so[so2_], si[si1_]}]] trace[
+    Gamma^g3_ .DE[{f1_, f1_}, {si[si3_], so[so4_]}].
+     Gamma^g4_ .DE[{f2_, f2_}, {so[so4_], si[si3_]}]] :> 
+  TemplateApply[
+   "C4cD_uuuu_g`g1`.p`x1`.d000_g`g2`.p`x2`.d000_g`g3`.p`x3`.d000_g`g4`\
+        .p`x4`.d000",
+    <|"g1" -> g1, "x1" -> "`pso" <> ToString @ so2 <> "`",
+      "g2" -> g2, "x2" -> "`psi" <> ToString @ si1 <> "`",
+      "g3" -> g3, "x3" -> "`pso" <> ToString @ so4 <> "`",
+      "g4" -> g4, "x4" -> "`psi" <> ToString @ si3 <> "`"|>]
+```
+
+This way the we replace the two summands
+
+```mathematica
+trace[Gamma^5.DE[{up, up}, {si[1], so[2]}].
+    Gamma^5.DE[{dn, dn}, {so[2], si[1]}]]
+  trace[ Gamma^5.DE[{up, up}, {si[2], so[1]}]..
+    Gamma^5.DE[{dn, dn}, {so[1], si[2]}]] + 
+trace[Gamma^5.DE[{up, up}, {si[1], so[1]}].
+    Gamma^5.DE[{dn, dn}, {so[1], si[1]}]]
+  trace[Gamma^5.DE[{up, up}, {si[2], so[2]}].
+    Gamma^5.DE[{dn, dn}, {so[2], si[2]}]]
+```
+
+with this:
+
+```mathematica
+"C4cD_uuuu_g5.p`pso1`.d000_g5.p`psi1`.d000_g5.p`pso2`.d000_g5.p`psi2`.d000" +
+  "C4cD_uuuu_g5.p`pso2`.d000_g5.p`psi1`.d000_g5.p`pso1`.d000_g5.p`psi2`.d000"
+```
+
+It is a sum of two strings, which is exactly what we want. In a later stage we
+can insert the momenta corresponding to the spin projected operators.
+
+---
+
+-   **`MakeTemplate`**($n$)
+
+    Creates a template for an $n$-particle correlation function. For the case
+    of $n = 2$, the result looks like this:
+
+    ```mathematica
+    "g`g1`.p`x1`.d000_g`g2`.p`x2`.d000"
+    ```
+
+-   **`DatasetNameRules`**()
+
+    List of delayed rules ([`RuleDelayed`]) that can be used with with
+    [`ReplaceAll`] to replace propagator expression with HDF5 dataset name
+    templates ([`StringTemplate`]). The replacements are expressions like
+    these:
+    
+    ```mathematica
+    "C2cD_uu_g5.p`pso1`.d000_g5.p`psi1`.d000"
+    ```
+
 
 ## Wick contraction and spin
 
@@ -1029,3 +1112,25 @@ to get HDF5 dataset names out of that expression.
 
 - Physical non-coupling
 - Cross-Irrep
+
+<!-- Links to Wolfram Language reference -->
+
+[`Apply`]: http://reference.wolfram.com/language/ref/Apply.html
+[`Association`]: http://reference.wolfram.com/language/ref/Association.html
+[`ClebschGordan`]: http://reference.wolfram.com/language/ref/ClebschGordan.html
+[`Composition`]: http://reference.wolfram.com/language/ref/Composition.html
+[`Dataset`]: http://reference.wolfram.com/language/ref/Dataset.html
+[`Dot`]: http://reference.wolfram.com/language/ref/Dot.html
+[`EulerMatrix`]: http://reference.wolfram.com/language/ref/EulerMatrix.html
+[`Function`]: http://reference.wolfram.com/language/ref/Function.html
+[`Map`]: http://reference.wolfram.com/language/ref/Map.html
+[`NonCommutativeMultiply`]: http://reference.wolfram.com/language/ref/NonCommutativeMultiply.html
+[`Part`]: http://reference.wolfram.com/language/ref/Part.html
+[`Prefix`]: http://reference.wolfram.com/language/ref/Prefix.html
+[`ReplaceAll`]: http://reference.wolfram.com/language/ref/ReplaceAll.html
+[`Rule`]: http://reference.wolfram.com/language/ref/Rule.html
+[`RuleDelayed`]: http://reference.wolfram.com/language/ref/RuleDelayed.html
+[`StringJoin`]: http://reference.wolfram.com/language/ref/StringJoin.html
+[`StringTemplate`]: http://reference.wolfram.com/language/ref/StringTemplate.html
+[`TemplateApply`]: http://reference.wolfram.com/language/ref/TemplateApply.html
+[`WignerD`]: http://reference.wolfram.com/language/ref/WignerD.html
