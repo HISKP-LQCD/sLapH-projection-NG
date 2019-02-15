@@ -148,10 +148,7 @@ MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, pha
     {spinsMi2, -spinsJi[[2]], spinsJi[[2]]}],
   {spinM, -spinJ, spinJ}];
 
-ExtractMomenta[expr_] := 
-  ReplaceAll[
-    expr /. ConjugateTranspose[SingleOperator[_, _, _, p_]] -> p, 
-    NonCommutativeMultiply -> List];
+ExtractMomenta[expr_] := expr /. ConjugateTranspose[SingleOperator[_, _, _, p_]] -> p;
 
 
 

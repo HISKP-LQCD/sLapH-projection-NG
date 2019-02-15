@@ -134,44 +134,6 @@ O_{i M_i''}^{J_i}(R_{\tilde g}^{-1} R_g R_{\tilde g} \vec p_i)^\dagger
 The variables $J$ and $J_i$ are determined by the physical process that one
 investigates.
 
-In order to express this in terms of already executed operator products we need
-to rewrite the last line as
-\begin{multline*}
-\prod_{i=1}^{N_\text{p}}
-\sum_{M_i'=-J_i}^{J_i}
-\sum_{M_i''=-J_i}^{J_i}
-D_{M_i' M_i}^{J_i}(g) \;
-D_{M_i'' M_i'}^{J_i}(\tilde g) \;
-O_{i M_i''}^{J_i}(R_{\tilde g}^{-1} R_g R_{\tilde g} \vec p_i)^\dagger
-\\
-\begin{split}
-&=
-\left(
-\prod_{i=1}^{N_\text{p}}
-\sum_{\mu_i=-J_i}^{J_i}
-\right)
-\left[
-\prod_{i=1}^{N_\text{p}}
-\sum_{M_i'=-J_i}^{J_i}
-\sum_{M_i''=-J_i}^{J_i}
-D_{M_i' M_i}^{J_i}(g) \;
-D_{M_i'' M_i'}^{J_i}(\tilde g) \;
-\delta_{M_i'' \mu_i}
-\right]
-\\&\quad\times
-%O_{\mu \nu_\mu}^{J_\mu}(R_{\tilde g}^{-1} R_g R_{\tilde g} \vec p_\mu)^\dagger
-O_{\mu_1 \ldots \mu_{N_\text p}}^{J_1\ldots J_{N_\text p}}(R_{\tilde g}^{-1} R_g R_{\tilde g} (\vec p_1, \ldots, \vec p_{N_\text P}))^\dagger
-\,.
-\end{split}
-\end{multline*}
-
-The round parentheses are meant to just limit the scope of the $\prod$-sign
-whereas the square brackets are meant to limit the scope of both $\prod$- and
-$\sum$-signs. The group element $\tilde g$ is defined as $\vec p_\text{cm} =
-R_{\tilde g} \vec p_\text{ref}$. This likely is not unique because we can
-always add a rotation around the resulting $\vec p_\text{cm}$ without changing
-it. Perhaps this does not matter? Also reflections might need to be excluded.
-
 ## Analytic Wick contraction
 
 The analytic Wick contraction can be done with the “Quark Contraction Tool” in
@@ -741,6 +703,15 @@ Markus has chosen the phase vector $\tilde \phi_\beta$ as $\delta_{\beta 1}$,
 effectively fixing the column of the irrep. In my implementation I just expose
 it as a parameter to the user and remove the sum over the $\beta$.
 
+The formula is implemented from the right to left. We have `MakeSingleOperator`
+applying the Wigner-$D$-matrices to the single operators. Then
+`MakeMultiOperator` creates a product of the single operators. `MakeGroupSum`
+sums over these operator products, `MakeMagneticSum` sums over the $M$ and
+$M_i$ quantum numbers. The last step is not finished as the higher
+Clebsch-Gordan coefficients are not finished.
+
+From the spin projected operator we extract the actual momenta
+
 ---
 
 -   **`MakeSingleOperator`**($\vec p_i$, $\vec p_\text{cm}$, $\vec \Psi_g$,
@@ -768,7 +739,7 @@ it as a parameter to the user and remove the sum over the $\beta$.
     The function `SingleOperator` is just a placeholder defined next.
 
     We can also take a more interesting case where the Wigner $D^J$ matrices
-    are not so simple.
+    are not so simple:
 
     ```mathematica
     MakeSingleOperator[{0, 0, 1}, {1, 1, 1}, Pi {1/2, 1/2, 0}, 2, 0, 1]
@@ -848,7 +819,18 @@ it as a parameter to the user and remove the sum over the $\beta$.
 
 -   **`ExtractMomenta`**(expr)
 
-    Extracts all the momenta from the `SingleOperator`s used.
+    Extracts all the momenta from the `SingleOperator`s used. The resulting
+    expression contains summand of this form:
+
+    ```mathematica```
+    (-(1/2) + (I Sqrt[3])/2) {1, 0, 1} ** {0, 1, 0}
+    ```
+
+    By replacing the [`NonCommutativeMultiply`] with something else, one can
+    extract just the momenta from this. One has to be a bit careful as
+    Mathematica will try to distribute the common factor onto the elements in
+    the lists if one replaces the [`NonCommutativeMultiply`] with something
+    simple like [`List`].
 
 ## Isospin
 
@@ -1086,8 +1068,8 @@ can insert the momenta corresponding to the spin projected operators.
 
 We now have an operator that is projected with spin. And we have the Wick
 contraction which already has the isospin incorporated into it. One big
-difference is that the spin operator is at sink only, whereas the Wick
-contraction is a full correlation function already.
+difference is that the spin operator is at sink (or source) only, whereas the
+Wick contraction is a full correlation function already.
 
 As a next step we just build a full correlation function from the spin
 operators, namely writing $O O^\dagger$. This has all the factors that we need,
@@ -1184,7 +1166,26 @@ to get HDF5 dataset names out of that expression.
 -   **`MomentumToString`**($\vec p$)
 
     Converts an integer momentum vector like `{1, 0, -1}` into the string
-    `10-1`.
+    `"10-1"`.
+
+-   **`MomentaToRules`**(momenta, location)
+
+    Takes a product of momentum [`List`]s in a [`NonCommutativeMultiply`] and
+    converts them into an [`Association`]. *location* shall be either `"so"` or
+    `"si"`
+
+    Calling this function with
+
+
+    ```mathematica
+    MomentaToRules[{0, 1, 1} ** {1, 0, 0}, "si"]
+    ```
+
+    gives:
+
+    ```mathematica
+    <|"psi1" -> "011", "psi2" -> "100"|>
+    ```
 
 -   **`MomentumPluginRecursive`**(rules, templateExpression)
 
@@ -1211,6 +1212,7 @@ to get HDF5 dataset names out of that expression.
 [`Dot`]: http://reference.wolfram.com/language/ref/Dot.html
 [`EulerMatrix`]: http://reference.wolfram.com/language/ref/EulerMatrix.html
 [`Function`]: http://reference.wolfram.com/language/ref/Function.html
+[`List`]: http://reference.wolfram.com/language/ref/List.html
 [`Map`]: http://reference.wolfram.com/language/ref/Map.html
 [`NonCommutativeMultiply`]: http://reference.wolfram.com/language/ref/NonCommutativeMultiply.html
 [`Part`]: http://reference.wolfram.com/language/ref/Part.html
