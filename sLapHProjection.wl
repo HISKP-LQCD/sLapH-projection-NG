@@ -148,8 +148,23 @@ MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, pha
     {spinsMi2, -spinsJi[[2]], spinsJi[[2]]}],
   {spinM, -spinJ, spinJ}];
 
-ExtractMomenta[expr_] := expr /. ConjugateTranspose[SingleOperator[_, _, _, p_]] -> p;
+ExtractMomenta[expr_] := expr /.
+  ConjugateTranspose[SingleOperator[_, _, _, p_]] -> p /.
+  NonCommutativeMultiply[p__] :> DTMomenta[p];
 
+momentaToRules[momenta_, location_] := 
+  ReplaceAll[momenta, 
+    DTMomenta[p__] :> 
+    AssociationThread[
+      Table["p" <> location <> ToString @ i, {i, 1, Length[{p}]}], 
+      MomentumToString /@ {p}]];
+
+MomentaToAssoc[expr_, location_] := 
+  expr /. DTMomenta[p__] :> DTMomentaAssoc[momentaToRules[DTMomenta @ p, location]];
+
+MomentaToAssoc2[expr1_, expr2_] := FullSimplify @ ReplaceAll[
+  ExpandAll[Conjugate @ MomentaToAssoc[expr1, "so"] * MomentaToAssoc[expr2, "si"]],
+  Conjugate[DTMomentaAssoc[<|a__|>]] * DTMomentaAssoc[<|b__|>] :> DTMomentaAssoc[<|a, b|>]];
 
 
 (* Trace normalization *)
@@ -196,17 +211,30 @@ DatasetNameRules[] = {
       "x4" -> "`psi" <> ToString @ si2 <> "`"|>],
 
   (* C4cD *)
-  qct`trace[qct`Gamma^g1_ . qct`DE[{"up", "up"}, {si[si1_], so[so2_]}].
-    qct`Gamma^g2_ . qct`DE[{"dn", "dn"}, {so[so2_], si[si1_]}]]
+  qct`trace[qct`Gamma^g2_ . qct`DE[{"dn", "dn"}, {si[si2_], so[so1_]}].
+    qct`Gamma^g1_ . qct`DE[{"up", "up"}, {so[so1_], si[si2_]}]]
   qct`trace[qct`Gamma^g3_ .qct`DE[{"up", "up"}, {si[si3_], so[so4_]}].
     qct`Gamma^g4_ . qct`DE[{"dn", "dn"}, {so[so4_], si[si3_]}]] :> 
   TemplateApply[
     "C4cD_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
-      "x1" -> "`pso" <> ToString @ so2 <> "`",
+      "x1" -> "`pso" <> ToString @ so1 <> "`",
+      "x2" -> "`psi" <> ToString @ si2 <> "`",
+      "x3" -> "`pso" <> ToString @ so4 <> "`",
+      "x4" -> "`psi" <> ToString @ si3 <> "`"|>],
+
+  (* C4cV *)
+  qct`trace[qct`Gamma^g2_ . qct`DE[{"dn", "dn"}, {si[si2_], si[si1_]}].
+    qct`Gamma^g1_ . qct`DE[{"up", "up"}, {si[si1_], si[si2_]}]]
+  qct`trace[qct`Gamma^g4_ . qct`DE[{"dn", "dn"}, {so[so4_], so[so3_]}].
+    qct`Gamma^g3_ .qct`DE[{"up", "up"}, {so[so3_], so[so4_]}]] :> 
+  TemplateApply[
+    "C4cV_uuuu_" <> MakeTemplate[4],
+    <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
+      "x1" -> "`psi" <> ToString @ s12 <> "`",
       "x2" -> "`psi" <> ToString @ si1 <> "`",
       "x3" -> "`pso" <> ToString @ so4 <> "`",
-      "x4" -> "`psi" <> ToString @ si3 <> "`"|>]
+      "x4" -> "`pso" <> ToString @ so3 <> "`"|>]
 }
 
 
@@ -233,6 +261,11 @@ MomentumPluginRecursive[rules_, templateExpr_] :=
       TemplateApply[templateExpr, Association[rules]],
       templateExpr],
     MomentumPluginRecursive[rules, #] & /@ templateExpr];
+
+CombineIsospinAndSpin[corrTemplates_, momentaAssoc_] := 
+  momentaAssoc /. DTMomentaAssoc[rules_] :> 
+    ReplaceAll[corrTemplates, str_String :> TemplateApply[str, rules]];
+
 
 EndPackage[];
 

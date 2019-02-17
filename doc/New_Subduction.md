@@ -823,14 +823,69 @@ From the spin projected operator we extract the actual momenta
     expression contains summand of this form:
 
     ```mathematica```
-    (-(1/2) + (I Sqrt[3])/2) {1, 0, 1} ** {0, 1, 0}
+    (-(1/2) + (I Sqrt[3])/2) DTMomenta[{1, 0, 1}, {0, 1, 0}]
     ```
 
-    By replacing the [`NonCommutativeMultiply`] with something else, one can
-    extract just the momenta from this. One has to be a bit careful as
-    Mathematica will try to distribute the common factor onto the elements in
-    the lists if one replaces the [`NonCommutativeMultiply`] with something
-    simple like [`List`].
+    By replacing the `DTMomenta` with something else, one can extract just the
+    momenta from this. One has to be a bit careful as Mathematica will try to
+    distribute the common factor onto the elements in the lists if one replaces
+    it with something simple like [`List`]. Therefore we use something which
+    Mathematica does not know and therefore does not try to simplify.
+
+-   **`momentaToRules`**(momenta, location) --- [not exported]
+
+    Takes a product of momentum [`List`]s in a [`NonCommutativeMultiply`] and
+    converts them into an [`Association`]. *location* shall be either `"so"` or
+    `"si"`
+
+    Calling this function with
+
+
+    ```mathematica
+    MomentaToRules[{0, 1, 1} ** {1, 0, 0}, "si"]
+    ```
+
+    gives:
+
+    ```mathematica
+    <|"psi1" -> "011", "psi2" -> "100"|>
+    ```
+
+-   **`DTMomenta`**
+
+    An undefined symbol which acts as a data type. Used with [`ReplaceAll`].
+
+-   **`MomentaToAssoc`**($\{ \vec p_i \}$, location)
+
+    Converts the momentum terms with [`Association`]s containing terms like
+
+    ```mathematica
+    DTMomenta[{0, 1, 1}, {1, 0, 0}]
+    ```
+
+    to an association like this:
+
+    ```mathematica
+    DTMomentaAssoc[<|"psi1" -> "011", "psi2" -> "100"|>]
+    ```
+
+    The name is build up from `p`, then the *location* and consecutive numbers.
+    It is wrapped in `DTMomentaAssoc` such that Mathematica does not try to
+    distribute numeric factors to the arguments.
+
+-   **`DTMomentaAssoc`**
+
+    An undefined symbol which acts as a data type. Used with [`ReplaceAll`].
+
+-   **`MomentaToAssoc2`**(source, sink)
+
+    Takes two expressions containing `DTMomenta` for the source and sink. They
+    get converted into `DTMomentaAssoc` expressions like the following:
+
+    ```mathematica
+    DTMomentaAssoc[<|"psi1" -> "011", "psi2" -> "100",
+        "pso1" -> "011", "pso2" -> "100"|>]
+    ```
 
 ## Isospin
 
@@ -1168,25 +1223,6 @@ to get HDF5 dataset names out of that expression.
     Converts an integer momentum vector like `{1, 0, -1}` into the string
     `"10-1"`.
 
--   **`MomentaToRules`**(momenta, location)
-
-    Takes a product of momentum [`List`]s in a [`NonCommutativeMultiply`] and
-    converts them into an [`Association`]. *location* shall be either `"so"` or
-    `"si"`
-
-    Calling this function with
-
-
-    ```mathematica
-    MomentaToRules[{0, 1, 1} ** {1, 0, 0}, "si"]
-    ```
-
-    gives:
-
-    ```mathematica
-    <|"psi1" -> "011", "psi2" -> "100"|>
-    ```
-
 -   **`MomentumPluginRecursive`**(rules, templateExpression)
 
     Recursively traverses through the *template expression* and replaces the
@@ -1196,6 +1232,30 @@ to get HDF5 dataset names out of that expression.
     <|"psi1" -> "011", "psi2" -> "100",
       "pso1" -> "011", "pso2" -> "100"|>
     ```
+
+-   **`CombineIsospinAndSpin`**(corrTemplates, momentaAssoc)
+
+    Takes an expression of correlator templates containing strings like
+
+    ```mathematica
+    "C4cD_uuuu_g5.p`pso1`.d000_g5.p`psi1`.d000_g5.p`pso2`.d000_g5.p`psi2`.d000"
+    ```
+
+    and an expression containing momentum associations like 
+
+    ```mathematica
+    DTMomentaAssoc[<|"pso1" -> "011", "pso2" -> "100", "psi1" -> "011",
+        "psi2" -> "100"|>]
+    ```
+
+    and gives an expression containing strings like these:
+
+    ```mathematica
+    "C4cD_uuuu_g5.p001.d000_g5.p011.d000_g5.p110.d000_g5.p100.d000"
+    ```
+
+    This expression then contains everything that is needed to project actual
+    data.
 
 # Tests
 
