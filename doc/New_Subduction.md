@@ -511,9 +511,11 @@ There are two ways that one can represent tensors:
     which would allow for a hybrid approach if we wanted to.
 
 3.  There is another way, using nested [`Association`] instances. They are just
-    like the `dict` in Python and the `std::map` in C++. This way we could make
-    associations that map from some named group element to an association that
-    maps from indices to a c-number.
+    heterogeneous mappings from one thing to another. This corresponds to the
+    `dict` in Python. The `std::map` in C++ is similar, but requires the same
+    type among the keys and the same time among the values. Using this for our
+    implementation, we could make associations that map from some named group
+    element to an association that maps from indices to a c-number.
 
     As associations can be called like functions, we can really nicely work
     with them. So let's make up a nonsense association like this:
@@ -523,8 +525,8 @@ There are two ways that one can represent tensors:
     ```
 
     When you now call `assoc[x^2]`, you get the function `Association`. Or you
-    call it with `assoc[1]` and get `"one"`. Missing keys are some sort of
-    error condition via say `Missing["KeyAbsent", bar]`.
+    call it with `assoc[1]` and get `"one"`. Missing keys like `bar` are some
+    sort of error condition via say `Missing["KeyAbsent", bar]`.
 
 Markus was immediately sold on this approach 3, and I quite like it as well.
 This is now implemented.
@@ -540,7 +542,7 @@ This is now implemented.
 
     The matrix elements of the irreducible representations,
     $D^\Gamma_{\alpha\beta}(g)$ are stored as strings in the CSV file. Using
-    `ToExpression` these are parsed into Mathematica symbols. This function
+    [`ToExpression`] these are parsed into Mathematica symbols. This function
     takes the dataset and replaces the “matrix element” column with the parsed
     one.
 
@@ -551,14 +553,14 @@ This is now implemented.
 -   **`MatrixElementsToAssociation`**(dataset)
 
     Converts the “row”, “col” and “matrix element” into mappings of the form
-    $(\alpha, \beta) \to D^\Gamma_{\alpha\beta}(g)$. The result is a `Dataset`
-    with just one row per irrep and little group element and an `Association`
-    which contains all the matrix elements.
+    $(\alpha, \beta) \to D^\Gamma_{\alpha\beta}(g)$. The result is a
+    [`Dataset`] with just one row per irrep and little group element and an
+    [`Association`] which contains all the matrix elements.
 
 -   **`IrrepsToAssociation`**(matrixElementsAssociations)
 
     Continuing with the result from `MatrixElementsToAssociation` this function
-    then builds a more deeply nested `Association` which has the form
+    then builds a more deeply nested [`Association`] which has the form
     $$ \Gamma \to g \to (\alpha, \beta) \to D_{\alpha\beta}^\Gamma(g) \,. $$
 
 -   **`DatasetToAssociations`**(dataset)
@@ -620,7 +622,7 @@ need. Great, we're done here if the definition of the Euler angles matches.
 -   **`MomentumRef`**($\vec p_\text{cm}$)
 
     Gives the reference momentum $\vec p_\text{ref}$ for given center-of-mass
-    momentum $\vec p_\text{cm}$. As this function is implmented via
+    momentum $\vec p_\text{cm}$. As this function is implemented via
     `MomentumRefScalar`, the same restrictions apply.
 
 -   **`EulerGTilde`**($\vec p_\text{cm}$)
@@ -683,11 +685,11 @@ bothering with them for just now.
 
     Computes the Clebsch-Gordan coefficient for coupling all the spins $(j_i,
     m_i)$ together to $(J, M)$. Note that the API is different from
-    `ClebschGordan` as here the $j_i$ and $m_i$ are grouped among each other
+    [`ClebschGordan`] as here the $j_i$ and $m_i$ are grouped among each other
     instead of grouped by $i$.
 
-    In contrast to `ClebschGordan` this function does not emit any warnings in
-    case the coupling is unphysical.
+    In contrast to [`ClebschGordan`] this function does not emit any warnings
+    in case the coupling is unphysical.
 
 ## Spin
 
@@ -1315,4 +1317,5 @@ to get HDF5 dataset names out of that expression.
 [`StringJoin`]: http://reference.wolfram.com/language/ref/StringJoin.html
 [`StringTemplate`]: http://reference.wolfram.com/language/ref/StringTemplate.html
 [`TemplateApply`]: http://reference.wolfram.com/language/ref/TemplateApply.html
+[`ToExpression`]: http://reference.wolfram.com/language/ref/ToExpression.html
 [`WignerD`]: http://reference.wolfram.com/language/ref/WignerD.html
