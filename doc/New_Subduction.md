@@ -1263,6 +1263,13 @@ to get HDF5 dataset names out of that expression.
 
 -   **`StringExpressionToAssociation`**(expression)
 
+    Takes an expression containing a linear combination of strings and converts
+    them into an association where the strings are the keys and the c-number
+    valued factors are the values.
+
+    It uses [`Coefficient`] to extract the leading coefficient in front of the
+    strings.
+
     This function is based on a [a post by
     Kuba](https://mathematica.stackexchange.com/a/191718/1507) with an implicit
     MIT license.
@@ -1270,7 +1277,8 @@ to get HDF5 dataset names out of that expression.
 -   **`DatasetnameAssocToCSV`**(association, filename)
 
     Takes the *association* which maps HDF5 dataset names to complex numbers
-    and converts that into a CSV structure with these columns:
+    (like the result from `StringExpressionToAssociation`) and converts that
+    into a CSV structure with these columns:
 
     - `datasetname`
     - `re`
@@ -1290,6 +1298,7 @@ to get HDF5 dataset names out of that expression.
 [`Apply`]: http://reference.wolfram.com/language/ref/Apply.html
 [`Association`]: http://reference.wolfram.com/language/ref/Association.html
 [`ClebschGordan`]: http://reference.wolfram.com/language/ref/ClebschGordan.html
+[`Coefficient`]: http://reference.wolfram.com/language/ref/Coefficient.html
 [`Composition`]: http://reference.wolfram.com/language/ref/Composition.html
 [`Dataset`]: http://reference.wolfram.com/language/ref/Dataset.html
 [`Dot`]: http://reference.wolfram.com/language/ref/Dot.html
