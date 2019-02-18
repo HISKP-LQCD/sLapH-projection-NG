@@ -164,7 +164,7 @@ momentaToRules[momenta_, location_] :=
 MomentaToAssoc[expr_, location_] := 
   expr /. DTMomenta[p__] :> DTMomentaAssoc[momentaToRules[DTMomenta @ p, location]];
 
-MomentaToAssoc2[expr1_, expr2_] := FullSimplify @ ReplaceAll[
+MomentaToAssocSourceSink[expr1_, expr2_] := FullSimplify @ ReplaceAll[
   ExpandAll[Conjugate @ MomentaToAssoc[expr1, "so"] * MomentaToAssoc[expr2, "si"]],
   Conjugate[DTMomentaAssoc[<|a__|>]] * DTMomentaAssoc[<|b__|>] :> DTMomentaAssoc[<|a, b|>]];
 

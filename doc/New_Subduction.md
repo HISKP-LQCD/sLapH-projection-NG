@@ -884,7 +884,7 @@ From the spin projected operator we extract the actual momenta
 
     An undefined symbol which acts as a data type. Used with [`ReplaceAll`].
 
--   **`MomentaToAssoc2`**(source, sink)
+-   **`MomentaToAssocSourceSink`**(source, sink)
 
     Takes two expressions containing `DTMomenta` for the source and sink. They
     get converted into `DTMomentaAssoc` expressions like the following:
