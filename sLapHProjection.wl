@@ -272,9 +272,10 @@ StringExpressionToAssociation[expr_] := With[
   AssociationMap[Coefficient[expr, #, 1] &] @ keys];
 
 DatasetnameAssocToCSV[assoc_, filename_String] := With[
-  {export = KeyValueMap[Flatten @ {#1, N @ ReIm @ #2} &, %] //
+  {export = KeyValueMap[Flatten @ {#1, N @ ReIm @ #2} &, assoc] //
     ExportString[#, "CSV"] &},
-  WriteString[filename, export]];
+  DeleteFile[filename];
+  WriteString[filename, "datasetname,re,im\n" <> export]];
 
 
 EndPackage[];

@@ -384,7 +384,7 @@ You can also just type `?x` to get the help for `x`.
 
 | Long | Infix | Python | R |
 | --- | --- | --- | --- | --- |
-| [`f`]`[x]` | `f @ x` or `x // f` | `f(x)` | `f(x)` |
+| `f[x]` | `f @ x` or `x // f` | `f(x)` | `f(x)` |
 | [`Apply`]`[f, a]` | `f @@ a` | `f(*a)` | `do.call(f, a)` |
 | [`Map`]`[f, x]` | `f /@ x` | `map(f, x)` | `lapply(x, f)` |
 | [`Composition`]`[f, g]` | `f @* g` | — | — |
@@ -1256,6 +1256,21 @@ to get HDF5 dataset names out of that expression.
 
     This expression then contains everything that is needed to project actual
     data.
+
+### Export to data frame
+
+---
+
+-   **`StringExpressionToAssociation`**(expression)
+
+-   **`DatasetnameAssocToCSV`**(association, filename)
+
+    Takes the *association* which maps HDF5 dataset names to complex numbers
+    and converts that into a CSV structure with these columns:
+
+    - `datasetname`
+    - `re`
+    - `im`
 
 # Tests
 
