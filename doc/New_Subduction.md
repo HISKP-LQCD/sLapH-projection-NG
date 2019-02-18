@@ -926,8 +926,9 @@ From these we build an $I = 2$ operator.
 ```
 
 For reasons not entirely clear to me we need to define the “bar” version of
-that operator ourselves. Perhaps it is because the “quark contraction tool”
-does not know about the flavors? Anyway, the second operator is this:
+that operator ourselves. This likely is because the QCT does not know about the
+`Gamma` and therefore cannot really do anything about that. Anyway, the second
+operator is this:
 
 ```mathematica
 \[Pi]\[Pi]I2Bar[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
@@ -951,7 +952,7 @@ qc = QuarkContract @ wc
 ```
 
 When we take a look at the output (using `TraditionalForm`) we get something
-that looks like this:
+that looks like this:[^vimregex]
 \begin{align*}
 &\text{tr}\left(\gamma^5\;S^{\text{up}}(p_4,p_1)\;\gamma^5\;S^{\text{dn}}( p_1,p_4)\right) \text{tr}\left(\gamma^5\;S^{\text{up}}(p_3,p_2)\;\gamma^5\;S^{\text{dn }}(p_2,p_3)\right)
 \\&\quad
@@ -962,15 +963,17 @@ that looks like this:
 -\text{tr}\left(\gamma^5\;S^{\text{up}}(p_4,p_1)\;\gamma^5\;S^{\text{dn}}(p_2,p_4)\;\gamma^5\;S^{\text{up}}(p_3,p_2)\;\gamma^5\;S^{\text{dn}}(p_1,p_3)\right)
 \end{align*}
 
-Unfortunately Mathematica does not give this output directly like that, it
-needs `TeXForm` and these replacements in Vim to get it as above:
+[^vimregex]:
 
-```vim
-s/\\text{Gamma}/\\gamma/g
-s/trace/tr/g
-s/\\text{x\(\d\)}/p_\1/g
-s/\./\\;/g
-```
+    Unfortunately Mathematica does not give this output directly like that, it
+    needs `TeXForm` and these replacements in Vim to get it as above:
+
+    ```vim
+    s/\\text{Gamma}/\\gamma/g
+    s/trace/tr/g
+    s/\\text{x\(\d\)}/p_\1/g
+    s/\./\\;/g
+    ```
 
 The result is something that we will recognize as “C4cD” and “C4cC”. If we are
 at zero momentum and there is no distinction between them, this can be
