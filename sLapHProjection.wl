@@ -152,6 +152,8 @@ ExtractMomenta[expr_] := expr /.
   ConjugateTranspose[SingleOperator[_, _, _, p_]] -> p /.
   NonCommutativeMultiply[p__] :> DTMomenta[p];
 
+MomentumToString[p_] := StringJoin[ToString /@ p];
+
 momentaToRules[momenta_, location_] := 
   ReplaceAll[momenta, 
     DTMomenta[p__] :> 
@@ -239,28 +241,6 @@ DatasetNameRules[] = {
 
 
 (* Isospin and Spin *)
-
-ReplaceSingleOperatorScalar[expr_, repl_] := 
-  expr /. ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
-    ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] -> ConjugateTranspose[repl[p2, p1]]
-
-ReplaceSingleOperatorScalarWick[expr_, repl_] := 
-  expr /.
-    ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
-    ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] ** 
-    ConjugateTranspose[
-      ConjugateTranspose[SingleOperator[1, 0, 0, p3_]] **
-      ConjugateTranspose[SingleOperator[2, 0, 0, p4_]]] ->
-    repl[p1, p2, p3, p4]
-
-MomentumToString[p_] := StringJoin[ToString /@ p];
-
-MomentumPluginRecursive[rules_, templateExpr_] := 
-  If[AtomQ[templateExpr],
-    If[StringQ[templateExpr],
-      TemplateApply[templateExpr, Association[rules]],
-      templateExpr],
-    MomentumPluginRecursive[rules, #] & /@ templateExpr];
 
 CombineIsospinAndSpin[corrTemplates_, momentaAssoc_] := 
   momentaAssoc /. DTMomentaAssoc[rules_] :> 

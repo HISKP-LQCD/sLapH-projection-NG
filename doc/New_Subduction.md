@@ -819,6 +819,11 @@ From the spin projected operator we extract the actual momenta
     \texttt{MakeGroupSum}(\Gamma, \alpha, \beta, \{ \vec p_i \}, \{ J_i \}, \{ M_i \}) \,.
     \end{align*}
 
+-   **`MomentumToString`**($\vec p$)
+
+    Converts an integer momentum vector like `{1, 0, -1}` into the string
+    `"10-1"`.
+
 -   **`ExtractMomenta`**(expr)
 
     Extracts all the momenta from the `SingleOperator`s used. The resulting
@@ -1186,54 +1191,6 @@ This is now very close to the stuff that we actually compute, we should be able
 to get HDF5 dataset names out of that expression.
 
 ---
-
--   **`ReplaceSingleOperatorScalar`**(expression, replacement)
-
-    Takes the *expression* stemming from `MakeGroupSum` for just scalar
-    particles and replaces all the occurences of
-    `ConjugateTranspose[SingleOperator[…]]` and replaces it with a single
-    multi-particle operator. The *replacement* has to be a function taking the
-    two momentum arguments.
-
-    For the $\rho$-channel we use a two-pion operator and therefore our
-    *replacement* is the following function:
-
-    ```mathematica
-    \[Pi]\[Pi]I1[s1, s2, s3, s4, c1, c2, #1, #2] &
-    ```
-
--   **`ReplaceSingleOperatorScalarWick`**(expression, replacement)
-
-    Replaces *expression* from two to two particles like this one
-
-    ```mathematica
-    ConjugateTranspose[SingleOperator[1, 0, 0, p1_]] ** 
-    ConjugateTranspose[SingleOperator[2, 0, 0, p2_]] ** 
-    ConjugateTranspose[
-      ConjugateTranspose[SingleOperator[1, 0, 0, p3_]] **
-      ConjugateTranspose[SingleOperator[2, 0, 0, p4_]]]
-    ```
-
-    with the *replacement* being evaluated with the momenta as:
-
-    ```
-    replacement[p1, p2, p3, p4]
-    ```
-
--   **`MomentumToString`**($\vec p$)
-
-    Converts an integer momentum vector like `{1, 0, -1}` into the string
-    `"10-1"`.
-
--   **`MomentumPluginRecursive`**(rules, templateExpression)
-
-    Recursively traverses through the *template expression* and replaces the
-    momenta with the rules. The *rules* must be an [`Association`] of this form:
-
-    ```mathematica
-    <|"psi1" -> "011", "psi2" -> "100",
-      "pso1" -> "011", "pso2" -> "100"|>
-    ```
 
 -   **`CombineIsospinAndSpin`**(corrTemplates, momentaAssoc)
 
