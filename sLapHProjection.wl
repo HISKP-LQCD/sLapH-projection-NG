@@ -236,6 +236,19 @@ DatasetNameRules[] = {
       "x1" -> "`psi" <> ToString @ s12 <> "`",
       "x2" -> "`psi" <> ToString @ si1 <> "`",
       "x3" -> "`pso" <> ToString @ so4 <> "`",
+      "x4" -> "`pso" <> ToString @ so3 <> "`"|>],
+
+  (* C4cV *)
+  qct`trace[qct`Gamma^g4_ . qct`DE[{"dn", "dn"}, {so[so4_], so[so3_]}].
+    qct`Gamma^g3_ .qct`DE[{"up", "up"}, {so[so3_], so[so4_]}]]
+  qct`trace[qct`Gamma^g2_ . qct`DE[{"dn", "dn"}, {si[si2_], si[si1_]}].
+    qct`Gamma^g1_ . qct`DE[{"up", "up"}, {si[si1_], si[si2_]}]] :> 
+  TemplateApply[
+    "C4cV_uuuu_" <> MakeTemplate[4],
+    <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
+      "x1" -> "`psi" <> ToString @ s12 <> "`",
+      "x2" -> "`psi" <> ToString @ si1 <> "`",
+      "x3" -> "`pso" <> ToString @ so4 <> "`",
       "x4" -> "`pso" <> ToString @ so3 <> "`"|>]
 }
 
