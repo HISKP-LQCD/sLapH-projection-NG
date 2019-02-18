@@ -1119,6 +1119,47 @@ with this:
 It is a sum of two strings, which is exactly what we want. In a later stage we
 can insert the momenta corresponding to the spin projected operators.
 
+In the contraction code in
+[`src/DiagramSpec.cpp`](https://github.com/HISKP-LQCD/sLapH-contractions/blob/8433f69825f5d5b097f6f30c045af037b06997b9/src/DiagramSpec.cpp)
+we have documentation describing the diagrams that are computed:
+
+Box:
+$$
+C_\text{C4cB} =
+\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5 \Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1}
+\gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
+\Gamma_\mathtt{Op2} D_\mathtt{Q3}^{-1}(t'|t) \Gamma_\mathtt{Op3} \rangle
+$$
+
+Cross:
+$$
+C_\text{C4cC} =
+\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1}
+\gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op2}
+D_\mathtt{Q3}^{-1}(t|t') \Gamma_\mathtt{Op3} \rangle
+$$
+
+Direct:
+\begin{multline*}
+C_\text{C4cD} =
+\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1} \rangle
+\\ \cdot
+\langle \gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op2}
+D_\mathtt{Q3}^{-1}(t|t') \Gamma_\mathtt{Op3} \rangle
+\end{multline*}
+
+Vacuum:
+\begin{multline*}
+C_\text{C4cV} = \langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5 \Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t) \Gamma_\mathtt{Op1} \rangle
+\\ \cdot
+\langle \gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
+\Gamma_\mathtt{Op2} D_\mathtt{Q3}^{-1}(t'|t') \Gamma_\mathtt{Op3} \rangle
+\end{multline*}
+
 ---
 
 -   **`MakeTemplate`**($n$)
@@ -1140,6 +1181,9 @@ can insert the momenta corresponding to the spin projected operators.
     ```mathematica
     "C2cD_uu_g5.p`pso1`.d000_g5.p`psi1`.d000"
     ```
+
+    The following mappings are performed:
+
 
 ## Wick contraction and spin
 
