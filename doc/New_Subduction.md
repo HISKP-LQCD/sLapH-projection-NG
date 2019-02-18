@@ -1263,6 +1263,10 @@ to get HDF5 dataset names out of that expression.
 
 -   **`StringExpressionToAssociation`**(expression)
 
+    This function is based on a [a post by
+    Kuba](https://mathematica.stackexchange.com/a/191718/1507) with an implicit
+    MIT license.
+
 -   **`DatasetnameAssocToCSV`**(association, filename)
 
     Takes the *association* which maps HDF5 dataset names to complex numbers
@@ -1271,6 +1275,10 @@ to get HDF5 dataset names out of that expression.
     - `datasetname`
     - `re`
     - `im`
+
+    This function is based on a [a post by
+    Kuba](https://mathematica.stackexchange.com/a/191718/1507) with an implicit
+    MIT license.
 
 # Tests
 
