@@ -266,6 +266,16 @@ CombineIsospinAndSpin[corrTemplates_, momentaAssoc_] :=
   momentaAssoc /. DTMomentaAssoc[rules_] :> 
     ReplaceAll[corrTemplates, str_String :> TemplateApply[str, rules]];
 
+(* https://mathematica.stackexchange.com/a/191718/1507 *)
+StringExpressionToAssociation[expr_] := With[
+  {keys = Union @ Cases[expr, _String, Infinity]},
+  AssociationMap[Coefficient[expr, #, 1] &] @ keys];
+
+DatasetnameAssocToCSV[assoc_, filename_String] := With[
+  {export = KeyValueMap[Flatten @ {#1, N @ ReIm @ #2} &, %] //
+    ExportString[#, "CSV"] &},
+  WriteString[filename, export]];
+
 
 EndPackage[];
 

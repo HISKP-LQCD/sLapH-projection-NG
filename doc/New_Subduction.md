@@ -396,7 +396,7 @@ You can also just type `?x` to get the help for `x`.
 | [`Dot`]`[a, b]` | `a . b` | `a @ b` | `a %*% b` |
 | [`NonCommutativeMultiply`] | `**` | — | — |
 | [`ReplaceAll`] | `/.` | — | — |
-| [`StringJoin`] | `<>` | `+` | 'paste0' |
+| [`StringJoin`] | `<>` | `+` | `paste0` |
 
 Common patterns in functional programming are [*tacit
 programming*](https://en.wikipedia.org/wiki/Tacit_programming) and expressing
