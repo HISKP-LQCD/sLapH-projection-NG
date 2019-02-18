@@ -251,6 +251,7 @@ StringExpressionToAssociation[expr_] := With[
   {keys = Union @ Cases[expr, _String, Infinity]},
   AssociationMap[Coefficient[expr, #, 1] &] @ keys];
 
+(* https://mathematica.stackexchange.com/a/191718/1507 *)
 DatasetnameAssocToCSV[assoc_, filename_String] := With[
   {export = KeyValueMap[Flatten @ {#1, N @ ReIm @ #2} &, assoc] //
     ExportString[#, "CSV"] &},
