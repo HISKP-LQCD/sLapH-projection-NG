@@ -1045,6 +1045,18 @@ function are subexpressions.
 
     - Else this function is mapped over all parts of the expression.
 
+-   **`ReplacePropagators`**(expression)
+
+    Replaces the QCT propagators with a simpler expression. For some reason the
+    propagators contain the flavor twice redundantly and also contain sink and
+    source time. For the later replacement with diagrams it is sufficient to
+    have the flavor once and the source time only. This function does this
+    replacement:
+
+    ```mathematica
+    qct`DE[{f_, f_}, {_, t_}] :> prop[f, t]
+    ```
+
 ### Contractions into dataset name templates
 
 At the stage of the Wick contractions we still know which labels correspond to

@@ -188,6 +188,8 @@ NormalizeTraceRecursive[expr_] := If[AtomQ @ expr,
     qct`trace[NormalizeTrace[expr[[1]]]], 
     NormalizeTraceRecursive /@ expr]];
 
+ReplacePropagators[expr_] := expr /. qct`DE[{f_, f_}, {_, t_}] :> prop[f, t];
+
 
 (* Wick contractions *)
 
@@ -199,11 +201,24 @@ GammaRules[n_] := Association[Table[
   {i, 1, n}]]
 
 DatasetNameRules[] = {
+  (* C4cB *)
+  qct`trace[qct`Gamma^g2_ . prop["dn", so[so1_]].
+    qct`Gamma^g1_ . prop["up", si[si2_]].
+    qct`Gamma^g3_ . prop["dn", si[si3_]].
+    qct`Gamma^g4_ . prop["up", so[so4_]]] :> 
+  TemplateApply[
+    "C4cB_uuuu_" <> MakeTemplate[4],
+    <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
+      "x1" -> "`pso" <> ToString @ so1 <> "`",
+      "x2" -> "`psi" <> ToString @ si2 <> "`",
+      "x3" -> "`psi" <> ToString @ si3 <> "`",
+      "x4" -> "`pso" <> ToString @ so4 <> "`"|>],
+
   (* C4cC *)
-  qct`trace[qct`Gamma^g1_ . qct`DE[{"up", "up"}, {si[si1_], so[so1_]}].
-    qct`Gamma^g2_ . qct`DE[{"dn", "dn"}, {so[so2_], si[si1_]}].
-    qct`Gamma^g3_ . qct`DE[{"up", "up"}, {si[si2_], so[so2_]}].
-    qct`Gamma^g4_ . qct`DE[{"dn", "dn"}, {so[so1_], si[si2_]}] ] :>
+  qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]].
+    qct`Gamma^g2_ . prop["dn", si[si1_]].
+    qct`Gamma^g3_ . prop["up", so[so2_]].
+    qct`Gamma^g4_ . prop["dn", si[si2_]] ] :>
   TemplateApply[
     "C4cC_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
@@ -213,10 +228,10 @@ DatasetNameRules[] = {
       "x4" -> "`psi" <> ToString @ si2 <> "`"|>],
 
   (* C4cD *)
-  qct`trace[qct`Gamma^g2_ . qct`DE[{"dn", "dn"}, {si[si2_], so[so1_]}].
-    qct`Gamma^g1_ . qct`DE[{"up", "up"}, {so[so1_], si[si2_]}]]
-  qct`trace[qct`Gamma^g3_ .qct`DE[{"up", "up"}, {si[si3_], so[so4_]}].
-    qct`Gamma^g4_ . qct`DE[{"dn", "dn"}, {so[so4_], si[si3_]}]] :> 
+  qct`trace[qct`Gamma^g2_ . prop["dn", so[so1_]].
+    qct`Gamma^g1_ . prop["up", si[si2_]]]
+  qct`trace[qct`Gamma^g3_ . prop["up", so[so4_]].
+    qct`Gamma^g4_ . prop["dn", si[si3_]]] :> 
   TemplateApply[
     "C4cD_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
@@ -226,10 +241,10 @@ DatasetNameRules[] = {
       "x4" -> "`psi" <> ToString @ si3 <> "`"|>],
 
   (* C4cV *)
-  qct`trace[qct`Gamma^g2_ . qct`DE[{"dn", "dn"}, {si[si2_], si[si1_]}].
-    qct`Gamma^g1_ . qct`DE[{"up", "up"}, {si[si1_], si[si2_]}]]
-  qct`trace[qct`Gamma^g4_ . qct`DE[{"dn", "dn"}, {so[so4_], so[so3_]}].
-    qct`Gamma^g3_ .qct`DE[{"up", "up"}, {so[so3_], so[so4_]}]] :> 
+  qct`trace[qct`Gamma^g2_ . prop["dn", si[si1_]].
+    qct`Gamma^g1_ . prop["up", si[si2_]]]
+  qct`trace[qct`Gamma^g4_ . prop["up", so[so3_]].
+    qct`Gamma^g3_ .prop["dn", so[so4_]]] :> 
   TemplateApply[
     "C4cV_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
@@ -239,10 +254,10 @@ DatasetNameRules[] = {
       "x4" -> "`pso" <> ToString @ so3 <> "`"|>],
 
   (* C4cV *)
-  qct`trace[qct`Gamma^g4_ . qct`DE[{"dn", "dn"}, {so[so4_], so[so3_]}].
-    qct`Gamma^g3_ .qct`DE[{"up", "up"}, {so[so3_], so[so4_]}]]
-  qct`trace[qct`Gamma^g2_ . qct`DE[{"dn", "dn"}, {si[si2_], si[si1_]}].
-    qct`Gamma^g1_ . qct`DE[{"up", "up"}, {si[si1_], si[si2_]}]] :> 
+  qct`trace[qct`Gamma^g4_ . prop["dn", so[so3_]].
+    qct`Gamma^g3_ . prop["up", so[so4_]]]
+  qct`trace[qct`Gamma^g2_ . prop["up", si[si1_]].
+    qct`Gamma^g1_ . prop["dn", si[si2_]]] :> 
   TemplateApply[
     "C4cV_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
