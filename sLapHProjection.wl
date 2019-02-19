@@ -233,17 +233,17 @@ DatasetNameRules[] = {
       "x4" -> "`psi" <> ToString @ si2 <> "`"|>],
 
   (* C4cD *)
-  qct`trace[qct`Gamma^g2_ . prop["dn", so[so1_]].
-    qct`Gamma^g1_ . prop["up", si[si2_]]]
-  qct`trace[qct`Gamma^g3_ . prop["up", so[so4_]].
-    qct`Gamma^g4_ . prop["dn", si[si3_]]] :> 
+  qct`trace[qct`Gamma^g1_ . prop["dn", si[si1_]].
+    qct`Gamma^g2_ . prop["up", so[so2_]]]
+  qct`trace[qct`Gamma^g3_ . prop["dn", si[si3_]].
+    qct`Gamma^g4_ . prop["up", so[so4_]]] :> 
   TemplateApply[
     "C4cD_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
-      "x1" -> "`pso" <> ToString @ so1 <> "`",
-      "x2" -> "`psi" <> ToString @ si2 <> "`",
-      "x3" -> "`pso" <> ToString @ so4 <> "`",
-      "x4" -> "`psi" <> ToString @ si3 <> "`"|>],
+      "x1" -> "`psi" <> ToString @ si1 <> "`",
+      "x2" -> "`pso" <> ToString @ so2 <> "`",
+      "x3" -> "`psi" <> ToString @ si3 <> "`",
+      "x4" -> "`pso" <> ToString @ so4 <> "`"|>],
 
   (* C4cV *)
   qct`trace[qct`Gamma^g1_ . prop["dn", so[so1_]].

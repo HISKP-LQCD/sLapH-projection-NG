@@ -996,6 +996,47 @@ lists](https://reference.wolfram.com/language/tutorial/PartsOfExpressions.html).
 With this we can access the different parts of expressions. The arguments of a
 function are subexpressions.
 
+In the contraction code in
+[`src/DiagramSpec.cpp`](https://github.com/HISKP-LQCD/sLapH-contractions/blob/8433f69825f5d5b097f6f30c045af037b06997b9/src/DiagramSpec.cpp)
+we have documentation describing the diagrams that are computed:
+
+Box:
+$$
+C_\text{C4cB} =
+\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5 \Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1}
+\gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
+\Gamma_\mathtt{Op2} D_\mathtt{Q3}^{-1}(t'|t) \Gamma_\mathtt{Op3} \rangle
+$$
+
+Cross:
+$$
+C_\text{C4cC} =
+\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1}
+\gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op2}
+D_\mathtt{Q3}^{-1}(t|t') \Gamma_\mathtt{Op3} \rangle
+$$
+
+Direct:
+\begin{multline*}
+C_\text{C4cD} =
+\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1} \rangle
+\\ \cdot
+\langle \gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op2}
+D_\mathtt{Q3}^{-1}(t|t') \Gamma_\mathtt{Op3} \rangle
+\end{multline*}
+
+Vacuum:
+\begin{multline*}
+C_\text{C4cV} = \langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5 \Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t) \Gamma_\mathtt{Op1} \rangle
+\\ \cdot
+\langle \gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
+\Gamma_\mathtt{Op2} D_\mathtt{Q3}^{-1}(t'|t') \Gamma_\mathtt{Op3} \rangle
+\end{multline*}
+
 ---
 
 -   **`RotateGammaToFront`**(expression)
@@ -1056,6 +1097,14 @@ function are subexpressions.
     ```mathematica
     qct`DE[{f_, f_}, {_, t_}] :> prop[f, t]
     ```
+
+-   **`FlowReversalRules`**()
+
+    A list of rules that perform reversal of quark flow by taking the transpose
+    of the content of the trace. We would need to know what the transpose of
+    the Dirac structure is, which depends on the basis, which is not
+    implemented yet. Therefore this is limited to the case of $\gamma_5$ which
+    will be sufficient as long as we scatter just pions.
 
 ### Contractions into dataset name templates
 
@@ -1118,47 +1167,6 @@ with this:
 
 It is a sum of two strings, which is exactly what we want. In a later stage we
 can insert the momenta corresponding to the spin projected operators.
-
-In the contraction code in
-[`src/DiagramSpec.cpp`](https://github.com/HISKP-LQCD/sLapH-contractions/blob/8433f69825f5d5b097f6f30c045af037b06997b9/src/DiagramSpec.cpp)
-we have documentation describing the diagrams that are computed:
-
-Box:
-$$
-C_\text{C4cB} =
-\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5 \Gamma_\mathtt{Op0}
-D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1}
-\gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
-\Gamma_\mathtt{Op2} D_\mathtt{Q3}^{-1}(t'|t) \Gamma_\mathtt{Op3} \rangle
-$$
-
-Cross:
-$$
-C_\text{C4cC} =
-\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op0}
-D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1}
-\gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op2}
-D_\mathtt{Q3}^{-1}(t|t') \Gamma_\mathtt{Op3} \rangle
-$$
-
-Direct:
-\begin{multline*}
-C_\text{C4cD} =
-\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op0}
-D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1} \rangle
-\\ \cdot
-\langle \gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op2}
-D_\mathtt{Q3}^{-1}(t|t') \Gamma_\mathtt{Op3} \rangle
-\end{multline*}
-
-Vacuum:
-\begin{multline*}
-C_\text{C4cV} = \langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5 \Gamma_\mathtt{Op0}
-D_\mathtt{Q1}^{-1}(t|t) \Gamma_\mathtt{Op1} \rangle
-\\ \cdot
-\langle \gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
-\Gamma_\mathtt{Op2} D_\mathtt{Q3}^{-1}(t'|t') \Gamma_\mathtt{Op3} \rangle
-\end{multline*}
 
 ---
 
