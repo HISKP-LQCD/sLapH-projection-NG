@@ -173,11 +173,16 @@ MomentaToAssocSourceSink[expr1_, expr2_] := FullSimplify @ ReplaceAll[
 
 RotateGammaToFront[expr_] := If[MatchQ[expr[[1]], qct`Gamma^_], expr, RotateLeft[expr]];
 
-Starts[traceContent_] := ReplaceAll[#[[2]][[2]] & /@ traceContent[[2 ;; ;; 2]], {Dot -> List}];
+Starts[traceContent_] := 
+  ReplaceAll[traceContent[[2 ;; ;; 2]], {Dot -> List}];
 
-IndexOfFirst[traceContent_] := Ordering[Starts[traceContent], 1, 
-  ReplaceAll[#1, {so[i_] :> i, si[i_] :> 1000 + i}] < 
-    ReplaceAll[#2, {so[i_] :> i, si[i_] :> 1000 + i}] &][[1]];
+StartScore[propagator_] := propagator /.
+  {"up" -> 6000, "dn" -> 5000, so[i_] -> i, si[i_] -> i + 100} /.
+  prop[f_, t_] -> f + t;
+
+IndexOfFirst[traceContent_] := 
+  Ordering[Starts[traceContent], 1, 
+    StartScore[#1] < StartScore[#2] &][[1]];
 
 NormalizeTrace[traceContent_] := With[{tr2 = RotateGammaToFront @ traceContent},
   RotateLeft[tr2, 2 * (IndexOfFirst[tr2] - 1)]];
@@ -241,30 +246,17 @@ DatasetNameRules[] = {
       "x4" -> "`psi" <> ToString @ si3 <> "`"|>],
 
   (* C4cV *)
-  qct`trace[qct`Gamma^g2_ . prop["dn", si[si1_]].
-    qct`Gamma^g1_ . prop["up", si[si2_]]]
-  qct`trace[qct`Gamma^g4_ . prop["up", so[so3_]].
-    qct`Gamma^g3_ .prop["dn", so[so4_]]] :> 
+  qct`trace[qct`Gamma^g1_ . prop["dn", so[so1_]].
+    qct`Gamma^g2_ .prop["up", so[so2_]]]
+  qct`trace[qct`Gamma^g3_ . prop["dn", si[si3_]].
+    qct`Gamma^g4_ . prop["up", si[si4_]]] :> 
   TemplateApply[
     "C4cV_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
-      "x1" -> "`psi" <> ToString @ s12 <> "`",
-      "x2" -> "`psi" <> ToString @ si1 <> "`",
-      "x3" -> "`pso" <> ToString @ so4 <> "`",
-      "x4" -> "`pso" <> ToString @ so3 <> "`"|>],
-
-  (* C4cV *)
-  qct`trace[qct`Gamma^g4_ . prop["dn", so[so3_]].
-    qct`Gamma^g3_ . prop["up", so[so4_]]]
-  qct`trace[qct`Gamma^g2_ . prop["up", si[si1_]].
-    qct`Gamma^g1_ . prop["dn", si[si2_]]] :> 
-  TemplateApply[
-    "C4cV_uuuu_" <> MakeTemplate[4],
-    <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
-      "x1" -> "`psi" <> ToString @ s12 <> "`",
-      "x2" -> "`psi" <> ToString @ si1 <> "`",
-      "x3" -> "`pso" <> ToString @ so4 <> "`",
-      "x4" -> "`pso" <> ToString @ so3 <> "`"|>]
+      "x1" -> "`pso" <> ToString @ so1 <> "`",
+      "x2" -> "`pso" <> ToString @ so2 <> "`",
+      "x3" -> "`psi" <> ToString @ si3 <> "`",
+      "x4" -> "`psi" <> ToString @ si4 <> "`"|>]
 }
 
 
