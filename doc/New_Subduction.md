@@ -1176,14 +1176,15 @@ functions `so` and `si` which label the source and sink vertices instead of
 so:
 
 ```mathematica
-wc = WickContract[\[Pi]\[Pi]I2Bar[s1, s2, s3, s4, c1, c2, so[1], so[2]] **
-    \[Pi]\[Pi]I2[s5, s6, s7, s8, c5, c6, si[1], si[2]]];
+wc = WickContract[
+  \[Pi]\[Pi]I2Bar[s1, s2, s3, s4, c1, c2, so[1], so[2]] **
+  \[Pi]\[Pi]I2[s5, s6, s7, s8, c5, c6, si[1], si[2]]];
 ```
 
 In the contracted form we have propagator expressions like these:
 
 ```mathematica
-DE[{up, up}, {si[1], so[2]}
+prop["up", so[2]]
 ```
 
 These have to be mapped to HDF5 dataset names. Actually they have to be mapped
@@ -1193,52 +1194,35 @@ expression with a `C4cD` diagram:
 
 
 ```mathematica
-qc /. trace[Gamma^g1_ .DE[{f1_, f1_}, {si[si1_], so[so2_]}].
-     Gamma^g2_ .DE[{f2_, f2_}, {so[so2_], si[si1_]}]] trace[
-    Gamma^g3_ .DE[{f1_, f1_}, {si[si3_], so[so4_]}].
-     Gamma^g4_ .DE[{f2_, f2_}, {so[so4_], si[si3_]}]] :> 
-  TemplateApply[
-   "C4cD_uuuu_g`g1`.p`x1`.d000_g`g2`.p`x2`.d000_g`g3`.p`x3`.d000_g`g4`\
-        .p`x4`.d000",
-    <|"g1" -> g1, "x1" -> "`pso" <> ToString @ so2 <> "`",
-      "g2" -> g2, "x2" -> "`psi" <> ToString @ si1 <> "`",
-      "g3" -> g3, "x3" -> "`pso" <> ToString @ so4 <> "`",
-      "g4" -> g4, "x4" -> "`psi" <> ToString @ si3 <> "`"|>]
+qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]].
+  qct`Gamma^g2_ . prop["dn", si[si2_]]]
+qct`trace[qct`Gamma^g3_ . prop["up", so[so3_]].
+  qct`Gamma^g4_ . prop["dn", si[si4_]]] :> 
+TemplateApply[
+  "C4cD_uuuu_" <> MakeTemplate[4],
+  <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
+    "x1" -> "`pso" <> ToString @ so1 <> "`",
+    "x2" -> "`psi" <> ToString @ si2 <> "`",
+    "x3" -> "`pso" <> ToString @ so3 <> "`",
+    "x4" -> "`psi" <> ToString @ si4 <> "`"|>],
 ```
 
-This way the we replace the two summands
-
-```mathematica
-trace[Gamma^5.DE[{up, up}, {si[1], so[2]}].
-    Gamma^5.DE[{dn, dn}, {so[2], si[1]}]]
-  trace[ Gamma^5.DE[{up, up}, {si[2], so[1]}]..
-    Gamma^5.DE[{dn, dn}, {so[1], si[2]}]] + 
-trace[Gamma^5.DE[{up, up}, {si[1], so[1]}].
-    Gamma^5.DE[{dn, dn}, {so[1], si[1]}]]
-  trace[Gamma^5.DE[{up, up}, {si[2], so[2]}].
-    Gamma^5.DE[{dn, dn}, {so[2], si[2]}]]
-```
-
-with this:
-
-```mathematica
-"C4cD_uuuu_g5.p`pso1`.d000_g5.p`psi1`.d000_g5.p`pso2`.d000_g5.p`psi2`.d000" +
-  "C4cD_uuuu_g5.p`pso2`.d000_g5.p`psi1`.d000_g5.p`pso1`.d000_g5.p`psi2`.d000"
-```
-
-It is a sum of two strings, which is exactly what we want. In a later stage we
-can insert the momenta corresponding to the spin projected operators.
+The resulting expression after applying these rules is a sum of strings, which
+is exactly what we want. In a later stage we can insert the momenta
+corresponding to the spin projected operators.
 
 ---
 
 -   **`MakeTemplate`**($n$)
 
-    Creates a template for an $n$-particle correlation function. For the case
-    of $n = 2$, the result looks like this:
+    Creates a template for an $n$-particle correlation function consisting of
+    expressions like
 
     ```mathematica
-    "g`g1`.p`x1`.d000_g`g2`.p`x2`.d000"
+    "g`g1`.p`x1`.d000"
     ```
+
+    separated by underscores and with increasing numbers for `g1` and `p1`.
 
 -   **`DatasetNameRules`**()
 
