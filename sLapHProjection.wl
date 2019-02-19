@@ -266,17 +266,27 @@ CombineIsospinAndSpin[corrTemplates_, momentaAssoc_] :=
   momentaAssoc /. DTMomentaAssoc[rules_] :> 
     ReplaceAll[corrTemplates, str_String :> TemplateApply[str, rules]];
 
+
+(* Export to data frame *)
+
 (* https://mathematica.stackexchange.com/a/191718/1507 *)
-StringExpressionToAssociation[expr_] := With[
-  {keys = Union @ Cases[expr, _String, Infinity]},
+StringExpressionToAssociation[expr_] := Module[
+  {exprConj, keys},
+  exprConj = expr /. Conjugate[str_String] :> "conj:" <> str;
+  keys = Union @ Cases[expr, _String, Infinity];
   AssociationMap[Coefficient[expr, #, 1] &] @ keys];
+
+NeedsConjugation[name_] := With[{prefix = StringTake[name, 5]},
+  If[prefix == "conj:",
+    {StringDrop[name, 5], True},
+    {name, False}]];
 
 (* https://mathematica.stackexchange.com/a/191718/1507 *)
 DatasetnameAssocToCSV[assoc_, filename_String] := With[
-  {export = KeyValueMap[Flatten @ {#1, N @ ReIm @ #2} &, assoc] //
+  {export = KeyValueMap[Flatten @ {NeedsConjugation @ #1, N @ ReIm @ #2} &, assoc] //
     ExportString[#, "CSV"] &},
   DeleteFile[filename];
-  WriteString[filename, "datasetname,re,im\n" <> export]];
+  WriteString[filename, "datasetname,conjugate,re,im\n" <> export]];
 
 
 EndPackage[];

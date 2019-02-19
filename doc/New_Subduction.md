@@ -34,6 +34,7 @@ The result that we want from the projection is a data frame with these columns:
 - GEVP row index (source operator ID)
 - GEVP column index (sink operator ID)
 - HDF5 dataset name
+- Boolean indicating whether the diagram needs to be complex conjugated
 - Complex weighting factor
 
 With this we can take the output of the sLapH contraction code and project into
@@ -268,7 +269,20 @@ Sage
   ~ I have been looking into alternatives a bit yesterday and found that Sage
   has the group in some form that one can at least get the multiplication and
   character table, see [this
-  snippet](https://sagecell.sagemath.org/?z=eJyNjrFOwzAQhvdIeQdLDLWFY0pYGApLJRgQ4gGqNjrcwzVy4mBfI_z2xIGAQB3QLb_-T9_d2bb3gVgEg8oEf-yjaoGCfW_MGF9sZwldagx2GIBwXxZ5HtRquGU3_9fUOmnnybdW31l0e34tygLGDUM17K7YWXwLxOuxs7nb1WXxpCnzx2nrfT7BN7y6PLfiopbfgfGfpsphK9nmswO5lGwp-dTDVuS_-2A74ov1AQJowsAInh0uxEzyUaVn2kyUi18qJIfptDehk5LvXo8GdGLaQYwY_5ozb774qH8A9juBiQ==&lang=sage).
+  snippet](https://sagecell.sagemath.org/?z=eJyNjrFOwzAQhvdIeQdLDLWFY0pYGApLJRgQ4gGqNjrcwzVy4mBfI_z2xIGAQB3QLb_-T9_d2bb3gVgEg8oEf-yjaoGCfW_MGF9sZwldagx2GIBwXxZ5HtRquGU3_9fUOmnnybdW31l0e34tygLGDUM17K7YWXwLxOuxs7nb1WXxpCnzx2nrfT7BN7y6PLfiopbfgfGfpsphK9nmswO5lGwp-dTDVuS_-2A74ov1AQJowsAInh0uxEzyUaVn2kyUi18qJIfptDehk5LvXo8GdGLaQYwY_5ozb774qH8A9juBiQ==&lang=sage):
+
+    ```python
+    import sage.groups.matrix_gps.finitely_generated
+
+    K.<v> = sage.groups.matrix_gps.finitely_generated.CyclotomicField(8)
+    a = v - v^3
+    i = v^2
+    Octa = MatrixGroup([(-1+i)/2, (-1+i)/2, (1+i)/2, (-1-i)/2],
+                       [(1+i)/a, 0, 0, (1-i)/a])
+
+    print('Character table')
+    print(Octa.character_table())
+    ```
 
 SciPy
 
@@ -983,22 +997,9 @@ In this general case we cannot do that, though.
 
 ### Normalizing trace expressions
 
-The trace is cyclic. Therefore similar expressions can be equivalent. The trace
-expression used, `trace` from `qct`, does not let Mathematica know that it is
-cyclic. Therefore we manually cycle them until the propagator starting from the
-lowest vertex (to be defined) is the second element. The first element shall be
-the $\Gamma$-structure. The first vertex is the source vertex with the lowest
-number. If there is no source vertex, then the lowest sink vertex is to be
-used.
-
-The key observation is that [expressions can be used like
-lists](https://reference.wolfram.com/language/tutorial/PartsOfExpressions.html).
-With this we can access the different parts of expressions. The arguments of a
-function are subexpressions.
-
 In the contraction code in
 [`src/DiagramSpec.cpp`](https://github.com/HISKP-LQCD/sLapH-contractions/blob/8433f69825f5d5b097f6f30c045af037b06997b9/src/DiagramSpec.cpp)
-we have documentation describing the diagrams that are computed:
+we have documentation describing the diagrams that can be computed:
 
 Box:
 $$
@@ -1013,7 +1014,6 @@ D_\mathtt{Q3}^{-1}(t'|t)
 \gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5
 \rangle
 $$
-
 Cross:
 $$
 C_\text{C4cC} =
@@ -1028,7 +1028,6 @@ D_\mathtt{Q3}^{-1}(t|t')
 \gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5
 \rangle
 $$
-
 Direct:
 \begin{multline*}
 C_\text{C4cD} =
@@ -1046,7 +1045,6 @@ D_\mathtt{Q3}^{-1}(t|t')
 \gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5
 \rangle
 \end{multline*}
-
 Vacuum:
 \begin{multline*}
 C_\text{C4cV} =
@@ -1064,6 +1062,35 @@ D_\mathtt{Q3}^{-1}(t'|t')
 \gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
 \rangle
 \end{multline*}
+
+In order to translate the expressions that we get from the Quark Contraction
+Tool we need to massage them until they match a diagram from the contraction
+code. There are three things that need to be done:
+
+-   The trace is cyclic. Therefore similar expressions can be equivalent. The
+    trace expression used, `trace` from `qct`, does not let Mathematica know
+    that it is cyclic. Therefore we manually cycle them until the up-type
+    propagator starting from the lowest vertex (to be defined) is the second
+    element. The first element shall be the $\Gamma$-structure. The first
+    vertex is the source vertex with the lowest number. If there is no source
+    vertex, then the lowest sink vertex is to be used.
+
+    The key observation is that [expressions can be used like
+    lists](https://reference.wolfram.com/language/tutorial/PartsOfExpressions.html).
+    With this we can access the different parts of expressions. The arguments
+    of a function are subexpressions.
+
+-   The direction of quark flow might be in the wrong direction. By adding a
+    transposition to the argument of the trace one can reverse all the
+    propagators. This might change the value of the trace if the Dirac
+    structures give some signs under transposition.
+
+-   In all the charged/conjugated diagrams the position of the down-type
+    propagators is fixed. If from the Wick contraction we happen to have them
+    in other positions we need to exchange all flavors in order to get to the
+    form that is implemented. This is done by applying a conjugate transpose to
+    the argument of the trace. The resulting diagram will need to be
+    conjugated.
 
 ---
 
@@ -1133,6 +1160,12 @@ D_\mathtt{Q3}^{-1}(t'|t')
     the Dirac structure is, which depends on the basis, which is not
     implemented yet. Therefore this is limited to the case of $\gamma_5$ which
     will be sufficient as long as we scatter just pions.
+
+-   **`FlavorSwitchRules`**()
+
+    A list of rules that exchange the flavors and might also change the
+    direction of quark flow. Similar to the `FlowReversalRules` this currently
+    only supports the $\gamma_5$ Dirac structure.
 
 ### Contractions into dataset name templates
 
@@ -1223,79 +1256,23 @@ can insert the momenta corresponding to the spin projected operators.
 
 ## Wick contraction and spin
 
-We now have an operator that is projected with spin. And we have the Wick
-contraction which already has the isospin incorporated into it. One big
-difference is that the spin operator is at sink (or source) only, whereas the
-Wick contraction is a full correlation function already.
-
-As a next step we just build a full correlation function from the spin
-operators, namely writing $O O^\dagger$. This has all the factors that we need,
-we just have to replace the formed products of single-particle creation and
-annihilation operators with the output from the Wick contraction.
-
-We will use pattern replacement for that. As a toy example, we take this
-expression:
-
-```mathematica
-toy = f[x] ** f[y];
-```
-
-The `f` stands for the function `SingleOperator` with all its arguments. We
-want to replace it with the function `g`, which stands for the multi-particle
-operator. We can do this directly with a pattern replacement:
-
-```mathematica
-toy /. f[a_] ** f[b_] -> g[a, b]
-```
-
-The result is `g[x, y]`, as desired. The same works with more complicated
-expressions with more factors.
-
-The replacement that we want to apply is the following:
-
-```mathematica
-repl :=  qc /. x1 -> #1 /. x2 -> #2 /. x3 -> #3 /. x4 -> #4 &
-```
-
-This is a function that takes four momenta. It then takes the quark contraction
-`qc` and replace the four position/momentum labels with the arguments. The
-function `ReplaceSingleOperatorScalarWick` accepts the correlator of spin
-operators and this replacement function and gives us the variant with concrete
-momenta. We obtain
-\begin{align*}
-&
-\text{tr}\left(\gamma^5\;S^{\text{up}}(\{0,1,1\},\{1,0,0\})\;\gamma^5\;S^{\text{dn}}(\{1,0,0\},\{0,1,1\})\right)
-\\&\qquad\times
-\text{tr}\left(\gamma^5\;S^{\text{up}}(\{1,0,0\},\{0,1,1\})\;\gamma^5\;S^{\text{dn}}(\{0,1,1\},\{1,0,0\})\right)
-\\&\quad
-+\text{tr}\left(\gamma^5\;S^{\text{up}}(\{0,1,1\},\{0,1,1\})\;\gamma^5\;S^{\text{dn}}(\{0,1,1\},\{0,1,1\})\right)
-\\&\qquad\times
-\text{tr}\left(\gamma^5\;S^{\text{up}}(\{1,0,0\},\{1,0,0\})\;\gamma^5\;S^{\text{dn}}(\{1,0,0\},\{1,0,0\})\right)
-\\&\quad
--\text{tr}\big(\gamma^5\;S^{\text{dn}}(\{1,0,0\},\{0,1,1\})\;\gamma^5\;S^{\text{up}}(\{1,0,0\},\{1,0,0\})
-\\&\qquad\times
-\gamma^5\;S^{\text{dn}}(\{0,1,1\},\{1,0,0\})\;\gamma^5\;S^{\text{up}}(\{0,1,1\},\{0,1,1\})\big)
-\\&\quad
--\text{tr}\big(\gamma^5\;S^{\text{up}}(\{1,0,0\},\{0,1,1\})\;\gamma^5\;S^{\text{dn}}(\{1,0,0\},\{1,0,0\})
-\\&\qquad\times
-\gamma^5\;S^{\text{up}}(\{0,1,1\},\{1,0,0\})\;\gamma^5\;S^{\text{dn}}(\{0,1,1\},\{0,1,1\})\big)
-\,.
-\end{align*}
-
-This is now very close to the stuff that we actually compute, we should be able
-to get HDF5 dataset names out of that expression.
+We now have the needed linear combination of contraction code diagrams. And
+using `MomentaToAssocSourceSink` we have a prescription for inserting the
+momenta. Inserting every set of momenta into every term of the diagram
+expression gives us the desired result, a linear combination of actual HDF5
+dataset names.
 
 ---
 
--   **`CombineIsospinAndSpin`**(corrTemplates, momentaAssoc)
+-   **`CombineIsospinAndSpin`**(correlator templates, momenta associations)
 
-    Takes an expression of correlator templates containing strings like
+    Takes an expression of *correlator templates* containing strings like
 
     ```mathematica
     "C4cD_uuuu_g5.p`pso1`.d000_g5.p`psi1`.d000_g5.p`pso2`.d000_g5.p`psi2`.d000"
     ```
 
-    and an expression containing momentum associations like 
+    and an expression containing *momenta associations* like 
 
     ```mathematica
     DTMomentaAssoc[<|"pso1" -> "011", "pso2" -> "100", "psi1" -> "011",
@@ -1313,6 +1290,25 @@ to get HDF5 dataset names out of that expression.
 
 ### Export to data frame
 
+We want to export the expression in a form like this:
+
+| datasetname | conjugate | re | im |
+| --- | --- | ---:| ---: |
+| `C4cB_uuuu_g5.p001.d000_…` | False | 1. | 0. |
+| `C4cB_uuuu_g5.p001.d000_…` | False | -0.5 | -0.8660254037844386 |
+| `C4cB_uuuu_g5.p001.d000_…` | False | 0.5 | -0.8660254037844386 |
+| `C4cB_uuuu_g5.p001.d000_…` | False | -0.5 | 0.8660254037844386 |
+
+In CSV format it will be this:
+
+```csv
+datasetname,conjugate,re,im
+"C4cB_uuuu_g5.p001.d000_…","False",1.,0.
+"C4cB_uuuu_g5.p001.d000_…","False",-0.5,-0.8660254037844386
+"C4cB_uuuu_g5.p001.d000_…","False",0.5,-0.8660254037844386
+"C4cB_uuuu_g5.p001.d000_…","False",-0.5,0.8660254037844386
+```
+
 ---
 
 -   **`StringExpressionToAssociation`**(expression)
@@ -1322,11 +1318,17 @@ to get HDF5 dataset names out of that expression.
     valued factors are the values.
 
     It uses [`Coefficient`] to extract the leading coefficient in front of the
-    strings.
+    strings. Also it prefixes the string `conj:` in front of diagram names that
+    need to be conjugated.
 
     This function is based on a [a post by
     Kuba](https://mathematica.stackexchange.com/a/191718/1507) with an implicit
     MIT license.
+
+-   **`NeedsConjugation`**(name)
+
+    Checks whether the *name* starts with `conj:` and returns the list (bare
+    name, True/False), where “bare name” is the name without the `conj:`.
 
 -   **`DatasetnameAssocToCSV`**(association, filename)
 
@@ -1335,6 +1337,7 @@ to get HDF5 dataset names out of that expression.
     into a CSV structure with these columns:
 
     - `datasetname`
+    - `conjugate`
     - `re`
     - `im`
 
