@@ -1003,38 +1003,66 @@ we have documentation describing the diagrams that are computed:
 Box:
 $$
 C_\text{C4cB} =
-\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5 \Gamma_\mathtt{Op0}
+\langle
+\Gamma_\mathtt{Op0}
 D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1}
 \gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
-\Gamma_\mathtt{Op2} D_\mathtt{Q3}^{-1}(t'|t) \Gamma_\mathtt{Op3} \rangle
+\Gamma_\mathtt{Op2}
+D_\mathtt{Q3}^{-1}(t'|t)
+\Gamma_\mathtt{Op3}
+\gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5
+\rangle
 $$
 
 Cross:
 $$
 C_\text{C4cC} =
-\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op0}
-D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1}
-\gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op2}
-D_\mathtt{Q3}^{-1}(t|t') \Gamma_\mathtt{Op3} \rangle
+\langle
+\Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t')
+\Gamma_\mathtt{Op1}
+\gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5
+\Gamma_\mathtt{Op2}
+D_\mathtt{Q3}^{-1}(t|t')
+\Gamma_\mathtt{Op3}
+\gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5
+\rangle
 $$
 
 Direct:
 \begin{multline*}
 C_\text{C4cD} =
-\langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op0}
-D_\mathtt{Q1}^{-1}(t|t') \Gamma_\mathtt{Op1} \rangle
+\langle
+\Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t')
+\Gamma_\mathtt{Op1}
+\gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5
+\rangle
 \\ \cdot
-\langle \gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5 \Gamma_\mathtt{Op2}
-D_\mathtt{Q3}^{-1}(t|t') \Gamma_\mathtt{Op3} \rangle
+\langle
+\Gamma_\mathtt{Op2}
+D_\mathtt{Q3}^{-1}(t|t')
+\Gamma_\mathtt{Op3}
+\gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5
+\rangle
 \end{multline*}
 
 Vacuum:
 \begin{multline*}
-C_\text{C4cV} = \langle \gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5 \Gamma_\mathtt{Op0}
-D_\mathtt{Q1}^{-1}(t|t) \Gamma_\mathtt{Op1} \rangle
+C_\text{C4cV} =
+\langle
+\Gamma_\mathtt{Op0}
+D_\mathtt{Q1}^{-1}(t|t)
+\Gamma_\mathtt{Op1}
+\gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5
+\rangle
 \\ \cdot
-\langle \gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
-\Gamma_\mathtt{Op2} D_\mathtt{Q3}^{-1}(t'|t') \Gamma_\mathtt{Op3} \rangle
+\langle
+\Gamma_\mathtt{Op2}
+D_\mathtt{Q3}^{-1}(t'|t')
+\Gamma_\mathtt{Op3}
+\gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
+\rangle
 \end{multline*}
 
 ---
