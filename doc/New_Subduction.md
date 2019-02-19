@@ -908,6 +908,10 @@ From the spin projected operator we extract the actual momenta
         "pso1" -> "011", "pso2" -> "100"|>]
     ```
 
+### Looping over multiple momenta and irreps
+
+TODO
+
 ## Isospin
 
 Isospin and the Wick contractions are independent of the spin. Therefore we can
@@ -1329,10 +1333,29 @@ datasetname,conjugate,re,im
     Kuba](https://mathematica.stackexchange.com/a/191718/1507) with an implicit
     MIT license.
 
+## Projecting the computed correlators
+
+Taking the table from the preceeding step we must read in the prescribed HDF5
+data sets and combine them given the factors.
+
 # Tests
 
-- Physical non-coupling
-- Cross-Irrep
+The following are tests that we can perform to increase the confidence in $H_0$
+which says that the code works perfectly fine.
+
+## Physical non-coupling
+
+There are a bunch of channels which should not couple with specific momenta and
+irreps, we can check for these.
+
+## Cross irrep
+
+Correlation functions with operators from different irreps should just vanish.
+We can just pick a few examples and see how that works out.
+
+## Old projection code
+
+Using Markus' projection code we can take correlators on a single gauge configuration and project them to some irrep and momenta. The numeric results should be exactly the same.
 
 <!-- Links to Wolfram Language reference -->
 
