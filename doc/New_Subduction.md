@@ -1,5 +1,7 @@
 ---
  # vim: spell tw=79
+
+ # Document meta data:
 title: Towards a new Projection Code
 author:
   - Martin Ueding (<ueding@hiskp.uni-bonn.de>)
@@ -12,6 +14,8 @@ abstract: >
   programming languages and libraries for the implementation. Also the design
   and implementation is covered here, including documentation for all functions
   in the Mathematica package.
+
+ # LaTeX presentation options:
 urlcolor: blue
 toc: true
 numbersections: true
@@ -1397,6 +1401,8 @@ correlators? I see these options:
     \big)
     \Big\} \,.
     \end{multline*}
+
+As usual with these listings, I prefer the last option.
 
 ### Generating the structure
 
