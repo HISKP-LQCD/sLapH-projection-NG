@@ -6,6 +6,14 @@ are supposed to just to exercise this library. *)
 BeginPackage["sLapHProjection`"];
 
 
+(* Utility functions *)
+
+MonitoredMap[f_, list_, label_ : ""] := Module[{i},
+  Monitor[Table[f[list[[i]]], {i, 1, Length[list]}], 
+   Row[{ProgressIndicator[i, {1, Length[list]}],
+     TemplateApply[" `` `` of ``", {label, i, Length[list]}]}, " "]]];
+
+
 (* Reading the lattice irreps *)
 
 ReadDataframe[path_] := Module[{assocs, bulk, data, header},
@@ -128,13 +136,15 @@ MakeMultiOperator[momentapi_, eulerG_, spinsJi_, spinsMi_] := Module[{momentumpc
   NonCommutativeMultiply @@ parts];
 
 MakeGroupSum[irrep_, irrepRow_, irrepCol_, momentapi_, spinsJi_, spinsMi_] := Module[{groupSummands},
-  groupSummands = Module[{name, values, eulerG},
-    name = Keys @ #;
-    values = Values @ #;
-    eulerG = EulerAnglesAssoc[][[Key @ name]];
-    Conjugate[values[[Key @ {irrepRow, irrepCol}]]] *
-    MakeMultiOperator[momentapi, eulerG, spinsJi, spinsMi]
-  ] & /@ IrrepDGammaAssoc[][[Key @ Total @ momentapi]][[Key @ irrep]];
+  groupSummands = MonitoredMap[
+    Module[{name, values, eulerG},
+      name = Keys @ #;
+      values = Values @ #;
+      eulerG = EulerAnglesAssoc[][[Key @ name]];
+      Conjugate[values[[Key @ {irrepRow, irrepCol}]]] *
+      MakeMultiOperator[momentapi, eulerG, spinsJi, spinsMi]] &,
+    IrrepDGammaAssoc[][[Key @ Total @ momentapi]][[Key @ irrep]],
+    "Group element"];
   Plus @@ groupSummands];
 
 MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, phasePhiM_] :=
@@ -296,29 +306,25 @@ UniqueTotalMomenta[momentumMag_] :=
     Values[# . MomentumRefScalar[momentumMag] & /@ 
       EulerMatrix /@ EulerAnglesAssoc[]];
 
-MonitoredMap[f_, list_, label_ : ""] := Module[{i},
-  Monitor[Table[f[list[[i]]], {i, 1, Length[list]}], 
-   Row[{ProgressIndicator[i, {1, Length[list]}],
-     TemplateApply[" `` `` of ``", {label, i, Length[list]}]}, " "]]];
-
 RelativeToTotalMomenta[totalMomentum_, relMomenta_] :=
   Catenate[{{totalMomentum - Total[relMomenta]}, relMomenta}];
 
-AllRelativeMomenta[totalMomentum_, cutoff_: 1] := 
+AllRelativeMomenta[totalMomentum_, relMomenta_, cutoff_] := 
   Select[RelativeToTotalMomenta[totalMomentum, #] & /@ relMomenta, 
     Max[Norm /@ #] <= cutoff &];
 
-MultiGroupSum[irrep_, momentapi_] := 
-  DeleteDuplicates @ Hold @
+MultiGroupSum[irrep_, momentapi_, hold_ : Identity] := 
+  DeleteDuplicates @ hold @
     MakeGroupSum[irrep, 1, 1, momentapi, {0, 0, 0}, {0, 0, 0}];
 
-GroupSumWholeIrrep[totalMomentum_, irrep_] := 
-  MonitoredMap[MultiGroupSum[irrep, #] &, 
-    AllRelativeMomenta[totalMomentum], "Momenta"];
+GroupSumWholeIrrep[totalMomentum_, irrep_, relMomenta_, cutoff_, hold_ : Identity] := 
+  MonitoredMap[MultiGroupSum[irrep, #, hold] &, 
+    AllRelativeMomenta[totalMomentum, relMomenta, cutoff], "Momentum"];
 
-GroupSumWholeTotalMomentum[totalMomentum_] := Module[
+GroupSumWholeTotalMomentum[totalMomentum_, relMomenta_, cutoff_, hold_ : Identity] := Module[
   {irreps = Keys @ IrrepDGammaAssoc[][totalMomentum]},
-  AssociationThread[irreps, MonitoredMap[GroupSumWholeIrrep[totalMomentum, #] &,
+  AssociationThread[irreps,
+    MonitoredMap[GroupSumWholeIrrep[totalMomentum, #, relMomenta, cutoff, hold] &,
     irreps, "Irrep"]]];
 
 

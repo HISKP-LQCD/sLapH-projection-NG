@@ -407,18 +407,51 @@ You can also just type `?x` to get the help for `x`.
 | Long | Infix | Python | R |
 | --- | --- | --- | --- | --- |
 | `f[x]` | `f @ x` or `x // f` | `f(x)` | `f(x)` |
-| [`Apply`]`[f, a]` | `f @@ a` | `f(*a)` | `do.call(f, a)` |
+| [`Apply`]`[f, a]` | `f @@ a` | `f(*a)`[^kwargs] | `do.call(f, a)` |
 | [`Map`]`[f, x]` | `f /@ x` | `map(f, x)` | `lapply(x, f)` |
-| [`Composition`]`[f, g]` | `f @* g` | — | — |
+| [`Composition`]`[f, g]` | `f @* g` | —[^pycomp] | [`purrr::compose`](https://purrr.tidyverse.org/reference/compose.html) |
 | [`Function`]`[x, x^2]` | `#^2 &` | `lambda` | `function` |
 | [`Part`]`[xs, i]` | `xs[[i]]` | `xs[i-1]` | `xs[[i]]` |
 | [`Rule`] | `->` | — | — |
 | [`RuleDelayed`] | `:>` | — | — |
-| [`Association`]`[a -> b]` | `<| a -> b |>` | `{a: b}` | `list(a = b)` |
+| [`Association`]`[a -> b]` | `<| a -> b |>` | `{a: b}` | `list(a = b)`[^rlist] |
 | [`Dot`]`[a, b]` | `a . b` | `a @ b` | `a %*% b` |
 | [`NonCommutativeMultiply`] | `**` | — | — |
 | [`ReplaceAll`] | `/.` | — | — |
 | [`StringJoin`] | `<>` | `+` | `paste0` |
+
+[^kwargs]:
+
+    In the Wolfram Language the [`List`] instance `a` could also contain
+    [`Rule`] instances, therefore making a function call with positional and
+    named arguments possible. R's `do.call` also uses `names(a)` as the names
+    for named arguments. In Python one cannot mix a list and a dictionary,
+    therefore one would have to call `f(*a, **b)` where `b` was a dictionary
+    with string keys containing the named arguments.
+
+[^pycomp]:
+
+    Not directly available, but [there are
+    ways](https://stackoverflow.com/a/24047214/653152).
+
+[^rlist]:
+
+    This is not entirely correct, though. In R, the names of the list have to
+    be strings. For a given `list` instance `l`, we find that
+    `typeof(names(l))` is `character` (homogenious string vector). This means
+    that we can only have a mapping from strings to arbitrary types, but not
+    from arbitrary types to arbitrary types. The Wolfram Language does not have
+    this limitation. Also Python only requires the dictionary key to be
+    hashable, otherwise there are no constraints.
+
+Note that in R one can create user-defined infix operators, so writing the
+following would allow writing R code similar to infix Wolfram Language code:
+
+```r
+`%.%` <- purrr::compose
+`%@%` <- function (f, l) lapply(l, f)
+`%@@%` <- do.call
+```
 
 Common patterns in functional programming are [*tacit
 programming*](https://en.wikipedia.org/wiki/Tacit_programming) and expressing
@@ -432,9 +465,15 @@ the official documentation is too much overhead for my little package.
 Therefore I chose to explain the functions from my `sLapHProjection` package
 towards the end of each section in this document.
 
+The notation of the function arguments will be mixed text and math. Sometimes
+it is more expressive to give a mathematical expression instead of just the
+name that the argument has in code. Optional parameters can be recognized by
+the default value behind a colon, which is the Wolfram Language notation for
+default values.
+
 Since the Wolfram Language is a functional one, the most straightforward way to
 define a constant is as a function with zero arguments. In Haskell there is no
-distinction between constants and argumentless functions at all.
+distinction between constants and argument less functions at all.
 
 ---
 
@@ -1453,12 +1492,12 @@ need to take the outer product in order to obtain the actual GEVP.
     \qquad \text{and} \qquad
     \vec p_i = \vec q_{i - 1} \,. $$
 
--   **`AllRelativeMomenta`**($\vec d_\text{tot}$, cutoff)
+-   **`AllRelativeMomenta`**($\vec d_\text{tot}$, $\{ \vec q_i \}$, cutoff)
 
     If any of the momenta $\{ \vec p_i \}$ have a magnitude greater than
     *cutoff*, the result is an empty list.
 
--   **`MultiGroupSum`**(irrep, $\{\{ \vec p_i \}\}$)
+-   **`MultiGroupSum`**(irrep, $\{\{ \vec p_i \}\}$, hold : [`Identity`])
 
     Calls `MakeGroupSum` for all the momentum sets given. Currently irrep row
     and column are fixed to $\alpha = \beta = 1$. Duplicates are automatically
@@ -1467,15 +1506,20 @@ need to take the outer product in order to obtain the actual GEVP.
 
     It can make sense to insert a [`Hold`] right before the `MakeGroupSum` such
     that you get a list of things that would be computed. As `MakeGroupSum`
-    takes like 30 seconds per call, this function `MakeGroupSum` can take
-    several hours to complete.
+    takes like 30 seconds per call, this function `MultiGroupSum` can take
+    several hours to complete. If you pass [`Hold`] for *hold*, the actual spin
+    projection will not be performed. Instead you will need to call `Map[expr,
+    ReleaseHold, Infinity]` on the generated expression `expr` to evaluate all
+    the `MakeGroupSum` calls.
 
--   **`GroupSumWholeIrrep`**($\vec d_\text{tot}$, irrep)
+-   **`GroupSumWholeIrrep`**($\vec d_\text{tot}$, irrep, $\{ \vec q_i \}$,
+    cutoff, hold : [`Identity`])
 
     Performs the `MultiGroupSum` for all individual momenta that give the given
     total momentum.
 
--   **`GroupSumWholeTotalMomentum`**($\vec d_\text{tot}$)
+-   **`GroupSumWholeTotalMomentum`**($\vec d_\text{tot}$, $\{ \vec q_i \}$,
+    cutoff, hold : [`Identity`])
 
     Performs the `MultiGroupSum` for all irreps that are available with the
     given total momentum. Return value is an association from irrep to a list
@@ -1529,6 +1573,7 @@ should be exactly the same.
 [`EulerMatrix`]: http://reference.wolfram.com/language/ref/EulerMatrix.html
 [`Function`]: http://reference.wolfram.com/language/ref/Function.html
 [`Hold`]: http://reference.wolfram.com/language/ref/Hold.html
+[`Identity`]: http://reference.wolfram.com/language/ref/Identity.html
 [`List`]: http://reference.wolfram.com/language/ref/List.html
 [`Map`]: http://reference.wolfram.com/language/ref/Map.html
 [`NonCommutativeMultiply`]: http://reference.wolfram.com/language/ref/NonCommutativeMultiply.html
