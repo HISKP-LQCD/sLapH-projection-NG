@@ -15,6 +15,7 @@ abstract: >
 urlcolor: blue
 toc: true
 numbersections: true
+documentclass: scrreprt
 ...
 
 # Specification
