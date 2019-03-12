@@ -13,6 +13,8 @@ abstract: >
   and implementation is covered here, including documentation for all functions
   in the Mathematica package.
 urlcolor: blue
+toc: true
+numbersections: true
 ...
 
 # Specification
@@ -429,6 +431,14 @@ Since the Wolfram Language is a functional one, the most straightforward way to
 define a constant is as a function with zero arguments. In Haskell there is no
 distinction between constants and argumentless functions at all.
 
+---
+
+-   **`MonitoredMap`**(function, list, label)
+
+    A version of [`Map`] that just maps the *function* over the *list*. It
+    shows a progress bar together with the given *label*. With sensible labels
+    it can therefore be nested.
+
 ## Group theory
 
 ### Data format for group elements and irreps
@@ -495,9 +505,7 @@ different members of the original group.
 The irrep matrices are represented in the *long format*. For instance that
 `C2x` group element in the `Eg` irrep is a $2 \times 2$ matrix that is written
 out as
-$$
-D^{E^+}(C_{2x}) = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \,.
-$$
+$$ D^{E^+}(C_{2x}) = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} \,. $$
 
 There are two ways that one can represent tensors:
 
@@ -685,7 +693,8 @@ that are already available. This is the stop of the recursion.
 
 Creating a recursion relation is not easy at is seems. I have [asked on Physics
 Stack
-Exchange](https://physics.stackexchange.com/questions/459408/clebsch-gordan-coefficients-for-more-than-2-particles), and in one answer I was told that this is correct though not unique.
+Exchange](https://physics.stackexchange.com/questions/459408/clebsch-gordan-coefficients-for-more-than-2-particles),
+and in one answer I was told that this is correct though not unique.
 
 I was pointed to the [Racah $W$
 coefficient](https://en.wikipedia.org/wiki/Racah_W-coefficient). These do not
@@ -1400,14 +1409,13 @@ this easier, we just apply the whole of the octahedral group and just use
 This works fine for $\vec d^2 \leq 3$. With $\vec d = (0, 0, 2)$ we have the
 same little group as for $\vec d = (0, 0, 1)$, but the $\vec d$ is different.
 This needs to be addressed. As we are interested in low momenta at this point,
-this corner is cut for now.
+this corner is cut for now. We just use `Keys[IrrepDGammaAssoc[]]` to get all
+the momenta that we have little groups for.
 
-Tasks:
-
-- Do it for all rotated momenta
-- Do it for all applicable irreps
-- Do it for all relative momenta $\vec q$
-- Do it for all irrep rows
+We just iterate through all $\vec d_\text{tot}$, then we iterate through all
+irreps and then iterate through all relative momenta. Using our `MakeGroupSum`
+function we construct the operators that will make up the GEVP. Later on we
+need to take the outer product in order to obtain the actual GEVP.
 
 ---
 
@@ -1428,6 +1436,43 @@ Tasks:
 
         {0, 0, 2}, {0, 0, -2}, {2, 0, 0}, {-2, 0, 0}, {0, 2, 0},
         {0, -2, 0}
+
+-   **`RelativeToTotalMomenta`**($\vec d_\text{tot}$, $\{ \vec q_i \}$)
+
+    Converts the given total momentum $\vec d_\text{tot}$ and $n - 1$ relative
+    momenta $\{ \vec q_i \}$ to a list of $n$ particle momenta $\{ \vec p_i \}$
+    using the relations
+    $$ \vec p_1 = \vec d_\text{tot} - \sum_{j = 1}^{n - 1} \vec q_j
+    \qquad \text{and} \qquad
+    \vec p_i = \vec q_{i - 1} \,. $$
+
+-   **`AllRelativeMomenta`**($\vec d_\text{tot}$, cutoff)
+
+    If any of the momenta $\{ \vec p_i \}$ have a magnitude greater than
+    *cutoff*, the result is an empty list.
+
+-   **`MultiGroupSum`**(irrep, $\{\{ \vec p_i \}\}$)
+
+    Calls `MakeGroupSum` for all the momentum sets given. Currently irrep row
+    and column are fixed to $\alpha = \beta = 1$. Duplicates are automatically
+    removed. Also this is limited to scalar particles with all $J_i = 0$ and
+    $M_i = 0$.
+
+    It can make sense to insert a [`Hold`] right before the `MakeGroupSum` such
+    that you get a list of things that would be computed. As `MakeGroupSum`
+    takes like 30 seconds per call, this function `MakeGroupSum` can take
+    several hours to complete.
+
+-   **`GroupSumWholeIrrep`**($\vec d_\text{tot}$, irrep)
+
+    Performs the `MultiGroupSum` for all individual momenta that give the given
+    total momentum.
+
+-   **`GroupSumWholeTotalMomentum`**($\vec d_\text{tot}$)
+
+    Performs the `MultiGroupSum` for all irreps that are available with the
+    given total momentum. Return value is an association from irrep to a list
+    of spin projected operators.
 
 # Design and implementation (R)
 
@@ -1476,6 +1521,7 @@ should be exactly the same.
 [`Dot`]: http://reference.wolfram.com/language/ref/Dot.html
 [`EulerMatrix`]: http://reference.wolfram.com/language/ref/EulerMatrix.html
 [`Function`]: http://reference.wolfram.com/language/ref/Function.html
+[`Hold`]: http://reference.wolfram.com/language/ref/Hold.html
 [`List`]: http://reference.wolfram.com/language/ref/List.html
 [`Map`]: http://reference.wolfram.com/language/ref/Map.html
 [`NonCommutativeMultiply`]: http://reference.wolfram.com/language/ref/NonCommutativeMultiply.html

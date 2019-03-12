@@ -289,6 +289,39 @@ DatasetnameAssocToCSV[assoc_, filename_String] := With[
   WriteString[filename, "datasetname,conjugate,re,im\n" <> export]];
 
 
+(* GEVP building *)
+
+UniqueTotalMomenta[momentumMag_] := 
+  DeleteDuplicates @ 
+    Values[# . MomentumRefScalar[momentumMag] & /@ 
+      EulerMatrix /@ EulerAnglesAssoc[]];
+
+MonitoredMap[f_, list_, label_ : ""] := Module[{i},
+  Monitor[Table[f[list[[i]]], {i, 1, Length[list]}], 
+   Row[{ProgressIndicator[i, {1, Length[list]}],
+     TemplateApply[" `` `` of ``", {label, i, Length[list]}]}, " "]]];
+
+RelativeToTotalMomenta[totalMomentum_, relMomenta_] :=
+  Catenate[{{totalMomentum - Total[relMomenta]}, relMomenta}];
+
+AllRelativeMomenta[totalMomentum_, cutoff_: 1] := 
+  Select[RelativeToTotalMomenta[totalMomentum, #] & /@ relMomenta, 
+    Max[Norm /@ #] <= cutoff &];
+
+MultiGroupSum[irrep_, momentapi_] := 
+  DeleteDuplicates @ Hold @
+    MakeGroupSum[irrep, 1, 1, momentapi, {0, 0, 0}, {0, 0, 0}];
+
+GroupSumWholeIrrep[totalMomentum_, irrep_] := 
+  MonitoredMap[MultiGroupSum[irrep, #] &, 
+    AllRelativeMomenta[totalMomentum], "Momenta"];
+
+GroupSumWholeTotalMomentum[totalMomentum_] := Module[
+  {irreps = Keys @ IrrepDGammaAssoc[][totalMomentum]},
+  AssociationThread[irreps, MonitoredMap[GroupSumWholeIrrep[totalMomentum, #] &,
+    irreps, "Irrep"]]];
+
+
 EndPackage[];
 
 (* vim: set cc=100 ft=mma sts=2 sw=2 :*)
