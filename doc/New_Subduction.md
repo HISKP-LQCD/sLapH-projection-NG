@@ -1,4 +1,5 @@
 ---
+ # vim: spell tw=79
 title: Towards a new Projection Code
 author:
   - Martin Ueding (<ueding@hiskp.uni-bonn.de>)
@@ -385,7 +386,7 @@ R
   We have HDF5 routines there as well. The advantage would be that the people
   who do not know Python could work on this part of the code.
 
-# Design and implementation
+# Design and implementation (Mathematica)
 
 Most of the code will be done in Mathematica. This section contains the design
 and implementation of the different tasks along the way.
@@ -908,10 +909,6 @@ From the spin projected operator we extract the actual momenta
         "pso1" -> "011", "pso2" -> "100"|>]
     ```
 
-### Looping over multiple momenta and irreps
-
-TODO
-
 ## Isospin
 
 Isospin and the Wick contractions are independent of the spin. Therefore we can
@@ -1333,10 +1330,118 @@ datasetname,conjugate,re,im
     Kuba](https://mathematica.stackexchange.com/a/191718/1507) with an implicit
     MIT license.
 
+## Creating a full GEVP
+
+### Interface to numerical code
+
+So far we only have functions that generate a list of HDF5 dataset names that
+will yield a single correlation function. We of course want to build a full
+GEVP (with multiple correlators) and then many of these GEVPs. This means that
+we will have the following independent variables describing the correlators:
+
+- All total momenta $\vec d$ for given $\vec d^2$ (and not just total momentum
+  $\vec d^2$)
+- Irrep
+- Irrep rows
+- GEVP row and column (operator ids & relative momenta $\vec q_i$)
+
+The nature of the operator and the relative momenta shall be passed down into
+the analysis. This can be done with the meta data notation that Markus has
+implemented in his projection code. Although it would be nice to use the same
+parser in R, writing it out in a machine readable format would be even better.
+Therefore I favor writing out the meta data in the YAML format.
+
+The information per correlator (`datasetname`, `conjugate`, `re`, `im`) can be
+written out as CSV with the current implementation. But how will we do multiple
+correlators? I see these options:
+
+1.  We can just write out one CSV file per GEVP element. The information about
+    $\vec d^2$, $\Gamma$, $\alpha$ and the $\{ \vec q_i \}$ would then be
+    encoded in the file name.
+
+    This would be a classic thing, but these days I really dislike parsing
+    filenames for information.
+
+2.  Have one huge CSV file, where there are columns for everything. Then use
+    *group by* and *summarize* operations to boil it down. The result would
+    then also be a correlator in the *long data format*. This might be too
+    inflexible to work with.
+
+3.  Use a nested structure with a YAML representation. This way one can inject
+    arbitrary amounts of meta data at every point in the structure. Also it
+    could be parsed quite easily in R. But can it be generated from Wolfram
+    Language? Apparently there are some third-party implementations, but the
+    Wolfram Language can export JSON. I am perfectly fine with that, converting
+    it to YAML is trivial with some Python or R script.
+
+    The structure would look like this:
+    \begin{multline*}
+    \vec d \to \Gamma \to \alpha \to
+    \Big\{
+    \big(
+    (O_\text{si}, O_\text{so},
+    \vec q_\text{si,1}, \vec q_\text{si,2}, \ldots,
+    \vec q_\text{so,1}, \vec q_\text{so,2}, \ldots),
+    \\
+    (\mathtt{datasetname}, \mathtt{conjugate}, \mathtt{re}, \mathtt{im})
+    \big)
+    \Big\} \,.
+    \end{multline*}
+
+### Generating the structure
+
+First we need to iterate through all the momenta $\vec d$ that we want to use.
+For this we take the $\vec d_\text{ref}$ for each $\vec d^2$ and apply all
+rotations from the quotient group $O_h / \mathrm{LG}(\vec d_\text{ref})$. This
+way we get each unique $\vec d$ with the same magnitude. But in order to make
+this easier, we just apply the whole of the octahedral group and just use
+[`DeleteDuplicates`] afterwards.
+
+This works fine for $\vec d^2 \leq 3$. With $\vec d = (0, 0, 2)$ we have the
+same little group as for $\vec d = (0, 0, 1)$, but the $\vec d$ is different.
+This needs to be addressed. As we are interested in low momenta at this point,
+this corner is cut for now.
+
+Tasks:
+
+- Do it for all rotated momenta
+- Do it for all applicable irreps
+- Do it for all relative momenta $\vec q$
+- Do it for all irrep rows
+
+---
+
+-   **`UniqueTotalMomenta`**($\vec d^2$)
+
+    Gives a list of unique total momenta corresponding to the given total
+    momentum magnitude. For $\vec d^2 = 1, 2, 3, 4$, these are the following:
+
+        {0, 0, 1}, {0, 0, -1}, {1, 0, 0}, {-1, 0, 0}, {0, 1, 0},
+        {0, -1, 0}
+
+        {1, 1, 0}, {1, -1, 0}, {-1, 1, 0}, {-1, -1, 0}, {0, 1, 1},
+        {0, 1, -1}, {0, -1, 1}, {0, -1, -1}, {1, 0, 1}, {1, 0, -1},
+        {-1, 0, -1}, {-1, 0, 1}
+
+        {1, 1, 1}, {1, -1, -1}, {-1, 1, -1}, {-1, -1, 1}, {1, -1, 1},
+        {1, 1, -1}, {-1, 1, 1}, {-1, -1, -1}
+
+        {0, 0, 2}, {0, 0, -2}, {2, 0, 0}, {-2, 0, 0}, {0, 2, 0},
+        {0, -2, 0}
+
+# Design and implementation (R)
+
 ## Projecting the computed correlators
 
-Taking the table from the preceeding step we must read in the prescribed HDF5
+Taking the tables from the preceding step we must read in the prescribed HDF5
 data sets and combine them given the factors.
+
+Tasks:
+
+- Think about iteration order
+- Iterate through files
+- Open needed HDF5 files
+- Combine various numeric correlators
 
 # Tests
 
@@ -1355,7 +1460,9 @@ We can just pick a few examples and see how that works out.
 
 ## Old projection code
 
-Using Markus' projection code we can take correlators on a single gauge configuration and project them to some irrep and momenta. The numeric results should be exactly the same.
+Using Markus' projection code we can take correlators on a single gauge
+configuration and project them to some irrep and momenta. The numeric results
+should be exactly the same.
 
 <!-- Links to Wolfram Language reference -->
 
@@ -1365,6 +1472,7 @@ Using Markus' projection code we can take correlators on a single gauge configur
 [`Coefficient`]: http://reference.wolfram.com/language/ref/Coefficient.html
 [`Composition`]: http://reference.wolfram.com/language/ref/Composition.html
 [`Dataset`]: http://reference.wolfram.com/language/ref/Dataset.html
+[`DeleteDuplicates`]: http://reference.wolfram.com/language/ref/DeleteDuplicates.html
 [`Dot`]: http://reference.wolfram.com/language/ref/Dot.html
 [`EulerMatrix`]: http://reference.wolfram.com/language/ref/EulerMatrix.html
 [`Function`]: http://reference.wolfram.com/language/ref/Function.html
