@@ -380,18 +380,24 @@ C++
   ~ We do not really need much for projecting the data, except a HDF5 library.
   Perhaps the performance will be better if we do this in C++. But the most
   likely bottleneck is the HDF5 reading, therefore it does not matter which
-  language we use.
+  language we use. Declaring the HDF5 data types in C or C++ is rather
+  bothersome. We can of course just copy them from the contraction code, but
+  having them dynamically is likely easier.
 
 Python
 
   ~ The current projection code uses Python and Pandas. It can work with HDF5
-  files.
+  files. I do like Python as a language, but knowledge of that language is not
+  widespread in our work group.
 
 R
 
   ~ As the analysis is in R one can consider R for doing the actual projection.
   We have HDF5 routines there as well. The advantage would be that the people
   who do not know Python could work on this part of the code.
+
+I choose R for the implementation. This will also allow bundling it closer with
+the Lüscher-Analysis package.
 
 # Design and implementation (Mathematica)
 
@@ -1464,7 +1470,10 @@ function we construct the operators that will make up the GEVP. Later on we
 need to take the outer product in order to obtain the actual GEVP.
 
 From the given operators we need to extract the momenta and then perform the
-outer product of source and sink momenta.
+outer product of source and sink momenta. Then we need to apply the isospin
+templates in order to get the actual HDF5 dataset names. From there we massage
+the terms until we eventually get a JSON representation. This interface is
+described in the next chapter.
 
 ---
 
@@ -1533,7 +1542,37 @@ outer product of source and sink momenta.
 ## Projecting the computed correlators
 
 Taking the tables from the preceding step we must read in the prescribed HDF5
-data sets and combine them given the factors.
+data sets and combine them given the factors. The interface that we get is the
+following JSON structure:
+
+```js
+{
+  "001": {
+    "A1": {
+      "000": {
+        "000": {
+          "C4cB_uuuu_g5.p00-1.d000_g5.p00-1.d000_g5.p000.d000_g5.p000.d000": 16, 
+          "C4cB_uuuu_g5.p00-1.d000_g5.p000.d000_g5.p00-1.d000_g5.p000.d000": -16, 
+          …
+```
+
+It is an association of the following
+$$ d_\text{tot} \to \Gamma \to O_i \to O_j \to C \to \mathbb C \,. $$
+
+The levels are:
+
+1. Total momentum (as string)
+2. Irreducible representation
+3. Label for the GEVP row, currently just a comma separated list of the
+   relative momenta that have been used. In the future where we have other
+   operators than just the pion, these will become more sophisticated labels.
+   These are for human consumption anyway, so for the point of this code they
+   are just strings.
+4. Label for the GEVP column
+5. HDF5 dataset name. If the diagram needs to be complex conjugated its name
+   starts with `conj:`.
+6. Weight factor. Either it is a single number which is the real part or it is
+   a list of two elements and therefore real and imaginary part.
 
 Tasks:
 

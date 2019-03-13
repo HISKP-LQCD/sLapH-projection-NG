@@ -1,0 +1,7 @@
+---
+title: "Number crunching"
+author: Martin Ueding
+output: html_notebook
+---
+
+In this document we will take the generated GEVP prescription and touch the actual HDF5 data and generate the correlators.

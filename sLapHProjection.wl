@@ -318,14 +318,15 @@ MultiGroupSum[irrep_, momentapi_, hold_ : Identity] :=
     MakeGroupSum[irrep, 1, 1, momentapi, {0, 0, 0}, {0, 0, 0}];
 
 GroupSumWholeIrrep[totalMomentum_, irrep_, relMomenta_, cutoff_, hold_ : Identity] := 
-  MonitoredMap[MultiGroupSum[irrep, #, hold] &, 
-    AllRelativeMomenta[totalMomentum, relMomenta, cutoff], "Momentum"];
+  AssociationThread[Map[MomentumToString, relMomenta, {2}],
+    MonitoredMap[MultiGroupSum[irrep, #, hold] &, 
+      AllRelativeMomenta[totalMomentum, relMomenta, cutoff], "Momentum"]];
 
 GroupSumWholeTotalMomentum[totalMomentum_, relMomenta_, cutoff_, hold_ : Identity] := Module[
   {irreps = Keys @ IrrepDGammaAssoc[][totalMomentum]},
   AssociationThread[irreps,
     MonitoredMap[GroupSumWholeIrrep[totalMomentum, #, relMomenta, cutoff, hold] &,
-    irreps, "Irrep"]]];
+      irreps, "Irrep"]]];
 
 
 EndPackage[];
