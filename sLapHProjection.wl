@@ -10,7 +10,7 @@ BeginPackage["sLapHProjection`"];
 
 MonitoredMap[f_, list_, label_ : ""] := Module[{i},
   Monitor[Table[f[list[[i]]], {i, 1, Length[list]}], 
-   Row[{ProgressIndicator[i, {1, Length[list]}],
+   Row[{ProgressIndicator[i, {1, Length[list] + 1}],
      TemplateApply[" `` `` of ``", {label, i, Length[list]}]}, " "]]];
 
 
@@ -283,8 +283,8 @@ CombineIsospinAndSpin[corrTemplates_, momentaAssoc_] :=
 StringExpressionToAssociation[expr_] := Module[
   {exprConj, keys},
   exprConj = expr /. Conjugate[str_String] :> "conj:" <> str;
-  keys = Union @ Cases[expr, _String, Infinity];
-  AssociationMap[Coefficient[expr, #, 1] &] @ keys];
+  keys = Union @ Cases[exprConj, _String, Infinity];
+  AssociationMap[Coefficient[exprConj, #, 1] &] @ keys];
 
 NeedsConjugation[name_] := With[{prefix = StringTake[name, 5]},
   If[prefix == "conj:",

@@ -449,7 +449,7 @@ following would allow writing R code similar to infix Wolfram Language code:
 
 ```r
 `%.%` <- purrr::compose
-`%@%` <- function (f, l) lapply(l, f)
+`%/@%` <- function (f, l) lapply(l, f)
 `%@@%` <- do.call
 ```
 
@@ -1462,6 +1462,9 @@ We just iterate through all $\vec d_\text{tot}$, then we iterate through all
 irreps and then iterate through all relative momenta. Using our `MakeGroupSum`
 function we construct the operators that will make up the GEVP. Later on we
 need to take the outer product in order to obtain the actual GEVP.
+
+From the given operators we need to extract the momenta and then perform the
+outer product of source and sink momenta.
 
 ---
 
