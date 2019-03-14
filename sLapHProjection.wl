@@ -81,13 +81,14 @@ ReadEulerAngles[filename_] := Module[{oh, values},
   
 EulerAnglesAssoc[] = ReadEulerAngles["Single-cover/Oh-elements.txt"];
 
+
 (* Momentum transformation *)
 
-MomentumRefScalar[0] = {0,0,0};
-MomentumRefScalar[1] = {0,0,1};
-MomentumRefScalar[2] = {1,1,0};
-MomentumRefScalar[3] = {1,1,1};
-MomentumRefScalar[4] = {0,0,2};
+MomentumRefScalar[0] = {0, 0, 0};
+MomentumRefScalar[1] = {0, 0, 1};
+MomentumRefScalar[2] = {1, 1, 0};
+MomentumRefScalar[3] = {1, 1, 1};
+MomentumRefScalar[4] = {0, 0, 2};
 
 MomentumRef[momentumpcm_] := MomentumRefScalar[Total[momentumpcm^2]];
 
@@ -97,10 +98,14 @@ EulerGTilde[momentumpcm_] :=
 
 MatrixRGTilde = EulerMatrix @* EulerGTilde;
 
+GetParity[momentumpcm_, angles_] := 
+  a /. Solve[a EulerMatrix[angles] . momentumpcm == momentumpcm][[1]];
+
 MomentumTransform[momentumd_,  momentumpcm_, eulerG_] :=
-  Inverse[MatrixRGTilde[MomentumRef[momentumpcm]]] .
+  GetParity[momentumpcm, eulerG] *
+  Inverse[MatrixRGTilde[momentumpcm]] .
     EulerMatrix[eulerG] .
-    MatrixRGTilde[MomentumRef[momentumpcm]];
+    MatrixRGTilde[momentumpcm];
 
 
 (* Clebsch-Gordan coefficients *)
@@ -121,11 +126,14 @@ HigherClebschGordan[js_, ms_, {j_, m_}] := Sum[
 
 MakeSingleOperator[momentumpi_, momentumpcm_, eulerG_, spinJi_, spinMi_, i_] :=
   Module[{eulerGtilde},
-    eulerGtilde = EulerGTilde[momentumpcm]];
+    eulerGtilde = EulerGTilde[momentumpcm];
     Sum[
-      WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]], eulerG[[2]], eulerG[[3]]] 
-      WignerD[{spinJi, spinMi2, spinMi1}, eulerGtilde[[1]], eulerGtilde[[2]], eulerGtilde[[3]]]
-      ConjugateTranspose[SingleOperator[i, spinJi, spinMi2, MomentumTransform[momentumpi, momentumpcm, eulerG] . momentumpi]],
+      GetParity[momentumpcm, eulerG] *
+      WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]], eulerG[[2]], eulerG[[3]]]  *
+      GetParity[momentumpcm, eulerGtilde] *
+      WignerD[{spinJi, spinMi2, spinMi1}, eulerGtilde[[1]], eulerGtilde[[2]], eulerGtilde[[3]]] *
+      ConjugateTranspose[SingleOperator[i, spinJi, spinMi2,
+        MomentumTransform[momentumpi, momentumpcm, eulerG] . momentumpi]],
       {spinMi1, -spinJi, spinJi},
       {spinMi2, -spinJi, spinJi}]];
 
