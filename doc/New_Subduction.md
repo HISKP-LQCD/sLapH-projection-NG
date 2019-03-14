@@ -1551,13 +1551,15 @@ following JSON structure:
     "A1": {
       "000": {
         "000": {
-          "C4cB_uuuu_g5.p00-1.d000_g5.p00-1.d000_g5.p000.d000_g5.p000.d000": 16, 
-          "C4cB_uuuu_g5.p00-1.d000_g5.p000.d000_g5.p00-1.d000_g5.p000.d000": -16, 
-          …
+          "C4cB_uuuu_g5.p00-1.d000_g5.p00-1.d000_g5.p000.d000_g5.p000.d000": {
+            "conj": true, 
+            "im": 0, 
+            "re": 16
+          }, 
 ```
 
 It is an association of the following
-$$ d_\text{tot} \to \Gamma \to O_i \to O_j \to C \to \mathbb C \,. $$
+$$ d_\text{tot} \to \Gamma \to O_i \to O_j \to C \to (\text{Re}, \text{Im}, \dagger) \,. $$
 
 The levels are:
 
@@ -1569,10 +1571,9 @@ The levels are:
    These are for human consumption anyway, so for the point of this code they
    are just strings.
 4. Label for the GEVP column
-5. HDF5 dataset name. If the diagram needs to be complex conjugated its name
-   starts with `conj:`.
-6. Weight factor. Either it is a single number which is the real part or it is
-   a list of two elements and therefore real and imaginary part.
+5. HDF5 dataset name
+6. Weight factor (`re` and `im`) as well as whether the numeric correlator
+   needs to be complex conjugated first (`conj`)
 
 Tasks:
 
