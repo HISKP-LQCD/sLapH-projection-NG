@@ -1575,6 +1575,57 @@ The levels are:
 6. Weight factor (`re` and `im`) as well as whether the numeric correlator
    needs to be complex conjugated first (`conj`)
 
+### Iteration order
+
+The contraction code generates one HDF5 file per diagram type and per gauge
+configuration with names like `C4cC_cnfg4824.h5`. We have to decide how we
+iterate through all this data. In the end we want one file per GEVP element
+containing all the observations from all configurations. These iteration orders
+come to mind:
+
+1.  Treat the configurations independent of each other. Open all the diagram
+    files for a particular configuration (like 4825) and then build all the
+    GEVP elements from this.
+
+    *Advantages*: Only one HDF5 file has to be opened at any one time. Also the
+    file can be consumed completely in one go, amortizing the expensive
+    indexing operation after opening the file. Parallelization over
+    observations is trivial this way.
+
+    *Disadvantages*: The intermediate result are lots of GEVP elements but with
+    only one observation each. These have to be combined later on. Depending on
+    the data format it is just a concatenation. One has to be careful not to
+    create millions of files for intermediate output.
+
+2.  Focus on one GEVP element and build it for all observations at the same
+    time.
+
+    *Advantages*: There is no intermediate result, the whole statistics for a
+    given GEVP element is created directly.
+
+    *Disadvantages*: A lot of HDF5 files has to be opened, and only few
+    datasets are going to be extracted. [We know
+    that](https://github.com/HISKP-LQCD/hadron/issues/25) `h5ls` is about as
+    expensive as `h5read`. Therefore this would make it rather costly to
+    iterate this way. Also we would need a lot of RAM to store everything.
+
+As discussed with Markus, the first option seems to be the more sensible one.
+This decouples (numeric) projection and aggregation of the whole statistics. We
+just need to think about the intermediate data format.
+
+As we want to further process the data with R, there is no danger to use the
+`Rdata` format for serialization. For each configuration the whole GEVP will be
+in exactly the same outer nested list structure, just with a numeric vector as
+payload instead of the mapping between HDF5 dataset names and coefficients.
+
+Combining these is simple: Just load them one at a time and do `rbind` on the
+vectors. This will then be the data portion of an unsymmetrized `hadron::cf`
+correlation function.
+
+With this setup there will be no text IO for numeric data at all!
+
+---
+
 Tasks:
 
 - Think about iteration order

@@ -121,7 +121,7 @@ HigherClebschGordan[js_, ms_, {j_, m_}] := Sum[
 
 MakeSingleOperator[momentumpi_, momentumpcm_, eulerG_, spinJi_, spinMi_, i_] :=
   Module[{eulerGtilde},
-    eulerGtilde = EulerAngles[MatrixRGTilde[momentumpcm]];
+    eulerGtilde = EulerGTilde[momentumpcm]];
     Sum[
       WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]], eulerG[[2]], eulerG[[3]]] 
       WignerD[{spinJi, spinMi2, spinMi1}, eulerGtilde[[1]], eulerGtilde[[2]], eulerGtilde[[3]]]
@@ -209,7 +209,7 @@ ReplacePropagators[expr_] := expr /. qct`DE[{f_, f_}, {_, t_}] :> prop[f, t];
 (* Wick contractions *)
 
 MakeTemplate[n_] := StringRiffle[
- Table["g`g" <> ToString @ i <> "`.p`x" <> ToString @ i <> "`.d000", {i, 1, n}], "_"]
+ Table["p`x" <> ToString @ i <> "`.d000.g`g" <> ToString @ i <> "`", {i, 1, n}], "_"]
 
 GammaRules[n_] := Association[Table[
   With[{v = "g" <> ToString @ i}, v :> ToExpresion @ v],

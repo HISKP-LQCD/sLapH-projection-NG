@@ -5,3 +5,57 @@ output: html_notebook
 ---
 
 In this document we will take the generated GEVP prescription and touch the actual HDF5 data and generate the correlators.
+
+```{r}
+all_prescriptions <- jsonlite::read_json('gevp.json')
+```
+
+```{r}
+config_number <- 2552
+base_path <- '~/Lattice/New_Projection_Test'
+
+file_pattern <- sprintf('%s/*_cnfg%d.h5', base_path, config_number)
+files <- Sys.glob(file_pattern)
+
+diagrams <- sapply(files, function (file) strsplit(basename(file), '_')[[1]][1])
+names(diagrams) <- NULL
+
+files_list <- as.list(files)
+names(files_list) <- diagrams
+```
+
+```{r}
+resolve <- function (prescription) {
+  summands <- list(rep(NA, length(prescription)))
+  
+  for (i in length(prescription)) {
+    datasetname <- names(prescription)[[i]]
+    print(datasetname)
+    rule <- prescription[[i]]
+    diagram <- strsplit(datasetname, '_')[[1]][1]
+    
+    if (diagram == 'C4cV') {
+      next
+    }
+    
+    filename <- files_list[[diagram]]
+    
+    print(sprintf('Fetching %s (a %s) from %s.\n', datasetname, diagram, filename))
+    
+    dataset <- rhdf5::h5read(filename, datasetname)
+    summands[[i]] <- dataset
+  }
+  
+  na.omit(summands)
+}
+
+resolved <- lapply(
+  all_prescriptions,
+  function (irreps) lapply(
+    irreps,
+    function (rows) lapply(
+      rows,
+      function (cols) lapply(
+        cols,
+        resolve))))
+```
