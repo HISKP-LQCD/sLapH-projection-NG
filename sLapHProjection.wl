@@ -166,9 +166,18 @@ MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, pha
     {spinsMi2, -spinsJi[[2]], spinsJi[[2]]}],
   {spinM, -spinJ, spinJ}];
 
-ExtractMomenta[expr_] := expr /.
-  ConjugateTranspose[SingleOperator[_, _, _, p_]] -> p /.
-  NonCommutativeMultiply[p__] :> DTMomenta[p];
+ExtractMomenta[expr_] :=
+  ReplaceAll[
+    ReplaceAll[expr,
+      ConjugateTranspose[SingleOperator[_, _, _, p_]] -> p],
+    NonCommutativeMultiply[p__] :> DTMomenta[p]];
+
+MomentumProductToMomenta[expr_] := Block[
+  {factors, momenta, scalar},
+  factors = expr /. NonCommutativeMultiply[a__] :> {a};
+  momenta = Flatten[Cases[#, DTMomentum[p_]] & /@ factors] /. DTMomentum[p_] -> p;
+  scalar = Times @@ (factors /. a_ DTMomentum[p_] -> a);
+  scalar * DTMomenta @@ momenta];
 
 MomentumToString[p_] := StringJoin[ToString /@ p];
 
@@ -179,11 +188,11 @@ momentaToRules[momenta_, location_] :=
       Table["p" <> location <> ToString @ i, {i, 1, Length[{p}]}], 
       MomentumToString /@ {p}]];
 
-MomentaToAssoc[expr_, location_] := 
-  expr /. DTMomenta[p__] :> DTMomentaAssoc[momentaToRules[DTMomenta @ p, location]];
+MomentaToAssoc[expr_, location_, sign_] := 
+  expr /. DTMomenta[p__] :> DTMomentaAssoc[momentaToRules[DTMomenta @@ (sign * # & /@ {p}), location]];
 
 MomentaToAssocSourceSink[expr1_, expr2_] := FullSimplify @ ReplaceAll[
-  ExpandAll[Conjugate @ MomentaToAssoc[expr1, "so"] * MomentaToAssoc[expr2, "si"]],
+  ExpandAll[Conjugate @ MomentaToAssoc[expr1, "so", +1] * MomentaToAssoc[expr2, "si", -1]],
   Conjugate[DTMomentaAssoc[<|a__|>]] * DTMomentaAssoc[<|b__|>] :> DTMomentaAssoc[<|a, b|>]];
 
 

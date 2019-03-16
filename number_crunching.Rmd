@@ -11,6 +11,34 @@ all_prescriptions <- jsonlite::read_json('gevp.json')
 ```
 
 ```{r}
+lapply4 <- function (container, f) {
+  lapply(
+    container,
+    function (x1) lapply(
+      x1,
+      function (x2) lapply(
+        x2,
+        function (x3) lapply(
+          x3,
+          f))))
+}
+
+lapply3 <- function (container, f) {
+  lapply(
+    container,
+    function (x1) lapply(
+      x1,
+      function (x2) lapply(
+        x2,
+        f)))
+}
+```
+
+```{r}
+needed_names <- unique(unlist(lapply4(all_prescriptions, names)))
+```
+
+```{r}
 config_number <- 2552
 base_path <- '~/Lattice/New_Projection_Test'
 
@@ -25,10 +53,39 @@ names(files_list) <- diagrams
 ```
 
 ```{r}
+needed_raw <- lapply(
+  needed_names,
+  function (datasetname) {
+    print(datasetname)
+    diagram <- strsplit(datasetname, '_')[[1]][1]
+    
+    if (diagram == 'C4cV') {
+      return (NA)
+    }
+    
+    filename <- files_list[[diagram]]
+    
+    print(sprintf('Fetching %s (a %s) from %s.\n', datasetname, diagram, filename))
+    
+    dataset <- rhdf5::h5read(filename, datasetname)
+    if (ncol(dataset) == 2) {
+      return (dataset$re + 1i * dataset$im)
+    } else if (colnames(dataset)[1] == 'rere') {
+      return (dataset$rere - dataset$imim + 1i * dataset$reim + 1i * dataset$imre)
+    } else {
+      stop()
+    }
+  })
+
+names(needed_raw) <- needed_names
+```
+
+
+```{r}
 resolve <- function (prescription) {
   summands <- list(rep(NA, length(prescription)))
   
-  for (i in length(prescription)) {
+  for (i in 1:length(prescription)) {
     datasetname <- names(prescription)[[i]]
     print(datasetname)
     rule <- prescription[[i]]
@@ -38,15 +95,16 @@ resolve <- function (prescription) {
       next
     }
     
-    filename <- files_list[[diagram]]
-    
-    print(sprintf('Fetching %s (a %s) from %s.\n', datasetname, diagram, filename))
-    
-    dataset <- rhdf5::h5read(filename, datasetname)
-    summands[[i]] <- dataset
+    correlator <- needed_raw[[datasetname]]
+    if (rule$conj) {
+      correlator <- Conj(correlator)
+    }
+    weight <- rule$re + 1i * rule$im
+    summands[[i]] <- Re(weight * correlator)
   }
   
-  na.omit(summands)
+  m <- do.call(rbind, na.omit(summands))
+  apply(m, 2, sum)
 }
 
 resolved <- lapply(
