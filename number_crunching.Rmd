@@ -4,6 +4,14 @@ author: Martin Ueding
 output: html_notebook
 ---
 
+```{r setup}
+library(ggplot2)
+library(dplyr)
+
+theme_set(theme_light())
+```
+
+
 In this document we will take the generated GEVP prescription and touch the actual HDF5 data and generate the correlators.
 
 ```{r}
@@ -11,16 +19,12 @@ all_prescriptions <- jsonlite::read_json('gevp.json')
 ```
 
 ```{r}
+lapply5 <- function (container, f) {
+  lapply4(container, function (x) lapply(x, f))
+}
+
 lapply4 <- function (container, f) {
-  lapply(
-    container,
-    function (x1) lapply(
-      x1,
-      function (x2) lapply(
-        x2,
-        function (x3) lapply(
-          x3,
-          f))))
+  lapply3(container, function (x) lapply(x, f))
 }
 
 lapply3 <- function (container, f) {
@@ -35,7 +39,7 @@ lapply3 <- function (container, f) {
 ```
 
 ```{r}
-needed_names <- unique(unlist(lapply4(all_prescriptions, names)))
+needed_names <- unique(unlist(lapply5(all_prescriptions, function (rule) rule$datasetname)))
 ```
 
 ```{r}
@@ -71,7 +75,7 @@ needed_raw <- lapply(
     if (ncol(dataset) == 2) {
       return (dataset$re + 1i * dataset$im)
     } else if (colnames(dataset)[1] == 'rere') {
-      return (dataset$rere - dataset$imim + 1i * dataset$reim + 1i * dataset$imre)
+      return (dataset$rere - 0*dataset$imim + 1i * dataset$reim + 1i * dataset$imre)
     } else {
       stop()
     }
@@ -86,9 +90,8 @@ resolve <- function (prescription) {
   summands <- list(rep(NA, length(prescription)))
   
   for (i in 1:length(prescription)) {
-    datasetname <- names(prescription)[[i]]
-    print(datasetname)
     rule <- prescription[[i]]
+    datasetname <- rule$datasetname
     diagram <- strsplit(datasetname, '_')[[1]][1]
     
     if (diagram == 'C4cV') {
@@ -117,3 +120,77 @@ resolved <- lapply(
         cols,
         resolve))))
 ```
+
+```{r}
+jsonlite::write_json(resolved, 'rho-test.js', pretty = TRUE)
+```
+
+```{r}
+target <- read.table('../LuescherAnalysis/output/rho/gevps-v2/B35.32/rho_p1_A1_op3_gevp2.2.tsv', header = TRUE)
+target2 <- read.table('../LuescherAnalysis/output/rho/gevps-v2/B35.32/rho_p1_A1_op3_gevp2.2.tsv', header = TRUE)
+
+target_single <- dplyr::filter(target, cnfg == config_number)
+target_raw <- target_single$value
+```
+
+```{r}
+actual <- resolved$`001`$A1$`000`$`001` / 128
+```
+
+```{r}
+target_actual <- data.frame(time = target_single$T, target = target_raw, actual)
+ta_long <- tidyr::gather(target_actual, case, correlator, target, actual)
+```
+
+```{r}
+ggplot(ta_long, aes(x = time, y = correlator, color = case)) +
+  geom_point() +
+  scale_y_log10()
+```
+
+```{r}
+quotient <- actual / target_raw
+
+plot(quotient, ylim = c(0.8, 1.2))
+abline(h = 1, col = 'red')
+hist(quotient, breaks = 100)
+```
+
+```{r}
+difference <- actual - target_raw
+
+plot(difference)
+hist(difference, breaks = 100)
+```
+
+```{r}
+for (i in 1:length(needed_raw)) {
+  if (all(is.na(needed_raw[[i]]))) {
+    next()
+  }
+  plot(Re(needed_raw[[i]]), main = needed_names[i])
+  points(Im(needed_raw[[i]]), col = 'gray')
+}
+```
+
+```{r}
+for (i in 1:length(needed_raw)) {
+  if (all(is.na(needed_raw[[i]]))) {
+    next()
+  }
+  plot(Re(needed_raw[[i]]) / difference, main = needed_names[i])
+}
+```
+
+```{r}
+lapply4(all_prescriptions, names)
+```
+
+```{r}
+lapply4(all_prescriptions, function (y) sapply(y, function (x) x$re))
+```
+
+```{r}
+plot(resolved$`001`$A1$`000`$`000`/ resolved$`001`$A1$`001`$`000`)
+```
+
