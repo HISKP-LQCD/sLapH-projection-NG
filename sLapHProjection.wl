@@ -78,8 +78,14 @@ ReadEulerAngles[filename_] := Module[{oh, values},
   values = Normal[Values /@ oh];
   #[[1]] -> Pi * {ToExpression @ #[[2]], ToExpression @ #[[3]], ToExpression @ #[[4]]} & /@
     values // Association];
+
+Parities[] = 
+  First @* Values /@ 
+    Association @ IrrepDGammaAssoc[][[Key @ {0, 0, 0}]][["A1u"]];
   
 EulerAnglesAssoc[] = ReadEulerAngles["Single-cover/Oh-elements.txt"];
+
+EulerAnglesParityAssoc[] = MapThread[List, {EulerAnglesAssoc[], Parities[]}];
 
 
 (* Momentum transformation *)
@@ -92,19 +98,22 @@ MomentumRefScalar[4] = {0, 0, 2};
 
 MomentumRef[momentumpcm_] := MomentumRefScalar[Total[momentumpcm^2]];
 
-EulerGTilde[momentumpcm_] := 
-  First @ Select[Values @ EulerAnglesAssoc[],
-    momentumpcm == EulerMatrix[#] . MomentumRef[momentumpcm] &];
+MyEulerMatrix[{angles_, parity_}] := parity * EulerMatrix[angles];
 
-MatrixRGTilde = EulerMatrix @* EulerGTilde;
+EulerGTilde[momentumpcm_] := 
+  First @ Select[Values @ EulerAnglesParityAssoc[],
+    momentumpcm == MyEulerMatrix[#] . MomentumRef[momentumpcm] &];
+
+MatrixRGTilde[momentumpcm_] := Module[
+  {eulerGTilde = EulerGTilde[momentumpcm]},
+  MyEulerMatrix[eulerGTilde]];
 
 GetParity[momentumpcm_, angles_] := 
   a /. Solve[a EulerMatrix[angles] . momentumpcm == momentumpcm][[1]];
 
 MomentumTransform[momentumd_,  momentumpcm_, eulerG_] :=
-  GetParity[momentumpcm, eulerG] *
   Inverse[MatrixRGTilde[momentumpcm]] .
-    EulerMatrix[eulerG] .
+    MyEulerMatrix[eulerG] .
     MatrixRGTilde[momentumpcm];
 
 
@@ -128,10 +137,10 @@ MakeSingleOperator[momentumpi_, momentumpcm_, eulerG_, spinJi_, spinMi_, i_] :=
   Module[{eulerGtilde},
     eulerGtilde = EulerGTilde[momentumpcm];
     Sum[
-      GetParity[momentumpcm, eulerG] *
-      WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]], eulerG[[2]], eulerG[[3]]]  *
-      GetParity[momentumpcm, eulerGtilde] *
-      WignerD[{spinJi, spinMi2, spinMi1}, eulerGtilde[[1]], eulerGtilde[[2]], eulerGtilde[[3]]] *
+      eulerG[[2]] *
+      WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]][[1]], eulerG[[1]][[2]], eulerG[[1]][[3]]]  *
+      eulerGtilde[[2]] *
+      WignerD[{spinJi, spinMi2, spinMi1}, eulerGtilde[[1]][[1]], eulerGtilde[[1]][[2]], eulerGtilde[[1]][[3]]] *
       ConjugateTranspose[SingleOperator[i, spinJi, spinMi2,
         MomentumTransform[momentumpi, momentumpcm, eulerG] . momentumpi]],
       {spinMi1, -spinJi, spinJi},
@@ -148,7 +157,7 @@ MakeGroupSum[irrep_, irrepRow_, irrepCol_, momentapi_, spinsJi_, spinsMi_] := Mo
     Module[{name, values, eulerG},
       name = Keys @ #;
       values = Values @ #;
-      eulerG = EulerAnglesAssoc[][[Key @ name]];
+      eulerG = EulerAnglesParityAssoc[][[Key @ name]];
       Conjugate[values[[Key @ {irrepRow, irrepCol}]]] *
       MakeMultiOperator[momentapi, eulerG, spinsJi, spinsMi]] &,
     IrrepDGammaAssoc[][[Key @ Total @ momentapi]][[Key @ irrep]],
@@ -321,7 +330,7 @@ DatasetnameAssocToCSV[assoc_, filename_String] := With[
 UniqueTotalMomenta[momentumMag_] := 
   DeleteDuplicates @ 
     Values[# . MomentumRefScalar[momentumMag] & /@ 
-      EulerMatrix /@ EulerAnglesAssoc[]];
+      (EulerMatrix[#[[1]]] * #[[2]] &)  /@ EulerAnglesParityAssoc[]];
 
 RelativeToTotalMomenta[totalMomentum_, relMomenta_] :=
   Catenate[{{totalMomentum - Total[relMomenta]}, relMomenta}];
