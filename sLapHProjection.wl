@@ -327,10 +327,14 @@ DatasetnameAssocToCSV[assoc_, filename_String] := With[
 
 (* GEVP building *)
 
+IrrepSize[totalMomentum_, irrep_] := 
+  Last @ Last @ Keys @ First @ Association @
+    IrrepDGammaAssoc[][totalMomentum][[irrep]];
+
 UniqueTotalMomenta[momentumMag_] := 
   DeleteDuplicates @ 
     Values[# . MomentumRefScalar[momentumMag] & /@ 
-      (EulerMatrix[#[[1]]] * #[[2]] &)  /@ EulerAnglesParityAssoc[]];
+      (EulerMatrix[#[[1]]] * #[[2]] &) /@ EulerAnglesParityAssoc[]];
 
 RelativeToTotalMomenta[totalMomentum_, relMomenta_] :=
   Catenate[{{totalMomentum - Total[relMomenta]}, relMomenta}];
@@ -339,14 +343,28 @@ AllRelativeMomenta[totalMomentum_, relMomenta_, cutoff_] :=
   Select[RelativeToTotalMomenta[totalMomentum, #] & /@ relMomenta, 
     Max[Norm /@ #] <= cutoff &];
 
-MultiGroupSum[irrep_, momentapi_, hold_ : Identity] := 
+MultiGroupSum[irrep_, momentapi_, irrepRow_, irrepCol_, hold_ : Identity] := 
   DeleteDuplicates @ hold @
-    MakeGroupSum[irrep, 1, 1, momentapi, {0, 0, 0}, {0, 0, 0}];
+    MakeGroupSum[irrep, irrepRow, irrepCol, momentapi, {0, 0, 0}, {0, 0, 0}];
+
+GroupSumIrrepRowCol[totalMomentum_, irrep_, irrepRow_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
+  AssociationThread[Map[MomentumToString, relMomenta, {2}],
+    MonitoredMap[MultiGroupSum[irrep, #, irrepRow, irrepCol, hold] &, 
+      AllRelativeMomenta[totalMomentum, relMomenta, cutoff], "Momentum"]];
+
+GroupSumIrrepRow[totalMomentum_, irrep_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
+Module[{rows = Range[1, IrrepSize[totalMomentum, irrep]]},
+  AssociationThread[
+    rows,
+    MonitoredMap[GroupSumIrrepRowCol[totalMomentum, irrep, #, irrepCol, relMomenta, cutoff, hold] &,
+      rows, "Irrep row"]]]
 
 GroupSumWholeIrrep[totalMomentum_, irrep_, relMomenta_, cutoff_, hold_ : Identity] := 
-  AssociationThread[Map[MomentumToString, relMomenta, {2}],
-    MonitoredMap[MultiGroupSum[irrep, #, hold] &, 
-      AllRelativeMomenta[totalMomentum, relMomenta, cutoff], "Momentum"]];
+Module[{cols = Range[1, IrrepSize[totalMomentum, irrep]]},
+  AssociationThread[
+    cols,
+    MonitoredMap[GroupSumIrrepRowCol[totalMomentum, irrep, #, relMomenta, cutoff, hold] &,
+      cols, "Irrep col"]]]
 
 GroupSumWholeTotalMomentum[totalMomentum_, relMomenta_, cutoff_, hold_ : Identity] := Module[
   {irreps = Keys @ IrrepDGammaAssoc[][totalMomentum]},
