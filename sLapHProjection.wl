@@ -162,7 +162,7 @@ MakeGroupSum[irrep_, irrepRow_, irrepCol_, momentapi_, spinsJi_, spinsMi_] := Mo
       MakeMultiOperator[momentapi, eulerG, spinsJi, spinsMi]] &,
     IrrepDGammaAssoc[][[Key @ Total @ momentapi]][[Key @ irrep]],
     "Group element"];
-  Plus @@ groupSummands];
+  Plus @@ groupSummands / Length[groupSummands]];
 
 MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, phasePhiM_] :=
   Sum[
@@ -344,8 +344,7 @@ AllRelativeMomenta[totalMomentum_, relMomenta_, cutoff_] :=
     Max[Norm /@ #] <= cutoff &];
 
 MultiGroupSum[irrep_, momentapi_, irrepRow_, irrepCol_, hold_ : Identity] := 
-  DeleteDuplicates @ hold @
-    MakeGroupSum[irrep, irrepRow, irrepCol, momentapi, {0, 0, 0}, {0, 0, 0}];
+  hold @ MakeGroupSum[irrep, irrepRow, irrepCol, momentapi, {0, 0, 0}, {0, 0, 0}];
 
 GroupSumIrrepRowCol[totalMomentum_, irrep_, irrepRow_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
   AssociationThread[Map[MomentumToString, relMomenta, {2}],
@@ -357,14 +356,14 @@ Module[{rows = Range[1, IrrepSize[totalMomentum, irrep]]},
   AssociationThread[
     rows,
     MonitoredMap[GroupSumIrrepRowCol[totalMomentum, irrep, #, irrepCol, relMomenta, cutoff, hold] &,
-      rows, "Irrep row"]]]
+      rows, "Irrep row"]]];
 
 GroupSumWholeIrrep[totalMomentum_, irrep_, relMomenta_, cutoff_, hold_ : Identity] := 
 Module[{cols = Range[1, IrrepSize[totalMomentum, irrep]]},
   AssociationThread[
     cols,
-    MonitoredMap[GroupSumIrrepRowCol[totalMomentum, irrep, #, relMomenta, cutoff, hold] &,
-      cols, "Irrep col"]]]
+    MonitoredMap[GroupSumIrrepRow[totalMomentum, irrep, #, relMomenta, cutoff, hold] &,
+      cols, "Irrep col"]]];
 
 GroupSumWholeTotalMomentum[totalMomentum_, relMomenta_, cutoff_, hold_ : Identity] := Module[
   {irreps = Keys @ IrrepDGammaAssoc[][totalMomentum]},
