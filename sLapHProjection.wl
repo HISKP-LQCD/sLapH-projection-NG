@@ -347,9 +347,10 @@ MultiGroupSum[irrep_, momentapi_, irrepRow_, irrepCol_, hold_ : Identity] :=
   hold @ MakeGroupSum[irrep, irrepRow, irrepCol, momentapi, {0, 0, 0}, {0, 0, 0}];
 
 GroupSumIrrepRowCol[totalMomentum_, irrep_, irrepRow_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
-  AssociationThread[Map[MomentumToString, relMomenta, {2}],
+Module[{selectedRelMomenta = AllRelativeMomenta[totalMomentum, relMomenta, cutoff]},
+  AssociationThread[Map[MomentumToString, selectedRelMomenta, {2}],
     MonitoredMap[MultiGroupSum[irrep, #, irrepRow, irrepCol, hold] &, 
-      AllRelativeMomenta[totalMomentum, relMomenta, cutoff], "Momentum"]];
+      selectedRelMomenta, "Momentum"]]];
 
 GroupSumIrrepRow[totalMomentum_, irrep_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
 Module[{rows = Range[1, IrrepSize[totalMomentum, irrep]]},
