@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    303546,       7206]
-NotebookOptionsPosition[    290667,       6990]
-NotebookOutlinePosition[    291001,       7005]
-CellTagsIndexPosition[    290958,       7002]
+NotebookDataLength[    288263,       6831]
+NotebookOptionsPosition[    275190,       6613]
+NotebookOutlinePosition[    275524,       6628]
+CellTagsIndexPosition[    275481,       6625]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -3699,7 +3699,8 @@ Cell[BoxData[
              StyleBox[
               DynamicBox[ToBoxes[
                 FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
-                StandardForm]],
+                StandardForm],
+               ImageSizeCache->{83., {0., 8.}}],
               StripOnInput->False,
               DynamicUpdating->True], "OSLControlActive",
              StripOnInput->False]}, Dynamic[
@@ -3757,8 +3758,6 @@ Cell[BoxData[
  CellLabel->
   "Out[299]=",ExpressionUUID->"6fb65ddb-4d6e-45ac-b18a-7f74856f1c20"]
 }, Open  ]],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
@@ -3844,16 +3843,16 @@ Cell[BoxData[{
        RowBox[{"x2", " ", "=", " ", 
         RowBox[{"x1", "/.", 
          RowBox[{
-          RowBox[{"NonCommutativeMultiply", "[", "a__", "]"}], 
-          "\[RuleDelayed]", 
+          RowBox[{"NonCommutativeMultiply", "[", "a__", "]"}], ":>", 
           RowBox[{"MomentumProductToMomenta2", "[", 
-           RowBox[{"{", "a", "}"}], "]"}]}]}]}], ";", "\n", 
+           RowBox[{"{", "a", "}"}], "]"}]}]}]}], ";", "\n", "       ", 
        RowBox[{"Map", "[", 
         RowBox[{"Evaluate", ",", " ", "x2", ",", " ", 
-         RowBox[{"{", "3", "}"}]}], "]"}]}]}], "]"}]}], ";"}], 
+         RowBox[{"{", "5", "}"}]}], "]"}]}]}], "]"}]}], ";"}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"someMomenta", " ", "=", " ", 
-  RowBox[{"ExtractMultiMomenta", "[", "all", "]"}]}]}], "Input",
+ RowBox[{
+  RowBox[{"someMomenta", " ", "=", " ", 
+   RowBox[{"ExtractMultiMomenta", "[", "all", "]"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.761408926675653*^9, 3.7614090035337*^9}, {
    3.76140904165114*^9, 3.761409094066737*^9}, {3.76140951282815*^9, 
    3.761409519625548*^9}, {3.7614095669006*^9, 3.761409567498946*^9}, {
@@ -3888,304 +3887,12 @@ Cell[BoxData[{
    3.7617462854030657`*^9, 3.761746307557474*^9}, {3.7617463718445168`*^9, 
    3.761746390027659*^9}, {3.762255477239258*^9, 3.762255477462727*^9}, 
    3.762603890724272*^9, {3.7626050499377213`*^9, 3.762605073620469*^9}, {
-   3.762674007756976*^9, 3.7626740119605417`*^9}},
+   3.762674007756976*^9, 3.7626740119605417`*^9}, {3.7626745505673513`*^9, 
+   3.762674629451008*^9}, {3.762674660021038*^9, 3.762674662588875*^9}, {
+   3.762674915546403*^9, 3.76267491886174*^9}, {3.7626749536596746`*^9, 
+   3.7626750487183733`*^9}},
  CellLabel->
-  "In[315]:=",ExpressionUUID->"80f3ae8f-cedc-40ca-b7be-765a24d787c7"],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   FrameBox[GridBox[{
-      {
-       ItemBox[
-        TagBox[
-         RowBox[{"\[LeftAssociation]", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"1", ",", "0", ",", "0"}], "}"}], "\[Rule]", 
-           RowBox[{"\[LeftAssociation]", 
-            RowBox[{
-             RowBox[{"\<\"A1\"\>", "\[Rule]", 
-              RowBox[{"\[LeftAssociation]", 
-               RowBox[{"1", "\[Rule]", 
-                RowBox[{"\[LeftAssociation]", 
-                 RowBox[{"1", "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", 
-                   RowBox[{
-                    RowBox[{
-                    RowBox[{"{", "\<\"000\"\>", "}"}], "\[Rule]", 
-                    RowBox[{
-                    FractionBox["1", "8"], " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"MomentumProductToMomenta2", "[", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", 
-                    RowBox[{"DTMomentum2", "[", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0", ",", "0"}], "}"}], "]"}]}], 
-                    ",", 
-                    RowBox[{"-", 
-                    RowBox[{"DTMomentum2", "[", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0", ",", "0"}], "}"}], "]"}]}]}], 
-                    "}"}], "]"}], "+", 
-                    TemplateBox[{"6"},
-                    "OutputSizeLimit`Skeleton"], "+", 
-                    RowBox[{"MomentumProductToMomenta2", "[", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"DTMomentum2", "[", 
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "0", ",", "0"}], "}"}], "]"}], ",", 
-                    RowBox[{"DTMomentum2", "[", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0", ",", "0"}], "}"}], "]"}]}], "}"}], 
-                    "]"}]}], ")"}]}]}], ",", 
-                    RowBox[{
-                    RowBox[{"{", "\<\"001\"\>", "}"}], "\[Rule]", 
-                    RowBox[{
-                    FractionBox["1", "8"], " ", 
-                    RowBox[{"(", 
-                    TemplateBox[{"1"},
-                    "OutputSizeLimit`Skeleton"], ")"}]}]}], ",", 
-                    TemplateBox[{"6"},
-                    "OutputSizeLimit`Skeleton"], ",", 
-                    RowBox[{
-                    RowBox[{"{", "\<\"101\"\>", "}"}], "\[Rule]", 
-                    RowBox[{
-                    FractionBox["1", "8"], " ", 
-                    RowBox[{"(", 
-                    TemplateBox[{"1"},
-                    "OutputSizeLimit`Skeleton"], ")"}]}]}], ",", 
-                    RowBox[{
-                    RowBox[{"{", "\<\"10-1\"\>", "}"}], "\[Rule]", 
-                    RowBox[{
-                    FractionBox["1", "8"], " ", 
-                    RowBox[{"(", 
-                    TemplateBox[{"1"},
-                    "OutputSizeLimit`Skeleton"], ")"}]}]}]}], 
-                   "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
-               "\[RightAssociation]"}]}], ",", 
-             TemplateBox[{"3"},
-              "OutputSizeLimit`Skeleton"], ",", 
-             RowBox[{"\<\"E\"\>", "\[Rule]", 
-              RowBox[{"\[LeftAssociation]", 
-               RowBox[{
-                RowBox[{"1", "\[Rule]", 
-                 RowBox[{"\[LeftAssociation]", 
-                  TemplateBox[{"1"},
-                   "OutputSizeLimit`Skeleton"], "\[RightAssociation]"}]}], 
-                ",", 
-                RowBox[{"2", "\[Rule]", 
-                 TemplateBox[{"1"},
-                  "OutputSizeLimit`Skeleton"]}]}], 
-               "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]}], 
-          "\[RightAssociation]"}],
-         Short[#, 5]& ],
-        BaseStyle->{Deployed -> False},
-        StripOnInput->False]},
-      {GridBox[{
-         {
-          TagBox[
-           TooltipBox[
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource[
-                "FEStrings", "sizeBriefExplanation"], StandardForm],
-               ImageSizeCache->{61., {2., 8.}}],
-              StripOnInput->False,
-              DynamicUpdating->True], "OSLText",
-             StripOnInput->False],
-            StyleBox[
-             DynamicBox[
-              ToBoxes[
-               FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"], 
-               StandardForm]], DynamicUpdating -> True, StripOnInput -> 
-             False]],
-           Annotation[#, 
-            Style[
-             Dynamic[
-              FEPrivate`FrontEndResource["FEStrings", "sizeExplanation"]], 
-             DynamicUpdating -> True], "Tooltip"]& ], 
-          ButtonBox[
-           PaneSelectorBox[{False->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
-                StandardForm],
-               ImageSizeCache->{54., {0., 8.}}],
-              StripOnInput->False,
-              DynamicUpdating->True], "OSLControl",
-             StripOnInput->False], True->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
-                StandardForm]],
-              StripOnInput->False,
-              DynamicUpdating->True], "OSLControlActive",
-             StripOnInput->False]}, Dynamic[
-             CurrentValue["MouseOver"]],
-            Alignment->Center,
-            FrameMargins->0,
-            ImageSize->{Automatic, 25}],
-           Appearance->None,
-           BaselinePosition->Baseline,
-           
-           ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 319, 19223324241139001137, 5/2],
-           Enabled->True,
-           Evaluator->Automatic,
-           Method->"Queued"], 
-          ButtonBox[
-           PaneSelectorBox[{False->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
-                StandardForm],
-               ImageSizeCache->{61., {0., 8.}}],
-              StripOnInput->False,
-              DynamicUpdating->True], "OSLControl",
-             StripOnInput->False], True->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
-                StandardForm]],
-              StripOnInput->False,
-              DynamicUpdating->True], "OSLControlActive",
-             StripOnInput->False]}, Dynamic[
-             CurrentValue["MouseOver"]],
-            Alignment->Center,
-            FrameMargins->0,
-            ImageSize->{Automatic, 25}],
-           Appearance->None,
-           BaselinePosition->Baseline,
-           
-           ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 319, 19223324241139001137, 5 2],
-           Enabled->True,
-           Evaluator->Automatic,
-           Method->"Queued"], 
-          ButtonBox[
-           PaneSelectorBox[{False->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
-                StandardForm],
-               ImageSizeCache->{46., {0., 8.}}],
-              StripOnInput->False,
-              DynamicUpdating->True], "OSLControl",
-             StripOnInput->False], True->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeShowAll"], 
-                StandardForm]],
-              StripOnInput->False,
-              DynamicUpdating->True], "OSLControlActive",
-             StripOnInput->False]}, Dynamic[
-             CurrentValue["MouseOver"]],
-            Alignment->Center,
-            FrameMargins->0,
-            ImageSize->{Automatic, 25}],
-           Appearance->None,
-           BaselinePosition->Baseline,
-           
-           ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 319, 19223324241139001137, Infinity],
-           Enabled->True,
-           Evaluator->Automatic,
-           Method->"Queued"], 
-          ButtonBox[
-           PaneSelectorBox[{False->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
-                StandardForm],
-               ImageSizeCache->{83., {0., 8.}}],
-              StripOnInput->False,
-              DynamicUpdating->True], "OSLControl",
-             StripOnInput->False], True->
-            StyleBox[
-             StyleBox[
-              DynamicBox[ToBoxes[
-                FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
-                StandardForm]],
-              StripOnInput->False,
-              DynamicUpdating->True], "OSLControlActive",
-             StripOnInput->False]}, Dynamic[
-             CurrentValue["MouseOver"]],
-            Alignment->Center,
-            FrameMargins->0,
-            ImageSize->{Automatic, 25}],
-           Appearance->None,
-           BaselinePosition->Baseline,
-           ButtonFunction:>FrontEndExecute[{
-              FrontEnd`SetOptions[
-              FrontEnd`$FrontEnd, 
-               FrontEnd`PreferencesSettings -> {"Page" -> "Advanced"}], 
-              FrontEnd`FrontEndToken["PreferencesDialog"]}],
-           Evaluator->None,
-           Method->"Preemptive"]}
-        },
-        AutoDelete->False,
-        FrameStyle->GrayLevel[0.85],
-        GridBoxDividers->{"Columns" -> {False, {True}}},
-        GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
-        GridBoxSpacings->{"Columns" -> {{2}}}]}
-     },
-     DefaultBaseStyle->"Column",
-     GridBoxAlignment->{
-      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-       "RowsIndexed" -> {}},
-     GridBoxDividers->{
-      "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-       "RowsIndexed" -> {}},
-     GridBoxItemSize->{
-      "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-       "RowsIndexed" -> {}},
-     GridBoxSpacings->{"Columns" -> {
-         Offset[0.27999999999999997`], {
-          Offset[0.5599999999999999]}, 
-         Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-         Offset[0.2], 
-         Offset[1.2], {
-          Offset[0.4]}, 
-         Offset[0.2]}, "RowsIndexed" -> {}}],
-    BaseStyle->"OutputSizeLimit",
-    FrameMargins->{{12, 12}, {0, 15}},
-    FrameStyle->GrayLevel[0.85],
-    RoundingRadius->5,
-    StripOnInput->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  If[19223324241139001137 === $SessionID, 
-   Out[319], Message[
-     MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
-   Null]]], "Output",
- CellChangeTimes->{{3.761733686705023*^9, 3.761733711996956*^9}, {
-   3.761733828672159*^9, 3.7617338469216003`*^9}, {3.761733877681221*^9, 
-   3.761733932921672*^9}, {3.76173398441194*^9, 3.7617341055609493`*^9}, {
-   3.7617411603394136`*^9, 3.761741168964383*^9}, 3.7617412212597237`*^9, {
-   3.761741768465886*^9, 3.761741779790099*^9}, {3.7617444296929293`*^9, 
-   3.7617444827481813`*^9}, {3.761746304981522*^9, 3.761746307853714*^9}, {
-   3.761746373702134*^9, 3.761746390468278*^9}, 3.7617465101485443`*^9, 
-   3.761746929827825*^9, 3.7620748068828487`*^9, 3.762600469170928*^9, 
-   3.7626033388026648`*^9, 3.76260389176789*^9, {3.762605051768964*^9, 
-   3.7626050744875097`*^9}, 3.762673953704506*^9, {3.7626740084019337`*^9, 
-   3.762674012640531*^9}},
- CellLabel->
-  "Out[319]=",ExpressionUUID->"db02ee90-0a8c-4c58-8467-23ddb8459856"]
-}, Open  ]],
+  "In[415]:=",ExpressionUUID->"80f3ae8f-cedc-40ca-b7be-765a24d787c7"],
 
 Cell[CellGroupData[{
 
@@ -4231,49 +3938,9 @@ Cell[BoxData[{
   3.762603496032164*^9, 3.762603496108514*^9}, {3.762603594029481*^9, 
   3.762603594827524*^9}, {3.762603815609994*^9, 3.762603816086391*^9}, {
   3.762604967850856*^9, 3.762605004625391*^9}, {3.7626739691737833`*^9, 
-  3.762673969982047*^9}},
+  3.762673969982047*^9}, {3.762675071749055*^9, 3.7626751790028276`*^9}},
  CellLabel->
-  "In[308]:=",ExpressionUUID->"f7a7a2a9-259a-4e4e-b51f-5d149efbb85f"],
-
-Cell[BoxData["$Aborted"], "Output",
- CellChangeTimes->{
-  3.761729615071363*^9, 3.761746437097415*^9, 3.76174651020893*^9, {
-   3.761746659924684*^9, 3.761746670801015*^9}, 3.7617467476380873`*^9, 
-   3.761746829987006*^9, 3.761746869822451*^9, 3.7617469298798647`*^9, 
-   3.762074807024314*^9, 3.762600483788477*^9, 3.762603341263113*^9, 
-   3.762603595323536*^9, 3.762603816564941*^9, 3.762605005577018*^9, 
-   3.762673957716543*^9, 3.762673994840131*^9},
- CellLabel->
-  "Out[309]=",ExpressionUUID->"82d45e87-fefa-4b85-8bc0-381f2820613b"]
-}, Open  ]],
-
-Cell["\<\
-From here on we can advance to the isospin part and plug that in. We can just \
-pick out one moving frame and one irrep and test it.\
-\>", "Text",
- CellChangeTimes->{{3.761467136175675*^9, 3.7614671438881617`*^9}, {
-  3.761467314117816*^9, 
-  3.7614673259927073`*^9}},ExpressionUUID->"aaa28f97-5736-401f-af82-\
-e41442c85a48"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"CombineIsospinAndSpin", "[", 
-  RowBox[{"templates", ",", " ", 
-   RowBox[{
-    RowBox[{
-     RowBox[{
-      RowBox[{"someSourceSinkMomenta", "[", 
-       RowBox[{"[", "1", "]"}], "]"}], "[", 
-      RowBox[{"[", "1", "]"}], "]"}], "[", 
-     RowBox[{"[", "1", "]"}], "]"}], "[", 
-    RowBox[{"[", "1", "]"}], "]"}]}], "]"}]], "Input",
- CellChangeTimes->{{3.761467248426841*^9, 3.76146730100419*^9}, {
-  3.76149562924625*^9, 3.7614956361528997`*^9}, {3.761496340378839*^9, 
-  3.761496340846531*^9}, {3.761496495720393*^9, 3.7614964965819387`*^9}},
- CellLabel->
-  "In[307]:=",ExpressionUUID->"83f114ce-5ea3-43d3-be0b-cec70906a38c"],
+  "In[430]:=",ExpressionUUID->"f7a7a2a9-259a-4e4e-b51f-5d149efbb85f"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4284,100 +3951,127 @@ Cell[BoxData[
         TagBox[
          RowBox[{"\[LeftAssociation]", 
           RowBox[{
-           RowBox[{"\<\"000\"\>", "\[Rule]", 
-            RowBox[{"\[LeftAssociation]", 
-             RowBox[{
-              RowBox[{"\<\"000\"\>", "\[Rule]", 
-               RowBox[{"Hold", "[", 
-                RowBox[{"MomentaToAssocSourceSink", "[", 
-                 RowBox[{
-                  RowBox[{
-                   FractionBox["1", "8"], " ", 
-                   RowBox[{"(", 
+           RowBox[{"{", 
+            RowBox[{"1", ",", "0", ",", "0"}], "}"}], "\[Rule]", 
+           RowBox[{"\[LeftAssociation]", 
+            RowBox[{
+             RowBox[{"\<\"A1\"\>", "\[Rule]", 
+              RowBox[{"\[LeftAssociation]", 
+               RowBox[{"1", "\[Rule]", 
+                RowBox[{"\[LeftAssociation]", 
+                 RowBox[{"1", "\[Rule]", 
+                  RowBox[{"\[LeftAssociation]", 
+                   RowBox[{
+                    RowBox[{"\<\"000\"\>", "\[Rule]", 
+                    RowBox[{"\[LeftAssociation]", 
                     RowBox[{
-                    RowBox[{"2", " ", 
-                    RowBox[{"DTMomenta", "[", 
+                    RowBox[{"\<\"000\"\>", "\[Rule]", 
                     RowBox[{
-                    RowBox[{"{", 
+                    FractionBox["1", "16"], " ", 
+                    RowBox[{"(", 
                     RowBox[{
-                    RowBox[{"-", "1"}], ",", "0", ",", "0"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}], "+", 
+                    RowBox[{"DTMomentaAssoc", "[", 
+                    RowBox[{"\[LeftAssociation]", 
+                    RowBox[{
+                    RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
                     
-                    RowBox[{"2", " ", 
-                    RowBox[{"DTMomenta", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}], "+", 
+                    RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+                    RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
                     
-                    RowBox[{"2", " ", 
-                    RowBox[{"DTMomenta", "[", 
+                    RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+                    "\[RightAssociation]"}], "]"}], "+", 
+                    RowBox[{"DTMomentaAssoc", "[", 
+                    RowBox[{"\[LeftAssociation]", 
                     RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}], "+", 
+                    RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
                     
-                    RowBox[{"2", " ", 
-                    RowBox[{"DTMomenta", "[", 
+                    RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+                    RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"010\"\>"}], ",", 
+                    RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+                    "\[RightAssociation]"}], "]"}], "+", 
+                    RowBox[{"DTMomentaAssoc", "[", 
+                    RowBox[{"\[LeftAssociation]", 
                     RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}]}], 
-                    ")"}]}], ",", 
-                  RowBox[{
-                   FractionBox["1", "8"], " ", 
-                   RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"2", " ", 
-                    RowBox[{"DTMomenta", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "0", ",", "0"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}], "+", 
+                    RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
                     
-                    RowBox[{"2", " ", 
-                    RowBox[{"DTMomenta", "[", 
+                    RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+                    RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"-100\"\>"}], ",", 
+                    
+                    RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+                    "\[RightAssociation]"}], "]"}], "+", 
+                    RowBox[{"DTMomentaAssoc", "[", 
+                    RowBox[{"\[LeftAssociation]", 
                     RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
-                    RowBox[{"{", 
+                    RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
+                    
+                    RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+                    RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+                    RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+                    "\[RightAssociation]"}], "]"}], "+", 
+                    TemplateBox[{"9"},
+                    "OutputSizeLimit`Skeleton"], "+", 
+                    RowBox[{"DTMomentaAssoc", "[", 
+                    RowBox[{"\[LeftAssociation]", 
+                    RowBox[{
+                    RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+                    RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+                    RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"010\"\>"}], ",", 
+                    RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+                    "\[RightAssociation]"}], "]"}], "+", 
+                    RowBox[{"DTMomentaAssoc", "[", 
+                    RowBox[{"\[LeftAssociation]", 
+                    RowBox[{
+                    RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+                    RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+                    RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"-100\"\>"}], ",", 
+                    
+                    RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+                    "\[RightAssociation]"}], "]"}], "+", 
+                    RowBox[{"DTMomentaAssoc", "[", 
+                    RowBox[{"\[LeftAssociation]", 
+                    RowBox[{
+                    RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+                    RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+                    RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+                    RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+                    "\[RightAssociation]"}], "]"}]}], ")"}]}]}], ",", 
+                    TemplateBox[{"8"},
+                    "OutputSizeLimit`Skeleton"], ",", 
+                    RowBox[{"\<\"10-1\"\>", "\[Rule]", 
+                    RowBox[{
+                    FractionBox["1", "16"], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"DTMomentaAssoc", "[", 
+                    RowBox[{"\[LeftAssociation]", 
                     TemplateBox[{"1"},
-                    "OutputSizeLimit`Skeleton"], "}"}]}], "]"}]}], "+", 
-                    RowBox[{"2", " ", 
+                    "OutputSizeLimit`Skeleton"], "\[RightAssociation]"}], 
+                    "]"}], "+", 
+                    TemplateBox[{"14"},
+                    "OutputSizeLimit`Skeleton"], "+", 
                     TemplateBox[{"1"},
-                    "OutputSizeLimit`Skeleton"]}], "+", 
-                    RowBox[{"2", " ", 
-                    RowBox[{"DTMomenta", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "]"}]}]}], 
-                    ")"}]}]}], "]"}], "]"}]}], ",", 
-              TemplateBox[{"8"},
-               "OutputSizeLimit`Skeleton"], ",", 
-              RowBox[{"\<\"10-1\"\>", "\[Rule]", 
-               RowBox[{"Hold", "[", 
-                RowBox[{
-                 TemplateBox[{"24"},
-                  "OutputSizeLimit`Skeleton"], "[", 
+                    "OutputSizeLimit`Skeleton"]}], ")"}]}]}]}], 
+                    "\[RightAssociation]"}]}], ",", 
+                    TemplateBox[{"8"},
+                    "OutputSizeLimit`Skeleton"], ",", 
+                    RowBox[{"\<\"10-1\"\>", "\[Rule]", 
+                    RowBox[{"\[LeftAssociation]", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"], "\[RightAssociation]"}]}]}], 
+                   "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
+               "\[RightAssociation]"}]}], ",", 
+             TemplateBox[{"3"},
+              "OutputSizeLimit`Skeleton"], ",", 
+             RowBox[{"\<\"E\"\>", "\[Rule]", 
+              RowBox[{"\[LeftAssociation]", 
+               RowBox[{
+                RowBox[{"1", "\[Rule]", 
                  TemplateBox[{"1"},
-                  "OutputSizeLimit`Skeleton"], "]"}], "]"}]}]}], 
-             "\[RightAssociation]"}]}], ",", 
-           TemplateBox[{"8"},
-            "OutputSizeLimit`Skeleton"], ",", 
-           RowBox[{"\<\"10-1\"\>", "\[Rule]", 
-            TemplateBox[{"1"},
-             "OutputSizeLimit`Skeleton"]}]}], "\[RightAssociation]"}],
-         Short[#, 5]& ],
+                  "OutputSizeLimit`Skeleton"]}], ",", 
+                TemplateBox[{"1"},
+                 "OutputSizeLimit`Skeleton"]}], "\[RightAssociation]"}]}]}], 
+            "\[RightAssociation]"}]}], "\[RightAssociation]"}],
+         Short[#, 10]& ],
         BaseStyle->{Deployed -> False},
         StripOnInput->False]},
       {GridBox[{
@@ -4419,7 +4113,8 @@ Cell[BoxData[
              StyleBox[
               DynamicBox[ToBoxes[
                 FEPrivate`FrontEndResource["FEStrings", "sizeShowLess"], 
-                StandardForm]],
+                StandardForm],
+               ImageSizeCache->{54., {0., 8.}}],
               StripOnInput->False,
               DynamicUpdating->True], "OSLControlActive",
              StripOnInput->False]}, Dynamic[
@@ -4431,7 +4126,7 @@ Cell[BoxData[
            BaselinePosition->Baseline,
            
            ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 307, 19223324241139001137, 5/2],
+            OutputSizeLimit`Defer, 431, 19223324241139001137, 10/2],
            Enabled->True,
            Evaluator->Automatic,
            Method->"Queued"], 
@@ -4462,7 +4157,7 @@ Cell[BoxData[
            BaselinePosition->Baseline,
            
            ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 307, 19223324241139001137, 5 2],
+            OutputSizeLimit`Defer, 431, 19223324241139001137, 10 2],
            Enabled->True,
            Evaluator->Automatic,
            Method->"Queued"], 
@@ -4493,7 +4188,7 @@ Cell[BoxData[
            BaselinePosition->Baseline,
            
            ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 307, 19223324241139001137, Infinity],
+            OutputSizeLimit`Defer, 431, 19223324241139001137, Infinity],
            Enabled->True,
            Evaluator->Automatic,
            Method->"Queued"], 
@@ -4562,20 +4257,210 @@ Cell[BoxData[
    Deploy,
    DefaultBaseStyle->"Deploy"],
   If[19223324241139001137 === $SessionID, 
-   Out[307], Message[
+   Out[431], Message[
      MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
    Null]]], "Output",
- CellChangeTimes->{{3.761467259216856*^9, 3.7614673018206778`*^9}, 
-   3.76147288716997*^9, {3.761495631055235*^9, 3.7614956364962273`*^9}, {
-   3.761496330063161*^9, 3.761496341243168*^9}, {3.761496492890944*^9, 
-   3.761496496942737*^9}, {3.761542529642618*^9, 3.761542555130198*^9}, 
-   3.761551695215281*^9, 3.761553483614378*^9, 3.761553594418222*^9, 
-   3.761553957142314*^9, 3.7617240646182947`*^9, 3.76174644153732*^9, 
-   3.761746510269609*^9, 3.7617469299294033`*^9, 3.762074807107531*^9, 
-   3.762603343904812*^9, 3.7626739609600286`*^9},
+ CellChangeTimes->{
+  3.761729615071363*^9, 3.761746437097415*^9, 3.76174651020893*^9, {
+   3.761746659924684*^9, 3.761746670801015*^9}, 3.7617467476380873`*^9, 
+   3.761746829987006*^9, 3.761746869822451*^9, 3.7617469298798647`*^9, 
+   3.762074807024314*^9, 3.762600483788477*^9, 3.762603341263113*^9, 
+   3.762603595323536*^9, 3.762603816564941*^9, 3.762605005577018*^9, 
+   3.762673957716543*^9, 3.762673994840131*^9, 3.7626750297606583`*^9, {
+   3.7626750721441813`*^9, 3.7626751693839197`*^9}, 3.762675759166255*^9},
  CellLabel->
-  "Out[307]=",ExpressionUUID->"24db94a2-08aa-4f1a-92bb-1720ed615dc9"]
+  "Out[431]=",ExpressionUUID->"80436ebe-4032-44ad-83c4-cc8222aef6a5"]
 }, Open  ]],
+
+Cell["\<\
+From here on we can advance to the isospin part and plug that in. We can just \
+pick out one moving frame and one irrep and test it.\
+\>", "Text",
+ CellChangeTimes->{{3.761467136175675*^9, 3.7614671438881617`*^9}, {
+  3.761467314117816*^9, 3.7614673259927073`*^9}, {3.7626796095221577`*^9, 
+  3.762679613705174*^9}},ExpressionUUID->"aaa28f97-5736-401f-af82-\
+e41442c85a48"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"someSourceSinkMomenta", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "[", 
+   RowBox[{"[", "1", "]"}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.762679614854529*^9, 
+  3.762679637903407*^9}},ExpressionUUID->"3ae71ab0-a9dd-487a-8ee8-\
+608b5ceaa937"],
+
+Cell[BoxData[
+ RowBox[{
+  FractionBox["1", "16"], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"010\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"-100\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"010\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"010\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"010\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"010\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"-100\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"010\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"-100\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"-100\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"010\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"-100\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"-100\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"-100\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"0-10\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"010\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"-100\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}], "+", 
+    RowBox[{"DTMomentaAssoc", "[", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{
+       RowBox[{"\<\"pso1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+       RowBox[{"\<\"pso2\"\>", "\[Rule]", "\<\"000\"\>"}], ",", 
+       RowBox[{"\<\"psi1\"\>", "\[Rule]", "\<\"100\"\>"}], ",", 
+       RowBox[{"\<\"psi2\"\>", "\[Rule]", "\<\"000\"\>"}]}], 
+      "\[RightAssociation]"}], "]"}]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.762679615742938*^9, 3.762679621135425*^9}},
+ CellLabel->
+  "Out[437]=",ExpressionUUID->"e0f86aeb-ded6-4f20-a26b-93f3c45ba792"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CombineIsospinAndSpin", "[", 
+   RowBox[{"templates", ",", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"someSourceSinkMomenta", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{3.761467248426841*^9, 3.76146730100419*^9}, {
+  3.76149562924625*^9, 3.7614956361528997`*^9}, {3.761496340378839*^9, 
+  3.761496340846531*^9}, {3.761496495720393*^9, 3.7614964965819387`*^9}, {
+  3.76267962605289*^9, 3.76267963980908*^9}},
+ CellLabel->
+  "In[439]:=",ExpressionUUID->"83f114ce-5ea3-43d3-be0b-cec70906a38c"],
 
 Cell[CellGroupData[{
 
@@ -4587,13 +4472,13 @@ Cell[BoxData[
      RowBox[{"CombineIsospinAndSpin", "[", 
       RowBox[{"templates", ",", " ", "#"}], "]"}], " ", "&"}], ",", " ", 
     "someSourceSinkMomenta", ",", 
-    RowBox[{"{", "4", "}"}]}], "]"}]}]], "Input",
+    RowBox[{"{", "6", "}"}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.76146733724876*^9, 3.761467371159388*^9}, {
    3.76146761036517*^9, 3.7614676261558533`*^9}, 3.76147293938521*^9, {
    3.761495640500388*^9, 3.761495640592402*^9}, {3.7614965364216623`*^9, 
-   3.76149653650318*^9}},
+   3.76149653650318*^9}, {3.7626796428764563`*^9, 3.762679644496294*^9}},
  CellLabel->
-  "In[159]:=",ExpressionUUID->"e902b50c-b876-46fd-b7eb-7649c936f7b4"],
+  "In[440]:=",ExpressionUUID->"e902b50c-b876-46fd-b7eb-7649c936f7b4"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -4610,99 +4495,58 @@ Cell[BoxData[
             RowBox[{
              RowBox[{"\<\"A1\"\>", "\[Rule]", 
               RowBox[{"\[LeftAssociation]", 
-               RowBox[{"\<\"1\"\>", "\[Rule]", 
+               RowBox[{"1", "\[Rule]", 
                 RowBox[{"\[LeftAssociation]", 
-                 RowBox[{"\<\"1\"\>", "\[Rule]", 
+                 RowBox[{"1", "\[Rule]", 
                   RowBox[{"\[LeftAssociation]", 
-                   RowBox[{"1", "\[Rule]", 
+                   RowBox[{
+                    RowBox[{"\<\"000\"\>", "\[Rule]", 
                     RowBox[{"\[LeftAssociation]", 
                     RowBox[{
+                    RowBox[{"\<\"000\"\>", "\[Rule]", 
                     RowBox[{
-                    RowBox[{"{", 
-                    
-                    RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                    ",", "\<\"000\"\>"}], "}"}], "\[Rule]", "0"}], ",", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    TemplateBox[{"1"},
-                    "OutputSizeLimit`Skeleton"], "}"}], "\[Rule]", "0"}], ",", 
-                    TemplateBox[{"9"},
-                    "OutputSizeLimit`Skeleton"], ",", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    
-                    RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                    ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-                    RowBox[{
-                    FractionBox["1", "64"], " ", 
+                    FractionBox["1", "16"], " ", 
                     RowBox[{"(", 
-                    TemplateBox[{"1"},
-                    "OutputSizeLimit`Skeleton"], ")"}], " ", 
-                    RowBox[{"(", 
-                    RowBox[{
-                    RowBox[{"-", 
-                    RowBox[{"DTMomenta", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", "1", ",", "1"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", 
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}]}], "]"}]}], "+", 
-                    RowBox[{"DTMomenta", "[", 
-                    RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}], ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "1", ",", "0"}], "}"}]}], "]"}], 
-                    "+", 
-                    TemplateBox[{"6"},
+                    
+                    RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p0-10.\
+d000.g5_p0-10.d000.g5\"\>", "+", 
+                    TemplateBox[{"334"},
                     "OutputSizeLimit`Skeleton"], "+", 
-                    RowBox[{"DTMomenta", "[", 
                     RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "1", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", 
-                    RowBox[{"{", 
+                    "Conjugate", 
+                    "[", "\<\"C4cB_uuuu_p100.d000.g5_p100.d000.g5_p000.d000.\
+g5_p000.d000.g5\"\>", "]"}]}], ")"}]}]}], ",", 
+                    RowBox[{"\<\"001\"\>", "\[Rule]", 
                     RowBox[{
-                    RowBox[{"-", "1"}], ",", "0", ",", "1"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", 
-                    RowBox[{"-", "1"}], ",", "0"}], "}"}]}], "]"}], "-", 
-                    RowBox[{"DTMomenta", "[", 
+                    FractionBox["1", "16"], " ", 
+                    RowBox[{"(", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"], ")"}]}]}], ",", 
+                    TemplateBox[{"6"},
+                    "OutputSizeLimit`Skeleton"], ",", 
+                    RowBox[{"\<\"101\"\>", "\[Rule]", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"]}], ",", 
+                    RowBox[{"\<\"10-1\"\>", "\[Rule]", 
                     RowBox[{
-                    RowBox[{"{", 
-                    RowBox[{"1", ",", "1", ",", 
-                    RowBox[{"-", "1"}]}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{"0", ",", 
-                    RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
-                    RowBox[{"{", 
-                    RowBox[{
-                    RowBox[{"-", "1"}], ",", "1", ",", "0"}], "}"}]}], 
-                    "]"}]}], ")"}]}]}]}], "\[RightAssociation]"}]}], 
+                    FractionBox["1", "16"], " ", 
+                    RowBox[{"(", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"], ")"}]}]}]}], 
+                    "\[RightAssociation]"}]}], ",", 
+                    TemplateBox[{"8"},
+                    "OutputSizeLimit`Skeleton"], ",", 
+                    RowBox[{"\<\"10-1\"\>", "\[Rule]", 
+                    TemplateBox[{"1"},
+                    "OutputSizeLimit`Skeleton"]}]}], 
                    "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
                "\[RightAssociation]"}]}], ",", 
              TemplateBox[{"3"},
               "OutputSizeLimit`Skeleton"], ",", 
              RowBox[{"\<\"E\"\>", "\[Rule]", 
               RowBox[{"\[LeftAssociation]", 
-               RowBox[{
-                RowBox[{"\<\"1\"\>", "\[Rule]", 
-                 TemplateBox[{"1"},
-                  "OutputSizeLimit`Skeleton"]}], ",", 
-                TemplateBox[{"1"},
-                 "OutputSizeLimit`Skeleton"]}], "\[RightAssociation]"}]}]}], 
+               TemplateBox[{"1"},
+                "OutputSizeLimit`Skeleton"], "\[RightAssociation]"}]}]}], 
             "\[RightAssociation]"}]}], "\[RightAssociation]"}],
          Short[#, 5]& ],
         BaseStyle->{Deployed -> False},
@@ -4758,7 +4602,7 @@ Cell[BoxData[
            BaselinePosition->Baseline,
            
            ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 159, 19223324241139001137, 5/2],
+            OutputSizeLimit`Defer, 440, 19223324241139001137, 5/2],
            Enabled->True,
            Evaluator->Automatic,
            Method->"Queued"], 
@@ -4777,8 +4621,7 @@ Cell[BoxData[
              StyleBox[
               DynamicBox[ToBoxes[
                 FEPrivate`FrontEndResource["FEStrings", "sizeShowMore"], 
-                StandardForm],
-               ImageSizeCache->{61., {0., 8.}}],
+                StandardForm]],
               StripOnInput->False,
               DynamicUpdating->True], "OSLControlActive",
              StripOnInput->False]}, Dynamic[
@@ -4788,8 +4631,9 @@ Cell[BoxData[
             ImageSize->{Automatic, 25}],
            Appearance->None,
            BaselinePosition->Baseline,
+           
            ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 159, 19223324241139001137, 5 2],
+            OutputSizeLimit`Defer, 440, 19223324241139001137, 5 2],
            Enabled->True,
            Evaluator->Automatic,
            Method->"Queued"], 
@@ -4820,7 +4664,7 @@ Cell[BoxData[
            BaselinePosition->Baseline,
            
            ButtonFunction:>OutputSizeLimit`ButtonFunction[
-            OutputSizeLimit`Defer, 159, 19223324241139001137, Infinity],
+            OutputSizeLimit`Defer, 440, 19223324241139001137, Infinity],
            Enabled->True,
            Evaluator->Automatic,
            Method->"Queued"], 
@@ -4839,7 +4683,8 @@ Cell[BoxData[
              StyleBox[
               DynamicBox[ToBoxes[
                 FEPrivate`FrontEndResource["FEStrings", "sizeChangeLimit"], 
-                StandardForm]],
+                StandardForm],
+               ImageSizeCache->{83., {0., 8.}}],
               StripOnInput->False,
               DynamicUpdating->True], "OSLControlActive",
              StripOnInput->False]}, Dynamic[
@@ -4889,7 +4734,7 @@ Cell[BoxData[
    Deploy,
    DefaultBaseStyle->"Deploy"],
   If[19223324241139001137 === $SessionID, 
-   Out[159], Message[
+   Out[440], Message[
      MessageName[Syntax, "noinfoker"]]; Missing["NotAvailable"]; 
    Null]]], "Output",
  CellChangeTimes->{
@@ -4898,9 +4743,10 @@ Cell[BoxData[
    3.761496499998802*^9, 3.761496537154139*^9, {3.7615425297025347`*^9, 
    3.761542555286499*^9}, 3.761551695386639*^9, 3.7615534840808153`*^9, 
    3.761553594608572*^9, 3.761724064789662*^9, 3.7617465103586397`*^9, 
-   3.7617469300056143`*^9, 3.7620748072110367`*^9, 3.762603358087349*^9},
+   3.7617469300056143`*^9, 3.7620748072110367`*^9, 3.762603358087349*^9, 
+   3.762675856208305*^9, 3.762679743003604*^9},
  CellLabel->
-  "Out[159]=",ExpressionUUID->"29e4d93d-f877-4574-9c42-32dfea000bca"]
+  "Out[440]=",ExpressionUUID->"0c773fdf-9d99-4e21-850e-28e7d990837b"]
 }, Open  ]],
 
 Cell["\<\
@@ -4922,1073 +4768,848 @@ a08ffd0c2738"],
 
 Cell[CellGroupData[{
 
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"gevp1Subset", " ", "=", " ", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Take", "[", 
+       RowBox[{"#", ",", " ", "1"}], "]"}], "&"}], ",", "gevp1", ",", " ", 
+     "5"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"gevp1Element", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"gevp1Subset", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], "[", 
+     RowBox[{"[", "1", "]"}], "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"StringExpressionToAssociation", "[", "gevp1Element", 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.7626808768196983`*^9, 3.7626809207576647`*^9}, {
+  3.762680951865521*^9, 3.7626810073484898`*^9}},
+ CellLabel->
+  "In[461]:=",ExpressionUUID->"36210822-d280-4e3f-b63c-7cf14de3681e"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p0-10.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p0-10.d000.g5_p010.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p010.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p010.d000.g5_p010.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p0-10.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p0-10.d000.g5_p100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p010.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p010.d000.g5_p100.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p-100.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p-100.d000.g5_p010.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p100.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p100.d000.g5_p010.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p-100.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p-100.d000.g5_p100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p100.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p000.d000.g5_p100.d000.g5_p100.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p010.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p010.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p100.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p010.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p010.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p100.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p0-10.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p0-10.d000.g5_p000.d000.g5_p010.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p010.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p010.d000.g5_p000.d000.g5_p010.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p0-10.d000.g5_p000.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p0-10.d000.g5_p000.d000.g5_p100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p010.d000.g5_p000.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p010.d000.g5_p000.d000.g5_p100.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p0-10.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p0-10.d000.g5_p010.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p010.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p010.d000.g5_p010.d000.g5_p000.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p0-10.d000.g5_p-100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p0-10.d000.g5_p100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p010.d000.g5_p-100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p010.d000.g5_p100.d000.g5_p000.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p-100.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p-100.d000.g5_p000.d000.g5_p010.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p100.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p100.d000.g5_p000.d000.g5_p010.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p-100.d000.g5_p000.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p-100.d000.g5_p000.d000.g5_p100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p100.d000.g5_p000.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p100.d000.g5_p000.d000.g5_p100.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p-100.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p-100.d000.g5_p010.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p100.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p100.d000.g5_p010.d000.g5_p000.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p-100.d000.g5_p-100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p-100.d000.g5_p100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p100.d000.g5_p-100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cB_uuuu_p100.d000.g5_p100.d000.g5_p000.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p0-10.d000.g5_p000.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p0-10.d000.g5_p000.d000.g5_p000.d000.g5_p010.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p010.d000.g5_p000.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p010.d000.g5_p000.d000.g5_p000.d000.g5_p010.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p0-10.d000.g5_p000.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p0-10.d000.g5_p000.d000.g5_p000.d000.g5_p100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p010.d000.g5_p000.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p010.d000.g5_p000.d000.g5_p000.d000.g5_p100.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p0-10.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p0-10.d000.g5_p010.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p010.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p010.d000.g5_p010.d000.g5_p000.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p0-10.d000.g5_p-100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p0-10.d000.g5_p100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p010.d000.g5_p-100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p010.d000.g5_p100.d000.g5_p000.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p-100.d000.g5_p000.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p-100.d000.g5_p000.d000.g5_p000.d000.g5_p010.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p100.d000.g5_p000.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p100.d000.g5_p000.d000.g5_p000.d000.g5_p010.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p-100.d000.g5_p000.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p-100.d000.g5_p000.d000.g5_p000.d000.g5_p100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p100.d000.g5_p000.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p100.d000.g5_p000.d000.g5_p000.d000.g5_p100.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "8"]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p-100.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p-100.d000.g5_p010.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p100.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p100.d000.g5_p010.d000.g5_p000.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p-100.d000.g5_p-100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p-100.d000.g5_p100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p100.d000.g5_p-100.d000.g5_p000.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cD_uuuu_p100.d000.g5_p100.d000.g5_p000.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "8"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p010.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p010.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p100.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p0-10.d000.g5_p010.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p010.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p010.d000.g5_p010.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p0-10.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p0-10.d000.g5_p100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p010.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p010.d000.g5_p100.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p010.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p010.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p100.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p-100.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p-100.d000.g5_p010.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p100.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p100.d000.g5_p010.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p-100.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p-100.d000.g5_p100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p100.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p000.d000.g5_p100.d000.g5_p100.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p0-10.d000.g5_p000.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p0-10.d000.g5_p000.d000.g5_p000.d000.g5_p010.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p010.d000.g5_p000.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p010.d000.g5_p000.d000.g5_p000.d000.g5_p010.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p0-10.d000.g5_p000.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p0-10.d000.g5_p000.d000.g5_p000.d000.g5_p100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p010.d000.g5_p000.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p010.d000.g5_p000.d000.g5_p000.d000.g5_p100.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p0-10.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p0-10.d000.g5_p000.d000.g5_p010.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p010.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p010.d000.g5_p000.d000.g5_p010.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p0-10.d000.g5_p000.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p0-10.d000.g5_p000.d000.g5_p100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p010.d000.g5_p000.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p010.d000.g5_p000.d000.g5_p100.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p-100.d000.g5_p000.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p-100.d000.g5_p000.d000.g5_p000.d000.g5_p010.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p100.d000.g5_p000.d000.g5_p000.d000.g5_p0-10.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p100.d000.g5_p000.d000.g5_p000.d000.g5_p010.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p-100.d000.g5_p000.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p-100.d000.g5_p000.d000.g5_p000.d000.g5_p100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p100.d000.g5_p000.d000.g5_p000.d000.g5_p-100.d000.\
+g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p100.d000.g5_p000.d000.g5_p000.d000.g5_p100.d000.g5\
+\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p-100.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p-100.d000.g5_p000.d000.g5_p010.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p100.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p100.d000.g5_p000.d000.g5_p010.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p-100.d000.g5_p000.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p-100.d000.g5_p000.d000.g5_p100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p100.d000.g5_p000.d000.g5_p-100.d000.g5_p000.d000.\
+g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"C4cV_uuuu_p100.d000.g5_p000.d000.g5_p100.d000.g5_p000.d000.g5\
+\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p0-10.d000.g5_p0-10.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p0-10.d000.g5_p010.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p010.d000.g5_p0-10.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p010.d000.g5_p010.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p0-10.d000.g5_p-100.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p0-10.d000.g5_p100.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p010.d000.g5_p-100.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p010.d000.g5_p100.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p-100.d000.g5_p0-10.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p-100.d000.g5_p010.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p100.d000.g5_p0-10.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p100.d000.g5_p010.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p-100.d000.g5_p-100.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p-100.d000.g5_p100.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p100.d000.g5_p-100.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p000.d000.g5_p100.d000.g5_p100.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p0-10.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p010.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p0-10.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p010.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p-100.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p0-10.d000.g5_p000.d000.g5_p100.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p-100.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p010.d000.g5_p000.d000.g5_p100.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p0-10.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p010.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p0-10.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p010.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p-100.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p-100.d000.g5_p000.d000.g5_p100.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p-100.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p000.d000.g5_p100.d000.g5_p000.d000.g5_p100.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p0-10.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p0-10.d000.g5_p000.d000.g5_p010.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p010.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p010.d000.g5_p000.d000.g5_p010.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p0-10.d000.g5_p000.d000.g5_p-100.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p0-10.d000.g5_p000.d000.g5_p100.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p010.d000.g5_p000.d000.g5_p-100.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p010.d000.g5_p000.d000.g5_p100.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p0-10.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p0-10.d000.g5_p010.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p010.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p010.d000.g5_p010.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p0-10.d000.g5_p-100.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p0-10.d000.g5_p100.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p010.d000.g5_p-100.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p010.d000.g5_p100.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p-100.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p-100.d000.g5_p000.d000.g5_p010.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p100.d000.g5_p000.d000.g5_p0-10.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p100.d000.g5_p000.d000.g5_p010.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p-100.d000.g5_p000.d000.g5_p-100.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p-100.d000.g5_p000.d000.g5_p100.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p100.d000.g5_p000.d000.g5_p-100.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p100.d000.g5_p000.d000.g5_p100.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    RowBox[{"-", 
+     FractionBox["1", "16"]}]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p-100.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p-100.d000.g5_p010.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p100.d000.g5_p0-10.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p100.d000.g5_p010.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p-100.d000.g5_p-100.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p-100.d000.g5_p100.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p100.d000.g5_p-100.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}], ",", 
+   RowBox[{"\<\"conj:C4cB_uuuu_p100.d000.g5_p100.d000.g5_p000.d000.g5_p000.\
+d000.g5\"\>", "\[Rule]", 
+    FractionBox["1", "16"]}]}], "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{3.7626810405237093`*^9},
+ CellLabel->
+  "Out[463]=",ExpressionUUID->"acda0d3f-3e60-4922-8a01-725d8228f8a4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{"gevp2", " ", "=", " ", 
   RowBox[{"Map", "[", 
-   RowBox[{"StringExpressionToAssociation", ",", " ", "gevp1", ",", " ", 
-    RowBox[{"{", "9", "}"}]}], "]"}]}]], "Input",
+   RowBox[{"StringExpressionToAssociation", ",", " ", "gevp1Subset", ",", " ", 
+    RowBox[{"{", "5", "}"}]}], "]"}]}]], "Input",
  CellChangeTimes->{{3.761467490526843*^9, 3.761467512433614*^9}, {
   3.7614675532044573`*^9, 3.761467592000815*^9}, {3.7614743637338*^9, 
   3.761474375060013*^9}, {3.76147514662009*^9, 3.761475148353013*^9}, {
   3.761496357474716*^9, 3.76149635762936*^9}, {3.761496524482913*^9, 
   3.761496529229944*^9}, {3.761542578464109*^9, 3.761542594290333*^9}, {
   3.7615426595348663`*^9, 3.761542662002199*^9}, {3.762603376962117*^9, 
-  3.762603391777059*^9}},
+  3.762603391777059*^9}, {3.762679955909295*^9, 3.7626799567867517`*^9}, {
+  3.7626802228951187`*^9, 3.762680238301057*^9}, {3.7626809270333147`*^9, 
+  3.762680937291286*^9}},
  CellLabel->
-  "In[165]:=",ExpressionUUID->"67d625ad-75a3-432a-a86b-0c96e3c3e409"],
+  "In[452]:=",ExpressionUUID->"67d625ad-75a3-432a-a86b-0c96e3c3e409"],
 
-Cell[BoxData[
- RowBox[{"\[LeftAssociation]", 
-  RowBox[{
-   RowBox[{"{", 
-    RowBox[{"1", ",", "0", ",", "0"}], "}"}], "\[Rule]", 
-   RowBox[{"\[LeftAssociation]", 
-    RowBox[{
-     RowBox[{"\<\"A1\"\>", "\[Rule]", 
-      RowBox[{"\[LeftAssociation]", 
-       RowBox[{"\<\"1\"\>", "\[Rule]", 
-        RowBox[{"\[LeftAssociation]", 
-         RowBox[{"\<\"1\"\>", "\[Rule]", 
-          RowBox[{"\[LeftAssociation]", 
-           RowBox[{"1", "\[Rule]", 
-            RowBox[{"\[LeftAssociation]", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                 ",", "\<\"000\"\>"}], "}"}], "\[Rule]", "0"}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                 ",", "\<\"100\"\>"}], "}"}], "\[Rule]", "0"}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                 ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                 ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                 ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                 ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                 ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                 ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                 ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                 ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                 ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                 ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-             "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
-         "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], ",", 
-     RowBox[{"\<\"A2\"\>", "\[Rule]", 
-      RowBox[{"\[LeftAssociation]", 
-       RowBox[{"\<\"1\"\>", "\[Rule]", 
-        RowBox[{"\[LeftAssociation]", 
-         RowBox[{"\<\"1\"\>", "\[Rule]", 
-          RowBox[{"\[LeftAssociation]", 
-           RowBox[{"1", "\[Rule]", 
-            RowBox[{"\[LeftAssociation]", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                 ",", "\<\"000\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                 ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                 ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                 ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                 ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                 ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                 ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                 ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                 ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                 ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                 ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                 ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-             "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
-         "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], ",", 
-     RowBox[{"\<\"B1\"\>", "\[Rule]", 
-      RowBox[{"\[LeftAssociation]", 
-       RowBox[{"\<\"1\"\>", "\[Rule]", 
-        RowBox[{"\[LeftAssociation]", 
-         RowBox[{"\<\"1\"\>", "\[Rule]", 
-          RowBox[{"\[LeftAssociation]", 
-           RowBox[{"1", "\[Rule]", 
-            RowBox[{"\[LeftAssociation]", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                 ",", "\<\"000\"\>"}], "}"}], "\[Rule]", "0"}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                 ",", "\<\"100\"\>"}], "}"}], "\[Rule]", "0"}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                 ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                 ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                 ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                 ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                 ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                 ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                 ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                 ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                 ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                 ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-             "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
-         "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], ",", 
-     RowBox[{"\<\"B2\"\>", "\[Rule]", 
-      RowBox[{"\[LeftAssociation]", 
-       RowBox[{"\<\"1\"\>", "\[Rule]", 
-        RowBox[{"\[LeftAssociation]", 
-         RowBox[{"\<\"1\"\>", "\[Rule]", 
-          RowBox[{"\[LeftAssociation]", 
-           RowBox[{"1", "\[Rule]", 
-            RowBox[{"\[LeftAssociation]", 
-             RowBox[{
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                 ",", "\<\"000\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                 ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                 ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                 ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                 ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                 ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                 ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                 ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                 ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                 ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                 ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], ",", 
-              RowBox[{
-               RowBox[{"{", 
-                
-                RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                 ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-             "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
-         "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], ",", 
-     RowBox[{"\<\"E\"\>", "\[Rule]", 
-      RowBox[{"\[LeftAssociation]", 
-       RowBox[{
-        RowBox[{"\<\"1\"\>", "\[Rule]", 
-         RowBox[{"\[LeftAssociation]", 
-          RowBox[{
-           RowBox[{"\<\"1\"\>", "\[Rule]", 
-            RowBox[{"\[LeftAssociation]", 
-             RowBox[{
-              RowBox[{"1", "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", 
-                RowBox[{
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                    ",", "\<\"000\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                    ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                    ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                    ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                    ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                    ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                    ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                    ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                    ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-                "\[RightAssociation]"}]}], ",", 
-              RowBox[{"2", "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", 
-                RowBox[{
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                    ",", "\<\"000\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                    ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                    ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                    ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                    ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                    ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                    ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                    ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                    ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-                "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]}], ",", 
-           RowBox[{"\<\"2\"\>", "\[Rule]", 
-            RowBox[{"\[LeftAssociation]", 
-             RowBox[{
-              RowBox[{"1", "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", 
-                RowBox[{
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                    ",", "\<\"000\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                    ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                    ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                    ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                    ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                    ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                    ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                    ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                    ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-                "\[RightAssociation]"}]}], ",", 
-              RowBox[{"2", "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", 
-                RowBox[{
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                    ",", "\<\"000\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                    ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                    ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                    ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                    ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                    ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                    ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                    ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                    ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-                "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]}]}], 
-          "\[RightAssociation]"}]}], ",", 
-        RowBox[{"\<\"2\"\>", "\[Rule]", 
-         RowBox[{"\[LeftAssociation]", 
-          RowBox[{
-           RowBox[{"\<\"1\"\>", "\[Rule]", 
-            RowBox[{"\[LeftAssociation]", 
-             RowBox[{
-              RowBox[{"1", "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", 
-                RowBox[{
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                    ",", "\<\"000\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                    ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                    ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                    ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                    ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                    ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                    ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                    ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                    ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-                "\[RightAssociation]"}]}], ",", 
-              RowBox[{"2", "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", 
-                RowBox[{
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                    ",", "\<\"000\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                    ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                    ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                    ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                    ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                    ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                    ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                    ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                    ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-                "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]}], ",", 
-           RowBox[{"\<\"2\"\>", "\[Rule]", 
-            RowBox[{"\[LeftAssociation]", 
-             RowBox[{
-              RowBox[{"1", "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", 
-                RowBox[{
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                    ",", "\<\"000\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                    ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                    ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                    ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                    ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                    ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                    ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                    ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                    ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-                "\[RightAssociation]"}]}], ",", 
-              RowBox[{"2", "\[Rule]", 
-               RowBox[{"\[LeftAssociation]", 
-                RowBox[{
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"100\"\>", ",", "\<\"000\"\>", 
-                    ",", "\<\"000\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   RowBox[{"\<\"-100\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"100\"\>", 
-                    ",", "\<\"0-11\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"010\"\>", 
-                    ",", "\<\"101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"0-10\"\>", 
-                    ",", "\<\"10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"110\"\>", 
-                    ",", "\<\"-10-1\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"1-10\"\>", 
-                    ",", "\<\"-101\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"01-1\"\>", ",", "\<\"0-11\"\>", 
-                    ",", "\<\"100\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"0-1-1\"\>", ",", "\<\"101\"\>", 
-                    ",", "\<\"010\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"011\"\>", ",", "\<\"10-1\"\>", 
-                    ",", "\<\"0-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"1-11\"\>", ",", "\<\"-10-1\"\>", 
-                    ",", "\<\"110\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}], 
-                 ",", 
-                 RowBox[{
-                  RowBox[{"{", 
-                   
-                   RowBox[{"\<\"11-1\"\>", ",", "\<\"-101\"\>", 
-                    ",", "\<\"1-10\"\>"}], "}"}], "\[Rule]", 
-                  RowBox[{"\[LeftAssociation]", "\[RightAssociation]"}]}]}], 
-                "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]}]}], 
-          "\[RightAssociation]"}]}]}], "\[RightAssociation]"}]}]}], 
-    "\[RightAssociation]"}]}], "\[RightAssociation]"}]], "Output",
+Cell[BoxData["$Aborted"], "Output",
  CellChangeTimes->{
   3.7614675138908587`*^9, {3.761467563748809*^9, 3.761467592962455*^9}, 
    3.7614729788792*^9, {3.7614743650637817`*^9, 3.761474375970454*^9}, 
@@ -5997,9 +5618,11 @@ Cell[BoxData[
    3.7615425297501802`*^9, 3.761542555969789*^9}, 3.761551696185235*^9, 
    3.761553484154518*^9, 3.761553595400103*^9, 3.7617240655897303`*^9, 
    3.761746510430599*^9, 3.7617469300649014`*^9, 3.762074807312038*^9, {
-   3.762603360182991*^9, 3.762603392275524*^9}},
+   3.762603360182991*^9, 3.762603392275524*^9}, 3.7626773922081013`*^9, 
+   3.76268010172366*^9, {3.762680223941471*^9, 3.7626802393770638`*^9}, {
+   3.762680935255513*^9, 3.762680954328094*^9}},
  CellLabel->
-  "Out[165]=",ExpressionUUID->"f53b6c1b-1cd9-4797-ba66-23db9e9ee222"]
+  "Out[452]=",ExpressionUUID->"0134167f-90e5-4b9a-b9f7-c5ce47142308"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -7172,40 +6795,42 @@ Cell[132528, 3393, 486, 9, 35, "Output",ExpressionUUID->"6b5ac4b7-edf1-486b-916f
 Cell[133029, 3405, 339, 7, 60, "Text",ExpressionUUID->"c0feea4a-5c26-4e47-af8b-a10d0a9e9ef2"],
 Cell[CellGroupData[{
 Cell[133393, 3416, 229, 4, 31, "Input",ExpressionUUID->"0be88106-dd4c-41cd-947e-108754a809db"],
-Cell[133625, 3422, 13724, 335, 351, "Output",ExpressionUUID->"6fb65ddb-4d6e-45ac-b18a-7f74856f1c20"]
+Cell[133625, 3422, 13772, 336, 351, "Output",ExpressionUUID->"6fb65ddb-4d6e-45ac-b18a-7f74856f1c20"]
+}, Open  ]],
+Cell[147412, 3761, 6263, 133, 446, "Input",ExpressionUUID->"80f3ae8f-cedc-40ca-b7be-765a24d787c7"],
+Cell[CellGroupData[{
+Cell[153700, 3898, 1917, 44, 147, "Input",ExpressionUUID->"f7a7a2a9-259a-4e4e-b51f-5d149efbb85f"],
+Cell[155620, 3944, 14233, 327, 355, "Output",ExpressionUUID->"80436ebe-4032-44ad-83c4-cc8222aef6a5"]
+}, Open  ]],
+Cell[169868, 4274, 383, 7, 60, "Text",ExpressionUUID->"aaa28f97-5736-401f-af82-e41442c85a48"],
+Cell[CellGroupData[{
+Cell[170276, 4285, 532, 16, 31, "Input",ExpressionUUID->"3ae71ab0-a9dd-487a-8ee8-608b5ceaa937"],
+Cell[170811, 4303, 6472, 135, 399, "Output",ExpressionUUID->"e0f86aeb-ded6-4f20-a26b-93f3c45ba792"]
+}, Open  ]],
+Cell[177298, 4441, 857, 21, 31, "Input",ExpressionUUID->"83f114ce-5ea3-43d3-be0b-cec70906a38c"],
+Cell[CellGroupData[{
+Cell[178180, 4466, 667, 14, 31, "Input",ExpressionUUID->"e902b50c-b876-46fd-b7eb-7649c936f7b4"],
+Cell[178850, 4482, 10657, 266, 213, "Output",ExpressionUUID->"0c773fdf-9d99-4e21-850e-28e7d990837b"]
+}, Open  ]],
+Cell[189522, 4751, 297, 6, 60, "Text",ExpressionUUID->"2f24eacc-64cf-413e-852c-3e4a974f6c1a"],
+Cell[189822, 4759, 305, 7, 36, "Text",ExpressionUUID->"34d47f86-7cc1-4222-a57e-a08ffd0c2738"],
+Cell[CellGroupData[{
+Cell[190152, 4770, 1013, 28, 78, "Input",ExpressionUUID->"36210822-d280-4e3f-b63c-7cf14de3681e"],
+Cell[191168, 4800, 33095, 789, 9196, "Output",ExpressionUUID->"acda0d3f-3e60-4922-8a01-725d8228f8a4"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[147386, 3762, 6055, 130, 446, "Input",ExpressionUUID->"80f3ae8f-cedc-40ca-b7be-765a24d787c7"],
-Cell[153444, 3894, 11836, 292, 235, "Output",ExpressionUUID->"db02ee90-0a8c-4c58-8467-23ddb8459856"]
+Cell[224300, 5594, 885, 15, 31, "Input",ExpressionUUID->"67d625ad-75a3-432a-a86b-0c96e3c3e409"],
+Cell[225188, 5611, 843, 13, 35, "Output",ExpressionUUID->"0134167f-90e5-4b9a-b9f7-c5ce47142308"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[165317, 4191, 1869, 44, 147, "Input",ExpressionUUID->"f7a7a2a9-259a-4e4e-b51f-5d149efbb85f"],
-Cell[167189, 4237, 540, 9, 35, "Output",ExpressionUUID->"82d45e87-fefa-4b85-8bc0-381f2820613b"]
-}, Open  ]],
-Cell[167744, 4249, 335, 7, 60, "Text",ExpressionUUID->"aaa28f97-5736-401f-af82-e41442c85a48"],
-Cell[CellGroupData[{
-Cell[168104, 4260, 653, 15, 31, "Input",ExpressionUUID->"83f114ce-5ea3-43d3-be0b-cec70906a38c"],
-Cell[168760, 4277, 11934, 299, 243, "Output",ExpressionUUID->"24db94a2-08aa-4f1a-92bb-1720ed615dc9"]
+Cell[226068, 5629, 2128, 54, 193, "Input",ExpressionUUID->"c7ba6190-400b-4714-a230-0e5ecb02a8e0"],
+Cell[228199, 5685, 29885, 685, 2612, "Output",ExpressionUUID->"3847f573-78d1-44b2-9d4d-9e4ca25ad040"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[180731, 4581, 619, 14, 31, "Input",ExpressionUUID->"e902b50c-b876-46fd-b7eb-7649c936f7b4"],
-Cell[181353, 4597, 12335, 305, 205, "Output",ExpressionUUID->"29e4d93d-f877-4574-9c42-32dfea000bca"]
+Cell[258121, 6375, 1271, 27, 101, "Input",ExpressionUUID->"2342c0c6-6d4f-4c36-8c49-ae0464cbaf62"],
+Cell[259395, 6404, 15598, 199, 9443, "Output",ExpressionUUID->"9c73722d-cd74-427f-8ce1-fb627ec7c6c4"]
 }, Open  ]],
-Cell[193703, 4905, 297, 6, 60, "Text",ExpressionUUID->"2f24eacc-64cf-413e-852c-3e4a974f6c1a"],
-Cell[194003, 4913, 305, 7, 36, "Text",ExpressionUUID->"34d47f86-7cc1-4222-a57e-a08ffd0c2738"],
-Cell[CellGroupData[{
-Cell[194333, 4924, 729, 13, 31, "Input",ExpressionUUID->"67d625ad-75a3-432a-a86b-0c96e3c3e409"],
-Cell[195065, 4939, 46443, 1062, 1140, "Output",ExpressionUUID->"f53b6c1b-1cd9-4797-ba66-23db9e9ee222"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[241545, 6006, 2128, 54, 193, "Input",ExpressionUUID->"c7ba6190-400b-4714-a230-0e5ecb02a8e0"],
-Cell[243676, 6062, 29885, 685, 2612, "Output",ExpressionUUID->"3847f573-78d1-44b2-9d4d-9e4ca25ad040"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[273598, 6752, 1271, 27, 101, "Input",ExpressionUUID->"2342c0c6-6d4f-4c36-8c49-ae0464cbaf62"],
-Cell[274872, 6781, 15598, 199, 9443, "Output",ExpressionUUID->"9c73722d-cd74-427f-8ce1-fb627ec7c6c4"]
-}, Open  ]],
-Cell[290485, 6983, 154, 3, 31, "Input",ExpressionUUID->"3942a60e-8ca6-4c80-8f2c-6f33a6879265"]
+Cell[275008, 6606, 154, 3, 31, "Input",ExpressionUUID->"3942a60e-8ca6-4c80-8f2c-6f33a6879265"]
 }, Open  ]]
 }, Open  ]]
 }
