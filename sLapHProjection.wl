@@ -336,21 +336,27 @@ UniqueTotalMomenta[momentumMag_] :=
     Values[# . MomentumRefScalar[momentumMag] & /@ 
       (EulerMatrix[#[[1]]] * #[[2]] &) /@ EulerAnglesParityAssoc[]];
 
-RelativeToTotalMomenta[totalMomentum_, relMomenta_] :=
+RelativeToIndividualMomenta[totalMomentum_, relMomenta_] :=
   Catenate[{{totalMomentum - Total[relMomenta]}, relMomenta}];
 
-AllRelativeMomenta[totalMomentum_, relMomenta_, cutoff_] := 
-  Select[RelativeToTotalMomenta[totalMomentum, #] & /@ relMomenta, 
-    Max[Norm /@ #] <= cutoff &];
+IsBelowCutoff[totalMomentum_, relMomentum_, cutoff_] := 
+  Max[Norm[#]^2 & /@ RelativeToIndividualMomenta[totalMomentum, relMomentum]] <= cutoff;
+
+FilterRelativeMomenta[totalMomentum_, relMomenta_, cutoff_] :=
+  IsBelowCutoff[totalMomentum, #, cutoff] & /@ relMomenta;
+
+AllIndividualMomenta[totalMomentum_, relMomenta_, cutoff_] := 
+  Select[RelativeToIndividualMomenta[totalMomentum, #] & /@ relMomenta, 
+    Max[Norm[#]^2 & /@ #] <= cutoff &];
 
 MultiGroupSum[irrep_, momentapi_, irrepRow_, irrepCol_, hold_ : Identity] := 
   hold @ MakeGroupSum[irrep, irrepRow, irrepCol, momentapi, {0, 0, 0}, {0, 0, 0}];
 
 GroupSumIrrepRowCol[totalMomentum_, irrep_, irrepRow_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
-Module[{selectedRelMomenta = AllRelativeMomenta[totalMomentum, relMomenta, cutoff]},
-  AssociationThread[Map[MomentumToString, selectedRelMomenta, {2}],
+Module[{selectedIndividualMomenta = AllIndividualMomenta[totalMomentum, relMomenta, cutoff]},
+  AssociationThread[Map[MomentumToString, Pick[relMomenta, FilterRelativeMomenta[totalMomentum, relMomenta, cutoff]], {2}],
     MonitoredMap[MultiGroupSum[irrep, #, irrepRow, irrepCol, hold] &, 
-      selectedRelMomenta, "Momentum"]]];
+      selectedIndividualMomenta, "Momentum"]]];
 
 GroupSumIrrepRow[totalMomentum_, irrep_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
 Module[{rows = Range[1, IrrepSize[totalMomentum, irrep]]},
