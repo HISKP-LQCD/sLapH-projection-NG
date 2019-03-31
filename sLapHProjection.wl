@@ -310,7 +310,7 @@ StringExpressionToAssociation[expr_] := Module[
   {exprConj, keys},
   exprConj = expr /. Conjugate[str_String] :> "conj:" <> str;
   keys = Union @ Cases[exprConj, _String, Infinity];
-  AssociationMap[Coefficient[exprConj, #, 1] &] @ keys];
+  AssociationMap[Coefficient[exprConj, #, 1] &, keys]];
 
 NeedsConjugation[name_] := With[{prefix = StringTake[name, 5]},
   If[prefix == "conj:",
@@ -361,14 +361,14 @@ Module[{selectedIndividualMomenta = AllIndividualMomenta[totalMomentum, relMomen
 GroupSumIrrepRow[totalMomentum_, irrep_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
 Module[{rows = Range[1, IrrepSize[totalMomentum, irrep]]},
   AssociationThread[
-    rows,
+    ToString /@ rows,
     MonitoredMap[GroupSumIrrepRowCol[totalMomentum, irrep, #, irrepCol, relMomenta, cutoff, hold] &,
       rows, "Irrep row"]]];
 
 GroupSumWholeIrrep[totalMomentum_, irrep_, relMomenta_, cutoff_, hold_ : Identity] := 
 Module[{cols = Range[1, IrrepSize[totalMomentum, irrep]]},
   AssociationThread[
-    cols,
+    ToString /@ cols,
     MonitoredMap[GroupSumIrrepRow[totalMomentum, irrep, #, relMomenta, cutoff, hold] &,
       cols, "Irrep col"]]];
 
