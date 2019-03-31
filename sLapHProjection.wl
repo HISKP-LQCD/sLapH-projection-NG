@@ -406,12 +406,12 @@ MomentaAndTemplatesToJSONFile[momentaAssoc_, templates_, filename_] := Module[
   {someMomenta, someSourceSinkMomenta, gevp1, gevp2, gevp222, gevp3, json},
   someMomenta = ExtractMultiMomenta[momentaAssoc];
   someSourceSinkMomenta = ParallelMap[MakeSourceSinkMomenta, someMomenta, {4}];
-  gevp1 = Map[CombineIsospinAndSpin[templates, #] &, someSourceSinkMomenta, {6}];
-  gevp2 = Map[StringExpressionToAssociation, gevp1, {6}];
-  gevp222 = Map[DatasetnameAssocToObject, gevp2, {6}];
+  gevp1 = ParallelMap[CombineIsospinAndSpin[templates, #] &, someSourceSinkMomenta, {6}];
+  gevp2 = ParallelMap[StringExpressionToAssociation, gevp1, {6}];
+  gevp222 = ParallelMap[DatasetnameAssocToObject, gevp2, {6}];
   gevp3 = AssociationThread[MomentumToString /@ Keys[gevp222], Values[gevp222]];
   json = ExportString[gevp3, "JSON"];
-  DeleteFile[filename];
+  If[FileExistsQ[filename], DeleteFile[filename], Null];
   WriteString[filename, json];
   json];
 
