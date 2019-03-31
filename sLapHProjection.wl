@@ -176,17 +176,22 @@ MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, pha
   {spinM, -spinJ, spinJ}];
 
 ExtractMomenta[expr_] :=
-  ReplaceAll[
-    ReplaceAll[expr,
-      ConjugateTranspose[SingleOperator[_, _, _, p_]] -> p],
-    NonCommutativeMultiply[p__] :> DTMomenta[p]];
+  expr /. ConjugateTranspose[SingleOperator[_, _, _, p_]] -> 
+    DTMomentum[p]
 
-MomentumProductToMomenta[expr_] := Block[
-  {factors, momenta, scalar},
-  factors = expr /. NonCommutativeMultiply[a__] :> {a};
-  momenta = Flatten[Cases[#, DTMomentum[p_]] & /@ factors] /. DTMomentum[p_] -> p;
-  scalar = Times @@ (factors /. a_ DTMomentum[p_] -> a);
+MomentumProductToMomenta2[factors_] := Module[
+  {momenta, scalar},
+  momenta = factors /. {a_. DTMomentum[p_] -> p, DTMomentum[p_] -> p};
+  scalar = Times @@ (factors /. a_. DTMomentum2[p_] -> a);
   scalar * DTMomenta @@ momenta];
+
+mm[factors_] := 
+  Apply[Times, #[[All, 1]]] DTMomenta[#[[All, 2]]] &[
+    factors /. a_. DTMomentum[v_?VectorQ] :> {a, v}]l
+
+ExtractMultiMomenta[assoc_] := Block[{x1, x2},
+  x1 = Map[ExtractMomenta, assoc, {3}];
+  x2 = x1 /. NonCommutativeMultiply[a__] :> MomentumProductToMomenta[{a}]; Map[Evaluate, x2, {5}]];
 
 MomentumToString[p_] := StringJoin[ToString /@ p];
 
@@ -203,6 +208,15 @@ MomentaToAssoc[expr_, location_, sign_] :=
 MomentaToAssocSourceSink[expr1_, expr2_] := FullSimplify @ ReplaceAll[
   ExpandAll[Conjugate @ MomentaToAssoc[expr1, "so", +1] * MomentaToAssoc[expr2, "si", -1]],
   Conjugate[DTMomentaAssoc[<|a__|>]] * DTMomentaAssoc[<|b__|>] :> DTMomentaAssoc[<|a, b|>]];
+
+MakeSourceSinkMomenta[assoc_] := Module[
+  {keys = Keys @ assoc,
+    values = Values @ assoc,
+    labels,
+    outer},
+  labels = StringRiffle[#, ","] & /@ keys;
+  outer = Outer[MomentaToAssocSourceSink, values, values];
+  AssociationThread[labels, AssociationThread[labels, #] & /@ outer]];
 
 
 (* Trace normalization *)
@@ -354,7 +368,9 @@ MultiGroupSum[irrep_, momentapi_, irrepRow_, irrepCol_, hold_ : Identity] :=
 
 GroupSumIrrepRowCol[totalMomentum_, irrep_, irrepRow_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
 Module[{selectedIndividualMomenta = AllIndividualMomenta[totalMomentum, relMomenta, cutoff]},
-  AssociationThread[Map[MomentumToString, Pick[relMomenta, FilterRelativeMomenta[totalMomentum, relMomenta, cutoff]], {2}],
+  AssociationThread[Map[MomentumToString,
+      Pick[relMomenta, FilterRelativeMomenta[totalMomentum, relMomenta, cutoff]],
+      {2}],
     MonitoredMap[MultiGroupSum[irrep, #, irrepRow, irrepCol, hold] &, 
       selectedIndividualMomenta, "Momentum"]]];
 
@@ -377,6 +393,27 @@ GroupSumWholeTotalMomentum[totalMomentum_, relMomenta_, cutoff_, hold_ : Identit
   AssociationThread[irreps,
     MonitoredMap[GroupSumWholeIrrep[totalMomentum, #, relMomenta, cutoff, hold] &,
       irreps, "Irrep"]]];
+
+DatasetnameToObject[value_, key_] := Module[
+  {datasetname = key[[1]] /. Key[x_] -> x, nc},
+  nc = NeedsConjugation[datasetname];
+  <|"datasetname" -> nc[[1]], "re" -> Re @ value, "im" -> Im @ value, "conj" -> nc[[2]]|>];
+
+DatasetnameAssocToObject[value_] := 
+  Values @ MapIndexed[DatasetnameToObject, value];
+
+MomentaAndTemplatesToJSONFile[momentaAssoc_, templates_, filename_] := Module[
+  {someMomenta, someSourceSinkMomenta, gevp1, gevp2, gevp222, gevp3, json},
+  someMomenta = ExtractMultiMomenta[momentaAssoc];
+  someSourceSinkMomenta = ParallelMap[MakeSourceSinkMomenta, someMomenta, {4}];
+  gevp1 = Map[CombineIsospinAndSpin[templates, #] &, someSourceSinkMomenta, {6}];
+  gevp2 = Map[StringExpressionToAssociation, gevp1, {6}];
+  gevp222 = Map[DatasetnameAssocToObject, gevp2, {6}];
+  gevp3 = AssociationThread[MomentumToString /@ Keys[gevp222], Values[gevp222]];
+  json = ExportString[gevp3, "JSON"];
+  DeleteFile[filename];
+  WriteString[filename, json];
+  json];
 
 
 EndPackage[];
