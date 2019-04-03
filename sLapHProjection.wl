@@ -179,10 +179,10 @@ ExtractMomenta[expr_] :=
   expr /. ConjugateTranspose[SingleOperator[_, _, _, p_]] -> 
     DTMomentum[p]
 
-MomentumProductToMomenta2[factors_] := Module[
+MomentumProductToMomenta[factors_] := Module[
   {momenta, scalar},
-  momenta = factors /. {a_. DTMomentum[p_] -> p, DTMomentum[p_] -> p};
-  scalar = Times @@ (factors /. a_. DTMomentum2[p_] -> a);
+  momenta = factors /. a_. DTMomentum[p_] -> p;
+  scalar = Times @@ (factors /. a_. DTMomentum[p_] -> a);
   scalar * DTMomenta @@ momenta];
 
 mm[factors_] := 
@@ -190,8 +190,9 @@ mm[factors_] :=
     factors /. a_. DTMomentum[v_?VectorQ] :> {a, v}]l
 
 ExtractMultiMomenta[assoc_] := Block[{x1, x2},
-  x1 = Map[ExtractMomenta, assoc, {3}];
-  x2 = x1 /. NonCommutativeMultiply[a__] :> MomentumProductToMomenta[{a}]; Map[Evaluate, x2, {5}]];
+  x1 = Map[ExtractMomenta, assoc, {5}];
+  x2 = x1 /. NonCommutativeMultiply[a__] :> MomentumProductToMomenta[{a}];
+  Map[Evaluate, x2, {5}]];
 
 MomentumToString[p_] := StringJoin[ToString /@ p];
 
@@ -405,10 +406,10 @@ DatasetnameAssocToObject[value_] :=
 MomentaAndTemplatesToJSONFile[momentaAssoc_, templates_, filename_] := Module[
   {someMomenta, someSourceSinkMomenta, gevp1, gevp2, gevp222, gevp3, json},
   someMomenta = ExtractMultiMomenta[momentaAssoc];
-  someSourceSinkMomenta = ParallelMap[MakeSourceSinkMomenta, someMomenta, {4}];
-  gevp1 = ParallelMap[CombineIsospinAndSpin[templates, #] &, someSourceSinkMomenta, {6}];
-  gevp2 = ParallelMap[StringExpressionToAssociation, gevp1, {6}];
-  gevp222 = ParallelMap[DatasetnameAssocToObject, gevp2, {6}];
+  someSourceSinkMomenta = Map[MakeSourceSinkMomenta, someMomenta, {4}];
+  gevp1 = Map[CombineIsospinAndSpin[templates, #] &, someSourceSinkMomenta, {6}];
+  gevp2 = Map[StringExpressionToAssociation, gevp1, {6}];
+  gevp222 = Map[DatasetnameAssocToObject, gevp2, {6}];
   gevp3 = AssociationThread[MomentumToString /@ Keys[gevp222], Values[gevp222]];
   json = ExportString[gevp3, "JSON"];
   If[FileExistsQ[filename], DeleteFile[filename], Null];
