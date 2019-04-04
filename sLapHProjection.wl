@@ -246,6 +246,16 @@ NormalizeTraceRecursive[expr_] := If[AtomQ @ expr,
 
 ReplacePropagators[expr_] := expr /. qct`DE[{f_, f_}, {_, t_}] :> prop[f, t];
 
+FlowReversalRules[] = {
+  qct`trace[qct`Gamma^5 . prop["up", si[si2_]].qct`Gamma^5 . prop["dn", so[so1_]]] :>
+    qct`trace[qct`Gamma^5 . prop["up", so[so1]] . qct`Gamma^5 . prop["dn", si[si2]]]
+  };
+
+FlavorSwitchRules[] = {
+  qct`trace[qct`Gamma^5 . prop["up", so[so1_]] . qct`Gamma^5 . prop["dn", so[so2_]] . qct`Gamma^5 . prop["up", si[si2_]] . qct`Gamma^5 . prop["dn", si[si1_]]] :> 
+    Conjugate @ qct`trace[qct`Gamma^5 . prop["up", so[so1]] . qct`Gamma^5 . prop["dn", si[si1]] . qct`Gamma^5 . prop["up", si[si2]] . qct`Gamma^5 . prop["dn", so[so2]]]
+  };
+
 
 (* Wick contractions *)
 
@@ -257,6 +267,57 @@ GammaRules[n_] := Association[Table[
   {i, 1, n}]]
 
 DatasetNameRules[] = {
+  (* C6cC *)
+  qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]] .
+    qct`Gamma^g2_ . prop["dn", si[si1_]]] *
+  qct`trace[qct`Gamma^g3_ . prop["up", so[so2_]] .
+    qct`Gamma^g4_ . prop["dn", si[si2_]]] *
+  qct`trace[qct`Gamma^g5_ . prop["up", so[so3_]] .
+    qct`Gamma^g6_ . prop["dn", si[si3_]]] :>
+  TemplateApply[
+    "C6cD_uuuuuu_" <> MakeTemplate[6],
+    <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4, "g5" -> g5, "g6" -> g6,
+      "x1" -> "`pso" <> ToString @ so1 <> "`",
+      "x2" -> "`psi" <> ToString @ si1 <> "`",
+      "x3" -> "`pso" <> ToString @ so2 <> "`",
+      "x4" -> "`psi" <> ToString @ si2 <> "`",
+      "x5" -> "`pso" <> ToString @ so3 <> "`",
+      "x6" -> "`psi" <> ToString @ si3 <> "`"|>],
+
+  (* C6cC *)
+  qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]] .
+    qct`Gamma^g2_ . prop["dn", si[si1_]] .
+    qct`Gamma^g3_ . prop["up", so[so2_]] .
+    qct`Gamma^g4_ . prop["dn", si[si2_]] .
+    qct`Gamma^g5_ . prop["up", so[so3_]] .
+    qct`Gamma^g6_ . prop["dn", si[si3_]]] :>
+  TemplateApply[
+    "C6cC_uuuuuu_" <> MakeTemplate[6],
+    <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4, "g5" -> g5, "g6" -> g6,
+      "x1" -> "`pso" <> ToString @ so1 <> "`",
+      "x2" -> "`psi" <> ToString @ si1 <> "`",
+      "x3" -> "`pso" <> ToString @ so2 <> "`",
+      "x4" -> "`psi" <> ToString @ si2 <> "`",
+      "x5" -> "`pso" <> ToString @ so3 <> "`",
+      "x6" -> "`psi" <> ToString @ si3 <> "`"|>],
+
+  (* C6cCD *)
+  qct`trace[qct`Gamma^g5_ . prop["up", so[so3_]].
+    qct`Gamma^g6_ . prop["dn", si[si3_]]] *
+  qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]].
+    qct`Gamma^g2_ . prop["dn", si[si1_]].
+    qct`Gamma^g3_ . prop["up", so[so2_]].
+    qct`Gamma^g4_ . prop["dn", si[si2_]] ] :>
+  TemplateApply[
+    "C4cCD_uuuuuu_" <> MakeTemplate[4],
+    <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4, "g5" -> g5, "g6" -> g6,
+      "x1" -> "`pso" <> ToString @ so1 <> "`",
+      "x2" -> "`psi" <> ToString @ si1 <> "`",
+      "x3" -> "`pso" <> ToString @ so2 <> "`",
+      "x4" -> "`psi" <> ToString @ si2 <> "`",
+      "x4" -> "`pso" <> ToString @ so3 <> "`",
+      "x5" -> "`psi" <> ToString @ si3 <> "`"|>],
+
   (* C4cB *)
   qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]].
     qct`Gamma^g2_ . prop["dn", si[si2_]].
