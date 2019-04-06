@@ -5,6 +5,7 @@ are supposed to just to exercise this library. *)
 
 BeginPackage["sLapHProjection`"];
 
+Needs["qct`", "../qct/qct.m"]
 
 (* Utility functions *)
 
@@ -218,6 +219,41 @@ MakeSourceSinkMomenta[assoc_] := Module[
   labels = StringRiffle[#, ","] & /@ keys;
   outer = Outer[MomentaToAssocSourceSink, values, values];
   AssociationThread[labels, AssociationThread[labels, #] & /@ outer]];
+
+
+(* Isospin *)
+
+\[Pi]Plus[s1_, s2_, c1_, x1_] :=
+  -qct`FieldB["up", c1, s1, x1] **
+  (qct`Gamma^5)[qct`SI[{s1, s2}]] **
+  qct`Field["dn", c1, s2, x1];
+
+\[Pi]Minus[s1_, s2_, c1_, x1_] :=
+  qct`FieldB["dn", c1, s1, x1] **
+  (qct`Gamma^5)[qct`SI[{s1, s2}]] **
+  qct`Field["up", c1, s2, x1];
+
+\[Pi]Zero[s1_, s2_, c1_, x1_] :=
+  (qct`FieldB[up, c1, s1, x1]
+  ** (qct`Gamma^5)[qct`SI[{s1, s2}]]
+  ** qct`Field[ up, c1, s2, x1]
+  - qct`FieldB[dn, c1, s1, x1]
+  ** (qct`Gamma^5)[qct`SI[{s1, s2}]]
+  ** qct`Field[dn, c1, s2, x1]) / Sqrt[2];
+
+\[Pi]\[Pi]I1[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
+  \[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Minus[s3, s4, c2, x2]
+  - \[Pi]Plus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1];
+
+\[Pi]\[Pi]I1Bar[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
+  \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Plus[s1, s2, c1, x1]
+  - \[Pi]Minus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2];
+
+\[Pi]\[Pi]I2[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
+  \[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2]; 
+
+\[Pi]\[Pi]I2Bar[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
+  \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1]; 
 
 
 (* Trace normalization *)
@@ -476,6 +512,10 @@ MomentaAndTemplatesToJSONFile[momentaAssoc_, templates_, filename_] := Module[
   If[FileExistsQ[filename], DeleteFile[filename], Null];
   WriteString[filename, json];
   json];
+
+StructureButSingle[totalMomentum_, irrep_, relMomenta_, cutoff_] :=
+  <|totalMomentum -> <|irrep ->
+    GroupSumWholeIrrep[totalMomentum, irrep, relMomenta, cutoff]|>|>;
 
 
 EndPackage[];
