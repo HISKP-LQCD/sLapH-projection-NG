@@ -28,7 +28,7 @@ relMomenta = {#} & /@ utm2Flat;
 filename = "gevp-rho-" <> MomentumToString[totalMomentum] <> "-" <> irrep <> ".js";
 Print @ filename
 
-timing1 = AbsoluteTiming[some = StructureButSingle[totalMomentum, irrep, relMomenta, 3]][[1]]
+timing1 = AbsoluteTiming[some = StructureButSingle[totalMomentum, irrep, relMomenta, 1]][[1]]
 Print[timing1]
 timing2 = AbsoluteTiming[MomentaAndTemplatesToJSONFile[some, templates, filename]][[1]];
 Print[timing2]
