@@ -12,8 +12,8 @@ set -x
 
 wolframscript=/usr/remote/Wolfram/Mathematica/11.3/SystemFiles/Kernel/Binaries/Linux-x86-64/wolframscript
 
-date -I seconds
+date -Iseconds
 
 $wolframscript -script driver.wls "{0, 0, 1}" "A1"
 
-date -I seconds
+date -Iseconds
