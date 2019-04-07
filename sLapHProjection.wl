@@ -207,9 +207,25 @@ momentaToRules[momenta_, location_] :=
 MomentaToAssoc[expr_, location_, sign_] := 
   expr /. DTMomenta[p__] :> DTMomentaAssoc[momentaToRules[DTMomenta @@ (sign * # & /@ {p}), location]];
 
-MomentaToAssocSourceSink[expr1_, expr2_] := FullSimplify @ ReplaceAll[
-  ExpandAll[Conjugate @ MomentaToAssoc[expr1, "so", +1] * MomentaToAssoc[expr2, "si", -1]],
-  Conjugate[DTMomentaAssoc[<|a__|>]] * DTMomentaAssoc[<|b__|>] :> DTMomentaAssoc[<|a, b|>]];
+MomentaToAssocSourceSink[expr1_, expr2_] := Module[
+  FullSimplify @ ReplaceAll[
+  ExpandAll @ ReplaceAll[
+    ExpandAll[Conjugate @ MomentaToAssoc[expr1, "so", +1] * MomentaToAssoc[expr2, "si", -1]],
+    Conjugate[Plus[a__]] :> Plus @@ Conjugate /@ a],
+  Conjugate[DTMomentaAssoc[<|a__|>]] * DTMomentaAssoc[<|b__|>] :> DTMomentaAssoc[<|a, b|>]]];
+
+MomentaToAssocSourceSink[expr1_, expr2_] := Module[{
+  assocSo = MomentaToAssoc[expr1, "so", +1],
+  assocSi = MomentaToAssoc[expr2, "si", -1],
+  expandedProduct,
+  expandedProductReplaced},
+  expandedProduct = ExpandAll[Conjugate@assocSo*assocSi];
+  (* https://mathematica.stackexchange.com/a/109735/1507 *)
+   
+  expandedProductReplaced = ExpandAll @
+    ReplaceAll[expandedProduct, e : Conjugate[Plus[__]] :> Thread[e, Plus]];
+  FullSimplify @ ReplaceAll[expandedProductReplaced,
+    Conjugate[DTMomentaAssoc[<|a__|>]]*DTMomentaAssoc[<|b__|>] :> DTMomentaAssoc[<|a, b|>]]];
 
 MakeSourceSinkMomenta[assoc_] := Module[
   {keys = Keys @ assoc,
