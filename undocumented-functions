@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# Copyright © 2019 Martin Ueding <dev@martin-ueding.de>
+
+import argparse
+import re
+
+
+def main():
+    options = _parse_args()
+
+    function_pattern = re.compile(r'^(\S+)\[.*\] :?=')
+    doc_pattern = re.compile(r'^-   \*\*`(.+)`\*\*')
+
+    functions_declared = []
+    functions_documented = []
+
+    with open('sLapHProjection.wl') as f:
+        for line in f:
+            m = function_pattern.search(line)
+            if m:
+                function = m.group(1)
+                functions_declared.append(function)
+
+    with open('doc/New_Subduction.md') as f:
+        for line in f:
+            m = doc_pattern.search(line)
+            if m:
+                function = m.group(1)
+                functions_documented.append(function)
+
+    undocumented = set(functions_declared) - set(functions_documented)
+
+    print('The following functions are not documented:')
+    for name in undocumented:
+        print('  -', name)
+
+    undeclared = set(functions_documented) - set(functions_declared)
+    print('\nThe following functions are documented but not declared:')
+    for name in undeclared:
+        print('  -', name)
+
+
+def _parse_args():
+    '''
+    Parses the command line arguments.
+
+    :return: Namespace with arguments.
+    :rtype: Namespace
+    '''
+    parser = argparse.ArgumentParser(description='')
+    options = parser.parse_args()
+
+    return options
+
+
+if __name__ == '__main__':
+    main()
