@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    141845,       3621]
-NotebookOptionsPosition[    130971,       3435]
-NotebookOutlinePosition[    131305,       3450]
-CellTagsIndexPosition[    131262,       3447]
+NotebookDataLength[    144050,       3673]
+NotebookOptionsPosition[    132780,       3483]
+NotebookOutlinePosition[    133114,       3498]
+CellTagsIndexPosition[    133071,       3495]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -3424,11 +3424,59 @@ Cell[BoxData[
           "A2u"}, {{0, 0, 0}, "Eu"}, {{0, 0, 0}, "T1u"}, {{0, 0, 0}, 
           "T2u"}}]}]}, " "], StandardForm],
   Evaluator->"Local",
-  ImageSizeCache->{344., {5., 11.}}]], "PrintTemporary",
+  ImageSizeCache->{352., {5., 11.}}]], "PrintTemporary",
  CellChangeTimes->{3.763640778753652*^9},
  CellLabel->
   "During evaluation of \
-In[32]:=",ExpressionUUID->"fbeec8c4-7008-4b68-bec6-7ab8a2d4951e"]
+In[32]:=",ExpressionUUID->"fbeec8c4-7008-4b68-bec6-7ab8a2d4951e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Export","jsonstrictencoding",
+   "\"Expression \\!\\(\\*RowBox[{\\\"\\\\\\\"Times\\\\\\\"\\\"}]\\) cannot \
+be exported as \\!\\(\\*RowBox[{\\\"\\\\\\\"RawJSON\\\\\\\"\\\"}]\\).\"",2,32,
+   1472,19230154215635700532,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.763647571925782*^9},
+ CellLabel->
+  "During evaluation of \
+In[32]:=",ExpressionUUID->"6e0627c3-ffae-4b98-818c-18f577c5377f"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Export","jsonstrictencoding",
+   "\"Expression \\!\\(\\*RowBox[{\\\"\\\\\\\"Times\\\\\\\"\\\"}]\\) cannot \
+be exported as \\!\\(\\*RowBox[{\\\"\\\\\\\"RawJSON\\\\\\\"\\\"}]\\).\"",2,32,
+   1625,19230154215635700532,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.763649643081272*^9},
+ CellLabel->
+  "During evaluation of \
+In[32]:=",ExpressionUUID->"663306a2-2124-4c26-aff4-f4d87446b1eb"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Export","jsonstrictencoding",
+   "\"Expression \\!\\(\\*RowBox[{\\\"\\\\\\\"Times\\\\\\\"\\\"}]\\) cannot \
+be exported as \\!\\(\\*RowBox[{\\\"\\\\\\\"RawJSON\\\\\\\"\\\"}]\\).\"",2,32,
+   1758,19230154215635700532,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.763651721000369*^9},
+ CellLabel->
+  "During evaluation of \
+In[32]:=",ExpressionUUID->"bf0b100b-a168-4727-b588-12108ad4b372"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Export\\\", \\\"::\\\", \
+\\\"jsonstrictencoding\\\"}], \\\"MessageName\\\"]\\) will be suppressed \
+during this calculation.\"",2,32,1759,19230154215635700532,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7636517218087797`*^9},
+ CellLabel->
+  "During evaluation of \
+In[32]:=",ExpressionUUID->"a4276b65-80d4-4641-b169-68c5323d1622"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -3619,7 +3667,11 @@ Cell[107161, 2717, 17569, 613, 473, "Output",ExpressionUUID->"0fcc2a4e-b49b-42b7
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[124767, 3335, 435, 9, 31, "Input",ExpressionUUID->"0c188264-a2e2-4abb-84ed-89f0e51685b1"],
-Cell[125205, 3346, 5726, 84, 27, "PrintTemporary",ExpressionUUID->"fbeec8c4-7008-4b68-bec6-7ab8a2d4951e"]
+Cell[125205, 3346, 5726, 84, 27, "PrintTemporary",ExpressionUUID->"fbeec8c4-7008-4b68-bec6-7ab8a2d4951e"],
+Cell[130934, 3432, 445, 10, 23, "Message",ExpressionUUID->"6e0627c3-ffae-4b98-818c-18f577c5377f"],
+Cell[131382, 3444, 445, 10, 23, "Message",ExpressionUUID->"663306a2-2124-4c26-aff4-f4d87446b1eb"],
+Cell[131830, 3456, 445, 10, 23, "Message",ExpressionUUID->"bf0b100b-a168-4727-b588-12108ad4b372"],
+Cell[132278, 3468, 462, 10, 23, "Message",ExpressionUUID->"a4276b65-80d4-4641-b169-68c5323d1622"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]

@@ -20,6 +20,11 @@ urlcolor: blue
 toc: true
 numbersections: true
 documentclass: scrreprt
+
+ #mainfont: Libertinus Serif
+sansfont: Noto Sans
+ #monofont: Noto Mono
+ #mathfont: Libertinus Math
 ...
 
 # Specification
@@ -984,15 +989,9 @@ position/momentum index as follows:
     Field[dn, c1, s2, x1];
 ```
 
-Similarly we define a $\pi^-$ operator:
+Similarly we define the other two pion operators.
 
-```mathematica
-\[Pi]Minus[s1_, s2_, c1_, x1_] :=
-    FieldB[dn, c1, s1, x1] ** (Gamma^5)[SI[{s1, s2}]] ** 
-    Field[up, c1, s2, x1];
-```
-
-From these we build an $I = 2$ operator.
+From these we build for instance an $I = 2$ operator.
 
 ```mathematica
 \[Pi]\[Pi]I2[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
@@ -1000,14 +999,58 @@ From these we build an $I = 2$ operator.
 ```
 
 For reasons not entirely clear to me we need to define the “bar” version of
-that operator ourselves. This likely is because the QCT does not know about the
-`Gamma` and therefore cannot really do anything about that. Anyway, the second
-operator is this:
+that operator ourselves. This likely is because the QCT does not assume
+anything about the Dirac algebra behind the `Gamma` and therefore cannot really
+do anything about that. Anyway, the second operator is this:
 
 ```mathematica
 \[Pi]\[Pi]I2Bar[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
     \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1]; 
 ```
+
+A few pion operators are defined as part of the library such that they do not
+have to be created for every projection projection from scratch.
+
+---
+
+-   **`\[Pi]Plus`**($s_1$, $s_2$, $c_1$, $x_1$)
+
+    $$ [\pi^+]_{s_1 s_2}^{c_1}(x_1) =
+    - \bar u_{s_1}^{c_1}(x_1) \; \gamma^5_{s_1 s_2} \; d_{s_2}^{c_1}(x_1) $$
+
+-   **`\[Pi]Minus`**($s_1$, $s_2$, $c_1$, $x_1$)
+
+    $$ [\pi^+]_{s_1 s_2}^{c_1}(x_1) =
+    \bar d_{s_1}^{c_1}(x_1) \; \gamma^5_{s_1 s_2} \; u_{s_2}^{c_1}(x_1) $$
+
+-   **`\[Pi]Zero`**($s_1$, $s_2$, $c_1$, $x_1$)
+
+    $$ [\pi^0]_{s_1 s_2}^{c_1}(x_1) = \frac{1}{\sqrt 2} \left(
+    \bar u_{s_1}^{c_1}(x_1) \; \gamma^5_{s_1 s_2} \; u_{s_2}^{c_1}(x_1)
+    - \bar d_{s_1}^{c_1}(x_1) \; \gamma^5_{s_1 s_2} \; d_{s_2}^{c_1}(x_1)
+    \right) $$
+
+-   **`\[Pi]\[Pi]I1`**($s_1$, $s_2$, $s_3$, $s_4$, $c_1$, $c_2$, $x_1$, $x_2$)
+
+    $$ [\pi\pi^{I=1}]_{s_1 s_2 s_3 s_4}^{c_1 c_2}(x_1, x_2) =
+    [\pi^+]_{s_1 s_2}^{c_1}(x_1) \; [\pi^-]_{s_3 s_4}^{c_2}(x_2)
+    - [\pi^+]_{s_3 s_4}^{c_2}(x_2) \; [\pi^-]_{s_1 s_2}^{c_1}(x_1) $$
+
+-   **`\[Pi]\[Pi]I1Bar`**($s_1$, $s_2$, $s_3$, $s_4$, $c_1$, $c_2$, $x_1$, $x_2$)
+
+    $$ [\bar{\pi\pi}^{I=1}]_{s_1 s_2 s_3 s_4}^{c_1 c_2}(x_1, x_2) =
+    [\pi^-]_{s_3 s_4}^{c_2}(x_2) \; [\pi^+]_{s_1 s_2}^{c_1}(x_1)
+    - [\pi^-]_{s_1 s_2}^{c_1}(x_1) \; [\pi^+]_{s_3 s_4}^{c_2}(x_2) $$
+
+-   **`\[Pi]\[Pi]I2`**($s_1$, $s_2$, $s_3$, $s_4$, $c_1$, $c_2$, $x_1$, $x_2$)
+
+    $$ [\pi\pi^{I=2}]_{s_1 s_2 s_3 s_4}^{c_1 c_2}(x_1, x_2) =
+    [\pi^+]_{s_1 s_2}^{c_1}(x_1) \; [\pi^+]_{s_3 s_4}^{c_2}(x_2) $$
+
+-   **`\[Pi]\[Pi]I2Bar`**($s_1$, $s_2$, $s_3$, $s_4$, $c_1$, $c_2$, $x_1$, $x_2$)
+
+    $$ [\bar{\pi\pi}^{I=2}]_{s_1 s_2 s_3 s_4}^{c_1 c_2}(x_1, x_2) =
+    [\pi^-]_{s_3 s_4}^{c_2}(x_2) \; [\pi^-]_{s_1 s_2}^{c_1}(x_1) $$
 
 ## Wick contractions
 
@@ -1089,7 +1132,7 @@ D_\mathtt{Q3}^{-1}(t|t')
 \rangle
 $$
 Direct:
-\begin{multline*}
+$$
 C_\text{C4cD} =
 \langle
 \Gamma_\mathtt{Op0}
@@ -1097,16 +1140,15 @@ D_\mathtt{Q1}^{-1}(t|t')
 \Gamma_\mathtt{Op1}
 \gamma_5 D_\mathtt{Q0}^{-1}(t|t')^\dagger \gamma_5
 \rangle
-\\ \cdot
 \langle
 \Gamma_\mathtt{Op2}
 D_\mathtt{Q3}^{-1}(t|t')
 \Gamma_\mathtt{Op3}
 \gamma_5 D_\mathtt{Q2}^{-1}(t|t')^\dagger \gamma_5
 \rangle
-\end{multline*}
+$$
 Vacuum:
-\begin{multline*}
+$$
 C_\text{C4cV} =
 \langle
 \Gamma_\mathtt{Op0}
@@ -1114,14 +1156,13 @@ D_\mathtt{Q1}^{-1}(t|t)
 \Gamma_\mathtt{Op1}
 \gamma_5 D_\mathtt{Q0}^{-1}(t|t)^\dagger \gamma_5
 \rangle
-\\ \cdot
 \langle
 \Gamma_\mathtt{Op2}
 D_\mathtt{Q3}^{-1}(t'|t')
 \Gamma_\mathtt{Op3}
 \gamma_5 D_\mathtt{Q2}^{-1}(t'|t')^\dagger \gamma_5
 \rangle
-\end{multline*}
+$$
 
 In order to translate the expressions that we get from the Quark Contraction
 Tool we need to massage them until they match a diagram from the contraction
@@ -1164,7 +1205,7 @@ code. There are three things that need to be done:
     ```
 
     and cyclicly permutes the expression if it does not start with a `Gamma`.
-    The resulting expression always start with `Gamma`.
+    The resulting expression always starts with `Gamma`.
 
 -   **`Starts`**(traceContent)
 
