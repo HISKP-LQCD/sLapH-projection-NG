@@ -99,23 +99,21 @@ MomentumRefScalar[4] = {0, 0, 2};
 
 MomentumRef[momentumpcm_] := MomentumRefScalar[Total[momentumpcm^2]];
 
-MyEulerMatrix[{angles_, parity_}] := parity * EulerMatrix[angles];
+ParityEulerMatrix[{angles_, parity_}] := parity * EulerMatrix[angles];
 
 EulerGTilde[momentumpcm_] := 
   First @ Select[Values @ EulerAnglesParityAssoc[],
-    momentumpcm == MyEulerMatrix[#] . MomentumRef[momentumpcm] &];
+    momentumpcm == ParityEulerMatrix[#] . MomentumRef[momentumpcm] &];
 
 MatrixRGTilde[momentumpcm_] := Module[
   {eulerGTilde = EulerGTilde[momentumpcm]},
-  MyEulerMatrix[eulerGTilde]];
+  ParityEulerMatrix[eulerGTilde]];
 
 GetParity[momentumpcm_, angles_] := 
   a /. Solve[a EulerMatrix[angles] . momentumpcm == momentumpcm][[1]];
 
-MomentumTransform[momentumd_,  momentumpcm_, eulerG_] :=
-  Inverse[MatrixRGTilde[momentumpcm]] .
-    MyEulerMatrix[eulerG] .
-    MatrixRGTilde[momentumpcm];
+MomentumTransform[matrixRGtilde_, eulerG_] :=
+  Inverse[matrixRGtilde] . ParityEulerMatrix[eulerG] . matrixRGtilde;
 
 
 (* Clebsch-Gordan coefficients *)
@@ -135,15 +133,16 @@ HigherClebschGordan[js_, ms_, {j_, m_}] := Sum[
 (* Spin *)
 
 MakeSingleOperator[momentumpi_, momentumpcm_, eulerG_, spinJi_, spinMi_, i_] :=
-  Module[{eulerGtilde},
+  Module[{eulerGtilde, matrixRGtilde},
     eulerGtilde = EulerGTilde[momentumpcm];
+    matrixRGtilde = ParityEulerMatrix @ eulerGtilde;
     Sum[
       eulerG[[2]] *
       WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]][[1]], eulerG[[1]][[2]], eulerG[[1]][[3]]]  *
       eulerGtilde[[2]] *
       WignerD[{spinJi, spinMi2, spinMi1}, eulerGtilde[[1]][[1]], eulerGtilde[[1]][[2]], eulerGtilde[[1]][[3]]] *
       ConjugateTranspose[SingleOperator[i, spinJi, spinMi2,
-        MomentumTransform[momentumpi, momentumpcm, eulerG] . momentumpi]],
+        MomentumTransform[matrixRGtilde, eulerG] . momentumpi]],
       {spinMi1, -spinJi, spinJi},
       {spinMi2, -spinJi, spinJi}]];
 
@@ -161,7 +160,7 @@ MakeGroupSum[irrep_, irrepRow_, irrepCol_, momentapi_, spinsJi_, spinsMi_] := Mo
       eulerG = EulerAnglesParityAssoc[][[Key @ name]];
       Conjugate[values[[Key @ {irrepRow, irrepCol}]]] *
       MakeMultiOperator[momentapi, eulerG, spinsJi, spinsMi]] &,
-    IrrepDGammaAssoc[][[Key @ Total @ momentapi]][[Key @ irrep]],
+    IrrepDGammaAssoc[][[Key @ MomentumRef @ Total @ momentapi]][[Key @ irrep]],
     "Group element"];
   Plus @@ groupSummands / Length[groupSummands]];
 
