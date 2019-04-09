@@ -107,9 +107,8 @@ EulerGTilde[momentumpcm_] :=
   First @ Select[Values @ EulerAnglesParityAssoc[],
     momentumpcm == CachedParityEulerMatrix[#] . MomentumRef[momentumpcm] &];
 
-MatrixRGTilde[momentumpcm_] := Module[
-  {eulerGTilde = EulerGTilde[momentumpcm]},
-  CachedParityEulerMatrix[eulerGTilde]];
+MatrixRGTilde[momentumpcm_] :=
+  CachedParityEulerMatrix @ EulerGTilde @ momentumpcm;
 
 GetParity[momentumpcm_, angles_] := 
   a /. Solve[a EulerMatrix[angles] . momentumpcm == momentumpcm][[1]];
