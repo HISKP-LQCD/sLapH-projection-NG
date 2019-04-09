@@ -464,7 +464,8 @@ UniqueTotalMomenta[momentumMag_] :=
       (EulerMatrix[#[[1]]] * #[[2]] &) /@ EulerAnglesParityAssoc[]];
 
 RelativeToIndividualMomenta[totalMomentum_, relMomenta_] :=
-  Catenate[{{totalMomentum - Total[relMomenta]}, relMomenta}];
+  MatrixRGTilde[totalMomentum] . # & /@ 
+    Catenate[{{MomentumRef[totalMomentum] - Total[relMomenta]}, relMomenta}];
 
 IsBelowCutoff[totalMomentum_, relMomentum_, cutoff_] := 
   Max[Norm[#]^2 & /@ RelativeToIndividualMomenta[totalMomentum, relMomentum]] <= cutoff;
