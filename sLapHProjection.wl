@@ -101,19 +101,21 @@ MomentumRef[momentumpcm_] := MomentumRefScalar[Total[momentumpcm^2]];
 
 ParityEulerMatrix[{angles_, parity_}] := parity * EulerMatrix[angles];
 
+CachedParityEulerMatrix = AssociationMap[ParityEulerMatrix, Values @ EulerAnglesParityAssoc[]];
+
 EulerGTilde[momentumpcm_] := 
   First @ Select[Values @ EulerAnglesParityAssoc[],
-    momentumpcm == ParityEulerMatrix[#] . MomentumRef[momentumpcm] &];
+    momentumpcm == CachedParityEulerMatrix[#] . MomentumRef[momentumpcm] &];
 
 MatrixRGTilde[momentumpcm_] := Module[
   {eulerGTilde = EulerGTilde[momentumpcm]},
-  ParityEulerMatrix[eulerGTilde]];
+  CachedParityEulerMatrix[eulerGTilde]];
 
 GetParity[momentumpcm_, angles_] := 
   a /. Solve[a EulerMatrix[angles] . momentumpcm == momentumpcm][[1]];
 
 MomentumTransform[matrixRGtilde_, eulerG_] :=
-  Inverse[matrixRGtilde] . ParityEulerMatrix[eulerG] . matrixRGtilde;
+  Inverse[matrixRGtilde] . CachedParityEulerMatrix[eulerG] . matrixRGtilde;
 
 
 (* Clebsch-Gordan coefficients *)
@@ -135,7 +137,7 @@ HigherClebschGordan[js_, ms_, {j_, m_}] := Sum[
 MakeSingleOperator[momentumpi_, momentumpcm_, eulerG_, spinJi_, spinMi_, i_] :=
   Module[{eulerGtilde, matrixRGtilde},
     eulerGtilde = EulerGTilde[momentumpcm];
-    matrixRGtilde = ParityEulerMatrix @ eulerGtilde;
+    matrixRGtilde = CachedParityEulerMatrix @ eulerGtilde;
     Sum[
       eulerG[[2]] *
       WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]][[1]], eulerG[[1]][[2]], eulerG[[1]][[3]]]  *
@@ -153,15 +155,14 @@ MakeMultiOperator[momentapi_, eulerG_, spinsJi_, spinsMi_] := Module[{momentumpc
   NonCommutativeMultiply @@ parts];
 
 MakeGroupSum[irrep_, irrepRow_, irrepCol_, momentapi_, spinsJi_, spinsMi_] := Module[{groupSummands},
-  groupSummands = MonitoredMap[
+  groupSummands = Map[
     Module[{name, values, eulerG},
       name = Keys @ #;
       values = Values @ #;
       eulerG = EulerAnglesParityAssoc[][[Key @ name]];
       Conjugate[values[[Key @ {irrepRow, irrepCol}]]] *
       MakeMultiOperator[momentapi, eulerG, spinsJi, spinsMi]] &,
-    IrrepDGammaAssoc[][[Key @ MomentumRef @ Total @ momentapi]][[Key @ irrep]],
-    "Group element"];
+    IrrepDGammaAssoc[][[Key @ MomentumRef @ Total @ momentapi]][[Key @ irrep]]];
   Plus @@ groupSummands / Length[groupSummands]];
 
 MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, phasePhiM_] :=
