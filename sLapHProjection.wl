@@ -134,16 +134,16 @@ HigherClebschGordan[js_, ms_, {j_, m_}] := Sum[
 (* Spin *)
 
 MakeSingleOperator[momentumpi_, momentumpcm_, eulerG_, spinJi_, spinMi_, i_] :=
-  Module[{eulerGtilde, matrixRGtilde},
+  Module[{eulerGtilde, matrixRGtilde, momentumTransform},
     eulerGtilde = EulerGTilde[momentumpcm];
     matrixRGtilde = CachedParityEulerMatrix @ eulerGtilde;
+    momentumTransform = MomentumTransform[matrixRGtilde, eulerG];
     Sum[
       eulerG[[2]] *
       WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]][[1]], eulerG[[1]][[2]], eulerG[[1]][[3]]]  *
       eulerGtilde[[2]] *
       WignerD[{spinJi, spinMi2, spinMi1}, eulerGtilde[[1]][[1]], eulerGtilde[[1]][[2]], eulerGtilde[[1]][[3]]] *
-      ConjugateTranspose[SingleOperator[i, spinJi, spinMi2,
-        MomentumTransform[matrixRGtilde, eulerG] . momentumpi]],
+      ConjugateTranspose[SingleOperator[i, spinJi, spinMi2, momentumTransform . momentumpi]],
       {spinMi1, -spinJi, spinJi},
       {spinMi2, -spinJi, spinJi}]];
 
