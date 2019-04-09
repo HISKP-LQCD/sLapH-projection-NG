@@ -114,7 +114,7 @@ GetParity[momentumpcm_, angles_] :=
   a /. Solve[a EulerMatrix[angles] . momentumpcm == momentumpcm][[1]];
 
 MomentumTransform[matrixRGtilde_, eulerG_] :=
-  Inverse[matrixRGtilde] . CachedParityEulerMatrix[eulerG] . matrixRGtilde;
+  matrixRGtilde . CachedParityEulerMatrix[eulerG] . Inverse @ matrixRGtilde;
 
 
 (* Clebsch-Gordan coefficients *)
