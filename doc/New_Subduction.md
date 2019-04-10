@@ -2,7 +2,7 @@
  # vim: spell tw=79
 
  # Document meta data:
-title: Towards a new Projection Code
+title: New Projection Code
 author:
   - Martin Ueding (<ueding@hiskp.uni-bonn.de>)
 date: 2019-01-12
@@ -32,8 +32,8 @@ sansfont: Noto Sans
 The [sLapH contraction code](https://github.com/HISKP-LQCD/sLapH-contractions)
 can only work with single particle operators multiplied together. These
 operators are just Dirac-$\Gamma$ structure and integer three-momentum $p$. The
-spin and isospin projection code needs to take these and give a GEVP for given
-total momentum $P^2$ and irrep $\Gamma$.
+spin and isospin projection code needs to take these and give a correlator
+matrix for given total momentum $P^2$ and irrep $\Gamma$.
 
 We have to decide whether and when we want to include baryons. As discussed
 with Carsten we will stick with the single cover of the octahedral group and
@@ -44,8 +44,8 @@ The result that we want from the projection is a data frame with these columns:
 - Total momentum $P^2$
 - Irrep $\Gamma$
 - Irrep row $\alpha$
-- GEVP row index (source operator ID)
-- GEVP column index (sink operator ID)
+- Correlator matrix row index (source operator ID)
+- Correlator matrix column index (sink operator ID)
 - HDF5 dataset name
 - Boolean indicating whether the diagram needs to be complex conjugated
 - Complex weighting factor
@@ -204,8 +204,8 @@ to combine the different diagrams to yield a particular isospin.
 
 We have to convert this output into a data frame with the following columns:
 
-- GEVP row index (source operator ID)
-- GEVP column index (sink operator ID)
+- Correlator matrix row index (source operator ID)
+- Correlator matrix column index (sink operator ID)
 - HDF5 data set name like `C2c_uu_p010.d000.g5_p010.d000.g5`
 - Boolean flag whether the correlator needs to be conjugated to compensate for
   reversal of quark flow direction
@@ -1430,20 +1430,21 @@ datasetname,conjugate,re,im
     Kuba](https://mathematica.stackexchange.com/a/191718/1507) with an implicit
     MIT license.
 
-## Creating a full GEVP
+## Creating a full correlator matrix
 
 ### Interface to numerical code
 
 So far we only have functions that generate a list of HDF5 dataset names that
 will yield a single correlation function. We of course want to build a full
-GEVP (with multiple correlators) and then many of these GEVPs. This means that
-we will have the following independent variables describing the correlators:
+correlator matrix (with multiple correlators) and then many of these correlator
+matrices. This means that we will have the following independent variables
+describing the correlators:
 
 - All total momenta $\vec d$ for given $\vec d^2$ (and not just total momentum
   $\vec d^2$)
 - Irrep
 - Irrep rows
-- GEVP row and column (operator ids & relative momenta $\vec q_i$)
+- Correlator matrix row and column (operator ids & relative momenta $\vec q_i$)
 
 The nature of the operator and the relative momenta shall be passed down into
 the analysis. This can be done with the meta data notation that Markus has
@@ -1455,9 +1456,9 @@ The information per correlator (`datasetname`, `conjugate`, `re`, `im`) can be
 written out as CSV with the current implementation. But how will we do multiple
 correlators? I see these options:
 
-1.  We can just write out one CSV file per GEVP element. The information about
-    $\vec d^2$, $\Gamma$, $\alpha$ and the $\{ \vec q_i \}$ would then be
-    encoded in the file name.
+1.  We can just write out one CSV file per correlator matrix element. The
+    information about $\vec d^2$, $\Gamma$, $\alpha$ and the $\{ \vec q_i \}$
+    would then be encoded in the file name.
 
     This would be a classic thing, but these days I really dislike parsing
     filenames for information.
@@ -1507,8 +1508,9 @@ the momenta that we have little groups for.
 
 We just iterate through all $\vec d_\text{tot}$, then we iterate through all
 irreps and then iterate through all relative momenta. Using our `MakeGroupSum`
-function we construct the operators that will make up the GEVP. Later on we
-need to take the outer product in order to obtain the actual GEVP.
+function we construct the operators that will make up the correlator matrix.
+Later on we need to take the outer product in order to obtain the actual
+correlator matrix.
 
 From the given operators we need to extract the momenta and then perform the
 outer product of source and sink momenta. Then we need to apply the isospin
@@ -1606,12 +1608,12 @@ The levels are:
 
 1. Total momentum (as string)
 2. Irreducible representation
-3. Label for the GEVP row, currently just a comma separated list of the
-   relative momenta that have been used. In the future where we have other
-   operators than just the pion, these will become more sophisticated labels.
-   These are for human consumption anyway, so for the point of this code they
-   are just strings.
-4. Label for the GEVP column
+3. Label for the correlator matrix row, currently just a comma separated list
+   of the relative momenta that have been used. In the future where we have
+   other operators than just the pion, these will become more sophisticated
+   labels. These are for human consumption anyway, so for the point of this
+   code they are just strings.
+4. Label for the correlator matrix column
 5. HDF5 dataset name
 6. Weight factor (`re` and `im`) as well as whether the numeric correlator
    needs to be complex conjugated first (`conj`)
@@ -1620,29 +1622,30 @@ The levels are:
 
 The contraction code generates one HDF5 file per diagram type and per gauge
 configuration with names like `C4cC_cnfg4824.h5`. We have to decide how we
-iterate through all this data. In the end we want one file per GEVP element
+iterate through all this data. In the end we want one file per correlator
+matrix element
 containing all the observations from all configurations. These iteration orders
 come to mind:
 
 1.  Treat the configurations independent of each other. Open all the diagram
     files for a particular configuration (like 4825) and then build all the
-    GEVP elements from this.
+    correlator matrix elements from this.
 
     *Advantages*: Only one HDF5 file has to be opened at any one time. Also the
     file can be consumed completely in one go, amortizing the expensive
     indexing operation after opening the file. Parallelization over
     observations is trivial this way.
 
-    *Disadvantages*: The intermediate result are lots of GEVP elements but with
-    only one observation each. These have to be combined later on. Depending on
-    the data format it is just a concatenation. One has to be careful not to
-    create millions of files for intermediate output.
+    *Disadvantages*: The intermediate result are lots of correlator matrix
+    elements but with only one observation each. These have to be combined
+    later on. Depending on the data format it is just a concatenation. One has
+    to be careful not to create millions of files for intermediate output.
 
-2.  Focus on one GEVP element and build it for all observations at the same
-    time.
+2.  Focus on one correlator matrix element and build it for all observations at
+    the same time.
 
     *Advantages*: There is no intermediate result, the whole statistics for a
-    given GEVP element is created directly.
+    given correlator matrix element is created directly.
 
     *Disadvantages*: A lot of HDF5 files has to be opened, and only few
     datasets are going to be extracted. [We know
@@ -1655,7 +1658,8 @@ This decouples (numeric) projection and aggregation of the whole statistics. We
 just need to think about the intermediate data format.
 
 As we want to further process the data with R, there is no danger to use the
-`Rdata` format for serialization. For each configuration the whole GEVP will be
+`Rdata` format for serialization. For each configuration the whole correlator
+matrix will be
 in exactly the same outer nested list structure, just with a numeric vector as
 payload instead of the mapping between HDF5 dataset names and coefficients.
 
@@ -1673,6 +1677,63 @@ Tasks:
 - Iterate through files
 - Open needed HDF5 files
 - Combine various numeric correlators
+
+## Comparison to Markus' data
+
+Markus has already projected all the data for the $\rho$ channel, we can just
+use this to compare. His data is not only in a different format but also uses
+different parameterizations for individual momenta $p_i$ via his $P'$ and $q'$
+values.
+
+We want to do a fully automated complete comparison such that there are no
+manual steps which are additional sources of errors.
+
+### Momentum parameterization
+
+Markus' parameterization works as
+$$ p_1 = \frac{P'}{2} + q' \,, \quad p_2 = \frac{P'}{2} - q' \,. $$
+
+The parameterization used in this code here is $p_1 = P - q$ and $p_2 = q$ for
+the case of two particles. This means that in order to convert his
+parameterization into mine one has to use the relations $$ P = P' \,, \quad q =
+\frac{P'}{2} - q' \,. $$
+
+The other way around works as
+$$ P' = P \,, \quad q' = \frac{P - 2 q}{2} \,. $$
+
+His correlator matrix format contains files called `operator-indices` that give
+the three-vector $P$ that is actually used for that particular moving frame, as
+well as the irrep row:
+
+```
+id	p_x	p_y	p_z	alpha
+0	-1	0	0	1
+1	0	-1	0	1
+2	0	0	-1	1
+3	0	0	1	1
+4	0	1	0	1
+5	1	0	0	1
+```
+
+One has to look up our $P$ and then find out the *operator id* from this table.
+
+The correlator matrix elements are then labeled by their $q'_\text{source}$ and
+$q'_\text{sink}$ values. These also correspond do indices that have to be read
+off from the lines with the correct Dirac structure, `g: \gamma_{5},
+\gamma_{5}`, in the file `gevp-indices`:
+
+```
+id	element
+0	p: 1, g: \gamma_{50i}
+1	p: 1, g: \gamma_{i}
+2	p: 1, q: (0.0, 0.0, 0.5), g: \gamma_{5}, \gamma_{5}
+3	p: 1, q: (0.0, 0.0, 1.5), g: \gamma_{5}, \gamma_{5}
+4	p: 1, q: (1.0, 0.0, 0.5), g: \gamma_{5}, \gamma_{5}
+5	p: 1, q: (1.0, 1.0, 0.5), g: \gamma_{5}, \gamma_{5}
+```
+
+From this we can deduce which correlator matrix rows and columns correspond to
+my $q_\text{source}$ and $q_\text{sink}$.
 
 # Tests
 
