@@ -257,12 +257,12 @@ MakeSourceSinkMomenta[assoc_] := Module[
   ** qct`Field[dn, c1, s2, x1]) / Sqrt[2];
 
 \[Pi]\[Pi]I1[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
-  \[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Minus[s3, s4, c2, x2]
-  - \[Pi]Plus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1];
+  (\[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Minus[s3, s4, c2, x2] - 
+  \[Pi]Plus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1]) / Sqrt[2];
 
 \[Pi]\[Pi]I1Bar[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
-  \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Plus[s1, s2, c1, x1]
-  - \[Pi]Minus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2];
+  (\[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Plus[s1, s2, c1, x1] -
+  \[Pi]Minus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2]) / Sqrt[2];
 
 \[Pi]\[Pi]I2[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
   \[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2]; 
