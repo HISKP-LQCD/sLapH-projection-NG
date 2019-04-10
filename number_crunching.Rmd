@@ -148,9 +148,9 @@ operator_indices_path <- sprintf('%s/rho_p%d_%s_operator-indices.tsv', target_di
 operator_indices <- read.table(operator_indices_path, sep = '\t', header = TRUE)
 
 filtered <- operator_indices %>%
-  filter(p_x == total_momentum_ref[1],
-         p_y == total_momentum_ref[2],
-         p_z == total_momentum_ref[3])
+  filter(p_x == total_momentum[1],
+         p_y == total_momentum[2],
+         p_z == total_momentum[3])
 stopifnot(nrow(filtered) == 1)
 operator_id <- filtered$id
 
@@ -207,7 +207,7 @@ correlator_matrix <- correlator_matrix_indices %>%
 
 ```{r}
 ggplot(correlator_matrix, aes(x = time, y = abs(correlator), color = key)) +
-  geom_point() +
+  geom_point(position = position_dodge(width = 0.3)) +
   scale_y_log10() +
   facet_grid(q_source ~ q_sink) +
   labs(title = "Comparison between Martin's and Markus' projection code",
