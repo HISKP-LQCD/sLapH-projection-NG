@@ -15,7 +15,7 @@ theme_set(theme_light())
 In this document we will take the generated GEVP prescription and touch the actual HDF5 data and generate the correlators.
 
 ```{r}
-all_prescriptions <- jsonlite::read_json('gevp-rho--1-11-A2.js')
+all_prescriptions <- jsonlite::read_json('gevp-rho-001-A1.js')
 ```
 
 ```{r}
@@ -30,7 +30,7 @@ lapplyn <- function (container, f, n, ...) {
 ```
 
 ```{r}
-needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 5)))
+needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
 ```
 
 ```{r}
@@ -51,7 +51,7 @@ names(files_list) <- diagrams
 needed_raw <- lapply(
   needed_names,
   function (datasetname) {
-    print(datasetname)
+    #print(datasetname)
     diagram <- strsplit(datasetname, '_')[[1]][1]
     
     if (diagram == 'C4cV') {
@@ -60,7 +60,7 @@ needed_raw <- lapply(
     
     filename <- files_list[[diagram]]
     
-    print(sprintf('Fetching %s (a %s) from %s.\n', datasetname, diagram, filename))
+    #print(sprintf('Fetching %s (a %s) from %s.\n', datasetname, diagram, filename))
     
     dataset <- rhdf5::h5read(filename, datasetname)
     if (ncol(dataset) == 2) {
@@ -101,7 +101,7 @@ resolve <- function (prescription) {
   apply(m, 2, sum)
 }
 
-resolved <- lapplyn(all_prescriptions, resolve)
+resolved <- lapplyn(all_prescriptions, resolve, 6)
 ```
 
 ```{r}
@@ -109,15 +109,14 @@ jsonlite::write_json(resolved, 'rho-test.js', pretty = TRUE)
 ```
 
 ```{r}
-target <- read.table('../LuescherAnalysis/output/rho/gevps-v2/B35.32/rho_p1_A1_op3_gevp2.2.tsv', header = TRUE)
-target2 <- read.table('../LuescherAnalysis/output/rho/gevps-v2/B35.32/rho_p1_A1_op3_gevp2.2.tsv', header = TRUE)
+target <- read.table('../LuescherAnalysis/output/rho/gevps-v2/B35.32/rho_p1_A1_op5_gevp2.2.tsv', header = TRUE)
 
 target_single <- dplyr::filter(target, cnfg == config_number)
 target_raw <- target_single$value
 ```
 
 ```{r}
-actual <- resolved$`001`$A1$`000`$`001` / 128
+actual <- resolved$`001`$A1$`1`$`1`$`001`$`000`
 ```
 
 ```{r}
@@ -126,7 +125,7 @@ ta_long <- tidyr::gather(target_actual, case, correlator, target, actual)
 ```
 
 ```{r}
-ggplot(ta_long, aes(x = time, y = correlator, color = case)) +
+ggplot(ta_long, aes(x = time, y = abs(correlator), color = case)) +
   geom_point() +
   scale_y_log10()
 ```
