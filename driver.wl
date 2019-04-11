@@ -24,7 +24,7 @@ relMomenta = {#} & /@ utm2Flat
 
 totalMomentum = {1, 0, 0};
 irrep = "A1";
-cutoff = 2;
+cutoff = 1;
 momentaAssoc = StructureButSingle[totalMomentum, irrep, relMomenta, cutoff];
 
 filename = "gevp-rho-" <> MomentumToString[totalMomentum] <> "-" <> irrep <> ".js";
