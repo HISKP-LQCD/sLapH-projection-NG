@@ -18,17 +18,19 @@ normalizedFlavorFlow = normalizedFlavor /. FlowReversalRules[];
 normalizedFlow = normalized /. FlowReversalRules[];
 templates = normalizedFlavorFlow /. DatasetNameRules[]
 
-utm1 = UniqueTotalMomenta /@ Range[0, 1];
-utm1Flat = Flatten[utm1, 1]
-utm2 = UniqueTotalMomenta /@ Range[0, 4]
-utm2Flat = Flatten[utm2, 1]
+utm2 = UniqueTotalMomenta /@ Range[0, 4];
+utm2Flat = Flatten[utm2, 1];
+relMomenta = {#} & /@ utm2Flat
 
-relMomenta = {#} & /@ utm2Flat;
+totalMomentum = {1, 0, 0};
+irrep = "A1";
+cutoff = 2;
+momentaAssoc = StructureButSingle[totalMomentum, irrep, relMomenta, cutoff];
 
 filename = "gevp-rho-" <> MomentumToString[totalMomentum] <> "-" <> irrep <> ".js";
 Print @ filename
 
-timing1 = AbsoluteTiming[some = StructureButSingle[totalMomentum, irrep, relMomenta, 1]][[1]]
-Print[timing1]
+timing1 = AbsoluteTiming[some = StructureButSingle[totalMomentum, irrep, relMomenta, 1]][[1]];
+Print @ timing1
 timing2 = AbsoluteTiming[MomentaAndTemplatesToJSONFile[some, templates, filename]][[1]];
-Print[timing2]
+Print @ timing2

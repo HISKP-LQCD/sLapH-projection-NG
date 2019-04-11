@@ -9,10 +9,13 @@ Needs["qct`", "../qct/qct.m"]
 
 (* Utility functions *)
 
+(*
 MonitoredMap[f_, list_, label_ : ""] := Module[{i},
   Monitor[Table[f[list[[i]]], {i, 1, Length[list]}], 
    Row[{ProgressIndicator[i, {1, Length[list] + 1}],
      TemplateApply[" `` `` of ``", {label, i, Length[list]}]}, " "]]];
+*)
+MonitoredMap[f_, list_, label_ : ""] := Map[f, list];
 
 
 (* Reading the lattice irreps *)
