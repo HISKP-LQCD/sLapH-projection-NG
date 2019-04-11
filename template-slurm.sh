@@ -2,9 +2,9 @@
 
 #SBATCH --job-name {{ momentum|join('') }}-{{ irrep }}
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=2GB
+#SBATCH --mem=500MB
 #SBATCH --mail-user=ueding@hiskp.uni-bonn.de
-#SBATCH --mail-type=ALL
+#SBATCH --mail-type=FAIL
 
 set -e
 set -u
