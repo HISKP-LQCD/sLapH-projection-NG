@@ -11,9 +11,12 @@ set -u
 set -x
 
 wolframscript=/usr/remote/Wolfram/Mathematica/11.3/SystemFiles/Kernel/Binaries/Linux-x86-64/wolframscript
+if ! [[ -f "$wolframscript" ]]; then
+    wolframscript=/usr/local/Wolfram/Mathematica/11.3/SystemFiles/Kernel/Binaries/Linux-x86-64/wolframscript
+fi
 
 date -Iseconds
 
-$wolframscript -script driver.wls "{0, 0, 1}" "A1"
+$wolframscript -script driver.wl 1 0 0 A1
 
 date -Iseconds
