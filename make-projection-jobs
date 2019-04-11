@@ -1,0 +1,29 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+# Copyright © 2019 Martin Ueding <dev@martin-ueding.de>
+
+import json
+
+import jinja2
+
+
+def main():
+    # Setting up Jinja
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
+    template = env.get_template("template-slurm.sh")
+
+    with open('irreps_avail.js') as f:
+        pairs = json.load(f)
+
+    for momentum, irrep in pairs:
+        rendered = template.render(momentum=momentum, irrep=irrep)
+
+        filename = 'slurm-{}{}{}-{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
+
+        with open(filename, "w") as f:
+            f.write(rendered)
+
+
+if __name__ == "__main__":
+    main()
