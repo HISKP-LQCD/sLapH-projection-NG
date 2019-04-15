@@ -4,13 +4,14 @@
 # Copyright © 2019 Martin Ueding <dev@martin-ueding.de>
 
 import json
+import os
 
 import jinja2
 
 
 def main():
     # Setting up Jinja
-    env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
     template_project = env.get_template("template-slurm-project.sh")
     template_crunch = env.get_template("template-slurm-crunch.sh")
 
