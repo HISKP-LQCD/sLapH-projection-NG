@@ -39,7 +39,7 @@ all_prescriptions <- jsonlite::read_json(prescription_filename)
 needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
 
 config_number <- 2552
-base_path <- '~/Lattice/New_Projection_Test'
+base_path <- '.'
 
 file_pattern <- sprintf('%s/*_cnfg%d.h5', base_path, config_number)
 files <- Sys.glob(file_pattern)
