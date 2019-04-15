@@ -1,6 +1,8 @@
 #!/usr/bin/env Rscript
 
-options(echo = TRUE)
+#options(echo = TRUE)
+
+print(getwd())
 
 library(ggplot2)
 library(dplyr)
@@ -19,10 +21,12 @@ lapplyn <- function (container, f, n, ...) {
 
 args <- commandArgs(trailingOnly = TRUE)
 print(args)
-stopifnot(length(args) == 4)
 
-total_momentum <- as.integer(args[1:3])
-irrep <- args[4]
+if (!exists('total_momentum')) {
+  stopifnot(length(args) == 4)
+  total_momentum <- as.integer(args[1:3])
+  irrep <- args[4]
+}
 
 total_momentum_sq <- sum(total_momentum^2)
 total_momentum_str <- paste0(sprintf('%d', total_momentum), collapse = '')
@@ -77,8 +81,12 @@ needed_raw <- lapply(
 names(needed_raw) <- needed_names
 
 resolve <- function (prescription) {
+  if (length(prescription) == 0) {
+    return (NA)
+  }
+
   summands <- list(rep(NA, length(prescription)))
-  
+
   for (i in 1:length(prescription)) {
     rule <- prescription[[i]]
     datasetname <- rule$datasetname
@@ -121,7 +129,7 @@ elements <- apply(
 
 df_avail_actual <- data.frame(str = q_avail_actual, element = elements, stringsAsFactors = FALSE)
 
-target_dir <- '../LuescherAnalysis/output/rho/gevps-v2/B35.32'
+target_dir <- 'B35.32'
 
 operator_indices_path <- sprintf('%s/rho_p%d_%s_operator-indices.tsv', target_dir, total_momentum_sq, irrep)
 operator_indices <- read.table(operator_indices_path, sep = '\t', header = TRUE)
