@@ -5,9 +5,11 @@ are supposed to just to exercise this library. *)
 
 BeginPackage["sLapHProjection`"];
 
-Needs["qct`", "../qct/qct.m"]
+Needs["qct`", "../../qct/qct.m"]
 
 (* Utility functions *)
+
+basePath = "../";
 
 (*
 MonitoredMap[f_, list_, label_ : ""] := Module[{i},
@@ -52,7 +54,7 @@ ExtractMomentumFromFilename[filename_] := First[ToExpression /@ StringCases[
   filename,
   RegularExpression["\\((-?\\d+),(-?\\d+),(-?\\d+)\\)"] -> {"$1", "$2", "$3"}]]
 
-irrepFiles = FileNames["Single-cover/*-*-representations.txt"];
+irrepFiles = FileNames[basePath <> "Single-cover/*-*-representations.txt"];
 irrepDatasets = ReadIrreps /@ irrepFiles;
 irrepAssocs = DatasetToAssocations /@ irrepDatasets;
 momenta = ExtractMomentumFromFilename /@ irrepFiles;
@@ -87,7 +89,7 @@ Parities[] =
   First @* Values /@ 
     Association @ IrrepDGammaAssoc[][[Key @ {0, 0, 0}]][["A1u"]];
   
-EulerAnglesAssoc[] = ReadEulerAngles["Single-cover/Oh-elements.txt"];
+EulerAnglesAssoc[] = ReadEulerAngles[basePath <> "Single-cover/Oh-elements.txt"];
 
 EulerAnglesParityAssoc[] = MapThread[List, {EulerAnglesAssoc[], Parities[]}];
 
