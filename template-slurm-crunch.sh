@@ -10,6 +10,7 @@ set -e
 set -u
 set -x
 
+hostname
 date -Iseconds
 
 ./number_crunching.R {{ momentum|join(' ') }} {{ irrep }}
