@@ -1,4 +1,4 @@
-Get["../qct/qct.m"]
+Get["../../qct/qct.m"]
 << sLapHProjection`
 
 Print @ $ScriptCommandLine
