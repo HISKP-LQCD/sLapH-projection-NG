@@ -5,7 +5,7 @@ are supposed to just to exercise this library. *)
 
 BeginPackage["sLapHProjection`"];
 
-Needs["qct`", "../../qct/qct.m"]
+Needs["qct`"]
 
 (* Utility functions *)
 
