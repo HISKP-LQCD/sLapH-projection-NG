@@ -521,15 +521,26 @@ DatasetnameToObject[value_, key_] := Module[
 DatasetnameAssocToObject[value_] := 
   Values @ MapIndexed[DatasetnameToObject, value];
 
+DropEmpty[container_] := Select[container, Length @ # > 0 &];
+
+PrescriptionToNumeric[prescription_] := <|
+  "datasetname" -> prescription["datasetname"], 
+  "re" -> N @ prescription["re"],
+  "im" -> N @ prescription["im"], 
+  "conj" -> prescription["conj"]|>;
+
 MomentaAndTemplatesToJSONFile[momentaAssoc_, templates_, filename_] := Module[
-  {someMomenta, someSourceSinkMomenta, gevp1, gevp2, gevp222, gevp3, json},
+  {someMomenta, someSourceSinkMomenta, gevp1, gevp2, gevp222, gevp3, gevp3C1, gevp3C2, gevpNumeric, json},
   someMomenta = ExtractMultiMomenta[momentaAssoc];
   someSourceSinkMomenta = Map[MakeSourceSinkMomenta, someMomenta, {4}];
   gevp1 = Map[CombineIsospinAndSpin[templates, #] &, someSourceSinkMomenta, {6}];
   gevp2 = Map[StringExpressionToAssociation, gevp1, {6}];
   gevp222 = Map[DatasetnameAssocToObject, gevp2, {6}];
   gevp3 = AssociationThread[MomentumToString /@ Keys[gevp222], Values[gevp222]];
-  json = ExportString[gevp3, "JSON"];
+  gevp3C1 = Map[DropEmpty, gevp3, {5}];
+  gevp3C2 = Map[DropEmpty, gevp3C1, {4}];
+  gevpNumeric = Map[PrescriptionToNumeric, gevp3C2, {7}];
+  json = ExportString[gevpNumeric, "JSON"];
   If[FileExistsQ[filename], DeleteFile[filename], Null];
   WriteString[filename, json];
   json];
