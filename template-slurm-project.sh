@@ -17,6 +17,8 @@ fi
 
 date -Iseconds
 
+cd Wolfram_Language
+
 $wolframscript -script driver.wl {{ momentum|join(' ') }} {{ irrep }}
 
 date -Iseconds
