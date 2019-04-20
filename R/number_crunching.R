@@ -68,7 +68,17 @@ needed_raw <- lapply(
     
     #print(sprintf('Fetching %s (a %s) from %s.\n', datasetname, diagram, filename))
     
-    dataset <- rhdf5::h5read(filename, datasetname)
+    dataset <- tryCatch(
+      rhdf5::h5read(filename, datasetname),
+      error = function (e) {
+        warning(e)
+        NA
+      })
+    
+    if (is.na(dataset)) {
+      return (0)
+    }
+    
     if (ncol(dataset) == 2) {
       return (dataset$re + 1i * dataset$im)
     } else if (colnames(dataset)[1] == 'rere') {
