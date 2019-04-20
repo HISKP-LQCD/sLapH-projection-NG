@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-#options(echo = TRUE)
+options(echo = TRUE)
 
 print(getwd())
 
