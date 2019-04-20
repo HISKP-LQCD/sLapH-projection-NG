@@ -175,7 +175,7 @@ load_actual_config <- function (q_source, q_sink) {
 
 correlator_matrix_indices$actual <- mapply(load_actual_config, correlator_matrix_indices$q_source, correlator_matrix_indices$q_sink, SIMPLIFY = FALSE, USE.NAMES = FALSE)
 
-correlator_matrix_indices$time <- list(1:length(correlator_matrix_indices$actual[[1]]))
+correlator_matrix_indices$time <- list(1:length(correlator_matrix_indices$target[[1]]))
 
 correlator_matrix <- correlator_matrix_indices %>%
   tidyr::unnest() %>%
