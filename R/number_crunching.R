@@ -137,7 +137,8 @@ operator_indices <- read.table(operator_indices_path, sep = '\t', header = TRUE)
 filtered <- operator_indices %>%
   filter(p_x == total_momentum[1],
          p_y == total_momentum[2],
-         p_z == total_momentum[3])
+         p_z == total_momentum[3],
+         alpha == 1)
 stopifnot(nrow(filtered) == 1)
 operator_id <- filtered$id
 
