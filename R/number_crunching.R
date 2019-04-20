@@ -80,6 +80,13 @@ needed_raw <- lapply(
 
 names(needed_raw) <- needed_names
 
+drop_zero_length <- function (x) {
+  x[sapply(x, length) > 0]
+}
+
+filtered_prescriptions <- lapplyn(all_prescriptions, drop_zero_length, 5)
+filtered_prescriptions <- lapplyn(filtered_prescriptions, drop_zero_length, 4)
+
 resolve <- function (prescription) {
   if (length(prescription) == 0) {
     return (NA)
@@ -108,7 +115,7 @@ resolve <- function (prescription) {
   apply(m, 2, sum)
 }
 
-resolved <- lapplyn(all_prescriptions, resolve, 6)
+resolved <- lapplyn(filtered_prescriptions, resolve, 6)
 
 resolved_filename <- sprintf('resolved-rho-%s-%s.js', total_momentum_str, irrep)
 jsonlite::write_json(resolved, resolved_filename, pretty = TRUE)
