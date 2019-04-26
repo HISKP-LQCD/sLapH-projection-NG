@@ -68,14 +68,20 @@ needed_raw <- lapply(
     
     #print(sprintf('Fetching %s (a %s) from %s.\n', datasetname, diagram, filename))
     
-    dataset <- tryCatch(
-      rhdf5::h5read(filename, datasetname),
-      error = function (e) {
-        warning(e)
-        NA
-      })
+    skip_h5_errors <- FALSE
     
-    if (is.na(dataset)) {
+    if (skip_h5_errors) {
+      dataset <- tryCatch(
+        rhdf5::h5read(filename, datasetname),
+        error = function (e) {
+          warning(e)
+          NA
+        })
+    } else {
+      dataset <- rhdf5::h5read(filename, datasetname)
+    }
+    
+    if (length(dataset) == 1 && is.na(dataset)) {
       return (0)
     }
     
@@ -188,7 +194,8 @@ load_target_config <- function (path) {
 correlator_matrix_indices$target <- mapply(load_target_config, correlator_matrix_indices$markus_file_name, SIMPLIFY = FALSE, USE.NAMES = FALSE)
 
 load_actual_config <- function (q_source, q_sink) {
-  resolved[[total_momentum_str]][[irrep]][['1']][['1']][[q_source]][[q_sink]]
+  irrep_col <- if (irrep %in% c('T1u', 'E')) '2' else '1'
+  resolved[[total_momentum_str]][[irrep]][[irrep_col]][['1']][[q_source]][[q_sink]]
 }
 
 correlator_matrix_indices$actual <- mapply(load_actual_config, correlator_matrix_indices$q_source, correlator_matrix_indices$q_sink, SIMPLIFY = FALSE, USE.NAMES = FALSE)
