@@ -1,5 +1,5 @@
-Get["../qct/qct.m"]
-<< sLapHProjection`
+Needs["qct`"]
+Needs["sLapHProjection`"]
 
 Print @ $ScriptCommandLine
 

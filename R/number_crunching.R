@@ -1,6 +1,6 @@
 #!/usr/bin/env Rscript
 
-#options(echo = TRUE)
+options(echo = TRUE)
 
 print(getwd())
 
@@ -68,7 +68,23 @@ needed_raw <- lapply(
     
     #print(sprintf('Fetching %s (a %s) from %s.\n', datasetname, diagram, filename))
     
-    dataset <- rhdf5::h5read(filename, datasetname)
+    skip_h5_errors <- FALSE
+    
+    if (skip_h5_errors) {
+      dataset <- tryCatch(
+        rhdf5::h5read(filename, datasetname),
+        error = function (e) {
+          warning(e)
+          NA
+        })
+    } else {
+      dataset <- rhdf5::h5read(filename, datasetname)
+    }
+    
+    if (length(dataset) == 1 && is.na(dataset)) {
+      return (0)
+    }
+    
     if (ncol(dataset) == 2) {
       return (dataset$re + 1i * dataset$im)
     } else if (colnames(dataset)[1] == 'rere') {
@@ -79,6 +95,13 @@ needed_raw <- lapply(
   })
 
 names(needed_raw) <- needed_names
+
+drop_zero_length <- function (x) {
+  x[sapply(x, length) > 0]
+}
+
+filtered_prescriptions <- lapplyn(all_prescriptions, drop_zero_length, 5)
+filtered_prescriptions <- lapplyn(filtered_prescriptions, drop_zero_length, 4)
 
 resolve <- function (prescription) {
   if (length(prescription) == 0) {
@@ -108,7 +131,7 @@ resolve <- function (prescription) {
   apply(m, 2, sum)
 }
 
-resolved <- lapplyn(all_prescriptions, resolve, 6)
+resolved <- lapplyn(filtered_prescriptions, resolve, 6)
 
 resolved_filename <- sprintf('resolved-rho-%s-%s.js', total_momentum_str, irrep)
 jsonlite::write_json(resolved, resolved_filename, pretty = TRUE)
@@ -137,7 +160,8 @@ operator_indices <- read.table(operator_indices_path, sep = '\t', header = TRUE)
 filtered <- operator_indices %>%
   filter(p_x == total_momentum[1],
          p_y == total_momentum[2],
-         p_z == total_momentum[3])
+         p_z == total_momentum[3],
+         alpha == 1)
 stopifnot(nrow(filtered) == 1)
 operator_id <- filtered$id
 
@@ -170,12 +194,13 @@ load_target_config <- function (path) {
 correlator_matrix_indices$target <- mapply(load_target_config, correlator_matrix_indices$markus_file_name, SIMPLIFY = FALSE, USE.NAMES = FALSE)
 
 load_actual_config <- function (q_source, q_sink) {
-  resolved[[total_momentum_str]][[irrep]][['1']][['1']][[q_source]][[q_sink]]
+  irrep_col <- if (irrep %in% c('T1u', 'E')) '2' else '1'
+  resolved[[total_momentum_str]][[irrep]][[irrep_col]][['1']][[q_source]][[q_sink]]
 }
 
 correlator_matrix_indices$actual <- mapply(load_actual_config, correlator_matrix_indices$q_source, correlator_matrix_indices$q_sink, SIMPLIFY = FALSE, USE.NAMES = FALSE)
 
-correlator_matrix_indices$time <- list(1:length(correlator_matrix_indices$actual[[1]]))
+correlator_matrix_indices$time <- list(1:length(correlator_matrix_indices$target[[1]]))
 
 correlator_matrix <- correlator_matrix_indices %>%
   tidyr::unnest() %>%

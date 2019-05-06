@@ -486,6 +486,10 @@ Since the Wolfram Language is a functional one, the most straightforward way to
 define a constant is as a function with zero arguments. In Haskell there is no
 distinction between constants and argument less functions at all.
 
+You need to properly install the Quark Contraction Tool. For this download the
+`qct.m` from their [GitHub repository](https://github.com/djukanovic/qct) and
+then follow [Wolfram's installation instructions](http://support.wolfram.com/kb/5648).
+
 ---
 
 -   **`MonitoredMap`**(function, list, label)
