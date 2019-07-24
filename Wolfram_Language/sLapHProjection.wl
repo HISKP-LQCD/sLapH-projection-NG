@@ -219,11 +219,11 @@ MomentaToAssocSourceSink[expr1_, expr2_] := Module[
   Conjugate[DTMomentaAssoc[<|a__|>]] * DTMomentaAssoc[<|b__|>] :> DTMomentaAssoc[<|a, b|>]]];
 
 MomentaToAssocSourceSink[expr1_, expr2_] := Module[{
-  assocSo = MomentaToAssoc[expr1, "so", -1],
-  assocSi = MomentaToAssoc[expr2, "si", +1],
+  assocSo = MomentaToAssoc[expr1, "so", +1],
+  assocSi = MomentaToAssoc[expr2, "si", -1],
   expandedProduct,
   expandedProductReplaced},
-  expandedProduct = ExpandAll[Conjugate @ assocSo * assocSi];
+  expandedProduct = ExpandAll[Conjugate@assocSo*assocSi];
   (* https://mathematica.stackexchange.com/a/109735/1507 *)
    
   expandedProductReplaced = ExpandAll @
