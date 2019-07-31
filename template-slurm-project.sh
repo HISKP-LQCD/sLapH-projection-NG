@@ -15,10 +15,11 @@ if ! [[ -f "$wolframscript" ]]; then
     wolframscript=/usr/local/Wolfram/Mathematica/12.0/SystemFiles/Kernel/Binaries/Linux-x86-64/wolframscript
 fi
 
+hostname
 date -Iseconds
 
 cd Wolfram_Language
 
-$wolframscript -script driver.wl {{ momentum|join(' ') }} {{ irrep }}
+time $wolframscript -script driver.wl {{ momentum|join(' ') }} {{ irrep }}
 
 date -Iseconds

@@ -13,6 +13,6 @@ set -x
 hostname
 date -Iseconds
 
-./number_crunching.R {{ momentum|join(' ') }} {{ irrep }}
+/usr/bin/time ./number_crunching.R {{ momentum|join(' ') }} {{ irrep }}
 
 date -Iseconds
