@@ -1699,8 +1699,8 @@ $$ p_1 = \frac{P'}{2} + q' \,, \quad p_2 = \frac{P'}{2} - q' \,. $$
 
 The parameterization used in this code here is $p_1 = P - q$ and $p_2 = q$ for
 the case of two particles. This means that in order to convert his
-parameterization into mine one has to use the relations $$ P = P' \,, \quad q =
-\frac{P'}{2} - q' \,. $$
+parameterization into mine one has to use the relations
+$$ P = P' \,, \quad q = \frac{P'}{2} - q' \,. $$
 
 The other way around works as
 $$ P' = P \,, \quad q' = \frac{P - 2 q}{2} \,. $$
@@ -1738,6 +1738,57 @@ id	element
 
 From this we can deduce which correlator matrix rows and columns correspond to
 my $q_\text{source}$ and $q_\text{sink}$.
+
+### Momentum cutoff
+
+For 000 T1u we are missing something in the HDF5 files:
+
+```
+Object C4cB_uuuu_p0-10.d000.g5_p-1-1-1.d000.g5_p111.d000.g5_p010.d000.g5
+does not exist in this HDF5 file.
+```
+
+Also for 000 A2u we have this:
+
+```
+Object C4cB_uuuu_p-1-1-1.d000.g5_p-1-1-1.d000.g5_p111.d000.g5_p111.d000.g5
+does not exist in this HDF5 file.
+```
+
+This is because Markus uses $d^2 \le 2$ for the rest frame. This is a some
+additional rule that one has to keep in mind.
+
+### Multiple irrep rows
+
+With some d²=1 E we have this:
+
+```
+Error: nrow(filtered) == 1 is not TRUE
+```
+
+- 110
+- 010
+- 0-10
+- 001
+- 00-1
+
+The issue here is that Markus has persisted multiple irrep rows. I need to
+compare to all the ones that I have or just fix it to some particular one.
+
+### Operators without coupling
+
+Sometimes there are no operator indices:
+
+```
+cannot open file 'B35.32/rho_p3_A2_operator-indices.tsv': No such file or
+directory
+```
+
+This likely is just because there is no coupling into that channel. My JSON
+files also show that there are matrix elements but none of them contain any
+actual correlators.
+
+###
 
 # Tests
 
