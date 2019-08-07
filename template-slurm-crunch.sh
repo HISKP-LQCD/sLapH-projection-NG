@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name {{ momentum|join('') }}-{{ irrep }}
+#SBATCH --job-name Cr{{ momentum|join('') }}-{{ irrep }}
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=500MB
 #SBATCH --mail-user=ueding@hiskp.uni-bonn.de
