@@ -10,7 +10,7 @@ set -e
 set -u
 set -x
 
-wolframscript=/usr/remote/Wolfram/Mathematica/12.0/SystemFiles/Kernel/Binaries/Linux-x86-64/wolframscript
+wolframscript=/usr/remote/Wolfram/Mathematica/11.3/SystemFiles/Kernel/Binaries/Linux-x86-64/wolframscript
 if ! [[ -f "$wolframscript" ]]; then
     wolframscript=/usr/local/Wolfram/Mathematica/12.0/SystemFiles/Kernel/Binaries/Linux-x86-64/wolframscript
 fi
