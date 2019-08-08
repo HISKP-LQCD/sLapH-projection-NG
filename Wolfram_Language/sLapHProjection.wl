@@ -54,7 +54,7 @@ ExtractMomentumFromFilename[filename_] := First[ToExpression /@ StringCases[
   filename,
   RegularExpression["\\((-?\\d+),(-?\\d+),(-?\\d+)\\)"] -> {"$1", "$2", "$3"}]]
 
-irrepFiles = FileNames[basePath <> "Single-cover/*-*-representations.txt"];
+irrepFiles = FileNames[basePath <> "single_cover/*-*-representations.txt"];
 irrepDatasets = ReadIrreps /@ irrepFiles;
 irrepAssocs = DatasetToAssocations /@ irrepDatasets;
 momenta = ExtractMomentumFromFilename /@ irrepFiles;
@@ -89,7 +89,7 @@ Parities[] =
   First @* Values /@ 
     Association @ IrrepDGammaAssoc[][[Key @ {0, 0, 0}]][["A1u"]];
   
-EulerAnglesAssoc[] = ReadEulerAngles[basePath <> "Single-cover/Oh-elements.txt"];
+EulerAnglesAssoc[] = ReadEulerAngles[basePath <> "single_cover/Oh-elements.txt"];
 
 EulerAnglesParityAssoc[] = MapThread[List, {EulerAnglesAssoc[], Parities[]}];
 
