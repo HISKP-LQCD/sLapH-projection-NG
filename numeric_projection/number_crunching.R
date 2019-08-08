@@ -37,15 +37,14 @@ else if (total_momentum_sq == 2) c(1, 1, 0)
 else if (total_momentum_sq == 3) c(1, 1, 1)
 else if (total_momentum_sq == 1) c(0, 0, 2))
 
-prescription_filename <- sprintf('gevp-rho-%s-%s.js', total_momentum_str, irrep)
+prescription_filename <- sprintf('prescriptions/gevp-rho-%s-%s.js', total_momentum_str, irrep)
 all_prescriptions <- jsonlite::read_json(prescription_filename)
 
 needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
 
 config_number <- 2552
-base_path <- '.'
 
-file_pattern <- sprintf('%s/*_cnfg%d.h5', base_path, config_number)
+file_pattern <- sprintf('correlators/*_cnfg%d.h5', config_number)
 files <- Sys.glob(file_pattern)
 
 diagrams <- sapply(files, function (file) strsplit(basename(file), '_')[[1]][1])
@@ -133,7 +132,8 @@ resolve <- function (prescription) {
 
 resolved <- lapplyn(filtered_prescriptions, resolve, 6)
 
-resolved_filename <- sprintf('resolved-rho-%s-%s.js', total_momentum_str, irrep)
+dir.create('projected')
+resolved_filename <- sprintf('projected/resolved-rho-%s-%s.js', total_momentum_str, irrep)
 jsonlite::write_json(resolved, resolved_filename, pretty = TRUE)
 
 q_avail_actual <- names(all_prescriptions[[total_momentum_str]][[irrep]][['1']][['1']])
@@ -152,9 +152,7 @@ elements <- apply(
 
 df_avail_actual <- data.frame(str = q_avail_actual, element = elements, stringsAsFactors = FALSE)
 
-target_dir <- 'B35.32'
-
-operator_indices_path <- sprintf('%s/rho_p%d_%s_operator-indices.tsv', target_dir, total_momentum_sq, irrep)
+operator_indices_path <- sprintf('reference/rho_p%d_%s_operator-indices.tsv', total_momentum_sq, irrep)
 operator_indices <- read.table(operator_indices_path, sep = '\t', header = TRUE)
 
 filtered <- operator_indices %>%
@@ -165,7 +163,7 @@ filtered <- operator_indices %>%
 stopifnot(nrow(filtered) == 1)
 operator_id <- filtered$id
 
-gevp_indices_path <- sprintf('%s/rho_p%d_%s_gevp-indices.tsv', target_dir, sum(total_momentum^2), irrep)
+gevp_indices_path <- sprintf('reference/rho_p%d_%s_gevp-indices.tsv', sum(total_momentum^2), irrep)
 gevp_indices <- read.table(gevp_indices_path, sep = '\t', header = TRUE, stringsAsFactors = FALSE)
 
 mapping <- left_join(df_avail_actual, gevp_indices, by = c('element')) %>%
@@ -182,7 +180,7 @@ correlator_matrix_indices %<>%
   select(q_source, q_sink, id_source, id_sink)
 
 correlator_matrix_indices %<>%
-  mutate(markus_file_name = sprintf('%s/rho_p%d_%s_op%d_gevp%d.%d.tsv', target_dir, sum(total_momentum^2), irrep, operator_id, id_source, id_sink))
+  mutate(markus_file_name = sprintf('reference/rho_p%d_%s_op%d_gevp%d.%d.tsv', sum(total_momentum^2), irrep, operator_id, id_source, id_sink))
 
 load_target_config <- function (path) {
   target <- read.table(path, header = TRUE)
@@ -216,4 +214,5 @@ ggplot(correlator_matrix, aes(x = time, y = abs(correlator), color = key)) +
        y = expression(abs(C(t))),
        color = 'Data')
 
-ggsave(sprintf('comparison-%s-%s.pdf', total_momentum_str, irrep), width = 10, height = 10)
+dir.create('comparison')
+ggsave(sprintf('comparison/comparison-%s-%s.pdf', total_momentum_str, irrep), width = 10, height = 10)
