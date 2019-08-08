@@ -1617,32 +1617,51 @@ following JSON structure:
 ```js
 {
   "001": {
-    "A1": {
-      "000": {
-        "000": {
-          "C4cB_uuuu_g5.p00-1.d000_g5.p00-1.d000_g5.p000.d000_g5.p000.d000": {
-            "conj": true, 
-            "im": 0, 
-            "re": 16
-          }, 
+    "E": {
+      "1": {
+        "1": {
+          "0-10": {
+            "0-10": [
+              {
+                "conj": false, 
+                "datasetname": "C4cB_uuuu_p0-10.d000.g5_p0-10.d000.g5_p01-1.d000.g5_p011.d000.g5", 
+                "im": 0.0, 
+                "re": -0.0078125
+              }, 
+              {
+                "conj": false, 
+                "datasetname": "C4cB_uuuu_p0-10.d000.g5_p010.d000.g5_p0-1-1.d000.g5_p011.d000.g5", 
+                "im": 0.0, 
+                "re": 0.0078125
+              },
+              // …
 ```
 
 It is an association of the following
-$$ d_\text{tot} \to \Gamma \to O_i \to O_j \to C \to (\text{Re}, \text{Im}, \dagger) \,. $$
+$$ d_\text{tot} \to \Gamma \to \beta \to \alpha \to O_i \to O_j \to \{ (C, \text{Re}, \text{Im}, \dagger) \} \,. $$
 
 The levels are:
 
-1. Total momentum (as string)
-2. Irreducible representation
-3. Label for the correlator matrix row, currently just a comma separated list
-   of the relative momenta that have been used. In the future where we have
-   other operators than just the pion, these will become more sophisticated
-   labels. These are for human consumption anyway, so for the point of this
-   code they are just strings.
-4. Label for the correlator matrix column
-5. HDF5 dataset name
-6. Weight factor (`re` and `im`) as well as whether the numeric correlator
-   needs to be complex conjugated first (`conj`)
+1.  Total momentum (as string)
+2.  Irrep name
+3.  Irrep column
+4.  Irrep row
+5.  Label for the correlator matrix row, currently just a comma separated list
+    of the relative momenta that have been used. In the future where we have
+    other operators than just the pion, these will become more sophisticated
+    labels. These are for human consumption anyway, so for the point of this
+    code they are just strings.
+6.  Label for the correlator matrix column
+7.  List with summands that contribute. Each list element contains these four
+    fields:
+
+    conj
+      ~ Whether the correlator is supposed to be complex conjugated before the
+        scaling factor is applied.
+    datasetname
+      ~ Name of the HDF5 dataset that is to be taken from the contraction code.
+    re, im
+      ~ Real and imaginary part of the weight factor that is to be applied.
 
 ### Iteration order
 
@@ -1809,8 +1828,6 @@ directory
 This likely is just because there is no coupling into that channel. My JSON
 files also show that there are matrix elements but none of them contain any
 actual correlators.
-
-###
 
 # Tests
 
