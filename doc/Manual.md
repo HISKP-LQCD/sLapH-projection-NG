@@ -1721,6 +1721,40 @@ Tasks:
 - Open needed HDF5 files
 - Combine various numeric correlators
 
+# Using the programs
+
+A typical usage would be specifying the physical process, computing all the
+projection coefficients and then projecting the computed correlators.
+
+## Projection coefficients
+
+The computation of the projection coefficients is parallel across the different
+total momenta $\vec d$ and the irreps $\Gamma$. This means that each of them
+can run in parallel at the cost of re-doing the Wick contractions. But as these
+are very cheap and the group theoretical sums are expensive this does not
+matter that much.
+
+Instead of using a Mathematica Notebook one uses a Wolfram Language script like
+the one found in `Wolfram_Language/driver`. This then calls the library
+functions that need. It takes command line arguments specifying the total
+momentum and the irrep. Using the `make-projection-jobs` script one generates
+an array of SLURM job scripts that each generate the projection coefficients
+for a single irrep. These jobs are then submitted.
+
+Using Mathematica 11.3 they take between an hour and around a day. With
+Mathematica 12 we face a severe performance regression and it is basically
+unusable.
+
+The projection coefficients will be a bunch of JSON files in
+`Wolfram_Language`.
+
+## Projecting numerical data
+
+For the numerical projection the code is prepared as a script in
+`R/number_crunching.R` and takes the same command line arguments. The job
+script generator creates files for that as well, so you can submit these jobs
+also.
+
 # Tests
 
 The following are tests that we can perform to increase the confidence in $H_0$
@@ -1735,6 +1769,10 @@ values.
 
 We want to do a fully automated complete comparison such that there are no
 manual steps which are additional sources of errors.
+
+We have picked the B35.32 ensemble for no particular reason. From Markus we
+take the contractions for configuration 2552 in the form of HDF5 files. Also we
+take his projected correlators in the form of TSV files to compare to.
 
 ### Momentum parameterization
 
