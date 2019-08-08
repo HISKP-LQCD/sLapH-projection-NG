@@ -255,34 +255,55 @@ For the group theory there are a few options:
 Copying tables
 
   ~ There are various books and papers which list all the things that we need.
-  Copying them is just error-prone and we would have to check for consistency
-  ourselves. Apparently the `Bethe` Maple library also has it copied from a
-  paper.
+    Copying them is just error-prone and we would have to check for consistency
+    ourselves. Apparently the `Bethe` Maple library also has it copied from a
+    paper.
+
+GAP
+
+  ~ A commenter on my [Stack Exchange
+    question](https://mathematica.stackexchange.com/q/188767/1507) mentioned
+    [GAP](https://www.gap-system.org/). There is seems to be rather easy to
+    generate the groups. It is built in or can be created from the generators.
+    Then it has the character tables and the conjugacy classes available right
+    away.
+
+    ```
+    Oh := SmallGroup(48,48);
+    Oh := Group( (1,3,4,2)(5,7,8,6), (2,5,3)(4,6,7), (1,8)(2,7)(3,6)(4,5) );
+    Display(CharacterTable(Oh));
+    Display(ConjugacyClasses(Oh));
+    ```
 
 Maple
 
   ~ This is bad because neither the university nor the institute has have a
-  license for it. We could ask the institute to buy one, though I do not
-  believe that the institute can buy the student version for around 150 EUR.
-  The `Bethe` library has been used by Markus for the $\rho$-project. Perhaps
-  we just ask him to export all we need and hope that we never have to touch it
-  again.
+    license for it. We could ask the institute to buy one, though I do not
+    believe that the institute can buy the student version for around 150 EUR.
+    The `Bethe` library has been used by Markus for the $\rho$-project. Perhaps
+    we just ask him to export all we need and hope that we never have to touch
+    it again.
 
 Mathematica
 
   ~ The university has a Mathematica campus license, so although that is
-  license riddled as well, at least *we* can use it.
+    license riddled as well, at least *we* can use it.
   
     The octahedral group is not directly available in Mathematica but I managed
     to get it via the representation as a permutation group. I can also
     construct the little groups (also known as stabilizers) but not the irreps.
 
+    There also is the
+    [GTPack](https://www.frontiersin.org/articles/10.3389/fphy.2018.00086/full)
+    library which might add what we need. We have not looked into this in
+    detail yet.
+
 Sage
 
   ~ I have been looking into alternatives a bit yesterday and found that Sage
-  has the group in some form that one can at least get the multiplication and
-  character table, see [this
-  snippet](https://sagecell.sagemath.org/?z=eJyNjrFOwzAQhvdIeQdLDLWFY0pYGApLJRgQ4gGqNjrcwzVy4mBfI_z2xIGAQB3QLb_-T9_d2bb3gVgEg8oEf-yjaoGCfW_MGF9sZwldagx2GIBwXxZ5HtRquGU3_9fUOmnnybdW31l0e34tygLGDUM17K7YWXwLxOuxs7nb1WXxpCnzx2nrfT7BN7y6PLfiopbfgfGfpsphK9nmswO5lGwp-dTDVuS_-2A74ov1AQJowsAInh0uxEzyUaVn2kyUi18qJIfptDehk5LvXo8GdGLaQYwY_5ozb774qH8A9juBiQ==&lang=sage):
+    has the group in some form that one can at least get the multiplication and
+    character table, see [this
+    snippet](https://sagecell.sagemath.org/?z=eJyNjrFOwzAQhvdIeQdLDLWFY0pYGApLJRgQ4gGqNjrcwzVy4mBfI_z2xIGAQB3QLb_-T9_d2bb3gVgEg8oEf-yjaoGCfW_MGF9sZwldagx2GIBwXxZ5HtRquGU3_9fUOmnnybdW31l0e34tygLGDUM17K7YWXwLxOuxs7nb1WXxpCnzx2nrfT7BN7y6PLfiopbfgfGfpsphK9nmswO5lGwp-dTDVuS_-2A74ov1AQJowsAInh0uxEzyUaVn2kyUi18qJIfptDehk5LvXo8GdGLaQYwY_5ozb774qH8A9juBiQ==&lang=sage):
 
     ```python
     import sage.groups.matrix_gps.finitely_generated
