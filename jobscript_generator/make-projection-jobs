@@ -23,13 +23,13 @@ def main():
     os.makedirs('jobscripts', exist_ok=True)
 
     for momentum, irrep in pairs:
-        rendered = template_project.render(momentum=momentum, irrep=irrep)
+        rendered = template_project.render(momentum=momentum, irrep=irrep, srcdir=srcdir)
         filename = 'slurm-project-{}{}{}-{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
         path = os.path.join('jobscripts', filename)
         with open(path, "w") as f:
             f.write(rendered)
 
-        rendered = template_crunch.render(momentum=momentum, irrep=irrep)
+        rendered = template_crunch.render(momentum=momentum, irrep=irrep, srcdir=srcdir)
         filename = 'slurm-crunch-{}{}{}-{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
         path = os.path.join('jobscripts', filename)
         with open(path, "w") as f:
