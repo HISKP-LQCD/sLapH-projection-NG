@@ -1782,16 +1782,21 @@ id	element
 From this we can deduce which correlator matrix rows and columns correspond to
 my $q_\text{source}$ and $q_\text{sink}$.
 
-### Momentum cutoff
+### Common fallacies
 
-For 000 T1u we are missing something in the HDF5 files:
+While performing the comparisons there are a few issues that can occur and need
+to be taken care of.
+
+#### Momentum cutoff
+
+For $\vec d = (0, 0, 0)$ in the T1u we are missing something in the HDF5 files:
 
 ```
 Object C4cB_uuuu_p0-10.d000.g5_p-1-1-1.d000.g5_p111.d000.g5_p010.d000.g5
 does not exist in this HDF5 file.
 ```
 
-Also for 000 A2u we have this:
+Also for $\vec d = (0, 0, 0)$ in the A2u we have this:
 
 ```
 Object C4cB_uuuu_p-1-1-1.d000.g5_p-1-1-1.d000.g5_p111.d000.g5_p111.d000.g5
@@ -1801,24 +1806,19 @@ does not exist in this HDF5 file.
 This is because Markus uses $d^2 \le 2$ for the rest frame. This is a some
 additional rule that one has to keep in mind.
 
-### Multiple irrep rows
+#### Multiple irrep rows
 
-With some d²=1 E we have this:
+With some $d^2 = 1$ in the E we have this:
 
 ```
 Error: nrow(filtered) == 1 is not TRUE
 ```
 
-- 110
-- 010
-- 0-10
-- 001
-- 00-1
-
 The issue here is that Markus has persisted multiple irrep rows. I need to
-compare to all the ones that I have or just fix it to some particular one.
+compare to all the ones that I have or just fix it to some particular one. This
+also only happens in the E irreps, the T1u just contains one.
 
-### Operators without coupling
+#### Operators without coupling
 
 Sometimes there are no operator indices:
 
@@ -1829,7 +1829,25 @@ directory
 
 This likely is just because there is no coupling into that channel. My JSON
 files also show that there are matrix elements but none of them contain any
-actual correlators.
+actual summands. Markus has not created files in case that there is no
+coupling.
+
+### Comparison results
+
+We currently (2019-08-08) see that the following:
+
+-   For $d^2 = 0$ in the T1u we get agreement up to a factor of 2. We haven't
+    resolved it yet.
+
+-   Almost all other irreps (except the E) show perfect agreement.
+
+-   Then for some reason all the E irreps in both $d^2 = 1$ and $d^2 = 3$ are
+    off. They look as if they give somewhat the same effective masses, but they
+    do not agree perfectly.
+
+    The E are special because they contain complex irrep coefficients whereas
+    the T1u contains only purely real or purely imaginary ones, all other
+    irreps contain just real coefficients.
 
 ## Physical non-coupling
 
