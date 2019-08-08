@@ -3,6 +3,7 @@
 
  # Document meta data:
 title: New Projection Code
+subtitle: Architecture, Design, Manual
 author:
   - Martin Ueding (<ueding@hiskp.uni-bonn.de>)
 date: 2019-01-12
