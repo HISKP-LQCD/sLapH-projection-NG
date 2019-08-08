@@ -10,23 +10,29 @@ import jinja2
 
 
 def main():
+    srcdir = os.path.dirname(os.path.dirname(__file__))
+
     # Setting up Jinja
-    env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(srcdir, 'jobscript_generator')))
     template_project = env.get_template("template-slurm-project.sh")
     template_crunch = env.get_template("template-slurm-crunch.sh")
 
-    with open('irreps_avail.js') as f:
+    with open(os.path.join(srcdir, 'single_cover', 'irreps_avail.js')) as f:
         pairs = json.load(f)
+
+    os.makedirs('jobscripts', exist_ok=True)
 
     for momentum, irrep in pairs:
         rendered = template_project.render(momentum=momentum, irrep=irrep)
         filename = 'slurm-project-{}{}{}-{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
-        with open(filename, "w") as f:
+        path = os.path.join('jobscripts', filename)
+        with open(path, "w") as f:
             f.write(rendered)
 
         rendered = template_crunch.render(momentum=momentum, irrep=irrep)
         filename = 'slurm-crunch-{}{}{}-{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
-        with open(filename, "w") as f:
+        path = os.path.join('jobscripts', filename)
+        with open(path, "w") as f:
             f.write(rendered)
 
 
