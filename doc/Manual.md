@@ -1643,23 +1643,31 @@ $$ d_\text{tot} \to \Gamma \to \beta \to \alpha \to O_i \to O_j \to \{ (C, \text
 The levels are:
 
 1.  Total momentum (as string)
+
 2.  Irrep name
+
 3.  Irrep column
+
 4.  Irrep row
+
 5.  Label for the correlator matrix row, currently just a comma separated list
     of the relative momenta that have been used. In the future where we have
     other operators than just the pion, these will become more sophisticated
     labels. These are for human consumption anyway, so for the point of this
     code they are just strings.
+
 6.  Label for the correlator matrix column
+
 7.  List with summands that contribute. Each list element contains these four
     fields:
 
     conj
       ~ Whether the correlator is supposed to be complex conjugated before the
         scaling factor is applied.
+
     datasetname
       ~ Name of the HDF5 dataset that is to be taken from the contraction code.
+
     re, im
       ~ Real and imaginary part of the weight factor that is to be applied.
 
