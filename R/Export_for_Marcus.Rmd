@@ -15,7 +15,7 @@ His suggestion is the following format:
 >
 > and correlator specifies which data set goes in, like Op_snk - Op_src
 
-This basically is just a flat version of the 
+This basically is just a flat version of the JSON file that we have.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -25,3 +25,12 @@ knitr::opts_chunk$set(echo = TRUE)
 total_momentum_d <- c(0, 0, 1)
 irrep <- 'E'
 ```
+
+```{r}
+filename <- sprintf('../Wolfram_Language/gevp-rho-%d%d%d-%s.js', total_momentum_d[1], total_momentum_d[2], total_momentum_d[3], irrep)
+```
+
+```{r}
+structured <- jsonlite::read_json(filename)
+```
+
