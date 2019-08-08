@@ -1,3 +1,6 @@
+srcDir = DirectoryName @ $InputFileName;
+PrependTo[$Path, srcDir];
+
 Needs["qct`"]
 Needs["sLapHProjection`"]
 
@@ -24,9 +27,9 @@ utm2 = UniqueTotalMomenta /@ Range[0, 4];
 utm2Flat = Flatten[utm2, 1];
 relMomenta = {#} & /@ utm2Flat
 
-cutoff = 3;
+cutoff = 1;
 
-filename = "gevp-rho-" <> MomentumToString[totalMomentum] <> "-" <> irrep <> ".js";
+filename = "prescriptions/gevp-rho-" <> MomentumToString[totalMomentum] <> "-" <> irrep <> ".js";
 Print @ filename
 
 timing1 = AbsoluteTiming[some = StructureButSingle[totalMomentum, irrep, relMomenta, cutoff]][[1]];

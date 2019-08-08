@@ -9,7 +9,7 @@ Needs["qct`"]
 
 (* Utility functions *)
 
-basePath = "../";
+basePath = DirectoryName @ DirectoryName @ $InputFileName;
 
 (*
 MonitoredMap[f_, list_, label_ : ""] := Module[{i},

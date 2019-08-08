@@ -18,8 +18,7 @@ fi
 hostname
 date -Iseconds
 
-cd Wolfram_Language
-
-time $wolframscript -script driver.wl {{ momentum|join(' ') }} {{ irrep }}
+mkdir -p prescriptions
+time $wolframscript -script {{ srcdir }}/analytic_projection/driver.wl {{ momentum|join(' ') }} {{ irrep }}
 
 date -Iseconds
