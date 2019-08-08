@@ -1501,21 +1501,67 @@ correlators? I see these options:
     Wolfram Language can export JSON. I am perfectly fine with that, converting
     it to YAML is trivial with some Python or R script.
 
-    The structure would look like this:
-    \begin{multline*}
-    \vec d \to \Gamma \to \alpha \to
-    \Big\{
-    \big(
-    (O_\text{si}, O_\text{so},
-    \vec q_\text{si,1}, \vec q_\text{si,2}, \ldots,
-    \vec q_\text{so,1}, \vec q_\text{so,2}, \ldots),
-    \\
-    (\mathtt{datasetname}, \mathtt{conjugate}, \mathtt{re}, \mathtt{im})
-    \big)
-    \Big\} \,.
-    \end{multline*}
+As usual with these listings, I prefer the last option. The interface will be a
+an association of the following form:
+$$ d_\text{tot} \to \Gamma \to \beta \to \alpha \to O_i \to O_j \to \{ (C,
+\text{Re}, \text{Im}, \dagger) \} \,. $$
 
-As usual with these listings, I prefer the last option.
+A typical JSON file looks like this:
+
+```js
+{
+  "001": {
+    "E": {
+      "1": {
+        "1": {
+          "0-10": {
+            "0-10": [
+              {
+                "conj": false, 
+                "datasetname": "C4cB_uuuu_p0-10.d000.g5_p0-10.d000.g5_p01-1.d000.g5_p011.d000.g5", 
+                "im": 0.0, 
+                "re": -0.0078125
+              }, 
+              {
+                "conj": false, 
+                "datasetname": "C4cB_uuuu_p0-10.d000.g5_p010.d000.g5_p0-1-1.d000.g5_p011.d000.g5", 
+                "im": 0.0, 
+                "re": 0.0078125
+              },
+              // …
+```
+
+The levels are:
+
+1.  Total momentum (as string)
+
+2.  Irrep name
+
+3.  Irrep column
+
+4.  Irrep row
+
+5.  Label for the correlator matrix row, currently just a comma separated list
+    of the relative momenta that have been used. In the future where we have
+    other operators than just the pion, these will become more sophisticated
+    labels. These are for human consumption anyway, so for the point of this
+    code they are just strings.
+
+6.  Label for the correlator matrix column
+
+7.  List with summands that contribute. Each list element contains these four
+    fields:
+
+    conj
+      ~ Whether the correlator is supposed to be complex conjugated before the
+        scaling factor is applied.
+
+    datasetname
+      ~ Name of the HDF5 dataset that is to be taken from the contraction code.
+
+    re, im
+      ~ Real and imaginary part of the weight factor that is to be applied.
+
 
 ### Generating the structure
 
@@ -1611,65 +1657,8 @@ described in the next chapter.
 ## Projecting the computed correlators
 
 Taking the tables from the preceding step we must read in the prescribed HDF5
-data sets and combine them given the factors. The interface that we get is the
-following JSON structure:
-
-```js
-{
-  "001": {
-    "E": {
-      "1": {
-        "1": {
-          "0-10": {
-            "0-10": [
-              {
-                "conj": false, 
-                "datasetname": "C4cB_uuuu_p0-10.d000.g5_p0-10.d000.g5_p01-1.d000.g5_p011.d000.g5", 
-                "im": 0.0, 
-                "re": -0.0078125
-              }, 
-              {
-                "conj": false, 
-                "datasetname": "C4cB_uuuu_p0-10.d000.g5_p010.d000.g5_p0-1-1.d000.g5_p011.d000.g5", 
-                "im": 0.0, 
-                "re": 0.0078125
-              },
-              // …
-```
-
-It is an association of the following
-$$ d_\text{tot} \to \Gamma \to \beta \to \alpha \to O_i \to O_j \to \{ (C, \text{Re}, \text{Im}, \dagger) \} \,. $$
-
-The levels are:
-
-1.  Total momentum (as string)
-
-2.  Irrep name
-
-3.  Irrep column
-
-4.  Irrep row
-
-5.  Label for the correlator matrix row, currently just a comma separated list
-    of the relative momenta that have been used. In the future where we have
-    other operators than just the pion, these will become more sophisticated
-    labels. These are for human consumption anyway, so for the point of this
-    code they are just strings.
-
-6.  Label for the correlator matrix column
-
-7.  List with summands that contribute. Each list element contains these four
-    fields:
-
-    conj
-      ~ Whether the correlator is supposed to be complex conjugated before the
-        scaling factor is applied.
-
-    datasetname
-      ~ Name of the HDF5 dataset that is to be taken from the contraction code.
-
-    re, im
-      ~ Real and imaginary part of the weight factor that is to be applied.
+data sets and combine them given the factors. The interface that we get is
+described in [Interface to numerical code]
 
 ### Iteration order
 
@@ -1730,6 +1719,11 @@ Tasks:
 - Iterate through files
 - Open needed HDF5 files
 - Combine various numeric correlators
+
+# Tests
+
+The following are tests that we can perform to increase the confidence in $H_0$
+which says that the code works perfectly fine.
 
 ## Comparison to Markus' data
 
@@ -1837,11 +1831,6 @@ This likely is just because there is no coupling into that channel. My JSON
 files also show that there are matrix elements but none of them contain any
 actual correlators.
 
-# Tests
-
-The following are tests that we can perform to increase the confidence in $H_0$
-which says that the code works perfectly fine.
-
 ## Physical non-coupling
 
 There are a bunch of channels which should not couple with specific momenta and
@@ -1851,12 +1840,6 @@ irreps, we can check for these.
 
 Correlation functions with operators from different irreps should just vanish.
 We can just pick a few examples and see how that works out.
-
-## Old projection code
-
-Using Markus' projection code we can take correlators on a single gauge
-configuration and project them to some irrep and momenta. The numeric results
-should be exactly the same.
 
 <!-- Links to Wolfram Language reference -->
 
