@@ -204,7 +204,7 @@ correlator_matrix <- correlator_matrix_indices %>%
   tidyr::unnest() %>%
   tidyr::gather(key, correlator, actual, target)
 
-ggplot(correlator_matrix, aes(x = time, y = abs(correlator), color = key)) +
+p <- ggplot(correlator_matrix, aes(x = time, y = abs(correlator), color = key)) +
   geom_point(position = position_dodge(width = 0.3)) +
   scale_y_log10() +
   facet_grid(q_source ~ q_sink) +
@@ -215,4 +215,4 @@ ggplot(correlator_matrix, aes(x = time, y = abs(correlator), color = key)) +
        color = 'Data')
 
 dir.create('comparison')
-ggsave(sprintf('comparison/comparison-%s-%s.pdf', total_momentum_str, irrep), width = 10, height = 10)
+ggsave(sprintf('comparison/comparison-%s-%s.pdf', total_momentum_str, irrep), p, width = 10, height = 10)
