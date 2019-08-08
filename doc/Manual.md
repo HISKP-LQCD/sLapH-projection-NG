@@ -426,7 +426,7 @@ R
 I choose R for the implementation. This will also allow bundling it closer with
 the Lüscher-Analysis package.
 
-# Design and implementation (Mathematica)
+# Design and implementation (Wolfram Language)
 
 Most of the code will be done in Mathematica. This section contains the design
 and implementation of the different tasks along the way.
