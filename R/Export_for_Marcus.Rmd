@@ -1,0 +1,27 @@
+---
+title: "Export for Marcus"
+author: "Martin Ueding"
+date: "7 August 2019"
+output: html_document
+---
+
+Marcus Petschlies has implemented a similar projection code. We want to compare our results. For this we need to export the results obtained via Mathematica in a common format.
+
+His suggestion is the following format:
+
+> Maybe you could write out in text format a table like
+>
+> irrep --- row source --- row sink --- coeff --- correlator
+>
+> and correlator specifies which data set goes in, like Op_snk - Op_src
+
+This basically is just a flat version of the 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+total_momentum_d <- c(0, 0, 1)
+irrep <- 'E'
+```
