@@ -1658,7 +1658,7 @@ described in the next chapter.
 
 Taking the tables from the preceding step we must read in the prescribed HDF5
 data sets and combine them given the factors. The interface that we get is
-described in [Interface to numerical code]
+described in [Interface to numerical code].
 
 ### Iteration order
 
