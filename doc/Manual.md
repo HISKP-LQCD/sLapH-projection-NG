@@ -1764,9 +1764,13 @@ one needs the reference data for the same ensemble placed in `WORK/reference`
 in the form of TSV files like `rho_p2_B2_op8_gevp3.0.tsv`.
 
 For the actual numerical projection the code is prepared as a script in
-`SRC/numeric_projection/number_crunching.R` and takes the same command line
-arguments. The job script generator creates files for that into
-`WORK/jobscripts` as well, so you can submit these jobs also.
+
+
+    SRC/numeric_projection/number_crunching.R
+
+and takes the same command line arguments. The job script generator creates
+files for that into `WORK/jobscripts` as well, so you can submit these jobs
+also.
 
 The projected data will be placed into `WORK/projected` and comparison plots
 are created into `WORK/comparison`.
