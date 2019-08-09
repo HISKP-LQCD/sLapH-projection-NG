@@ -1726,6 +1726,11 @@ Tasks:
 A typical usage would be specifying the physical process, computing all the
 projection coefficients and then projecting the computed correlators.
 
+The directory and file structure works as follows. The git repository contains
+all the source files and is called *source directory* or `SRC`. The user must
+create a *work directory*. It is recommended that this is outside of the source
+directory such that none of the generated files appear to git.
+
 ## Projection coefficients
 
 The computation of the projection coefficients is parallel across the different
@@ -1735,25 +1740,36 @@ are very cheap and the group theoretical sums are expensive this does not
 matter that much.
 
 Instead of using a Mathematica Notebook one uses a Wolfram Language script like
-the one found in `Wolfram_Language/driver`. This then calls the library
+the one found in `SRC/analytic_projection/driver`. This then calls the library
 functions that need. It takes command line arguments specifying the total
-momentum and the irrep. Using the `make-projection-jobs` script one generates
-an array of SLURM job scripts that each generate the projection coefficients
-for a single irrep. These jobs are then submitted.
+momentum and the irrep. Using the
+`SRC/jobscript_generator/make-projection-jobs` script one generates an array of
+SLURM job scripts in `WORK/jobscripts` that each generate the projection
+coefficients for a single irrep. These jobs are then submitted to SLURM with
+`SRC` as the working directory.
 
 Using Mathematica 11.3 they take between an hour and around a day. With
 Mathematica 12 we face a severe performance regression and it is basically
 unusable.
 
 The projection coefficients will be a bunch of JSON files in
-`Wolfram_Language`.
+`WORK/prescriptions`. 
 
 ## Projecting numerical data
 
-For the numerical projection the code is prepared as a script in
-`R/number_crunching.R` and takes the same command line arguments. The job
-script generator creates files for that as well, so you can submit these jobs
-also.
+Numeric projection needs the HDF5 files from the contraction code. These are to
+be placed into `WORK/correlators` and named like `C4cB_cnfg2552.h5`, just as
+the contraction code generates them. For the comparison to Markus Werner's data
+one needs the reference data for the same ensemble placed in `WORK/reference`
+in the form of TSV files like `rho_p2_B2_op8_gevp3.0.tsv`.
+
+For the actual numerical projection the code is prepared as a script in
+`SRC/numeric_projection/number_crunching.R` and takes the same command line
+arguments. The job script generator creates files for that into
+`WORK/jobscripts` as well, so you can submit these jobs also.
+
+The projected data will be placed into `WORK/projected` and comparison plots
+are created into `WORK/comparison`.
 
 # Tests
 
