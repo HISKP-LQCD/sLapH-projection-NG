@@ -6,7 +6,7 @@ title: New Projection Code
 subtitle: Architecture, Design, Manual
 author:
   - Martin Ueding (<ueding@hiskp.uni-bonn.de>)
-date: 2019-01-12
+date: \today
 abstract: >
   The [existing projection
   code](https://github.com/HISKP-LQCD/sLapH-projection) only works for the
