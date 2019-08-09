@@ -134,7 +134,7 @@ O_\Gamma^{\alpha}(\vec p_\text{cm})^\dagger &=
 \langle J, M | J_1, M_1, \ldots, J_{N_\text P}, M_{N_\text P} \rangle
 \\&\quad\times
 \sum_{\beta=1}^{\mathop{\mathrm{nrow}(\Gamma)}}
-\tilde\phi_\beta 
+\tilde\phi_\beta
 \sum_{g \in \mathop{\mathrm{LG}}(\vec p_\text{cm})}
 D_{\alpha\beta}^\Gamma(g)^*
 \\&\quad\times
@@ -289,7 +289,7 @@ Mathematica
 
   ~ The university has a Mathematica campus license, so although that is
     license riddled as well, at least *we* can use it.
-  
+
     The octahedral group is not directly available in Mathematica but I managed
     to get it via the representation as a permutation group. I can also
     construct the little groups (also known as stabilizers) but not the irreps.
@@ -857,8 +857,8 @@ From the spin projected operator we extract the actual momenta
 
     ```mathematica
     -(1/2) Sqrt[3/2]
-       ConjugateTranspose[SingleOperator[1, 2, -2, {0, 1, 0}]] - 
-     1/2 ConjugateTranspose[SingleOperator[1, 2, 0, {0, 1, 0}]] - 
+       ConjugateTranspose[SingleOperator[1, 2, -2, {0, 1, 0}]] -
+     1/2 ConjugateTranspose[SingleOperator[1, 2, 0, {0, 1, 0}]] -
      1/2 Sqrt[3/2] ConjugateTranspose[SingleOperator[1, 2, 2, {0, 1, 0}]]
    ```
 
@@ -893,7 +893,7 @@ From the spin projected operator we extract the actual momenta
 
     ```
     (-E^I ConjugateTranspose[
-        SingleOperator[1, 1, 1, {Sin[1], -Cos[1], 1}]]) ** 
+        SingleOperator[1, 1, 1, {Sin[1], -Cos[1], 1}]]) **
      ConjugateTranspose[SingleOperator[2, 1, 0, {-Cos[1], -Sin[1], 0}]]
     ```
 
@@ -1022,7 +1022,7 @@ From these we build for instance an $I = 2$ operator.
 
 ```mathematica
 \[Pi]\[Pi]I2[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
-    \[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2]; 
+    \[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2];
 ```
 
 For reasons not entirely clear to me we need to define the “bar” version of
@@ -1032,7 +1032,7 @@ do anything about that. Anyway, the second operator is this:
 
 ```mathematica
 \[Pi]\[Pi]I2Bar[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
-    \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1]; 
+    \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1];
 ```
 
 A few pion operators are defined as part of the library such that they do not
@@ -1224,7 +1224,7 @@ code. There are three things that need to be done:
 
 -   **`RotateGammaToFront`**(expression)
 
-    Takes an expression like 
+    Takes an expression like
 
     ```mathematica
     Gamma^5.DE[{"dn", "dn"}, {so[2], si[1]}].
@@ -1325,7 +1325,7 @@ expression with a `C4cD` diagram:
 qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]].
   qct`Gamma^g2_ . prop["dn", si[si2_]]]
 qct`trace[qct`Gamma^g3_ . prop["up", so[so3_]].
-  qct`Gamma^g4_ . prop["dn", si[si4_]]] :> 
+  qct`Gamma^g4_ . prop["dn", si[si4_]]] :>
 TemplateApply[
   "C4cD_uuuu_" <> MakeTemplate[4],
   <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
@@ -1358,7 +1358,7 @@ corresponding to the spin projected operators.
     [`ReplaceAll`] to replace propagator expression with HDF5 dataset name
     templates ([`StringTemplate`]). The replacements are expressions like
     these:
-    
+
     ```mathematica
     "C2cD_uu_g5.p`pso1`.d000_g5.p`psi1`.d000"
     ```
@@ -1384,7 +1384,7 @@ dataset names.
     "C4cD_uuuu_g5.p`pso1`.d000_g5.p`psi1`.d000_g5.p`pso2`.d000_g5.p`psi2`.d000"
     ```
 
-    and an expression containing *momenta associations* like 
+    and an expression containing *momenta associations* like
 
     ```mathematica
     DTMomentaAssoc[<|"pso1" -> "011", "pso2" -> "100", "psi1" -> "011",
@@ -1518,15 +1518,15 @@ A typical JSON file looks like this:
           "0-10": {
             "0-10": [
               {
-                "conj": false, 
-                "datasetname": "C4cB_uuuu_p0-10.d000.g5_p0-10.d000.g5_p01-1.d000.g5_p011.d000.g5", 
-                "im": 0.0, 
+                "conj": false,
+                "datasetname": "C4cB_uuuu_p0-10.d000.g5_p0-10.d000.g5_p01-1.d000.g5_p011.d000.g5",
+                "im": 0.0,
                 "re": -0.0078125
-              }, 
+              },
               {
-                "conj": false, 
-                "datasetname": "C4cB_uuuu_p0-10.d000.g5_p010.d000.g5_p0-1-1.d000.g5_p011.d000.g5", 
-                "im": 0.0, 
+                "conj": false,
+                "datasetname": "C4cB_uuuu_p0-10.d000.g5_p010.d000.g5_p0-1-1.d000.g5_p011.d000.g5",
+                "im": 0.0,
                 "re": 0.0078125
               },
               // …
@@ -1753,7 +1753,7 @@ Mathematica 12 we face a severe performance regression and it is basically
 unusable.
 
 The projection coefficients will be a bunch of JSON files in
-`WORK/prescriptions`. 
+`WORK/prescriptions`.
 
 ## Projecting numerical data
 
