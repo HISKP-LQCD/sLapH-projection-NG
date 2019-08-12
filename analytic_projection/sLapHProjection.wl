@@ -121,6 +121,19 @@ GetParity[momentumpcm_, angles_] :=
 MomentumTransform[matrixRGtilde_, eulerG_] :=
   matrixRGtilde . CachedParityEulerMatrix[eulerG] . Inverse @ matrixRGtilde;
 
+RotateMomenta[groupElementName_, momenta_] := With[
+  {rotationMatrix = 
+    CachedParityEulerMatrix @ 
+     EulerAnglesParityAssoc[][[groupElementName]]},
+  Map[rotationMatrix . # &, momenta]]
+
+MomentaOrbit[irrep_, momenta_] :=
+  Sort @ DeleteDuplicates @ Map[RotateMomenta[#, momenta] &,
+     Keys @ IrrepDGammaAssoc[][[Key @ MomentumRef @ Total @ momenta]][[Key @ irrep]]];
+
+RemoveRedundantMomenta[irrep_, individualMomenta_] :=
+  Keys @ DeleteDuplicates @ AssociationMap[MomentaOrbit[irrep, #] &, individualMomenta];
+
 
 (* Clebsch-Gordan coefficients *)
 
