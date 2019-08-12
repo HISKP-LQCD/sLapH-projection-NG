@@ -16,14 +16,14 @@ def main():
     functions_declared = []
     functions_documented = []
 
-    with open('sLapHProjection.wl') as f:
+    with open('analytic_projection/sLapHProjection.wl') as f:
         for line in f:
             m = function_pattern.search(line)
             if m:
                 function = m.group(1)
                 functions_declared.append(function)
 
-    with open('doc/New_Subduction.md') as f:
+    with open('doc/Manual.md') as f:
         for line in f:
             m = doc_pattern.search(line)
             if m:
