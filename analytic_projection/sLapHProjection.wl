@@ -145,7 +145,7 @@ MakeSingleOperator[momentumpi_, momentumpcm_, eulerG_, spinJi_, spinMi_, i_] :=
     momentumTransform = MomentumTransform[matrixRGtilde, eulerG];
     Sum[
       eulerG[[2]] *
-      WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]][[1]], eulerG[[1]][[2]], eulerG[[1]][[3]]]  *
+      WignerD[{spinJi, spinMi1, spinMi}, eulerG[[1]][[1]], eulerG[[1]][[2]], eulerG[[1]][[3]]] *
       eulerGtilde[[2]] *
       WignerD[{spinJi, spinMi2, spinMi1}, eulerGtilde[[1]][[1]], eulerGtilde[[1]][[2]], eulerGtilde[[1]][[3]]] *
       ConjugateTranspose[SingleOperator[i, spinJi, spinMi2, momentumTransform . momentumpi]],
