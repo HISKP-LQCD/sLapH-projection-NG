@@ -226,7 +226,7 @@ MomentaToAssocSourceSink[expr1_, expr2_] := Module[{
   expandedProduct = ExpandAll[Conjugate@assocSo*assocSi];
   (* https://mathematica.stackexchange.com/a/109735/1507 *)
    
-  expandedProductReplaced = ExpandAll @
+expandedProductReplaced = ExpandAll @
     ReplaceAll[expandedProduct, e : Conjugate[Plus[__]] :> Thread[e, Plus]];
   FullSimplify @ ReplaceAll[expandedProductReplaced,
     Conjugate[DTMomentaAssoc[<|a__|>]]*DTMomentaAssoc[<|b__|>] :> DTMomentaAssoc[<|a, b|>]]];
