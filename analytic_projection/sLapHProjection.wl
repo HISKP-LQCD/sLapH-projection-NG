@@ -121,7 +121,7 @@ GetParity[momentumpcm_, angles_] :=
 MomentumTransform[matrixRGtilde_, eulerG_] :=
   matrixRGtilde . CachedParityEulerMatrix[eulerG] . Inverse @ matrixRGtilde;
 
-RotateMomenta[groupElementName_, momenta_] := With[
+RotateMomenta[groupElementName_String, momenta_] := With[
   {rotationMatrix = 
     CachedParityEulerMatrix @ 
      EulerAnglesParityAssoc[][[groupElementName]]},

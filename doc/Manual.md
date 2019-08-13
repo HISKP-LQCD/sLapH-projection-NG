@@ -749,6 +749,12 @@ need. Great, we're done here if the definition of the Euler angles matches.
     single-particle operator:
     $$ R_{\tilde g}^{-1} R_g R_{\tilde g} \,. $$
 
+-   **`RotateMomenta`**($g$, $\{ \vec p_i \}$)
+
+    Takes the group element name as a string and a set of momenta. Then it
+    rotates all the momenta using the cartesian representation of the given
+    group element.
+
 -   **`MomentaOrbit`**($\{ \vec p_i \}$)
 
     Computes the whole orbit of the given momentum set under the rotations
@@ -770,6 +776,14 @@ need. Great, we're done here if the definition of the Euler angles matches.
      {{0, 0, -1}, {0, 0, 1}}, {{0, 0, 1}, {0, 0, -1}},
      {{0, 1, 0}, {0, -1, 0}}, {{1, 0, 0}, {-1, 0, 0}}}
     ```
+-   **`RemoveRedundantMomenta`**($\{\{ \vec p_i \}\}$)
+
+    Takes a list of sets of momenta and removes the ones that can be obtained
+    via little group rotations. All these combinations must have the same total
+    momentum, otherwise the results are likely strange.
+
+    The picked set of unique momenta is deterministic but likely different from
+    the hand-picked set that Markus Werner uses.
 
 ### Spin representation
 
