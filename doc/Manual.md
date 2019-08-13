@@ -733,7 +733,7 @@ need. Great, we're done here if the definition of the Euler angles matches.
 -   **`EulerGTilde`**($\vec p_\text{cm}$)
 
     Finds a set of Euler angles $(\psi, \theta, \phi)$ such that the rotation
-    matrix coverts the reference momentum into center-of-mass momentum, i.e.
+    matrix converts the reference momentum into center-of-mass momentum, i.e.
     $$\vec p_\text{cm} = R(\psi, \theta, \phi) \; \vec p_\text{ref} \,.$$ This
     transformation is not unique, but that *should* not be a problem as we sum
     over the little group elements anyway.
