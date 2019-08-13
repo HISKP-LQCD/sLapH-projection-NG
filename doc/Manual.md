@@ -686,7 +686,7 @@ This is now implemented.
     giving you a new function which accepts an irrep $\Gamma$ and gives you a
     function which ….
 
-### Creating the Cartesian representation
+### Cartesian representation
 
 In the file `Oh-elements.txt` we just have the names of the group elements and
 the Euler angles.
@@ -749,7 +749,29 @@ need. Great, we're done here if the definition of the Euler angles matches.
     single-particle operator:
     $$ R_{\tilde g}^{-1} R_g R_{\tilde g} \,. $$
 
-### Creating the spin representation
+-   **`MomentaOrbit`**($\{ \vec p_i \}$)
+
+    Computes the whole orbit of the given momentum set under the rotations
+    according to the little group corresponding to $\vec P = \sum_i \vec p_i$.
+    The result is a list of momentum sets.
+
+    For instance we can take $p_1 = (0, 0, 1)$ and $p_2 = (0, 0, -1)$. Then the
+    according stabilizer subgroup will the the whole of the octahedral group.
+    We can then run this:
+
+    ```mathematica
+    momentaOrbit[{{0, 0, 1}, {0, 0, -1}}]
+    ```
+
+    And get the following result back:
+
+    ```mathematica
+    {{{-1, 0, 0}, {1, 0, 0}}, {{0, -1, 0}, {0, 1, 0}},
+     {{0, 0, -1}, {0, 0, 1}}, {{0, 0, 1}, {0, 0, -1}},
+     {{0, 1, 0}, {0, -1, 0}}, {{1, 0, 0}, {-1, 0, 0}}}
+    ```
+
+### Spin representation
 
 The spin-$J$ representations are for free as well, we just use [`WignerD`]
 which is a mapping

@@ -127,12 +127,12 @@ RotateMomenta[groupElementName_, momenta_] := With[
      EulerAnglesParityAssoc[][[groupElementName]]},
   Map[rotationMatrix . # &, momenta]]
 
-MomentaOrbit[irrep_, momenta_] :=
+MomentaOrbit[momenta_] :=
   Sort @ DeleteDuplicates @ Map[RotateMomenta[#, momenta] &,
-     Keys @ IrrepDGammaAssoc[][[Key @ MomentumRef @ Total @ momenta]][[Key @ irrep]]];
+     Keys @ IrrepDGammaAssoc[][[Key @ MomentumRef @ Total @ momenta]][[1]]];
 
-RemoveRedundantMomenta[irrep_, individualMomenta_] :=
-  Keys @ DeleteDuplicates @ AssociationMap[MomentaOrbit[irrep, #] &, individualMomenta];
+RemoveRedundantMomenta[individualMomenta_] :=
+  Keys @ DeleteDuplicates @ AssociationMap[MomentaOrbit, individualMomenta];
 
 
 (* Clebsch-Gordan coefficients *)
