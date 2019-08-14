@@ -26,7 +26,7 @@ if (!exists('total_momentum')) {
   stopifnot(length(args) == 5)
   total_momentum <- as.integer(args[1:3])
   irrep <- args[4]
-  config_number <- args[5]
+  config_number <- as.integer(args[5])
 }
 
 total_momentum_sq <- sum(total_momentum^2)
