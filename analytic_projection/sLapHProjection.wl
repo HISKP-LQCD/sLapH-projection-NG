@@ -141,12 +141,6 @@ RelMomentaRefLabelFromIndividual[momenta_] :=
 
 MomentaMaxNorm[momenta_] := Max[Norm[#]^2 & /@ momenta];
 
-FilterRelativeMomenta[totalMomentum_, relMomenta_, cutoff_] :=
-  Map[RelMomentaFromIndividual,
-    Select[RemoveRedundantMomenta[Map[RelativeToIndividualMomenta[totalMomentum, #] &,
-                                      relMomenta]],
-    MomentaMaxNorm @ # <= cutoff &]];
-
 
 (* Clebsch-Gordan coefficients *)
 

@@ -1761,6 +1761,29 @@ described in the next chapter.
     given total momentum. Return value is an association from irrep to a list
     of spin projected operators.
 
+-   **`PrescriptionToNumeric`**(prescription)
+
+    Takes a prescription as an association with the fields
+
+    - `"datasetname"`
+    - `"re"`
+    - `"im"`
+    - `"conj"`
+
+    and converts the symbolic expressions for real and imaginary part into
+    floating point numbers such that it can be exported as JSON.
+
+-   **`DatasetnameToObject`**(value, key)
+
+    The key is a HDF5 dataset name string which might start with `conj:`. The
+    value is a symbolic complex number. These are converted into an association
+    with the fields
+
+    - `"datasetname"`
+    - `"re"`
+    - `"im"`
+    - `"conj"`.
+
 # Design and implementation (R)
 
 ## Projecting the computed correlators
