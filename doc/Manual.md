@@ -521,6 +521,10 @@ then follow [Wolfram's installation instructions](http://support.wolfram.com/kb/
     shows a progress bar together with the given *label*. With sensible labels
     it can therefore be nested.
 
+-   **`DropEmpty`**(container)
+
+    Drops all elements from the container which are of length 0.
+
 ## Momenta
 
 For this code we use the momentum parametrization for $n$ particles with a
@@ -592,6 +596,10 @@ representation].
     This is a convenience function using `RelMomentaRefFromIndividual` and
     `MomentumToString`.
 
+-   **`MomentaMaxNorm`**($\{ \vec p_i \}$)
+
+    Computes $\max_i \| \vec p_i \|^2$.
+
 ## Group theory
 
 ### Data format for group elements and irreps
@@ -653,7 +661,7 @@ within the little group. Little groups belonging to the momenta that are
 related by a lattice rotation are equivalent to each other but contain
 different members of the original group.
 
-### Reading the lattice irreps
+### Lattice irreps
 
 The irrep matrices are represented in the *long format*. For instance that
 `C2x` group element in the `Eg` irrep is a $2 \times 2$ matrix that is written
@@ -756,6 +764,11 @@ This is now implemented.
     You can think of this as a function taking a momentum vector $\vec d$ and
     giving you a new function which accepts an irrep $\Gamma$ and gives you a
     function which ….
+
+-   **`IrrepSize`**($\vec d_\text{tot}$, $\Gamma$)
+
+    Gives the number of rows (equal to number of columns) that a given irrep
+    has.
 
 ### Cartesian representation
 
@@ -867,6 +880,12 @@ need. Great, we're done here if the definition of the Euler angles matches.
     $$ P R(\alpha, \beta, \gamma) \vec d_\text{tot} = \vec d_\text{tot} $$
     for $P$. $R$ is the cartesian rotation matrix corresponding to the three
     Euler angles.
+
+-   **`Parities`**()
+
+    An association which maps group element names to either a parity eigenvalue
+    of either `+1` or `-1`. These values are determined from the $A_1^-$ irrep.
+
 
 ### Spin representation
 
