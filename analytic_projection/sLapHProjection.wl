@@ -143,16 +143,6 @@ RelativeToIndividualMomenta[totalMomentum_, relMomenta_] :=
   MatrixRGTilde[totalMomentum] . # & /@ 
     Catenate[{{MomentumRef[totalMomentum] - Total[relMomenta]}, relMomenta}];
 
-IsBelowCutoff[totalMomentum_, relMomentum_, cutoff_] := 
-  Max[Norm[#]^2 & /@ RelativeToIndividualMomenta[totalMomentum, relMomentum]] <= cutoff;
-
-FilterRelativeMomenta[totalMomentum_, relMomenta_, cutoff_] :=
-  IsBelowCutoff[totalMomentum, #, cutoff] & /@ relMomenta;
-
-AllIndividualMomenta[totalMomentum_, relMomenta_, cutoff_] := 
-  Select[RelativeToIndividualMomenta[totalMomentum, #] & /@ relMomenta, 
-    Max[Norm[#]^2 & /@ #] <= cutoff &];
-
 RelMomentaFromIndividual[momenta_] := Drop[momenta, 1];
 
 RelMomentaRef[totalMomentum_, relMomenta_] := 
@@ -164,6 +154,14 @@ RelMomentaRefFromIndividual[momenta_] :=
 RelMomentaRefLabelFromIndividual[momenta_] :=
   StringRiffle[
    Map[MomentumToString, RelMomentaRefFromIndividual @ momenta], ","];
+
+MomentaMaxNorm[momenta_] := Max[Norm[#]^2 & /@ momenta];
+
+FilterRelativeMomenta[totalMomentum_, relMomenta_, cutoff_] :=
+  Map[RelMomentaFromIndividual,
+    Select[RemoveRedundantMomenta[Map[RelativeToIndividualMomenta[totalMomentum, #] &,
+                                      relMomenta]],
+    MomentaMaxNorm @ # <= cutoff &]];
 
 
 (* Clebsch-Gordan coefficients *)
@@ -510,32 +508,30 @@ IrrepSize[totalMomentum_, irrep_] :=
 MultiGroupSum[irrep_, momentapi_, irrepRow_, irrepCol_, hold_ : Identity] := 
   hold @ MakeGroupSum[irrep, irrepRow, irrepCol, momentapi, {0, 0, 0}, {0, 0, 0}];
 
-GroupSumIrrepRowCol[totalMomentum_, irrep_, irrepRow_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
-Module[{selectedIndividualMomenta = AllIndividualMomenta[totalMomentum, relMomenta, cutoff]},
-  AssociationThread[Map[MomentumToString,
-      Pick[relMomenta, FilterRelativeMomenta[totalMomentum, relMomenta, cutoff]],
-      {2}],
+GroupSumIrrepRowCol[totalMomentum_, irrep_, irrepRow_, irrepCol_, relMomenta_, hold_ : Identity] := 
+Module[{selectedIndividualMomenta = RelativeToIndividualMomenta[totalMomentum, #] & /@ relMomenta},
+  AssociationThread[Map[MomentumToString, relMomenta {2}],
     MonitoredMap[MultiGroupSum[irrep, #, irrepRow, irrepCol, hold] &, 
       selectedIndividualMomenta, "Momentum"]]];
 
-GroupSumIrrepRow[totalMomentum_, irrep_, irrepCol_, relMomenta_, cutoff_, hold_ : Identity] := 
+GroupSumIrrepRow[totalMomentum_, irrep_, irrepCol_, relMomenta_, hold_ : Identity] := 
 Module[{rows = Range[1, IrrepSize[totalMomentum, irrep]]},
   AssociationThread[
     ToString /@ rows,
-    MonitoredMap[GroupSumIrrepRowCol[totalMomentum, irrep, #, irrepCol, relMomenta, cutoff, hold] &,
+    MonitoredMap[GroupSumIrrepRowCol[totalMomentum, irrep, #, irrepCol, relMomenta, hold] &,
       rows, "Irrep row"]]];
 
-GroupSumWholeIrrep[totalMomentum_, irrep_, relMomenta_, cutoff_, hold_ : Identity] := 
+GroupSumWholeIrrep[totalMomentum_, irrep_, relMomenta_, hold_ : Identity] := 
 Module[{cols = Range[1, IrrepSize[totalMomentum, irrep]]},
   AssociationThread[
     ToString /@ cols,
-    MonitoredMap[GroupSumIrrepRow[totalMomentum, irrep, #, relMomenta, cutoff, hold] &,
+    MonitoredMap[GroupSumIrrepRow[totalMomentum, irrep, #, relMomenta, hold] &,
       cols, "Irrep col"]]];
 
-GroupSumWholeTotalMomentum[totalMomentum_, relMomenta_, cutoff_, hold_ : Identity] := Module[
+GroupSumWholeTotalMomentum[totalMomentum_, relMomenta_, hold_ : Identity] := Module[
   {irreps = Keys @ IrrepDGammaAssoc[][totalMomentum]},
   AssociationThread[irreps,
-    MonitoredMap[GroupSumWholeIrrep[totalMomentum, #, relMomenta, cutoff, hold] &,
+    MonitoredMap[GroupSumWholeIrrep[totalMomentum, #, relMomenta, hold] &,
       irreps, "Irrep"]]];
 
 DatasetnameToObject[value_, key_] := Module[
@@ -570,9 +566,9 @@ MomentaAndTemplatesToJSONFile[momentaAssoc_, templates_, filename_] := Module[
   WriteString[filename, json];
   json];
 
-StructureButSingle[totalMomentum_, irrep_, relMomenta_, cutoff_] :=
+StructureButSingle[totalMomentum_, irrep_, relMomenta_] :=
   <|totalMomentum -> <|irrep ->
-    GroupSumWholeIrrep[totalMomentum, irrep, relMomenta, cutoff]|>|>;
+    GroupSumWholeIrrep[totalMomentum, irrep, relMomenta]|>|>;
 
 
 EndPackage[];
