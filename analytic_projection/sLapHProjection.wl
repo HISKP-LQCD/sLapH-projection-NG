@@ -360,10 +360,6 @@ FlavorSwitchRules[] = {
 MakeTemplate[n_] := StringRiffle[
  Table["p`x" <> ToString @ i <> "`.d000.g`g" <> ToString @ i <> "`", {i, 1, n}], "_"]
 
-GammaRules[n_] := Association[Table[
-  With[{v = "g" <> ToString @ i}, v :> ToExpresion @ v],
-  {i, 1, n}]]
-
 DatasetNameRules[] = {
   (* C6cC *)
   qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]] .
