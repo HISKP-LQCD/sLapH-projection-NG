@@ -7,9 +7,72 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+library(tibble)
+library(dplyr)
 ```
 
 ```{r}
-workdir <- dirname(getwd())
+split_filename <- function (path) {
+  filename <- basename(path)
+  parts <- stringr::str_match(filename, 'resolved_(.*)_(.*)_(.*)\\.js')
+  parts[1, 2:4]
+}
+```
+
+
+```{r}
+workdir <- '~/Lattice/NG2'
+```
+
+```{r}
+all_projected_paths <- Sys.glob(paste0(workdir, '/projected/resolved_*_*_*.js'))
+```
+
+```{r}
+parts <- do.call(rbind, lapply(all_projected_paths, split_filename))
+colnames(parts) <- c('total_momentum', 'irrep', 'config_number')
+df <- as_tibble(parts)
+df$path <- all_projected_paths
+```
+
+```{r}
+recursive_merge <- function (data) {
+  first <- data[[1]]
+  
+  if (is.list(first)) {
+    names_first <- names(first)
+    res <- list()
+    for (name in names_first) {
+      elements <- lapply(data, function (elem) elem[[name]])
+      merged <- recursive_merge(elements)
+      res[[name]] <- merged
+    }
+    return (res)
+  } else if (is.vector(first)) {
+    res <- do.call(rbind, data)
+    return (res)
+  } else {
+    stop()
+  }
+}
+
+make_merge <- function (stuff) {
+  data <- lapply(stuff$path, jsonlite::read_json, simplifyVector = TRUE)
+  merged <- recursive_merge(data)[[1]]
+  
+  dirpath <- sprintf('%s/correlator_matrices')
+  if (!dir.exists(dirpath)) {
+    dir.create(dirpath)
+  }
+  saveRDS(merged, sprintf('%s/correlator_matrix_%s_%s.Rdata', dirpath, stuff$total_momentum[1], stuff$irrep[1]))
+                          
+  tibble(merged = merged)
+}
+
+result <- df %>%
+  arrange(total_momentum, irrep, config_number) %>%
+  group_by(total_momentum, irrep) %>%
+  do(make_merge(.))
 ```
 
