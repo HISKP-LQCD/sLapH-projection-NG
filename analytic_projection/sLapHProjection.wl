@@ -61,16 +61,6 @@ momenta = ExtractMomentumFromFilename /@ irrepFiles;
 IrrepDGammaAssoc[] = AssociationThread[momenta, irrepAssocs];
 
 
-(* Irrep reading utilities that are not used *)
-
-MatrixFromAssocList[assocs_] := Module[{dataset, rows, cols, values, size},
-  dataset = Dataset[assocs];
-  rows = Normal @ dataset[[All, "row"]];
-  cols = Normal @ dataset[[All, "col"]];
-  values = Normal @ dataset[[All, "matrix element"]];
-  size = Length @ values;
-  Partition[ToExpression /@ values, Sqrt[size]]];
-
 (* Cartesian representation *)
 
 ReadEulerAngles[filename_] := Module[{oh, values},
