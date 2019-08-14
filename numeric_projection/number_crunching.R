@@ -23,9 +23,10 @@ args <- commandArgs(trailingOnly = TRUE)
 print(args)
 
 if (!exists('total_momentum')) {
-  stopifnot(length(args) == 4)
+  stopifnot(length(args) == 5)
   total_momentum <- as.integer(args[1:3])
   irrep <- args[4]
+  config_number <- args[5]
 }
 
 total_momentum_sq <- sum(total_momentum^2)
@@ -41,8 +42,6 @@ prescription_filename <- sprintf('prescriptions/gevp-rho-%s-%s.js', total_moment
 all_prescriptions <- jsonlite::read_json(prescription_filename)
 
 needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
-
-config_number <- 2552
 
 file_pattern <- sprintf('correlators/*_cnfg%d.h5', config_number)
 files <- Sys.glob(file_pattern)
