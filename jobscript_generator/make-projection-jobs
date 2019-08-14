@@ -6,6 +6,7 @@
 import argparse
 import json
 import os
+import sys
 
 import jinja2
 
@@ -54,7 +55,11 @@ def parse_args():
     numeric.add_argument('last', type=int, help='last configuration number (inclusive)')
     numeric.add_argument('step', type=int, default=1, help='configuration stepping (default: %(default)s)')
 
-    return parser.parse_args()
+    options = parser.parse_args()
+
+    if not 'action' in options:
+        parser.print_help()
+        sys.exit(1)
 
 
 if __name__ == "__main__":
