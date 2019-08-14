@@ -785,6 +785,18 @@ need. Great, we're done here if the definition of the Euler angles matches.
     The picked set of unique momenta is deterministic but likely different from
     the hand-picked set that Markus Werner uses.
 
+-   **`ParityEulerMatrix`**($\{ \alpha, \beta, \gamma \}$, $P$)
+
+    Multiplies the Euler matrix associated with the three Euler angles with the
+    additional parity factor $P$.
+
+-   **`GetParity`**($\vec d_\text{tot}$, $\{ \alpha, \beta, \gamma \}$)
+
+    Determines the parity eigenvalue $P$ for a given rotation by solving
+    $$ P R(\alpha, \beta, \gamma) \vec d_\text{tot} = \vec d_\text{tot} $$
+    for $P$. $R$ is the cartesian rotation matrix corresponding to the three
+    Euler angles.
+
 ### Spin representation
 
 The spin-$J$ representations are for free as well, we just use [`WignerD`]
@@ -1279,11 +1291,18 @@ code. There are three things that need to be done:
     {si[1], so[2], si[2], so[1]}
     ```
 
+-   **`StartScore`**(propagator)
+
+    Gives a sorting score for propagators based on their flavor and time
+    slices. *up* and *down* get weighted with 1000 and 2000, respectively. The
+    time slice index at source gets added with a scaling of 1, the time slice
+    index at sink gets added with a scaling of 100.
+
 -   **`IndexOfFirst`**(traceContent)
 
     Determines which propagator should be the first one in the expression. If
     the result is $n$, then the whole expression should be rotated left by $2(n
-    - 1)$ iterations.
+    - 1)$ iterations. It uses the `StartScore` to figure out the ordering.
 
 -   **`NormalizeTrace`**(traceContent)
 
