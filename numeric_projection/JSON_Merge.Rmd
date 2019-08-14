@@ -1,0 +1,15 @@
+---
+title: "JSON Merge"
+author: "Martin Ueding"
+date: "14 August 2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+workdir <- dirname(getwd())
+```
+
