@@ -19,6 +19,6 @@ hostname
 date -Iseconds
 
 mkdir -p prescriptions
-time $wolframscript -script {{ srcdir }}/analytic_projection/driver.wl {{ momentum|join(' ') }} {{ irrep }}
+time $wolframscript -script {{ srcdir }}/analytic_projection/driver_rho.wl {{ momentum|join(' ') }} {{ irrep }}
 
 date -Iseconds
