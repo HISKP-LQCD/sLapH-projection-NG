@@ -71,12 +71,6 @@ MatrixFromAssocList[assocs_] := Module[{dataset, rows, cols, values, size},
   size = Length @ values;
   Partition[ToExpression /@ values, Sqrt[size]]];
 
-MatrixLongToActual[dataset_] := GroupBy[
-  dataset,
-  Normal @ Values @ Take[#, 6] &,
-  MatrixFromAssocList];
-
-
 (* Cartesian representation *)
 
 ReadEulerAngles[filename_] := Module[{oh, values},
