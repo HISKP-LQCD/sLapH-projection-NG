@@ -20,6 +20,7 @@ def main():
     with open(os.path.join(srcdir, 'single_cover', 'irreps_avail.js')) as f:
         pairs = json.load(f)
 
+    os.makedirs('batch_output', exist_ok=True)
     os.makedirs('jobscripts', exist_ok=True)
 
     for momentum, irrep in pairs:
