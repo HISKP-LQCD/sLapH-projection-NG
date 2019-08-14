@@ -521,6 +521,77 @@ then follow [Wolfram's installation instructions](http://support.wolfram.com/kb/
     shows a progress bar together with the given *label*. With sensible labels
     it can therefore be nested.
 
+## Momenta
+
+For this code we use the momentum parametrization for $n$ particles with a
+total momentum $\vec d_\text{tot}$ and $n - 1$ relative momenta $\{ \vec q_i |
+i = 1, \ldots, n-1\}$. These are converted into individual momenta using the
+relations
+$$ \vec p_1 = \vec d_\text{tot} - \sum_{j = 1}^{n - 1} \vec q_j
+\qquad \text{and} \qquad
+\vec p_i = \vec q_{i - 1} \,. $$
+
+In this section we describe some functions that work with momenta only and do
+not require group theory. For those functions see the section on the [Cartesian
+representation].
+
+---
+
+-   **`MomentumToString`**($\vec p$)
+
+    Converts an integer momentum vector like `{1, 0, -1}` into the string
+    `"10-1"`.
+
+-   **`RelativeToIndividualMomenta`**($\vec d_\text{tot}$, $\{ \vec q_i \}$)
+
+    Converts the given total momentum $\vec d_\text{tot}$ and $n - 1$ relative
+    momenta $\{ \vec q_i \}$ to a list of $n$ particle momenta $\{ \vec p_i
+    \}$.
+
+-   **`AllRelativeMomenta`**($\vec d_\text{tot}$, $\{ \vec q_i \}$, cutoff)
+
+    If any of the momenta $\{ \vec p_i \}$ have a magnitude greater than
+    *cutoff*, the result is an empty list.
+
+-   **`UniqueTotalMomenta`**($\vec d^2$)
+
+    Gives a list of unique total momenta corresponding to the given total
+    momentum magnitude. For $\vec d^2 = 1, 2, 3, 4$, these are the following:
+
+        {0, 0, 1}, {0, 0, -1}, {1, 0, 0}, {-1, 0, 0}, {0, 1, 0},
+        {0, -1, 0}
+
+        {1, 1, 0}, {1, -1, 0}, {-1, 1, 0}, {-1, -1, 0}, {0, 1, 1},
+        {0, 1, -1}, {0, -1, 1}, {0, -1, -1}, {1, 0, 1}, {1, 0, -1},
+        {-1, 0, -1}, {-1, 0, 1}
+
+        {1, 1, 1}, {1, -1, -1}, {-1, 1, -1}, {-1, -1, 1}, {1, -1, 1},
+        {1, 1, -1}, {-1, 1, 1}, {-1, -1, -1}
+
+        {0, 0, 2}, {0, 0, -2}, {2, 0, 0}, {-2, 0, 0}, {0, 2, 0},
+        {0, -2, 0}
+
+-   **`RelMomentaFromIndividual`**($\{ \vec p_i \}$)
+
+    Takes a list of $n$ individual momenta and returns $n-1$ relative momenta.
+    Due to our parametrization this is just taking every element except the
+    last one.
+
+-   **`RelMomentaRef`**($\vec d_\text{tot}$, $\{ \vec q_i \}$)
+
+    Takes relative momenta in the lattice frame and rotates them back into the
+    reference system using the inverse `MatrixRGTilde` operation.
+
+-   **`RelMomentaRefFromIndividual`**($\{ \vec p_i \}$)
+
+    Convenience function using `RelMomentaFromIndividual` and `RelMomentaRef`.
+
+-   **`RelMomentaRefLabelFromIndividual`**($\{ \vec p_i \}$)
+
+    Takes individual momenta and creates a label like `"000,001"` from this.
+    This is a convenience function using `RelMomentaRefFromIndividual` and
+    `MomentumToString`.
+
 ## Group theory
 
 ### Data format for group elements and irreps
@@ -973,11 +1044,6 @@ From the spin projected operator we extract the actual momenta
     \texttt{MakeGroupSum}(\Gamma, \alpha, \beta, \{ \vec p_i \}, \{ J_i \}, \{ M_i \}) \,.
     \end{align*}
 
--   **`MomentumToString`**($\vec p$)
-
-    Converts an integer momentum vector like `{1, 0, -1}` into the string
-    `"10-1"`.
-
 -   **`ExtractMomenta`**(expr)
 
     Extracts all the momenta from the `SingleOperator`s used. The resulting
@@ -1000,7 +1066,6 @@ From the spin projected operator we extract the actual momenta
     `"si"`
 
     Calling this function with
-
 
     ```mathematica
     MomentaToRules[{0, 1, 1} ** {1, 0, 0}, "si"]
@@ -1375,7 +1440,6 @@ to templates ([`StringTemplate`]) that can then be used with [`TemplateApply`]
 to insert the momenta. The following replacement can be used to replace an
 expression with a `C4cD` diagram:
 
-
 ```mathematica
 qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]].
   qct`Gamma^g2_ . prop["dn", si[si2_]]]
@@ -1419,7 +1483,6 @@ corresponding to the spin projected operators.
     ```
 
     The following mappings are performed:
-
 
 ## Wick contraction and spin
 
@@ -1618,7 +1681,6 @@ The levels are:
     re, im
       ~ Real and imaginary part of the weight factor that is to be applied.
 
-
 ### Generating the structure
 
 First we need to iterate through all the momenta $\vec d$ that we want to use.
@@ -1647,38 +1709,6 @@ the terms until we eventually get a JSON representation. This interface is
 described in the next chapter.
 
 ---
-
--   **`UniqueTotalMomenta`**($\vec d^2$)
-
-    Gives a list of unique total momenta corresponding to the given total
-    momentum magnitude. For $\vec d^2 = 1, 2, 3, 4$, these are the following:
-
-        {0, 0, 1}, {0, 0, -1}, {1, 0, 0}, {-1, 0, 0}, {0, 1, 0},
-        {0, -1, 0}
-
-        {1, 1, 0}, {1, -1, 0}, {-1, 1, 0}, {-1, -1, 0}, {0, 1, 1},
-        {0, 1, -1}, {0, -1, 1}, {0, -1, -1}, {1, 0, 1}, {1, 0, -1},
-        {-1, 0, -1}, {-1, 0, 1}
-
-        {1, 1, 1}, {1, -1, -1}, {-1, 1, -1}, {-1, -1, 1}, {1, -1, 1},
-        {1, 1, -1}, {-1, 1, 1}, {-1, -1, -1}
-
-        {0, 0, 2}, {0, 0, -2}, {2, 0, 0}, {-2, 0, 0}, {0, 2, 0},
-        {0, -2, 0}
-
--   **`RelativeToTotalMomenta`**($\vec d_\text{tot}$, $\{ \vec q_i \}$)
-
-    Converts the given total momentum $\vec d_\text{tot}$ and $n - 1$ relative
-    momenta $\{ \vec q_i \}$ to a list of $n$ particle momenta $\{ \vec p_i \}$
-    using the relations
-    $$ \vec p_1 = \vec d_\text{tot} - \sum_{j = 1}^{n - 1} \vec q_j
-    \qquad \text{and} \qquad
-    \vec p_i = \vec q_{i - 1} \,. $$
-
--   **`AllRelativeMomenta`**($\vec d_\text{tot}$, $\{ \vec q_i \}$, cutoff)
-
-    If any of the momenta $\{ \vec p_i \}$ have a magnitude greater than
-    *cutoff*, the result is an empty list.
 
 -   **`MultiGroupSum`**(irrep, $\{\{ \vec p_i \}\}$, hold : [`Identity`])
 
@@ -1820,7 +1850,6 @@ in the form of TSV files like `rho_p2_B2_op8_gevp3.0.tsv`.
 
 For the actual numerical projection the code is prepared as a script in
 
-
     SRC/numeric_projection/number_crunching.R
 
 and takes the same command line arguments. The job script generator creates
@@ -1839,7 +1868,7 @@ which says that the code works perfectly fine.
 
 Markus has already projected all the data for the $\rho$ channel, we can just
 use this to compare. His data is not only in a different format but also uses
-different parameterizations for individual momenta $p_i$ via his $P'$ and $q'$
+different parametrizations for individual momenta $p_i$ via his $P'$ and $q'$
 values.
 
 We want to do a fully automated complete comparison such that there are no
@@ -1849,14 +1878,14 @@ We have picked the B35.32 ensemble for no particular reason. From Markus we
 take the contractions for configuration 2552 in the form of HDF5 files. Also we
 take his projected correlators in the form of TSV files to compare to.
 
-### Momentum parameterization
+### Momentum parametrization
 
-Markus' parameterization works as
+Markus' parametrization works as
 $$ p_1 = \frac{P'}{2} + q' \,, \quad p_2 = \frac{P'}{2} - q' \,. $$
 
-The parameterization used in this code here is $p_1 = P - q$ and $p_2 = q$ for
+The parametrization used in this code here is $p_1 = P - q$ and $p_2 = q$ for
 the case of two particles. This means that in order to convert his
-parameterization into mine one has to use the relations
+parametrization into mine one has to use the relations
 $$ P = P' \,, \quad q = \frac{P'}{2} - q' \,. $$
 
 The other way around works as
