@@ -661,6 +661,10 @@ within the little group. Little groups belonging to the momenta that are
 related by a lattice rotation are equivalent to each other but contain
 different members of the original group.
 
+All group theoretical results can be found in human-readable form in the
+Mathematica notebook `analytic_projection/Summary_of_Matrices.nb`. In case it
+exists see the PDF file with the same name for an exported version.
+
 ### Lattice irreps
 
 The irrep matrices are represented in the *long format*. For instance that
