@@ -132,5 +132,5 @@ resolve <- function (prescription) {
 resolved <- lapplyn(filtered_prescriptions, resolve, 6)
 
 dir.create('projected')
-resolved_filename <- sprintf('projected/resolved_rho_%s_%s_%04d.js', total_momentum_str, irrep, config_number)
+resolved_filename <- sprintf('projected/resolved_%s_%s_%04d.js', total_momentum_str, irrep, config_number)
 jsonlite::write_json(resolved, resolved_filename, pretty = TRUE)
