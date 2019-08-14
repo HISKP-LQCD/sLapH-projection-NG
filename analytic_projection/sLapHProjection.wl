@@ -211,7 +211,7 @@ MakeGroupSum[irrep_, irrepRow_, irrepCol_, momentapi_, spinsJi_, spinsMi_] := Mo
     IrrepDGammaAssoc[][[Key @ MomentumRef @ Total @ momentapi]][[Key @ irrep]]];
   Plus @@ groupSummands / Length[groupSummands]];
 
-MakeMagneticSum2[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, phasePhiM_] :=
+MakeMagneticSum[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, phasePhiM_] :=
   Sum[
     phasePhiM[irrepCol] *
     Sum[
