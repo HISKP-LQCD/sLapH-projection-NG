@@ -27,7 +27,7 @@ utm2 = UniqueTotalMomenta /@ Range[0, 4];
 utm2Flat = Flatten[utm2, 1];
 relMomenta = {#} & /@ utm2Flat
 
-cutoff = 1;
+cutoff = 4;
 
 cutoffRelative = FilterRelativeMomenta[totalMomentum, relMomenta, cutoff];
 
