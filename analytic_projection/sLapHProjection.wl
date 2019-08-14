@@ -134,6 +134,37 @@ MomentaOrbit[momenta_] :=
 RemoveRedundantMomenta[individualMomenta_] :=
   Keys @ DeleteDuplicates @ AssociationMap[MomentaOrbit, individualMomenta];
 
+UniqueTotalMomenta[momentumMag_] := 
+  DeleteDuplicates @ 
+    Values[# . MomentumRefScalar[momentumMag] & /@ 
+      (EulerMatrix[#[[1]]] * #[[2]] &) /@ EulerAnglesParityAssoc[]];
+
+RelativeToIndividualMomenta[totalMomentum_, relMomenta_] :=
+  MatrixRGTilde[totalMomentum] . # & /@ 
+    Catenate[{{MomentumRef[totalMomentum] - Total[relMomenta]}, relMomenta}];
+
+IsBelowCutoff[totalMomentum_, relMomentum_, cutoff_] := 
+  Max[Norm[#]^2 & /@ RelativeToIndividualMomenta[totalMomentum, relMomentum]] <= cutoff;
+
+FilterRelativeMomenta[totalMomentum_, relMomenta_, cutoff_] :=
+  IsBelowCutoff[totalMomentum, #, cutoff] & /@ relMomenta;
+
+AllIndividualMomenta[totalMomentum_, relMomenta_, cutoff_] := 
+  Select[RelativeToIndividualMomenta[totalMomentum, #] & /@ relMomenta, 
+    Max[Norm[#]^2 & /@ #] <= cutoff &];
+
+RelMomentaFromIndividual[momenta_] := Drop[momenta, 1];
+
+RelMomentaRef[totalMomentum_, relMomenta_] := 
+  Inverse[MatrixRGTilde[totalMomentum]] . # & /@ relMomenta;
+
+RelMomentaRefFromIndividual[momenta_] := 
+  RelMomentaRef[Total @ momenta, RelMomentaFromIndividual @ momenta];
+
+RelMomentaRefLabelFromIndividual[momenta_] :=
+  StringRiffle[
+   Map[MomentumToString, RelMomentaRefFromIndividual @ momenta], ","];
+
 
 (* Clebsch-Gordan coefficients *)
 
@@ -475,25 +506,6 @@ DatasetnameAssocToCSV[assoc_, filename_String] := With[
 IrrepSize[totalMomentum_, irrep_] := 
   Last @ Last @ Keys @ First @ Association @
     IrrepDGammaAssoc[][totalMomentum][[irrep]];
-
-UniqueTotalMomenta[momentumMag_] := 
-  DeleteDuplicates @ 
-    Values[# . MomentumRefScalar[momentumMag] & /@ 
-      (EulerMatrix[#[[1]]] * #[[2]] &) /@ EulerAnglesParityAssoc[]];
-
-RelativeToIndividualMomenta[totalMomentum_, relMomenta_] :=
-  MatrixRGTilde[totalMomentum] . # & /@ 
-    Catenate[{{MomentumRef[totalMomentum] - Total[relMomenta]}, relMomenta}];
-
-IsBelowCutoff[totalMomentum_, relMomentum_, cutoff_] := 
-  Max[Norm[#]^2 & /@ RelativeToIndividualMomenta[totalMomentum, relMomentum]] <= cutoff;
-
-FilterRelativeMomenta[totalMomentum_, relMomenta_, cutoff_] :=
-  IsBelowCutoff[totalMomentum, #, cutoff] & /@ relMomenta;
-
-AllIndividualMomenta[totalMomentum_, relMomenta_, cutoff_] := 
-  Select[RelativeToIndividualMomenta[totalMomentum, #] & /@ relMomenta, 
-    Max[Norm[#]^2 & /@ #] <= cutoff &];
 
 MultiGroupSum[irrep_, momentapi_, irrepRow_, irrepCol_, hold_ : Identity] := 
   hold @ MakeGroupSum[irrep, irrepRow, irrepCol, momentapi, {0, 0, 0}, {0, 0, 0}];
