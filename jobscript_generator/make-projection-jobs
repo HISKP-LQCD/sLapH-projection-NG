@@ -3,13 +3,14 @@
 
 # Copyright © 2019 Martin Ueding <dev@martin-ueding.de>
 
+import argparse
 import json
 import os
 
 import jinja2
 
 
-def main():
+def main(options):
     srcdir = os.path.dirname(os.path.dirname(__file__))
 
     # Setting up Jinja
@@ -24,18 +25,37 @@ def main():
     os.makedirs('jobscripts', exist_ok=True)
 
     for momentum, irrep in pairs:
-        rendered = template_project.render(momentum=momentum, irrep=irrep, srcdir=srcdir)
-        filename = 'slurm-project-{}{}{}-{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
-        path = os.path.join('jobscripts', filename)
-        with open(path, "w") as f:
-            f.write(rendered)
+        if options.action == 'analytic':
+            rendered = template_project.render(momentum=momentum, irrep=irrep, srcdir=srcdir)
+            filename = 'slurm-project-{}{}{}-{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
+            path = os.path.join('jobscripts', filename)
+            with open(path, "w") as f:
+                f.write(rendered)
 
-        rendered = template_crunch.render(momentum=momentum, irrep=irrep, srcdir=srcdir)
-        filename = 'slurm-crunch-{}{}{}-{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
-        path = os.path.join('jobscripts', filename)
-        with open(path, "w") as f:
-            f.write(rendered)
+        if options.action == 'numeric':
+            for config_number in range(options.first, options.last + 1, options.step):
+                rendered = template_crunch.render(momentum=momentum, irrep=irrep, srcdir=srcdir, config_number=config_number)
+                filename = 'slurm-crunch-{}{}{}-{}-{:04d}.sh'.format(momentum[0], momentum[1], momentum[2], irrep, config_number)
+                path = os.path.join('jobscripts', filename)
+                with open(path, "w") as f:
+                    f.write(rendered)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='Creates job scripts for batch processing of analytic and numeric projection. Specify one of the actions and use `--help` to get further information about that particular action.')
+    subparsers = parser.add_subparsers(title='actions')
+
+    analytic = subparsers.add_parser('analytic', help='analytic projection')
+    analytic.set_defaults(action='analytic')
+
+    numeric = subparsers.add_parser('numeric', help='numerical projection')
+    numeric.set_defaults(action='numeric')
+    numeric.add_argument('first', type=int, help='first configuration number')
+    numeric.add_argument('last', type=int, help='last configuration number (inclusive)')
+    numeric.add_argument('step', type=int, default=1, help='configuration stepping (default: %(default)s)')
+
+    return parser.parse_args()
 
 
 if __name__ == "__main__":
-    main()
+    main(parse_args())

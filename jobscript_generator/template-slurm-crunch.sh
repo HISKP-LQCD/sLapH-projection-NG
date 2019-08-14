@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name Cr{{ momentum|join('') }}-{{ irrep }}
+#SBATCH --job-name Cr{{ momentum|join('') }}-{{ irrep }}-{{ '%04d'|format(config_number) }}
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=500MB
 #SBATCH --mail-user=ueding@hiskp.uni-bonn.de
@@ -15,6 +15,6 @@ set -x
 hostname
 date -Iseconds
 
-/usr/bin/time {{ srcdir }}/numeric_projection/number_crunching.R {{ momentum|join(' ') }} {{ irrep }}
+/usr/bin/time {{ srcdir }}/numeric_projection/number_crunching.R {{ momentum|join(' ') }} {{ irrep }} {{ config_number }}
 
 date -Iseconds
