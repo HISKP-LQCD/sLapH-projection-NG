@@ -1,3 +1,21 @@
+---
+title: "Comparison_with_Markus_Werner.Rmd"
+author: "Martin Ueding"
+date: "16 August 2019"
+output: pdf_document
+---
+
+In this notebook we compare the data from the new projection code with the results that Markus Werner has generated with his code.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(ggplot2)
+library(paramvalf)
+```
+
+```{r}
 q_avail_actual <- names(all_prescriptions[[total_momentum_str]][[irrep]][['1']][['1']])
 
 q_avail_actual_matrix <- apply(
@@ -78,3 +96,6 @@ p <- ggplot(correlator_matrix, aes(x = time, y = abs(correlator), color = key)) 
 
 dir.create('comparison')
 ggsave(sprintf('comparison/comparison-%s-%s.pdf', total_momentum_str, irrep), p, width = 10, height = 10)
+
+```
+
