@@ -179,6 +179,7 @@ momentum_orbits <- jsonlite::read_json(path)
   i <- 1:nrow(df)
   
   grid <- as_tibble(expand.grid(i = i, j = i))
+  attr(grid, 'out.attrs') <- NULL
   grid$target_source_id <- df$target_gevp_id[grid$i]
   grid$target_sink_id <- df$target_gevp_id[grid$j]
   grid$source_relative_momenta <- df$target_relative_momenta[grid$i]
