@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name Cr{{ momentum|join('') }}-{{ irrep }}-{{ '%04d'|format(config_number) }}
+#SBATCH --job-name N_{{ momentum|join('') }}-{{ irrep }}-{{ '%04d'|format(config_number) }}
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=500MB
 #SBATCH --mail-user=ueding@hiskp.uni-bonn.de
