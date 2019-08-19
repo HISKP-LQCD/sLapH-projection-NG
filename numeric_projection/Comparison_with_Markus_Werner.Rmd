@@ -122,7 +122,10 @@ We read the operators that Markus has.
 
 ```{r}
 .func <- function (param, value) {
-  operator_indices_path <- sprintf('%s/reference/rho_p%d_%s_operator-indices.tsv', workdir, value$total_momentum_sq, param$irrep)
+  operator_indices_path <- sprintf('%s/reference/rho_p%d_%s_operator-indices.tsv', workdir, value$total_momentum_sq, param$irrep)  
+  if (!file.exists(operator_indices_path)) {
+    return (NA)
+  }
   operator_indices <- read.table(operator_indices_path, sep = '\t', header = TRUE)
   
   filtered <- operator_indices %>%
@@ -134,6 +137,11 @@ We read the operators that Markus has.
   operator_id <- filtered$id
   
   gevp_indices_path <- sprintf('%s/reference/rho_p%d_%s_gevp-indices.tsv', workdir, value$total_momentum_sq, param$irrep)
+  
+  if (!file.exists(gevp_indices_path)) {
+    return (NA)
+  }
+  
   gevp_indices <- read.table(gevp_indices_path, sep = '\t', header = TRUE, stringsAsFactors = FALSE)
   
   target_gevp_indices_converted <- gevp_indices %>%
@@ -164,6 +172,10 @@ momentum_orbits <- jsonlite::read_json(path)
     target_relative_momenta = as.character(momentum_orbits[[param$total_momentum_str]][value$target_gevp_indices$relative_momenta])) %>%
     filter(target_relative_momenta %in% value$actual_avail)
   
+  if (nrow(df) == 0) {
+    return (NA)
+  }
+  
   i <- 1:nrow(df)
   
   grid <- as_tibble(expand.grid(i = i, j = i))
@@ -174,8 +186,10 @@ momentum_orbits <- jsonlite::read_json(path)
   grid$i <- NULL
   grid$j <- NULL
   
-  list(matched_up_operators = df,
-       matched_up_grid = grid)
+  stopifnot(all(!is.na(grid$target_source_id)))
+  stopifnot(all(!is.na(grid$target_sink_id)))
+  
+  list(matched_up_grid = grid)
 }
 
 matched_up <- pv_call(.func, actual_avail, target_avail)
