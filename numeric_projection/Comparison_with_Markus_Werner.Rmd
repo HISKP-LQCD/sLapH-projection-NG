@@ -190,7 +190,7 @@ load_target_config <- function (path, config_number) {
 }
 
 .func <- function (param, value) {
-  stopifnot(nrow(value$matched_up_operators) != 1)
+  stopifnot(nrow(value$target_operator_id) == 1)
   
   grid <- value$matched_up_grid
   
