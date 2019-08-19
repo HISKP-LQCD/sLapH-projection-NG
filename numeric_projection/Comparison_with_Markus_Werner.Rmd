@@ -15,75 +15,147 @@ library(ggplot2)
 library(paramvalf)
 ```
 
+This comparison will use the paramvalf framework within a single notebook. Users of the framework might miss the `pv_load` and `pv_save` calls but we are just using it as a library and not as a fully fleged framework here.
+
+We will do all the comparisons to the total momenta and irreps that we have projected. For this we just parse all the files for a selected configuration and build a parameter table out of them.
+
 ```{r}
-q_avail_actual <- names(all_prescriptions[[total_momentum_str]][[irrep]][['1']][['1']])
+split_filename <- function (path) {
+  filename <- basename(path)
+  parts <- stringr::str_match(filename, 'resolved_(.*)_(.*)_(.*)\\.js')
+  parts[1, 2:4]
+}
 
-q_avail_actual_matrix <- apply(
-  stringr::str_match(q_avail_actual, '(-?\\d)(-?\\d)(-?\\d)')[, 2:4],
-  1:2,
-  as.integer)
+workdir <- '~/Lattice/NG2'
 
-q_markus_avail_actual <- t(total_momentum_ref / 2 - t(q_avail_actual_matrix))
+all_projected_paths <- Sys.glob(paste0(workdir, '/projected/resolved_*_*_2552.js'))
 
-elements <- apply(
-  q_markus_avail_actual,
-  1,
-  function (q) sprintf('p: %d, q: (%s), g: \\gamma_{5}, \\gamma_{5}', sum(total_momentum^2), paste0(sprintf('%.1f', q), collapse = ', ')))
+parts <- do.call(rbind, lapply(all_projected_paths, split_filename))
+colnames(parts) <- c('total_momentum_str', 'irrep', 'config_number')
+df <- as_tibble(parts)
+df$path <- all_projected_paths
+df$config_number <- as.integer(df$config_number)
 
-df_avail_actual <- data.frame(str = q_avail_actual, element = elements, stringsAsFactors = FALSE)
+irreps <- df_to_paramval(df, c('total_momentum_str', 'irrep'))
+```
 
-operator_indices_path <- sprintf('reference/rho_p%d_%s_operator-indices.tsv', total_momentum_sq, irrep)
-operator_indices <- read.table(operator_indices_path, sep = '\t', header = TRUE)
+For each irrep we need to figure out which relative momenta $q$ we actually have in our data. We read in the actual data and convert the parametrization to the one that Markus has used.
 
-filtered <- operator_indices %>%
-  filter(p_x == total_momentum[1],
-         p_y == total_momentum[2],
-         p_z == total_momentum[3],
-         alpha == 1)
-stopifnot(nrow(filtered) == 1)
-operator_id <- filtered$id
+```{r}
+total_momentum_str_to_vec <- function (total_momentum_str) {
+  parts <- stringr::str_match(total_momentum_str, '(-?\\d)(-?\\d)(-?\\d)')
+  sapply(parts[1, 2:4], as.integer)
+}
 
-gevp_indices_path <- sprintf('reference/rho_p%d_%s_gevp-indices.tsv', sum(total_momentum^2), irrep)
-gevp_indices <- read.table(gevp_indices_path, sep = '\t', header = TRUE, stringsAsFactors = FALSE)
-
-mapping <- left_join(df_avail_actual, gevp_indices, by = c('element')) %>%
-  filter(!is.na(id))
-
-correlator_matrix_indices <- expand.grid(q_source = mapping$str, q_sink = mapping$str, stringsAsFactors = FALSE)
-
-correlator_matrix_indices %<>%
-  tibble::as.tibble() %>%
-  left_join(mapping, by = c('q_source' = 'str')) %>%
-  rename(id_source = id) %>%
-  left_join(mapping, by = c('q_sink' = 'str')) %>%
-  rename(id_sink = id) %>%
-  select(q_source, q_sink, id_source, id_sink)
-
-correlator_matrix_indices %<>%
-  mutate(markus_file_name = sprintf('reference/rho_p%d_%s_op%d_gevp%d.%d.tsv', sum(total_momentum^2), irrep, operator_id, id_source, id_sink))
-
-load_target_config <- function (path) {
-  target <- read.table(path, header = TRUE)
+.func <- function (param, value) {
+  data <- jsonlite::read_json(value$path)
+  q_avail_actual <- names(data[[param$total_momentum_str]][[param$irrep]][['1']][['1']])
   
-  target_single <- dplyr::filter(target, cnfg == config_number)
-  target_single$value
+  total_momentum_vec <- total_momentum_str_to_vec(param$total_momentum_str)
+  total_momentum_sq <- sum(total_momentum_vec^2)
+  
+  total_momentum_ref <- (if (total_momentum_sq == 0) c(0, 0, 0)
+                         else if (total_momentum_sq == 1) c(0, 0, 1)
+                         else if (total_momentum_sq == 2) c(1, 1, 0)
+                         else if (total_momentum_sq == 3) c(1, 1, 1)
+                         else if (total_momentum_sq == 1) c(0, 0, 2))
+
+  q_avail_actual_matrix <- apply(
+    stringr::str_match(q_avail_actual, '(-?\\d)(-?\\d)(-?\\d)')[, 2:4],
+    1:2,
+    as.integer)
+  
+  q_markus_avail_actual <- t(total_momentum_ref / 2 - t(q_avail_actual_matrix))
+  
+  elements <- apply(
+    q_markus_avail_actual,
+    1,
+    function (q) sprintf('p: %d, q: (%s), g: \\gamma_{5}, \\gamma_{5}', total_momentum_sq, paste0(sprintf('%.1f', q), collapse = ', ')))
+  
+  df_avail_actual <- data.frame(
+    str = q_avail_actual,
+    element = elements,
+    stringsAsFactors = FALSE)
+  
+  list(df_avail_actual = df_avail_actual)
 }
 
-correlator_matrix_indices$target <- mapply(load_target_config, correlator_matrix_indices$markus_file_name, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+df_avail_actual <- pv_call(.func, irreps, serial = TRUE)
+```
 
-load_actual_config <- function (q_source, q_sink) {
-  irrep_col <- if (irrep %in% c('T1u', 'E')) '2' else '1'
-  resolved[[total_momentum_str]][[irrep]][[irrep_col]][['1']][[q_source]][[q_sink]]
+```{r}
+.func <- function (param, value) {
+  list(summary = data.frame(
+    element = value$df_avail_actual$element))
 }
 
-correlator_matrix_indices$actual <- mapply(load_actual_config, correlator_matrix_indices$q_source, correlator_matrix_indices$q_sink, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+df_avail_actual_summary <- pv_call(.func, df_avail_actual, serial = TRUE)
 
-correlator_matrix_indices$time <- list(1:length(correlator_matrix_indices$target[[1]]))
+knitr::kable(df_avail_actual_summary)
+```
 
-correlator_matrix <- correlator_matrix_indices %>%
-  tidyr::unnest() %>%
-  tidyr::gather(key, correlator, actual, target)
+  
+```{r}
+.func <- function (param, value) {
+  operator_indices_path <- sprintf('%s/reference/rho_p%d_%s_operator-indices.tsv', workdir, total_momentum_sq, param$irrep)
+  operator_indices <- read.table(operator_indices_path, sep = '\t', header = TRUE)
+  
+  filtered <- operator_indices %>%
+    filter(p_x == total_momentum_vec[1],
+           p_y == total_momentum_vec[2],
+           p_z == total_momentum_vec[3],
+           alpha == 1)
+  stopifnot(nrow(filtered) == 1)
+  operator_id <- filtered$id
+  
+  gevp_indices_path <- sprintf('%s/reference/rho_p%d_%s_gevp-indices.tsv', workdir, total_momentum_sq, param$irrep)
+  gevp_indices <- read.table(gevp_indices_path, sep = '\t', header = TRUE, stringsAsFactors = FALSE)
+  
+  mapping <- left_join(df_avail_actual, gevp_indices, by = c('element')) %>%
+    filter(!is.na(id))
+  
+  correlator_matrix_indices <- expand.grid(q_source = mapping$str, q_sink = mapping$str, stringsAsFactors = FALSE)
+  
+  correlator_matrix_indices %<>%
+    tibble::as.tibble() %>%
+    left_join(mapping, by = c('q_source' = 'str')) %>%
+    rename(id_source = id) %>%
+    left_join(mapping, by = c('q_sink' = 'str')) %>%
+    rename(id_sink = id) %>%
+    select(q_source, q_sink, id_source, id_sink)
+  
+  correlator_matrix_indices %<>%
+    mutate(markus_file_name = sprintf('reference/rho_p%d_%s_op%d_gevp%d.%d.tsv', total_momentum_sq, param$irrep, operator_id, id_source, id_sink))
+  
+  load_target_config <- function (path) {
+    target <- read.table(path, header = TRUE)
+    
+    target_single <- dplyr::filter(target, cnfg == param$config_number)
+    target_single$value
+  }
+  
+  correlator_matrix_indices$target <- mapply(load_target_config, correlator_matrix_indices$markus_file_name, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+  
+  load_actual_config <- function (q_source, q_sink) {
+    irrep_col <- if (param$irrep %in% c('T1u', 'E')) '2' else '1'
+    resolved[[total_momentum_str]][[param$irrep]][[irrep_col]][['1']][[q_source]][[q_sink]]
+  }
+  
+  correlator_matrix_indices$actual <- mapply(load_actual_config, correlator_matrix_indices$q_source, correlator_matrix_indices$q_sink, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+  
+  correlator_matrix_indices$time <- list(1:length(correlator_matrix_indices$target[[1]]))
+  
+  correlator_matrix <- correlator_matrix_indices %>%
+    tidyr::unnest() %>%
+    tidyr::gather(key, correlator, actual, target)
+  
+  list(correlator_matrix = correlator_matrix)
+}
 
+correlator_matrix <- pv_call(.func, irreps, serial = TRUE)
+```
+
+```{r}
 p <- ggplot(correlator_matrix, aes(x = time, y = abs(correlator), color = key)) +
   geom_point(position = position_dodge(width = 0.3)) +
   scale_y_log10() +
