@@ -65,7 +65,7 @@ df <- as_tibble(parts)
 df$path <- all_projected_paths
 df$config_number <- as.integer(df$config_number)
 
-irreps <- df_to_paramval(df, c('total_momentum_str', 'irrep'))
+irreps <- df_to_paramval(df, c('total_momentum_str', 'irrep', 'config_number'))
 ```
 
 ```{r}
@@ -128,7 +128,8 @@ We read the operators that Markus has.
   filtered <- operator_indices %>%
     filter(p_x == value$total_momentum_vec[1],
            p_y == value$total_momentum_vec[2],
-           p_z == value$total_momentum_vec[3]) %>%
+           p_z == value$total_momentum_vec[3],
+           alpha == 1) %>%
     select(id, alpha)
   operator_id <- filtered$id
   
@@ -160,83 +161,95 @@ momentum_orbits <- jsonlite::read_json(path)
 .func <- function (param, value) {
   df <- tibble(
     target_gevp_id = value$target_gevp_indices$id,
-    target_relative_momenta = as.character(momentum_orbits[value$target_gevp_indices$relative_momenta]))
+    target_relative_momenta = as.character(momentum_orbits[[param$total_momentum_str]][value$target_gevp_indices$relative_momenta])) %>%
+    filter(target_relative_momenta %in% value$actual_avail)
   
-  list(df = df)
+  i <- 1:nrow(df)
+  
+  grid <- as_tibble(expand.grid(i = i, j = i))
+  grid$target_source_id <- df$target_gevp_id[grid$i]
+  grid$target_sink_id <- df$target_gevp_id[grid$j]
+  grid$source_relative_momenta <- df$target_relative_momenta[grid$i]
+  grid$sink_relative_momenta <- df$target_relative_momenta[grid$j]
+  grid$i <- NULL
+  grid$j <- NULL
+  
+  list(matched_up_operators = df,
+       matched_up_grid = grid)
 }
 
 matched_up <- pv_call(.func, actual_avail, target_avail)
 ```
 
-
-----
-
-
-```
-  mapping <- left_join(df_avail_actual, gevp_indices, by = c('element')) %>%
-    filter(!is.na(id))
+```{r}
+load_target_config <- function (path, config_number) {
+  target <- read.table(path, header = TRUE)
   
-  correlator_matrix_indices <- expand.grid(q_source = mapping$str, q_sink = mapping$str, stringsAsFactors = FALSE)
-  
-  correlator_matrix_indices %<>%
-    tibble::as.tibble() %>%
-    left_join(mapping, by = c('q_source' = 'str')) %>%
-    rename(id_source = id) %>%
-    left_join(mapping, by = c('q_sink' = 'str')) %>%
-    rename(id_sink = id) %>%
-    select(q_source, q_sink, id_source, id_sink)
-  
-  correlator_matrix_indices %<>%
-    mutate(markus_file_name = sprintf('reference/rho_p%d_%s_op%d_gevp%d.%d.tsv', value$total_momentum_sq, param$irrep, operator_id, id_source, id_sink))
+  target_single <- dplyr::filter(target, cnfg == config_number)
+  target_single$value
 }
 
-target_avail <- pv_call(.func, irreps, total_momentum)
-```
-
-
-```{r}
+.func <- function (param, value) {
+  stopifnot(nrow(value$matched_up_operators) != 1)
   
-  load_target_config <- function (path) {
-    target <- read.table(path, header = TRUE)
-    
-    target_single <- dplyr::filter(target, cnfg == param$config_number)
-    target_single$value
-  }
+  grid <- value$matched_up_grid
   
-  correlator_matrix_indices$target <- mapply(load_target_config, correlator_matrix_indices$markus_file_name, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+  grid$filename_target <- sprintf(
+    '%s/reference/rho_p%d_%s_op%d_gevp%d.%d.tsv',
+    workdir,
+    value$total_momentum_sq,
+    param$irrep,
+    value$target_operator_id$id,
+    grid$target_source_id,
+    grid$target_sink_id)
   
+  target_loaded <- lapply(grid$filename_target, load_target_config, config_number = param$config_number)
+  grid$target <- target_loaded
+  
+  filename_actual <- value$path
+  resolved <- jsonlite::read_json(filename_actual)
   load_actual_config <- function (q_source, q_sink) {
     irrep_col <- if (param$irrep %in% c('T1u', 'E')) '2' else '1'
-    resolved[[total_momentum_str]][[param$irrep]][[irrep_col]][['1']][[q_source]][[q_sink]]
+    unlist(resolved[[param$total_momentum_str]][[param$irrep]][[irrep_col]][['1']][[q_source]][[q_sink]])
   }
-  
-  correlator_matrix_indices$actual <- mapply(load_actual_config, correlator_matrix_indices$q_source, correlator_matrix_indices$q_sink, SIMPLIFY = FALSE, USE.NAMES = FALSE)
-  
-  correlator_matrix_indices$time <- list(1:length(correlator_matrix_indices$target[[1]]))
-  
-  correlator_matrix <- correlator_matrix_indices %>%
-    tidyr::unnest() %>%
-    tidyr::gather(key, correlator, actual, target)
-  
-  list(correlator_matrix = correlator_matrix)
+  actual_loaded <- mapply(load_actual_config, grid$source_relative_momenta, grid$sink_relative_momenta, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+  grid$actual <- actual_loaded
+                        
+  list(filename_actual = filename_actual,
+       grid = grid)
 }
 
-correlator_matrix <- pv_call(.func, irreps, serial = TRUE)
+loaded <- pv_call(.func, matched_up, total_momentum, target_avail, irreps)
 ```
 
 ```{r}
-p <- ggplot(correlator_matrix, aes(x = time, y = abs(correlator), color = key)) +
+.func <- function (param, value) {
+  long <- tidyr::unnest(value$grid)
+  long2 <- tidyr::gather(long, kind, correlator, target, actual)
+  
+  list(loaded_long = long2)
+}
+
+loaded_long <- pv_call(.func, loaded)
+```
+
+
+```{r}
+.func <- function (param, value) {
+p <- ggplot(value$loaded_long, aes(x = time, y = abs(correlator), color = kind) +
   geom_point(position = position_dodge(width = 0.3)) +
   scale_y_log10() +
-  facet_grid(q_source ~ q_sink) +
+  facet_grid(source_relative_momenta ~ sink_relative_momenta) +
   labs(title = "Comparison between Martin's and Markus' projection code",
-       subtitle = sprintf('P = %s, irrep = %s', total_momentum_str, irrep),
+       subtitle = sprintf('P = %s, irrep = %s', param$total_momentum_str, param$irrep),
        x = 't',
        y = expression(abs(C(t))),
        color = 'Data')
 
 dir.create('comparison')
-ggsave(sprintf('comparison/comparison-%s-%s.pdf', total_momentum_str, irrep), p, width = 10, height = 10)
+ggsave(sprintf('comparison/comparison-%s-%s.pdf', param$total_momentum_str, param$irrep), p, width = 10, height = 10)
+}
 
+pv_call(.func, loaded_long)
 ```
 
