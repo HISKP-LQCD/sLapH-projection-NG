@@ -6,7 +6,7 @@
 #SBATCH --mail-user=ueding@hiskp.uni-bonn.de
 #SBATCH --mail-type=FAIL
 
-#SBATCH --output=batch_output/crunch-{{ momentum|join('') }}-{{ irrep }}-slurm_%j.txt
+#SBATCH --output=batch_output/numeric-{{ momentum|join('') }}-{{ irrep }}-slurm_%j.txt
 
 set -e
 set -u
