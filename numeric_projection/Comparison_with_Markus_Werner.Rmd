@@ -158,13 +158,7 @@ id	element
 ```
 
 From this we can deduce which correlator matrix rows and columns correspond to
-my $q_\text{source}$ and $q_\text{sink}$.
-
-```{r}
-glob <- sprintf('%s/reference/rho_p?_*_operator-indices.tsv', workdir)
-length(Sys.glob(glob))
-```
-
+my $q_\text{source}$ and $q_\text{sink}$. The following function allows us to convert Markus format into my format. This way the comparison will work with my parametrization.
 
 ```{r}
 parse_markus_gevp_indices <- function (line) {
@@ -190,6 +184,13 @@ stopifnot('00-1' == parse_markus_gevp_indices('p: 1, q: (0.0, 0.0, 1.5), g: \\ga
 stopifnot(is.na(parse_markus_gevp_indices('p: 1, g: \\gamma_{5}')))
 ```
 
+The number of correlator matrices that Markus has is the following:
+
+```{r}
+glob <- sprintf('%s/reference/rho_p?_*_operator-indices.tsv', workdir)
+target_filenames <- Sys.glob(glob)
+print(target_filenames)
+```
 
 ```{r}
 .func <- function (param, value) {
@@ -221,6 +222,34 @@ stopifnot(is.na(parse_markus_gevp_indices('p: 1, g: \\gamma_{5}')))
 }
 
 target_avail <- pv_call(.func, irreps, total_momentum)
+```
+
+The number of correlator matrices that we were able to load is the following:
+
+```{r}
+print(target_avail$param)
+print(target_filenames)
+```
+
+```{r}
+print(target_avail$param)
+print(actual_avail$param)
+```
+
+```{r}
+anti_join(target_avail$param, actual_avail$param)
+```
+
+```{r}
+anti_join(actual_avail$param, target_avail$param)
+```
+
+```{r}
+semi_join(target_avail$param, actual_avail$param)
+```
+
+```{r}
+semi_join(actual_avail$param, target_avail$param)
 ```
 
 # Matching up available and actual
