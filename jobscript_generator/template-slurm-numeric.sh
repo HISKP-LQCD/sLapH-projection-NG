@@ -15,6 +15,6 @@ set -x
 hostname
 date -Iseconds
 
-/usr/bin/time {{ srcdir }}/numeric_projection/number_crunching.R {{ momentum|join(' ') }} {{ irrep }} {{ config_number }}
+/usr/bin/time {{ srcdir }}/numeric_projection/driver.R {{ momentum|join(' ') }} {{ irrep }} {{ config_number }}
 
 date -Iseconds
