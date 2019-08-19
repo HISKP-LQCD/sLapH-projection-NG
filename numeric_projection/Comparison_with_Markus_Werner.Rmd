@@ -100,13 +100,13 @@ actual_avail <- pv_call(.func, irreps, total_momentum)
 parse_markus_gevp_indices <- function (line) {
   pattern <- 'p: (\\d+), q: \\(([\\d.]+), ([\\d.]+), ([\\d.]+)\\), g: \\\\gamma_\\{5\\}, \\\\gamma_\\{5\\}'
   match <- stringr::str_match(line, pattern)
-  total_momentum_sq <- as.integer(match[1, 2])
+  total_momentum_sq <- as.numeric(match[1, 2])
   
   if (is.na(total_momentum_sq)) {
     return (NA)
   }
   
-  relative_momenta_markus <- as.integer(match[1, 3:5])
+  relative_momenta_markus <- as.numeric(match[1, 3:5])
   
   total_momentum_vec <- total_momentum_ref(total_momentum_sq)
   relative_momenta_martin <- round(total_momentum_vec / 2 - relative_momenta_markus)
