@@ -1934,8 +1934,8 @@ the case of two particles. This means that in order to convert his
 parametrization into mine one has to use the relations
 $$ P = P' \,, \quad q = \frac{P'}{2} - q' \,. $$
 
-The other way around works as
-$$ P' = P \,, \quad q' = \frac{P - 2 q}{2} \,. $$
+The other way around works exactly the same:
+$$ P' = P \,, \quad q' = \frac{P}{2} - q \,. $$
 
 His correlator matrix format contains files called `operator-indices` that give
 the three-vector $P$ that is actually used for that particular moving frame, as
@@ -1954,7 +1954,7 @@ id	p_x	p_y	p_z	alpha
 One has to look up our $P$ and then find out the *operator id* from this table.
 
 The correlator matrix elements are then labeled by their $q'_\text{source}$ and
-$q'_\text{sink}$ values. These also correspond do indices that have to be read
+$q'_\text{sink}$ values. These also correspond to indices that have to be read
 off from the lines with the correct Dirac structure, `g: \gamma_{5},
 \gamma_{5}`, in the file `gevp-indices`:
 
