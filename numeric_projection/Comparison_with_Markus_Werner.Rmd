@@ -114,8 +114,10 @@ parse_markus_gevp_indices <- function (line) {
   momentum_to_string(relative_momenta_martin)
 }
 
-parse_markus_gevp_indices('p: 1, q: (1.0, 1.0, 0.5), g: \\gamma_{5}, \\gamma_{5}')
-parse_markus_gevp_indices('p: 1, g: \\gamma_{5}')
+stopifnot('-1-10' == parse_markus_gevp_indices('p: 1, q: (1.0, 1.0, 0.5), g: \\gamma_{5}, \\gamma_{5}'))
+stopifnot('000' == parse_markus_gevp_indices('p: 1, q: (0.0, 0.0, 0.5), g: \\gamma_{5}, \\gamma_{5}'))
+stopifnot('00-1' == parse_markus_gevp_indices('p: 1, q: (0.0, 0.0, 1.5), g: \\gamma_{5}, \\gamma_{5}'))
+stopifnot(is.na(parse_markus_gevp_indices('p: 1, g: \\gamma_{5}')))
 ```
 
 We read the operators that Markus has.
