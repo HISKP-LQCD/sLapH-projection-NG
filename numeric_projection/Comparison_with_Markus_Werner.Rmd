@@ -214,6 +214,8 @@ load_target_config <- function (path, config_number) {
   }
   actual_loaded <- mapply(load_actual_config, grid$source_relative_momenta, grid$sink_relative_momenta, SIMPLIFY = FALSE, USE.NAMES = FALSE)
   grid$actual <- actual_loaded
+  
+  grid$time <- lapply(1:nrow(grid), function (i) 0:(length(grid$actual[[1]])-1))
                         
   list(filename_actual = filename_actual,
        grid = grid)
@@ -236,18 +238,25 @@ loaded_long <- pv_call(.func, loaded)
 
 ```{r}
 .func <- function (param, value) {
-p <- ggplot(value$loaded_long, aes(x = time, y = abs(correlator), color = kind) +
-  geom_point(position = position_dodge(width = 0.3)) +
-  scale_y_log10() +
-  facet_grid(source_relative_momenta ~ sink_relative_momenta) +
-  labs(title = "Comparison between Martin's and Markus' projection code",
-       subtitle = sprintf('P = %s, irrep = %s', param$total_momentum_str, param$irrep),
-       x = 't',
-       y = expression(abs(C(t))),
-       color = 'Data')
-
-dir.create('comparison')
-ggsave(sprintf('comparison/comparison-%s-%s.pdf', param$total_momentum_str, param$irrep), p, width = 10, height = 10)
+  p <- ggplot(value$loaded_long, aes(x = time, y = abs(correlator), color = kind)) +
+    geom_point(position = position_dodge(width = 0.3)) +
+    scale_y_log10() +
+    facet_grid(source_relative_momenta ~ sink_relative_momenta) +
+    labs(title = "Comparison between Martin's and Markus' projection code",
+         subtitle = sprintf('P = %s, irrep = %s', param$total_momentum_str, param$irrep),
+         x = 't',
+         y = expression(abs(C(t))),
+         color = 'Data')
+  
+  path <- sprintf('%s/comparison', workdir)
+  if (!dir.exists(path)) {
+    dir.create(path)
+  }
+  ggsave(sprintf('%s/comparison-%s-%s.pdf', path, param$total_momentum_str, param$irrep), p, width = 10, height = 10)
+  
+  print(p)
+  
+  list()
 }
 
 pv_call(.func, loaded_long)
