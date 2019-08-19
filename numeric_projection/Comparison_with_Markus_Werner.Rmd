@@ -242,7 +242,7 @@ loaded_long <- pv_call(.func, loaded)
     geom_point(position = position_dodge(width = 0.3)) +
     scale_y_log10() +
     facet_grid(source_relative_momenta ~ sink_relative_momenta) +
-    labs(title = "Comparison between Martin's and Markus' projection code",
+    labs(title = "Comparison between Martin's and Markus's projection code",
          subtitle = sprintf('P = %s, irrep = %s', param$total_momentum_str, param$irrep),
          x = 't',
          y = expression(abs(C(t))),
