@@ -142,7 +142,7 @@ RelMomentaRefLabelFromIndividual[momenta_] :=
 
 MomentaMaxNorm[momenta_] := Max[Norm[#]^2 & /@ momenta];
 
-ContractionMomentumCutoff[0] = 4;
+ContractionMomentumCutoff[0] = 2;
 ContractionMomentumCutoff[1] = 5;
 ContractionMomentumCutoff[2] = 6;
 ContractionMomentumCutoff[3] = 7;
