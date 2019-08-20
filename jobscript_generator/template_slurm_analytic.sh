@@ -1,12 +1,12 @@
 #!/bin/bash
 
-#SBATCH --job-name A_{{ momentum|join('') }}-{{ irrep }}
+#SBATCH --job-name A_{{ momentum|join('') }}_{{ irrep }}
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=500MB
 #SBATCH --mail-user=ueding@hiskp.uni-bonn.de
 #SBATCH --mail-type=FAIL
 
-#SBATCH --output=batch_output/analytic-{{ momentum|join('') }}-{{ irrep }}-slurm_%j.txt
+#SBATCH --output=batch_output/analytic_{{ momentum|join('') }}_{{ irrep }}_slurm_%j.txt
 
 set -e
 set -u
