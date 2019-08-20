@@ -16,8 +16,8 @@ def main(options):
 
     # Setting up Jinja
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(srcdir, 'jobscript_generator')))
-    template_analytic = env.get_template("template-slurm-analytic.sh")
-    template_numeric = env.get_template("template-slurm-numeric.sh")
+    template_analytic = env.get_template("template_slurm_analytic.sh")
+    template_numeric = env.get_template("template_slurm_numeric.sh")
 
     with open(os.path.join(srcdir, 'single_cover', 'irreps_avail.js')) as f:
         pairs = json.load(f)
@@ -28,7 +28,7 @@ def main(options):
     for momentum, irrep in pairs:
         if options.action == 'analytic':
             rendered = template_analytic.render(momentum=momentum, irrep=irrep, srcdir=srcdir)
-            filename = 'slurm-analytic-{}{}{}-{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
+            filename = 'slurm_analytic_{}{}{}_{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
             path = os.path.join('jobscripts', filename)
             with open(path, "w") as f:
                 f.write(rendered)
@@ -36,7 +36,7 @@ def main(options):
         if options.action == 'numeric':
             for config_number in range(options.first, options.last + 1, options.step):
                 rendered = template_numeric.render(momentum=momentum, irrep=irrep, srcdir=srcdir, config_number=config_number)
-                filename = 'slurm-numeric-{}{}{}-{}-{:04d}.sh'.format(momentum[0], momentum[1], momentum[2], irrep, config_number)
+                filename = 'slurm_numeric_{}{}{}_{}_{:04d}.sh'.format(momentum[0], momentum[1], momentum[2], irrep, config_number)
                 path = os.path.join('jobscripts', filename)
                 with open(path, "w") as f:
                     f.write(rendered)
