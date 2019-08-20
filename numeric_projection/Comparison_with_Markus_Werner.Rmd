@@ -335,13 +335,15 @@ load_target_config <- function (path, config_number) {
   filename_actual <- value$path
   resolved <- jsonlite::read_json(filename_actual)
   load_actual_config <- function (q_source, q_sink) {
-    irrep_col <- if (param$irrep %in% c('T1u', 'E')) '2' else '1'
-    unlist(resolved[[param$total_momentum_str]][[param$irrep]][[irrep_col]][['1']][[q_source]][[q_sink]])
+    irrep_col <- if (param$irrep %in% c('T1u')) '3' else '1'
+    data <- unlist(resolved[[param$total_momentum_str]][[param$irrep]][[irrep_col]][['1']][[q_source]][[q_sink]])
+    stopifnot(!is.null(data))
+    return (data)
   }
   actual_loaded <- mapply(load_actual_config, grid$source_relative_momenta, grid$sink_relative_momenta, SIMPLIFY = FALSE, USE.NAMES = FALSE)
   grid$actual <- actual_loaded
   
-  grid$time <- lapply(1:nrow(grid), function (i) 0:(length(grid$actual[[1]])-1))
+  grid$time <- lapply(1:nrow(grid), function (i) 0:(length(grid$target[[1]])-1))
                         
   list(filename_actual = filename_actual,
        grid = grid)
@@ -369,7 +371,7 @@ loaded_long <- pv_call(.func, loaded)
     scale_y_log10() +
     facet_grid(source_relative_momenta ~ sink_relative_momenta) +
     labs(title = "Comparison between Martin's and Markus's projection code",
-         subtitle = sprintf('P = %s, irrep = %s', param$total_momentum_str, param$irrep),
+         subtitle = sprintf('P = %s, irrep = %s, cnfg = %d', param$total_momentum_str, param$irrep, param$config_number),
          x = 't',
          y = expression(abs(C(t))),
          color = 'Data')
