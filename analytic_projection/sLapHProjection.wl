@@ -13,7 +13,7 @@ basePath = DirectoryName @ DirectoryName @ $InputFileName;
 
 (*
 MonitoredMap[f_, list_, label_ : ""] := Module[{i},
-  Monitor[Table[f[list[[i]]], {i, 1, Length[list]}], 
+  Monitor[Table[f[list[[i]]], {i, 1, Length[list]}],
    Row[{ProgressIndicator[i, {1, Length[list] + 1}],
      TemplateApply[" `` `` of ``", {label, i, Length[list]}]}, " "]]];
 *)
@@ -69,10 +69,10 @@ ReadEulerAngles[filename_] := Module[{oh, values},
   #[[1]] -> Pi * {ToExpression @ #[[2]], ToExpression @ #[[3]], ToExpression @ #[[4]]} & /@
     values // Association];
 
-Parities[] = 
-  First @* Values /@ 
+Parities[] =
+  First @* Values /@
     Association @ IrrepDGammaAssoc[][[Key @ {0, 0, 0}]][["A1u"]];
-  
+
 EulerAnglesAssoc[] = ReadEulerAngles[basePath <> "single_cover/Oh-elements.txt"];
 
 EulerAnglesParityAssoc[] = MapThread[List, {EulerAnglesAssoc[], Parities[]}];
@@ -92,22 +92,22 @@ ParityEulerMatrix[{angles_, parity_}] := parity * EulerMatrix[angles];
 
 CachedParityEulerMatrix = AssociationMap[ParityEulerMatrix, Values @ EulerAnglesParityAssoc[]];
 
-EulerGTilde[momentumpcm_] := 
+EulerGTilde[momentumpcm_] :=
   First @ Select[Values @ EulerAnglesParityAssoc[],
     momentumpcm == CachedParityEulerMatrix[#] . MomentumRef[momentumpcm] &];
 
 MatrixRGTilde[momentumpcm_] :=
   CachedParityEulerMatrix @ EulerGTilde @ momentumpcm;
 
-GetParity[momentumpcm_, angles_] := 
+GetParity[momentumpcm_, angles_] :=
   a /. Solve[a EulerMatrix[angles] . momentumpcm == momentumpcm][[1]];
 
 MomentumTransform[matrixRGtilde_, eulerG_] :=
   matrixRGtilde . CachedParityEulerMatrix[eulerG] . Inverse @ matrixRGtilde;
 
 RotateMomenta[groupElementName_String, momenta_] := With[
-  {rotationMatrix = 
-    CachedParityEulerMatrix @ 
+  {rotationMatrix =
+    CachedParityEulerMatrix @
      EulerAnglesParityAssoc[][[groupElementName]]},
   Map[rotationMatrix . # &, momenta]]
 
@@ -118,21 +118,21 @@ MomentaOrbit[momenta_] :=
 RemoveRedundantMomenta[individualMomenta_] :=
   Keys @ DeleteDuplicates @ AssociationMap[MomentaOrbit, individualMomenta];
 
-UniqueTotalMomenta[momentumMag_] := 
-  DeleteDuplicates @ 
-    Values[# . MomentumRefScalar[momentumMag] & /@ 
+UniqueTotalMomenta[momentumMag_] :=
+  DeleteDuplicates @
+    Values[# . MomentumRefScalar[momentumMag] & /@
       (EulerMatrix[#[[1]]] * #[[2]] &) /@ EulerAnglesParityAssoc[]];
 
 RelativeToIndividualMomenta[totalMomentum_, relMomenta_] :=
-  MatrixRGTilde[totalMomentum] . # & /@ 
+  MatrixRGTilde[totalMomentum] . # & /@
     Catenate[{{MomentumRef[totalMomentum] - Total[relMomenta]}, relMomenta}];
 
 RelMomentaFromIndividual[momenta_] := Drop[momenta, 1];
 
-RelMomentaRef[totalMomentum_, relMomenta_] := 
+RelMomentaRef[totalMomentum_, relMomenta_] :=
   Inverse[MatrixRGTilde[totalMomentum]] . # & /@ relMomenta;
 
-RelMomentaRefFromIndividual[momenta_] := 
+RelMomentaRefFromIndividual[momenta_] :=
   RelMomentaRef[Total @ momenta, RelMomentaFromIndividual @ momenta];
 
 MomentaToString[momenta_] := StringRiffle[ Map[MomentumToString, momenta], ","];
@@ -150,23 +150,23 @@ ContractionMomentumCutoff[2] = 6;
 ContractionMomentumCutoff[3] = 7;
 ContractionMomentumCutoff[4] = 4;
 
-FilterRelativeMomenta[totalMomentum_, relMomenta_] := 
-  RelMomentaRefFromIndividual /@ 
+FilterRelativeMomenta[totalMomentum_, relMomenta_] :=
+  RelMomentaRefFromIndividual /@
     Select[
-      RemoveRedundantMomenta @ Map[RelativeToIndividualMomenta[totalMomentum, #] &, relMomenta], 
-      MomentaSumNormSq @ # <= ContractionMomentumCutoff[Norm[totalMomentum]^2] &]; 
+      RemoveRedundantMomenta @ Map[RelativeToIndividualMomenta[totalMomentum, #] &, relMomenta],
+      MomentaSumNormSq @ # <= ContractionMomentumCutoff[Norm[totalMomentum]^2] &];
 
 
 (* Clebsch-Gordan coefficients *)
 
-HigherClebschGordan[{j1_, j2_}, {m1_, m2_}, {j_, m_}] := 
-  If[Abs[j1 - j2] <= j <= j1 + j2 && m1 + m2 == m, 
+HigherClebschGordan[{j1_, j2_}, {m1_, m2_}, {j_, m_}] :=
+  If[Abs[j1 - j2] <= j <= j1 + j2 && m1 + m2 == m,
     ClebschGordan[{j1, m1}, {j2, m2}, {j, m}], 0];
 
 HigherClebschGordan[js_, ms_, {j_, m_}] := Sum[
   HigherClebschGordan[{js[[1]], jtilde}, {ms[[1]], mtilde}, {j, m}] *
   HigherClebschGordan[Drop[js, 1], Drop[ms, 1], {jtilde, mtilde}],
-    {jtilde, Abs[js[[2]] - js[[3]]], 
+    {jtilde, Abs[js[[2]] - js[[3]]],
   js[[2]] + js[[3]]},
   {mtilde, -jtilde, jtilde}];
 
@@ -209,14 +209,14 @@ MakeMagneticSum[irrep_, irrepRow_, irrepCol_, momentapi_, spinJ_, spinsJi_, phas
     phasePhiM[irrepCol] *
     Sum[
       ClebschGordan[{spinsJi[[1]], spinsMi1}, {spinsJi[[2]], spinsMi2}, {spinJ, spinM}] *
-      MakeGroupSum[irrep, irrepRow, irrepCol, momentapi, 
+      MakeGroupSum[irrep, irrepRow, irrepCol, momentapi,
       spinsJi, {spinsMi1, spinsMi2}],
     {spinsMi1, -spinsJi[[1]], spinsJi[[1]]},
     {spinsMi2, -spinsJi[[2]], spinsJi[[2]]}],
   {spinM, -spinJ, spinJ}];
 
 ExtractMomenta[expr_] :=
-  expr /. ConjugateTranspose[SingleOperator[_, _, _, p_]] -> 
+  expr /. ConjugateTranspose[SingleOperator[_, _, _, p_]] ->
     DTMomentum[p]
 
 MomentumProductToMomenta[factors_] := Module[
@@ -225,7 +225,7 @@ MomentumProductToMomenta[factors_] := Module[
   scalar = Times @@ (factors /. a_. DTMomentum[p_] -> a);
   scalar * DTMomenta @@ momenta];
 
-mm[factors_] := 
+mm[factors_] :=
   Apply[Times, #[[All, 1]]] DTMomenta[#[[All, 2]]] &[
     factors /. a_. DTMomentum[v_?VectorQ] :> {a, v}]l
 
@@ -236,14 +236,14 @@ ExtractMultiMomenta[assoc_] := Block[{x1, x2},
 
 MomentumToString[p_] := StringJoin[ToString /@ p];
 
-momentaToRules[momenta_, location_] := 
-  ReplaceAll[momenta, 
-    DTMomenta[p__] :> 
+momentaToRules[momenta_, location_] :=
+  ReplaceAll[momenta,
+    DTMomenta[p__] :>
     AssociationThread[
-      Table["p" <> location <> ToString @ i, {i, 1, Length[{p}]}], 
+      Table["p" <> location <> ToString @ i, {i, 1, Length[{p}]}],
       MomentumToString /@ {p}]];
 
-MomentaToAssoc[expr_, location_, sign_] := 
+MomentaToAssoc[expr_, location_, sign_] :=
   expr /. DTMomenta[p__] :> DTMomentaAssoc[momentaToRules[DTMomenta @@ (sign * # & /@ {p}), location]];
 
 MomentaToAssocSourceSink[expr1_, expr2_] := Module[
@@ -260,7 +260,7 @@ MomentaToAssocSourceSink[expr1_, expr2_] := Module[{
   expandedProductReplaced},
   expandedProduct = ExpandAll[Conjugate@assocSo*assocSi];
   (* https://mathematica.stackexchange.com/a/109735/1507 *)
-   
+
 expandedProductReplaced = ExpandAll @
     ReplaceAll[expandedProduct, e : Conjugate[Plus[__]] :> Thread[e, Plus]];
   FullSimplify @ ReplaceAll[expandedProductReplaced,
@@ -297,7 +297,7 @@ MakeSourceSinkMomenta[assoc_] := Module[
   ** qct`Field[dn, c1, s2, x1]) / Sqrt[2];
 
 \[Pi]\[Pi]I1[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
-  (\[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Minus[s3, s4, c2, x2] - 
+  (\[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Minus[s3, s4, c2, x2] -
   \[Pi]Plus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1]) / Sqrt[2];
 
 \[Pi]\[Pi]I1Bar[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
@@ -305,25 +305,25 @@ MakeSourceSinkMomenta[assoc_] := Module[
   \[Pi]Minus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2]) / Sqrt[2];
 
 \[Pi]\[Pi]I2[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
-  \[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2]; 
+  \[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2];
 
 \[Pi]\[Pi]I2Bar[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
-  \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1]; 
+  \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1];
 
 
 (* Trace normalization *)
 
 RotateGammaToFront[expr_] := If[MatchQ[expr[[1]], qct`Gamma^_], expr, RotateLeft[expr]];
 
-Starts[traceContent_] := 
+Starts[traceContent_] :=
   ReplaceAll[traceContent[[2 ;; ;; 2]], {Dot -> List}];
 
 StartScore[propagator_] := propagator /.
   {"up" -> 1000, "dn" -> 2000, so[i_] -> i, si[i_] -> i + 100} /.
   prop[f_, t_] -> f + t;
 
-IndexOfFirst[traceContent_] := 
-  Ordering[Starts[traceContent], 1, 
+IndexOfFirst[traceContent_] :=
+  Ordering[Starts[traceContent], 1,
     StartScore[#1] < StartScore[#2] &][[1]];
 
 NormalizeTrace[traceContent_] := With[{tr2 = RotateGammaToFront @ traceContent},
@@ -332,7 +332,7 @@ NormalizeTrace[traceContent_] := With[{tr2 = RotateGammaToFront @ traceContent},
 NormalizeTraceRecursive[expr_] := If[AtomQ @ expr,
   expr,
   If[MatchQ[expr, qct`trace[_]],
-    qct`trace[NormalizeTrace[expr[[1]]]], 
+    qct`trace[NormalizeTrace[expr[[1]]]],
     NormalizeTraceRecursive /@ expr]];
 
 ReplacePropagators[expr_] := expr /. qct`DE[{f_, f_}, {_, t_}] :> prop[f, t];
@@ -343,7 +343,7 @@ FlowReversalRules[] = {
   };
 
 FlavorSwitchRules[] = {
-  qct`trace[qct`Gamma^5 . prop["up", so[so1_]] . qct`Gamma^5 . prop["dn", so[so2_]] . qct`Gamma^5 . prop["up", si[si2_]] . qct`Gamma^5 . prop["dn", si[si1_]]] :> 
+  qct`trace[qct`Gamma^5 . prop["up", so[so1_]] . qct`Gamma^5 . prop["dn", so[so2_]] . qct`Gamma^5 . prop["up", si[si2_]] . qct`Gamma^5 . prop["dn", si[si1_]]] :>
     Conjugate @ qct`trace[qct`Gamma^5 . prop["up", so[so1]] . qct`Gamma^5 . prop["dn", si[si1]] . qct`Gamma^5 . prop["up", si[si2]] . qct`Gamma^5 . prop["dn", so[so2]]]
   };
 
@@ -409,7 +409,7 @@ DatasetNameRules[] = {
   qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]].
     qct`Gamma^g2_ . prop["dn", si[si2_]].
     qct`Gamma^g3_ . prop["up", si[si3_]].
-    qct`Gamma^g4_ . prop["dn", so[so4_]]] :> 
+    qct`Gamma^g4_ . prop["dn", so[so4_]]] :>
   TemplateApply[
     "C4cB_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
@@ -435,7 +435,7 @@ DatasetNameRules[] = {
   qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]].
     qct`Gamma^g2_ . prop["dn", si[si2_]]]
   qct`trace[qct`Gamma^g3_ . prop["up", so[so3_]].
-    qct`Gamma^g4_ . prop["dn", si[si4_]]] :> 
+    qct`Gamma^g4_ . prop["dn", si[si4_]]] :>
   TemplateApply[
     "C4cD_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
@@ -448,7 +448,7 @@ DatasetNameRules[] = {
   qct`trace[qct`Gamma^g3_ . prop["up", si[si3_]].
     qct`Gamma^g4_ . prop["dn", si[si4_]]]
   qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]].
-    qct`Gamma^g2_ .prop["dn", so[so2_]]] :> 
+    qct`Gamma^g2_ .prop["dn", so[so2_]]] :>
   TemplateApply[
     "C4cV_uuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4,
@@ -461,8 +461,8 @@ DatasetNameRules[] = {
 
 (* Isospin and Spin *)
 
-CombineIsospinAndSpin[corrTemplates_, momentaAssoc_] := 
-  momentaAssoc /. DTMomentaAssoc[rules_] :> 
+CombineIsospinAndSpin[corrTemplates_, momentaAssoc_] :=
+  momentaAssoc /. DTMomentaAssoc[rules_] :>
     ReplaceAll[corrTemplates, str_String :> TemplateApply[str, rules]];
 
 
@@ -490,27 +490,27 @@ DatasetnameAssocToCSV[assoc_, filename_String] := With[
 
 (* GEVP building *)
 
-IrrepSize[totalMomentum_, irrep_] := 
+IrrepSize[totalMomentum_, irrep_] :=
   Last @ Last @ Keys @ First @ Association @
     IrrepDGammaAssoc[][totalMomentum][[irrep]];
 
-MultiGroupSum[irrep_, momentapi_, irrepRow_, irrepCol_, hold_ : Identity] := 
+MultiGroupSum[irrep_, momentapi_, irrepRow_, irrepCol_, hold_ : Identity] :=
   hold @ MakeGroupSum[irrep, irrepRow, irrepCol, momentapi, {0, 0, 0}, {0, 0, 0}];
 
-GroupSumIrrepRowCol[totalMomentum_, irrep_, irrepRow_, irrepCol_, relMomenta_, hold_ : Identity] := 
+GroupSumIrrepRowCol[totalMomentum_, irrep_, irrepRow_, irrepCol_, relMomenta_, hold_ : Identity] :=
   With[{selectedIndividualMomenta = RelativeToIndividualMomenta[totalMomentum, #] & /@ relMomenta},
     AssociationThread[Map[MomentumToString, relMomenta, {2}],
-      MonitoredMap[MultiGroupSum[irrep, #, irrepRow, irrepCol, hold] &, 
+      MonitoredMap[MultiGroupSum[irrep, #, irrepRow, irrepCol, hold] &,
         selectedIndividualMomenta, "Momentum"]]];
 
-GroupSumIrrepRow[totalMomentum_, irrep_, irrepCol_, relMomenta_, hold_ : Identity] := 
+GroupSumIrrepRow[totalMomentum_, irrep_, irrepCol_, relMomenta_, hold_ : Identity] :=
 Module[{rows = Range[1, IrrepSize[totalMomentum, irrep]]},
   AssociationThread[
     ToString /@ rows,
     MonitoredMap[GroupSumIrrepRowCol[totalMomentum, irrep, #, irrepCol, relMomenta, hold] &,
       rows, "Irrep row"]]];
 
-GroupSumWholeIrrep[totalMomentum_, irrep_, relMomenta_, hold_ : Identity] := 
+GroupSumWholeIrrep[totalMomentum_, irrep_, relMomenta_, hold_ : Identity] :=
 Module[{cols = Range[1, IrrepSize[totalMomentum, irrep]]},
   AssociationThread[
     ToString /@ cols,
@@ -528,15 +528,15 @@ DatasetnameToObject[value_, key_] := Module[
   nc = NeedsConjugation[datasetname];
   <|"datasetname" -> nc[[1]], "re" -> Re @ value, "im" -> Im @ value, "conj" -> nc[[2]]|>];
 
-DatasetnameAssocToObject[value_] := 
+DatasetnameAssocToObject[value_] :=
   Values @ MapIndexed[DatasetnameToObject, value];
 
 DropEmpty[container_] := Select[container, Length @ # > 0 &];
 
 PrescriptionToNumeric[prescription_] := <|
-  "datasetname" -> prescription["datasetname"], 
+  "datasetname" -> prescription["datasetname"],
   "re" -> N @ prescription["re"],
-  "im" -> N @ prescription["im"], 
+  "im" -> N @ prescription["im"],
   "conj" -> prescription["conj"]|>;
 
 MomentaAndTemplatesToJSONFile[momentaAssoc_, templates_, filename_] := Module[
