@@ -132,7 +132,7 @@ resolve <- function (prescription) {
 resolved <- lapplyn(filtered_prescriptions, resolve, 6)
 
 path <- 'projected'
-if (!is.dir(path)) {
+if (!dir.exists(path)) {
   dir.create(path)
 }
 resolved_filename <- sprintf('%s/resolved_%s_%s_%04d.js', path, total_momentum_str, irrep, config_number)
