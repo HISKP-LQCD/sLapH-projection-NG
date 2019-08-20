@@ -57,6 +57,23 @@ total_momentum_str_to_vec <- function (total_momentum_str) {
 
 This comparison will use paramvalf within a single notebook. Users of it might miss the `pv_load` and `pv_save` calls but we are just using it as a library and not as a fully fleged framework here.
 
+The data resides in the “work” directory where as the working directory of this notebook is the source directory. Therefore we first need to find it. This is different on the various machines, so we will just try a few candidates.
+
+```{r}
+workdir_candidates <- c(
+  '~/Lattice/NG2',
+  '~/NG2'
+)
+
+for (path in workdir_candidates) {
+  if (dir.exists(path)) {
+    workdir <- path
+    break
+  }
+}
+```
+
+
 # Reading actual data
 
 We will do all the comparisons to the total momenta and irreps that we have projected. For this we just parse all the files for a selected configuration and build a parameter table out of them.
@@ -67,8 +84,6 @@ split_filename <- function (path) {
   parts <- stringr::str_match(filename, 'resolved_(.*)_(.*)_(.*)\\.js')
   parts[1, 2:4]
 }
-
-workdir <- '~/Lattice/NG2'
 
 all_projected_paths <- Sys.glob(paste0(workdir, '/projected/resolved_*_*_2552.js'))
 
