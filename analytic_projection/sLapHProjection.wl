@@ -140,7 +140,7 @@ MomentaToString[momenta_] := StringRiffle[ Map[MomentumToString, momenta], ","];
 RelMomentaRefLabelFromIndividual[momenta_] :=
   MomentaToString @ RelMomentaRefFromIndividual @ momenta;
 
-MomentaMaxNorm[momenta_] := Max[Norm[#]^2 & /@ momenta];
+MomentaMaxNormSq[momenta_] := Max[Norm[#]^2 & /@ momenta];
 
 MomentaSumNormSq[momenta_] := Total[Norm[#]^2 & /@ momenta];
 
