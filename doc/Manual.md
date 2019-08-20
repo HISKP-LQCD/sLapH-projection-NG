@@ -1910,71 +1910,11 @@ are created into `WORK/comparison`.
 The following are tests that we can perform to increase the confidence in $H_0$
 which says that the code works perfectly fine.
 
-## Comparison to Markus' data
+## Comparison to Markus's data
 
-Markus has already projected all the data for the $\rho$ channel, we can just
-use this to compare. His data is not only in a different format but also uses
-different parametrizations for individual momenta $p_i$ via his $P'$ and $q'$
-values.
+The comparison to Markus's data is performed in a separate Rmarkdown file:
 
-We want to do a fully automated complete comparison such that there are no
-manual steps which are additional sources of errors.
-
-We have picked the B35.32 ensemble for no particular reason. From Markus we
-take the contractions for configuration 2552 in the form of HDF5 files. Also we
-take his projected correlators in the form of TSV files to compare to.
-
-### Momentum parametrization
-
-Markus' parametrization works as
-$$ p_1 = \frac{P'}{2} + q' \,, \quad p_2 = \frac{P'}{2} - q' \,. $$
-
-The parametrization used in this code here is $p_1 = P - q$ and $p_2 = q$ for
-the case of two particles. This means that in order to convert his
-parametrization into mine one has to use the relations
-$$ P = P' \,, \quad q = \frac{P'}{2} - q' \,. $$
-
-The other way around works exactly the same:
-$$ P' = P \,, \quad q' = \frac{P}{2} - q \,. $$
-
-His correlator matrix format contains files called `operator-indices` that give
-the three-vector $P$ that is actually used for that particular moving frame, as
-well as the irrep row:
-
-```
-id	p_x	p_y	p_z	alpha
-0	-1	0	0	1
-1	0	-1	0	1
-2	0	0	-1	1
-3	0	0	1	1
-4	0	1	0	1
-5	1	0	0	1
-```
-
-One has to look up our $P$ and then find out the *operator id* from this table.
-
-The correlator matrix elements are then labeled by their $q'_\text{source}$ and
-$q'_\text{sink}$ values. These also correspond to indices that have to be read
-off from the lines with the correct Dirac structure, `g: \gamma_{5},
-\gamma_{5}`, in the file `gevp-indices`:
-
-```
-id	element
-0	p: 1, g: \gamma_{50i}
-1	p: 1, g: \gamma_{i}
-2	p: 1, q: (0.0, 0.0, 0.5), g: \gamma_{5}, \gamma_{5}
-3	p: 1, q: (0.0, 0.0, 1.5), g: \gamma_{5}, \gamma_{5}
-4	p: 1, q: (1.0, 0.0, 0.5), g: \gamma_{5}, \gamma_{5}
-5	p: 1, q: (1.0, 1.0, 0.5), g: \gamma_{5}, \gamma_{5}
-```
-
-From this we can deduce which correlator matrix rows and columns correspond to
-my $q_\text{source}$ and $q_\text{sink}$.
-
-### Common fallacies
-
-While performing the comparisons there are a few issues that can occur and need
-to be taken care of.
+    numeric_projection/Comparison_with_Markus_Werner.Rmd
 
 #### Momentum cutoff
 

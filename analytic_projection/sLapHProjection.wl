@@ -88,10 +88,6 @@ MomentumRefScalar[4] = {0, 0, 2};
 
 MomentumRef[momentumpcm_] := MomentumRefScalar[Total[momentumpcm^2]];
 
-MomentumRefStabilizer[momentumpcm_] := With[
-  {totalMomentumSq = Total[momentumpcm^2]},
-  If[totalMomentumSq == 4, {0, 0, 1}, MomentumRefScalar @ totalMomentumSq]];
-
 ParityEulerMatrix[{angles_, parity_}] := parity * EulerMatrix[angles];
 
 CachedParityEulerMatrix = AssociationMap[ParityEulerMatrix, Values @ EulerAnglesParityAssoc[]];
@@ -117,7 +113,7 @@ RotateMomenta[groupElementName_String, momenta_] := With[
 
 MomentaOrbit[momenta_] :=
   Sort @ DeleteDuplicates @ Map[RotateMomenta[#, momenta] &,
-     Keys @ IrrepDGammaAssoc[][[Key @ MomentumRefStabilizer @ Total @ momenta]][[1]]];
+     Keys @ IrrepDGammaAssoc[][[Key @ MomentumRef @ Total @ momenta]][[1]]];
 
 RemoveRedundantMomenta[individualMomenta_] :=
   Keys @ DeleteDuplicates @ AssociationMap[MomentaOrbit, individualMomenta];
@@ -145,6 +141,18 @@ RelMomentaRefLabelFromIndividual[momenta_] :=
   MomentaToString @ RelMomentaRefFromIndividual @ momenta;
 
 MomentaMaxNorm[momenta_] := Max[Norm[#]^2 & /@ momenta];
+
+ContractionMomentumCutoff[0] = 4;
+ContractionMomentumCutoff[1] = 5;
+ContractionMomentumCutoff[2] = 6;
+ContractionMomentumCutoff[3] = 7;
+ContractionMomentumCutoff[4] = 4;
+
+FilterRelativeMomenta[totalMomentum_, relMomenta_] := 
+  RelMomentaRefFromIndividual /@ 
+    Select[
+      RemoveRedundantMomenta @ Map[RelativeToIndividualMomenta[totalMomentum, #] &, relMomenta], 
+      MomentaMaxNorm @ # <= ContractionMomentumCutoff[Norm[totalMomentum]^2] &]; 
 
 
 (* Clebsch-Gordan coefficients *)

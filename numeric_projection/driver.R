@@ -52,12 +52,10 @@ names(diagrams) <- NULL
 files_list <- as.list(files)
 names(files_list) <- diagrams
 
-needed_raw <- lapply(
-  needed_names,
-  function (datasetname) {
-    #print(datasetname)
+load_dataset <- function (datasetname) {
     diagram <- strsplit(datasetname, '_')[[1]][1]
     
+    # TODO: Remove this once the test against Markus works.
     if (diagram == 'C4cV') {
       return (NA)
     }
@@ -90,7 +88,9 @@ needed_raw <- lapply(
     } else {
       stop()
     }
-  })
+}
+
+needed_raw <- lapply(needed_names, load_dataset)
 
 names(needed_raw) <- needed_names
 
@@ -131,6 +131,9 @@ resolve <- function (prescription) {
 
 resolved <- lapplyn(filtered_prescriptions, resolve, 6)
 
-dir.create('projected')
-resolved_filename <- sprintf('projected/resolved_%s_%s_%04d.js', total_momentum_str, irrep, config_number)
+path <- 'projected'
+if (!is.dir(path)) {
+  dir.create(path)
+}
+resolved_filename <- sprintf('%s/resolved_%s_%s_%04d.js', path, total_momentum_str, irrep, config_number)
 jsonlite::write_json(resolved, resolved_filename, pretty = TRUE)
