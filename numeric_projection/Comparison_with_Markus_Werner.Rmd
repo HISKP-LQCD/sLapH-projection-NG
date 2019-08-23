@@ -115,7 +115,10 @@ For each irrep we need to figure out which relative momenta $q$ we actually have
 ```{r}
 .func <- function (param, value) {
   data <- jsonlite::read_json(value$path)
-  q_avail_actual <- names(data[[param$total_momentum_str]][[param$irrep]][['1']][['1']])
+  # TODO
+  #irrep_col <- if (param$irrep == 'T1u') '2' else '1'
+  irrep_col <- '1'
+  q_avail_actual <- names(data[[param$total_momentum_str]][[param$irrep]][[irrep_col]][['1']])
   
   if (length(q_avail_actual) == 0) {
     return (NA)
@@ -274,16 +277,31 @@ momentum_orbits <- jsonlite::read_json(path)
 
 ```{r}
 .func <- function (param, value) {
+  target_relative_momenta <- as.character(momentum_orbits[[param$total_momentum_str]][value$target_gevp_indices$relative_momenta])
+  stopifnot(length(value$target_gevp_indices$relative_momenta) == length(target_relative_momenta))
+  
   df <- tibble(
     target_gevp_id = value$target_gevp_indices$id,
-    target_relative_momenta = as.character(momentum_orbits[[param$total_momentum_str]][value$target_gevp_indices$relative_momenta])) %>%
+    target_relative_momenta = target_relative_momenta)
+  
+  df2 <- df %>%
     filter(target_relative_momenta %in% value$actual_avail)
   
-  if (nrow(df) == 0) {
+  if (nrow(df) != nrow(df2)) {
+    str(param)
+    cat(sprintf('%d -> %d\n', nrow(df), nrow(df2)))
+    str(anti_join(df, df2))
+    print(value$actual_avail)
+  }
+  
+  if (nrow(df2) == 0) {
     return (NA)
   }
   
-  i <- 1:nrow(df)
+  i <- 1:nrow(df2)
+  
+  stopifnot('target_gevp_id' %in% colnames(df))
+  stopifnot('target_relative_momenta' %in% colnames(df))
   
   grid <- as_tibble(expand.grid(i = i, j = i))
   attr(grid, 'out.attrs') <- NULL
@@ -373,6 +391,7 @@ For a comparison with the ggplot library it is easiest to convert the correlator
 loaded_long <- pv_call(.func, loaded)
 ```
 
+In the following we produce one comparison plot per correlator matrix, showing all the elements that could be matched up.
 
 ```{r}
 .func <- function (param, value) {
