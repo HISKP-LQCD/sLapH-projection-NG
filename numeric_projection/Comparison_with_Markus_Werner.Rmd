@@ -1,11 +1,12 @@
 ---
-title: "Comparison_with_Markus_Werner.Rmd"
+title: "Comparison with Markus Werner"
 author: "Martin Ueding"
-date: "16 August 2019"
+date: "\\today"
 output: pdf_document
 ---
 
-In this notebook we compare the data from the new projection code with the results that Markus Werner has generated with his code.
+In this notebook we compare the data from the new projection code with the
+results that Markus Werner has generated with his code.
 
 Markus has already projected all the data for the $\rho$ channel, we can just
 use this to compare. His data is not only in a different format but also uses
@@ -18,7 +19,6 @@ manual steps which are additional sources of errors.
 We have picked the B35.32 ensemble for no particular reason. From Markus we
 take the contractions for configuration 2552 in the form of HDF5 files. Also we
 take his projected correlators in the form of TSV files to compare to.
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -41,7 +41,7 @@ total_momentum_ref <- function (total_momentum_sq) {
     c(1, 1, 0)
   else if (total_momentum_sq == 3)
     c(1, 1, 1)
-  else if (total_momentum_sq == 1)
+  else if (total_momentum_sq == 4)
     c(0, 0, 2)
 }
 
@@ -73,7 +73,6 @@ for (path in workdir_candidates) {
 }
 ```
 
-
 # Reading actual data
 
 We will do all the comparisons to the total momenta and irreps that we have projected. For this we just parse all the files for a selected configuration and build a parameter table out of them.
@@ -96,6 +95,8 @@ df$config_number <- as.integer(df$config_number)
 irreps <- df_to_paramval(df, c('total_momentum_str', 'irrep', 'config_number'))
 ```
 
+The parameter is the total momentum as string, we need to extract it as a three-vector and and also as a compute the $\vec P^2$.
+
 ```{r}
 .func <- function (param, value) {
   total_momentum_vec <- total_momentum_str_to_vec(param$total_momentum_str)
@@ -109,23 +110,21 @@ irreps <- df_to_paramval(df, c('total_momentum_str', 'irrep', 'config_number'))
 total_momentum <- pv_call(.func, irreps)
 ```
 
-For each irrep we need to figure out which relative momenta $q$ we actually have in our data. We read in the actual data and convert the parametrization to the one that Markus has used.
+For each irrep we need to figure out which relative momenta $q$ we actually have in our data. In case that there are no relative momenta available we have no coupling and therefore we can discard it.
 
 ```{r}
 .func <- function (param, value) {
   data <- jsonlite::read_json(value$path)
   q_avail_actual <- names(data[[param$total_momentum_str]][[param$irrep]][['1']][['1']])
   
+  if (length(q_avail_actual) == 0) {
+    return (NA)
+  }
+  
   list(actual_avail = q_avail_actual)
 }
 
 actual_avail <- pv_call(.func, irreps, total_momentum)
-```
-
-The number of correlator matrices that we have is this:
-
-```{r}
-nrow(actual_avail$param)
 ```
 
 # Reading target data
@@ -199,13 +198,14 @@ stopifnot('00-1' == parse_markus_gevp_indices('p: 1, q: (0.0, 0.0, 1.5), g: \\ga
 stopifnot(is.na(parse_markus_gevp_indices('p: 1, g: \\gamma_{5}')))
 ```
 
-The number of correlator matrices that Markus has is the following:
+We gather the number of correlator matrices that Markus has.
 
 ```{r}
 glob <- sprintf('%s/reference/rho_p?_*_operator-indices.tsv', workdir)
 target_filenames <- Sys.glob(glob)
-print(target_filenames)
 ```
+
+For the correlator matrices that we have available in the actual data we also try to load the target data. They might not all exist as Markus has only created the files for the one that actually have coupling. In case the files do not exist we can therefore safely skip them.
 
 ```{r}
 .func <- function (param, value) {
@@ -239,37 +239,33 @@ print(target_filenames)
 target_avail <- pv_call(.func, irreps, total_momentum)
 ```
 
-The number of correlator matrices that we were able to load is the following:
+# Matching up available and actual
 
-```{r}
-print(target_avail$param)
-print(target_filenames)
-```
+## Number of correlator matrices
 
-```{r}
-print(target_avail$param)
-print(actual_avail$param)
-```
+There is no notational difference in the total momentum and the irreps. We must be able to load all of Markus's correlator matrices. If we cannot do that, something is off. In case that the actual data contains more than the target data we do not have a problem because these are just the ones that Markus did not write out due to non-coupling.
 
-```{r}
-anti_join(target_avail$param, actual_avail$param)
-```
-
-```{r}
-anti_join(actual_avail$param, target_avail$param)
-```
-
-```{r}
-semi_join(target_avail$param, actual_avail$param)
-```
+The following table lists all the correlator matrices that were found in both target and actual data sets.
 
 ```{r}
 semi_join(actual_avail$param, target_avail$param)
 ```
 
-# Matching up available and actual
+The following table lists the correlator matrices that show coupling in the actual data but are not available in the target data. This can either be errors while loading the target data or just that Markus deemed them irrelevant for $l = 1$ and $I_3 = 1$ scattering. It seems that all these ones are understood and therefore everything that not matched up is not a problem.
 
-Markus and I have chosen different representatives for the relative momenta from each orbit. This means that at first glance there are many GEVP elements just missing in the other data. One must use a list of relative momenta from the orbits in order to match this up. Using Mathematica we can create a mapping from relative momentum labels to their respective orbit representative.
+```{r}
+anti_join(actual_avail$param, target_avail$param)
+```
+
+In the other direction there must be no target data sets which we do not have in the actual data set. The following table should have zero rows.
+
+```{r}
+anti_join(target_avail$param, actual_avail$param)
+```
+
+## Momenta orbits
+
+Markus and I have chosen different representatives for the relative momenta from each orbit. This means that at first glance there are many correlator matrix elements just missing in the other data. One must use a list of relative momenta from the orbits in order to match this up. Using Mathematica we can create a mapping from relative momentum labels to their respective orbit representative.
 
 ```{r}
 path <- sprintf('%s/momenta_orbits.js', workdir)
@@ -306,6 +302,16 @@ momentum_orbits <- jsonlite::read_json(path)
 
 matched_up <- pv_call(.func, actual_avail, target_avail)
 ```
+
+During the process we might lose some of the data sets. The following table lists all the ones that got lost. This must not happen as it is an indication that there is no overlap in the relative momenta that are available. This likely means that either the momenta cutoffs are too strict in the new analytic projection code or that the correspondence using the momentum orbits has not worked correctly. All these cases must be understood and fixed.
+
+```{r}
+anti_join(target_avail$param, matched_up$param)
+```
+
+# Reading target correlators
+
+At this point we have figured out the correspondence of operators. We can just take the outer product of these operators to flesh out the whole correlator matrix and load the elements from both the target and actual data.
 
 ```{r}
 load_target_config <- function (path, config_number) {
@@ -351,6 +357,10 @@ load_target_config <- function (path, config_number) {
 
 loaded <- pv_call(.func, matched_up, total_momentum, target_avail, irreps)
 ```
+
+# Comparison
+
+For a comparison with the ggplot library it is easiest to convert the correlator matrices into the long format and have target and actual data in the same column instead of two distinct ones.
 
 ```{r}
 .func <- function (param, value) {
