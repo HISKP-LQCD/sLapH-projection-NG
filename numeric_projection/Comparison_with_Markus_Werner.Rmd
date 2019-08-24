@@ -115,13 +115,19 @@ For each irrep we need to figure out which relative momenta $q$ we actually have
 ```{r}
 .func <- function (param, value) {
   data <- jsonlite::read_json(value$path)
-  q_avail_actual <- names(data[[param$total_momentum_str]][[param$irrep]][[1]][[1]])
+
+  q_avail_actual <- character(0)
+  for (elem in data[[param$total_momentum_str]][[param$irrep]]) {
+    for (inner in elem) {
+      q_avail_actual <- c(q_avail_actual, names(inner))
+    }
+  }
   
   if (length(q_avail_actual) == 0) {
     return (NA)
   }
   
-  list(actual_avail = q_avail_actual)
+  list(actual_avail = sort(unique(q_avail_actual)))
 }
 
 actual_avail <- pv_call(.func, irreps, total_momentum)
@@ -176,7 +182,7 @@ my $q_\text{source}$ and $q_\text{sink}$. The following function allows us to co
 
 ```{r}
 parse_markus_gevp_indices <- function (line) {
-  pattern <- 'p: (\\d+), q: \\(([\\d.]+), ([\\d.]+), ([\\d.]+)\\), g: \\\\gamma_\\{5\\}, \\\\gamma_\\{5\\}'
+  pattern <- 'p: (\\d+), q: \\(([\\d.-]+), ([\\d.-]+), ([\\d.-]+)\\), g: \\\\gamma_\\{5\\}, \\\\gamma_\\{5\\}'
   match <- stringr::str_match(line, pattern)
   total_momentum_sq <- as.numeric(match[1, 2])
   
@@ -271,6 +277,8 @@ path <- sprintf('%s/momenta_orbits.js', workdir)
 momentum_orbits <- jsonlite::read_json(path)
 ```
 
+
+
 ```{r}
 .func <- function (param, value) {
   target_relative_momenta <- as.character(momentum_orbits[[param$total_momentum_str]][value$target_gevp_indices$relative_momenta])
@@ -291,6 +299,9 @@ momentum_orbits <- jsonlite::read_json(path)
   }
   
   if (nrow(df2) == 0) {
+    str(param)
+    print(sort(unique(df$target_relative_momenta)))
+    print(sort(unique(value$actual_avail)))
     return (NA)
   }
   
@@ -366,14 +377,11 @@ load_target_config <- function (path, config_number) {
     irrep_row_str <- as.character(irrep_row)
     data <- unlist(resolved[[param$total_momentum_str]][[param$irrep]][[irrep_col_str]][[irrep_row_str]][[q_source]][[q_sink]])
     if (is.null(data)) {
-      str(param)
-      print(irrep_row)
-      print(irrep_col)
       return (NA)
     }
     return (data)
   }
-  actual_loaded <- mapply(load_actual_config, grid$source_relative_momenta, grid$sink_relative_momenta, grid$irrep_row, grid$irrep_row, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+  actual_loaded <- mapply(load_actual_config, grid$source_relative_momenta, grid$sink_relative_momenta, grid$irrep_row, grid$irrep_col, SIMPLIFY = FALSE, USE.NAMES = FALSE)
   grid$actual <- actual_loaded
   
   grid$time <- lapply(1:nrow(grid), function (i) 0:(length(grid$target[[1]])-1))
@@ -437,8 +445,6 @@ col_value <- both_colors[col_map[col_num]]
 ls2$color <- col_value
 
 names(both_colors) <- both_keys
-
-print(both_colors)
 ```
 
 
