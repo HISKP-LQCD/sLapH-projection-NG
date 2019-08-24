@@ -145,7 +145,7 @@ $$ P' = P \,, \quad q' = \frac{P}{2} - q \,. $$
 
 His correlator matrix format contains files called `operator-indices` that give
 the three-vector $P$ that is actually used for that particular moving frame, as
-well as the irrep row:
+well as the irrep row $\alpha$:
 
 ```
 id	p_x	p_y	p_z	alpha
@@ -157,7 +157,7 @@ id	p_x	p_y	p_z	alpha
 5	1	0	0	1
 ```
 
-One has to look up our $P$ and then find out the *operator id* from this table.
+One has to look up our $\vec P$ and then find out the *operator id* from this table.
 
 The correlator matrix elements are then labeled by their $q'_\text{source}$ and
 $q'_\text{sink}$ values. These also correspond to indices that have to be read
@@ -300,15 +300,15 @@ momentum_orbits <- jsonlite::read_json(path)
   
   i <- 1:nrow(df2)
   
-  stopifnot('target_gevp_id' %in% colnames(df))
-  stopifnot('target_relative_momenta' %in% colnames(df))
+  stopifnot('target_gevp_id' %in% colnames(df2))
+  stopifnot('target_relative_momenta' %in% colnames(df2))
   
   grid <- as_tibble(expand.grid(i = i, j = i))
   attr(grid, 'out.attrs') <- NULL
-  grid$target_source_id <- df$target_gevp_id[grid$i]
-  grid$target_sink_id <- df$target_gevp_id[grid$j]
-  grid$source_relative_momenta <- df$target_relative_momenta[grid$i]
-  grid$sink_relative_momenta <- df$target_relative_momenta[grid$j]
+  grid$target_source_id <- df2$target_gevp_id[grid$i]
+  grid$target_sink_id <- df2$target_gevp_id[grid$j]
+  grid$source_relative_momenta <- df2$target_relative_momenta[grid$i]
+  grid$sink_relative_momenta <- df2$target_relative_momenta[grid$j]
   grid$i <- NULL
   grid$j <- NULL
   
