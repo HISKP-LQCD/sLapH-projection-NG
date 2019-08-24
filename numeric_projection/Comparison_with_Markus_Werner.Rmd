@@ -115,10 +115,7 @@ For each irrep we need to figure out which relative momenta $q$ we actually have
 ```{r}
 .func <- function (param, value) {
   data <- jsonlite::read_json(value$path)
-  # TODO
-  #irrep_col <- if (param$irrep == 'T1u') '2' else '1'
-  irrep_col <- '1'
-  q_avail_actual <- names(data[[param$total_momentum_str]][[param$irrep]][[irrep_col]][['1']])
+  q_avail_actual <- names(data[[param$total_momentum_str]][[param$irrep]][[1]][[1]])
   
   if (length(q_avail_actual) == 0) {
     return (NA)
@@ -221,8 +218,7 @@ For the correlator matrices that we have available in the actual data we also tr
   filtered <- operator_indices %>%
     filter(p_x == value$total_momentum_vec[1],
            p_y == value$total_momentum_vec[2],
-           p_z == value$total_momentum_vec[3],
-           alpha == 1) %>%
+           p_z == value$total_momentum_vec[3]) %>%
     select(id, alpha)
   operator_id <- filtered$id
   
@@ -303,14 +299,17 @@ momentum_orbits <- jsonlite::read_json(path)
   stopifnot('target_gevp_id' %in% colnames(df2))
   stopifnot('target_relative_momenta' %in% colnames(df2))
   
-  grid <- as_tibble(expand.grid(i = i, j = i))
+  grid <- as_tibble(expand.grid(i = i, j = i, k = 1:nrow(value$target_operator_id)))
   attr(grid, 'out.attrs') <- NULL
   grid$target_source_id <- df2$target_gevp_id[grid$i]
   grid$target_sink_id <- df2$target_gevp_id[grid$j]
+  grid$irrep_row <- value$target_operator_id$alpha[grid$k]
+  grid$target_operator_id <- value$target_operator_id$id[grid$k]
   grid$source_relative_momenta <- df2$target_relative_momenta[grid$i]
   grid$sink_relative_momenta <- df2$target_relative_momenta[grid$j]
   grid$i <- NULL
   grid$j <- NULL
+  grid$k <- NULL
   
   stopifnot(all(!is.na(grid$target_source_id)))
   stopifnot(all(!is.na(grid$target_sink_id)))
@@ -340,8 +339,6 @@ load_target_config <- function (path, config_number) {
 }
 
 .func <- function (param, value) {
-  stopifnot(nrow(value$target_operator_id) == 1)
-  
   grid <- value$matched_up_grid
   
   grid$filename_target <- sprintf(
@@ -349,7 +346,7 @@ load_target_config <- function (path, config_number) {
     workdir,
     value$total_momentum_sq,
     param$irrep,
-    value$target_operator_id$id,
+    grid$target_operator_id,
     grid$target_source_id,
     grid$target_sink_id)
   
@@ -358,13 +355,15 @@ load_target_config <- function (path, config_number) {
   
   filename_actual <- value$path
   resolved <- jsonlite::read_json(filename_actual)
-  load_actual_config <- function (q_source, q_sink) {
-    irrep_col <- if (param$irrep %in% c('T1u')) '3' else '1'
-    data <- unlist(resolved[[param$total_momentum_str]][[param$irrep]][[irrep_col]][['1']][[q_source]][[q_sink]])
+  load_actual_config <- function (q_source, q_sink, irrep_row) {
+    irrep_col <- if (param$irrep %in% c('T1u')) 3 else 1
+    irrep_col_str <- as.character(irrep_col)
+    irrep_row_str <- as.character(irrep_row)
+    data <- unlist(resolved[[param$total_momentum_str]][[param$irrep]][[irrep_col_str]][[irrep_row_str]][[q_source]][[q_sink]])
     stopifnot(!is.null(data))
     return (data)
   }
-  actual_loaded <- mapply(load_actual_config, grid$source_relative_momenta, grid$sink_relative_momenta, SIMPLIFY = FALSE, USE.NAMES = FALSE)
+  actual_loaded <- mapply(load_actual_config, grid$source_relative_momenta, grid$sink_relative_momenta, grid$irrep_row, SIMPLIFY = FALSE, USE.NAMES = FALSE)
   grid$actual <- actual_loaded
   
   grid$time <- lapply(1:nrow(grid), function (i) 0:(length(grid$target[[1]])-1))
@@ -389,6 +388,12 @@ For a comparison with the ggplot library it is easiest to convert the correlator
 }
 
 loaded_long <- pv_call(.func, loaded)
+
+.func <- function (param, value) {
+  list(summary = value$loaded_long)
+}
+
+loaded_summary <- pv_call(.func, loaded_long)
 ```
 
 In the following we produce one comparison plot per correlator matrix, showing all the elements that could be matched up.
@@ -419,3 +424,30 @@ In the following we produce one comparison plot per correlator matrix, showing a
 pv_call(.func, loaded_long)
 ```
 
+```{r}
+plots <- loaded_summary %>%
+  group_by(total_momentum_str, irrep) %>%
+  do(plot = ggplot(
+    .,
+    aes(x = time,
+        y = abs(correlator),
+        color = kind,
+        shape = factor(irrep_row))) +
+    geom_point(position = position_dodge(width = 0.3)) +
+    scale_y_log10() +
+    facet_grid(source_relative_momenta ~ sink_relative_momenta) +
+    labs(title = "Comparison between Martin's and Markus's projection code",
+         subtitle = sprintf('P = %s, irrep = %s, cnfg = %d',
+                            .$total_momentum_str[1],
+                            .$irrep[1],
+                            .$config_number[1]),
+         x = 't',
+         y = expression(abs(C(t))),
+         color = 'Data',
+         shape = expression("irrep row" ~ alpha)))
+
+for (plot in plots$plot) {
+  print(plot)
+  cat('\n')
+}
+```
