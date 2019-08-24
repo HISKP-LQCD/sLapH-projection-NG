@@ -417,56 +417,60 @@ loaded_long <- pv_call(.func, loaded)
 loaded_summary <- pv_call(.func, loaded_long, total_momentum)
 ```
 
+```{r}
+ls2 <- loaded_summary %>%
+  mutate(color_key = interaction(kind, irrep_row, sprintf("%d", irrep_col), lex.order = TRUE))
+  
+num_col_actual <- length(unique(unclass(filter(ls2, kind == 'actual')$color_key)))
+num_col_target <- length(unique(unclass(filter(ls2, kind == 'target')$color_key)))
+  
+col_actual <- rainbow(num_col_actual, v = 0.82, start = 0.0, end = 140/360)
+col_target <- rainbow(num_col_target, v = 0.82, start = 200/360, end = 300/360)
+
+both_keys <- sort(unique(levels(ls2$color_key)[ls2$color_key]))
+both_colors <- c(col_actual, col_target)
+
+col_num <- unclass(ls2$color_key)
+col_map <- integer(max(col_num))
+col_map[sort(unique(col_num))] <- 1:length(both_colors)
+col_value <- both_colors[col_map[col_num]]
+ls2$color <- col_value
+
+names(both_colors) <- both_keys
+
+print(both_colors)
+```
+
+
 In the following we produce one comparison plot per correlator matrix, showing all the elements that could be matched up.
 
 ```{r}
-.func <- function (param, value) {
-  p <- ggplot(value$loaded_long, aes(x = time, y = abs(correlator), color = kind)) +
-    geom_point(position = position_dodge(width = 0.3)) +
-    scale_y_log10() +
-    facet_grid(source_relative_momenta ~ sink_relative_momenta) +
-    labs(title = "Comparison between Martin's and Markus's projection code",
-         subtitle = sprintf('P = %s, irrep = %s, cnfg = %d', param$total_momentum_str, param$irrep, param$config_number),
-         x = 't',
-         y = expression(abs(C(t))),
-         color = 'Data')
-  
-  path <- sprintf('%s/comparison', workdir)
-  if (!dir.exists(path)) {
-    dir.create(path)
-  }
-  ggsave(sprintf('%s/comparison-%s-%s.pdf', path, param$total_momentum_str, param$irrep), p, width = 10, height = 10)
-  
-  print(p)
-  
-  list()
-}
-
-pv_call(.func, loaded_long)
-```
-
-```{r}
-plots <- loaded_summary %>%
-  arrange(total_momentum_sq, irrep, total_momentum_str) %>%
-  group_by(total_momentum_sq, irrep, total_momentum_str) %>%
-  do(plot = ggplot(
+make_plot <- function (.) {
+  ggplot(
     .,
     aes(x = time,
         y = abs(correlator),
-        color = kind,
-        shape = interaction(irrep_row, sprintf("%d", irrep_col)))) +
+        color = color_key)) +
     geom_point(position = position_dodge(width = 0.3)) +
+    scale_color_manual(values = both_colors) +
     scale_y_log10() +
     facet_grid(source_relative_momenta ~ sink_relative_momenta) +
-    labs(title = "Comparison between Martin's and Markus's projection code",
-         subtitle = sprintf('P = %s, irrep = %s, cnfg = %d',
-                            .$total_momentum_str[1],
-                            .$irrep[1],
+    labs(title = sprintf('P² = %d, irrep = %s, P = %s',
+                         .$total_momentum_sq[1],
+                         .$irrep[1],
+                         .$total_momentum_str[1]),
+         subtitle = sprintf('cnfg = %d',
                             .$config_number[1]),
          x = 't',
          y = expression(abs(C(t))),
          color = 'Data',
-         shape = expression("irrep row" ~ alpha)))
+         shape = expression("irrep row" ~ alpha))
+}
+
+plots <- ls2 %>%
+  arrange(total_momentum_sq, irrep, total_momentum_str) %>%
+  group_by(total_momentum_sq, irrep, total_momentum_str) %>%
+  do(plot = make_plot(.))
 
 for (plot in plots$plot) {
   print(plot)
