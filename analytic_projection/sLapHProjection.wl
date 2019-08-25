@@ -153,7 +153,7 @@ ContractionMomentumCutoff[4] = 4;
 FilterRelativeMomenta[totalMomentum_, relMomenta_] :=
   RelMomentaRefFromIndividual /@
     Select[
-      RemoveRedundantMomenta @ Map[RelativeToIndividualMomenta[totalMomentum, #] &, relMomenta],
+      RemoveRedundantMomenta @ Map[RelativeToIndividualMomenta[MomentumRef @ totalMomentum, #] &, relMomenta],
       MomentaSumNormSq @ # <= ContractionMomentumCutoff[Norm[totalMomentum]^2] &&
       MomentaMaxNormSq @ # <= 4 &];
 
