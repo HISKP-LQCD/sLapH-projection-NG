@@ -11,7 +11,7 @@ set -u
 # {{ irrep }}
 {% for _, momentum in values -%}
 {% for config_number in config_numbers -%}
-sbatch jobscripts/slurm_analytic_{{ momentum }}_{{ irrep }}_{{ '%04d'|format(config_number) }}.sh
+sbatch jobscripts/slurm_numeric_{{ momentum }}_{{ irrep }}_{{ '%04d'|format(config_number) }}.sh
 {% endfor -%}
 {% endfor -%}
 {% endfor -%}
