@@ -112,7 +112,7 @@ RotateMomenta[groupElementName_String, momenta_] := With[
   Map[rotationMatrix . # &, momenta]]
 
 MomentaOrbit[momenta_] :=
-  Sort @ DeleteDuplicates @ Map[RotateMomenta[#, momenta] &,
+  Sort @ DeleteDuplicates @ Map[Sort @ RotateMomenta[#, momenta] &,
      Keys @ IrrepDGammaAssoc[][[Key @ MomentumRef @ Total @ momenta]][[1]]];
 
 RemoveRedundantMomenta[individualMomenta_] :=
