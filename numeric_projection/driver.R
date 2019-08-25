@@ -38,7 +38,7 @@ else if (total_momentum_sq == 2) c(1, 1, 0)
 else if (total_momentum_sq == 3) c(1, 1, 1)
 else if (total_momentum_sq == 1) c(0, 0, 2))
 
-prescription_filename <- sprintf('prescriptions/gevp-rho-%s-%s.js', total_momentum_str, irrep)
+prescription_filename <- sprintf('prescriptions/prescription_%s_%s.js', total_momentum_str, irrep)
 all_prescriptions <- jsonlite::read_json(prescription_filename)
 
 needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
