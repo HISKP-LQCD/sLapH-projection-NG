@@ -5,8 +5,10 @@
 
 import argparse
 import glob
+import itertools
 import json
 import os
+import pprint
 import re
 import sys
 
@@ -26,18 +28,40 @@ def available_channels():
     return drivers
 
 
+def generate_start_script(action, pairs, env):
+    extended_pairs = [
+        (sum(p**2 for p in momentum), irrep, ''.join(map(str, momentum)))
+        for momentum, irrep in pairs]
+    extended_pairs.sort()
+
+    grouped = itertools.groupby(extended_pairs, lambda x: x[0])
+    grouped2 = [
+        (key, itertools.groupby([v[1:] for v in value], lambda x: x[0]))
+        for key, value in grouped]
+
+    pprint.pprint(grouped2)
+
+    template = env.get_template('template_submit_{}_jobs.sh'.format(action))
+    rendered = template.render(grouped2=grouped2)
+    with open('jobscripts/submit_{}_jobs.sh'.format(action), 'w') as f:
+        f.write(rendered)
+
+
+
 def main(options):
 
     # Setting up Jinja
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(srcdir, 'jobscript_generator')))
-    template_analytic = env.get_template("template_slurm_analytic.sh")
-    template_numeric = env.get_template("template_slurm_numeric.sh")
+    template_analytic = env.get_template('template_slurm_analytic.sh')
+    template_numeric = env.get_template('template_slurm_numeric.sh')
 
     with open(os.path.join(srcdir, 'single_cover', 'irreps_avail.js')) as f:
         pairs = json.load(f)
 
     os.makedirs('batch_output', exist_ok=True)
     os.makedirs('jobscripts', exist_ok=True)
+
+    generate_start_script(options.action, pairs, env)
 
     for momentum, irrep in pairs:
         if options.action == 'analytic':
