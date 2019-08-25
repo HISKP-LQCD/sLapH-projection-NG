@@ -1,0 +1,150 @@
+---
+title: "Correlator Matrix Visualization"
+author: "Martin Ueding"
+date: "\\today"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(ggplot2)
+library(dplyr)
+library(paramvalf)
+library(tibble)
+
+debug_mode = TRUE
+```
+
+```{r}
+total_momentum_str_to_vec <- function (total_momentum_str) {
+  parts <- stringr::str_match(total_momentum_str, '(-?\\d)(-?\\d)(-?\\d)')
+  sapply(parts[1, 2:4], as.integer)
+}
+```
+
+
+```{r}
+workdir_candidates <- c(
+  '~/Lattice/NG2',
+  '~/NG2'
+)
+
+for (path in workdir_candidates) {
+  if (dir.exists(path)) {
+    workdir <- path
+    break
+  }
+}
+```
+
+```{r}
+all_projected_paths <- Sys.glob(paste0(workdir, '/projected/resolved_*_*_2552.js'))
+all_jsons <- lapply(all_projected_paths, jsonlite::read_json, simplifyVector = TRUE)
+```
+
+```{r}
+irrep_nonempty <- sapply(all_jsons, function (x) length(unlist(x))) > 0
+relevant_jsons <- all_jsons[irrep_nonempty]
+```
+
+```{r}
+data <- do.call(c, relevant_jsons)
+```
+
+```{r}
+parts <- list()
+
+for (total_momentum_idx in 1:length(data)) {
+  total_momentum_str <- names(data)[[total_momentum_idx]]
+  irreps <- data[[total_momentum_idx]]
+  
+  total_momentum_vec <- total_momentum_str_to_vec(total_momentum_str)
+  total_momentum_sq <- sum(total_momentum_vec^2)
+  
+  for (irrep_idx in 1:length(irreps)) {
+    irrep <- names(irreps)[[irrep_idx]]
+    irrep_cols <- irreps[[irrep_idx]]
+    if (length(irrep_cols) == 0) {
+      next
+    }
+    
+    for (irrep_col_idx in 1:length(irrep_cols)) {
+      irrep_col_str <- names(irrep_cols)[[irrep_col_idx]]
+      irrep_rows <- irrep_cols[[irrep_col_idx]]
+      if (length(irrep_rows) == 0) {
+        next
+      }
+      
+      for (irrep_row_idx in 1:length(irrep_rows)) {
+        irrep_row_str <- names(irrep_rows)[[irrep_row_idx]]
+        corr_rows <- irrep_rows[[irrep_row_idx]]
+        if (length(corr_rows) == 0) {
+          next
+        }
+        
+        for (corr_row_idx in 1:length(corr_rows)) {
+          corr_row_str <- names(corr_rows)[[corr_row_idx]]
+          corr_cols <- corr_rows[[corr_row_idx]]
+          if (length(corr_cols) == 0) {
+            next
+          }
+          
+          for (corr_col_idx in 1:length(corr_cols)) {
+            corr_col_str <- names(corr_cols)[[corr_col_idx]]
+            corr <- corr_cols[[corr_col_idx]]
+            
+            part <- tibble(
+              total_momentum_sq = total_momentum_sq,
+              total_momentum_str = total_momentum_str,
+              irrep = irrep,
+              irrep_row = as.integer(irrep_row_str),
+              irrep_col = as.integer(irrep_col_str),
+              corr_row = corr_row_str,
+              corr_col = corr_col_str,
+              time = 0:(length(corr)-1),
+              corr = corr)
+            
+            parts <- c(parts, list(part))
+          }
+        }
+      }
+      
+    }
+  }
+}
+```
+
+```{r}
+parts_long <- do.call(rbind, parts)
+```
+
+```{r}
+make_plot <- function (data) {
+  ggplot(data,
+         aes(x = time,
+             y = abs(corr),
+             color = interaction(irrep_row, irrep_col))) +
+    geom_point() +
+    scale_y_log10() +
+    facet_grid(corr_row ~ corr_col) +
+    labs(title = sprintf('P² = %d, irrep = %s, P = %s',
+                         data$total_momentum_sq[1],
+                         data$irrep[1],
+                         data$total_momentum_str[1]),
+         x = 't',
+         y = expression(abs(C(t))),
+         color = 'Irrep row.col')
+}
+
+plots <- parts_long %>%
+  arrange(total_momentum_sq, irrep, total_momentum_str) %>%
+  group_by(total_momentum_sq, irrep, total_momentum_str) %>%
+  do(plot = make_plot(.))
+
+for (plot in plots$plot) {
+  print(plot)
+  cat('\n\n')
+}
+```
+
