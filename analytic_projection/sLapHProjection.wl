@@ -359,7 +359,7 @@ MakeTemplate[n_] := StringRiffle[
  Table["p`x" <> ToString @ i <> "`.d000.g`g" <> ToString @ i <> "`", {i, 1, n}], "_"]
 
 DatasetNameRules[] = {
-  (* C6cC *)
+  (* C6cD *)
   qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]] .
     qct`Gamma^g2_ . prop["dn", si[si1_]]] *
   qct`trace[qct`Gamma^g3_ . prop["up", so[so2_]] .
