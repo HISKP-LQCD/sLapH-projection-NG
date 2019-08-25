@@ -311,6 +311,12 @@ MakeSourceSinkMomenta[assoc_] := Module[
 \[Pi]\[Pi]I2Bar[s1_, s2_, s3_, s4_, c1_, c2_, x1_, x2_] :=
   \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1];
 
+\[Pi]\[Pi]\[Pi]I3[s1_, s2_, s3_, s4_, s5_, s6_, c1_, c2_, c3_, x1_, x2_, x3_] :=
+  \[Pi]Plus[s1, s2, c1, x1] ** \[Pi]Plus[s3, s4, c2, x2] ** \[Pi]Plus[s5, s6, c3, x3]; 
+
+\[Pi]\[Pi]\[Pi]I3Bar[s1_, s2_, s3_, s4_, s5_, s6_, c1_, c2_, c3_, x1_, x2_, x3_] :=
+  \[Pi]Minus[s5, s6, c3, x3] ** \[Pi]Minus[s3, s4, c2, x2] ** \[Pi]Minus[s1, s2, c1, x1]; 
+
 
 (* Trace normalization *)
 
