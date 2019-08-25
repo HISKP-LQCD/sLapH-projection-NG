@@ -544,6 +544,9 @@ PrescriptionToNumeric[prescription_] := <|
   "im" -> N @ prescription["im"],
   "conj" -> prescription["conj"]|>;
 
+PrescriptionFilename[totalMomentum_, irrep_] :=
+  "prescriptions/gevp-rho-" <> MomentumToString[totalMomentum] <> "-" <> irrep <> ".js";
+
 MomentaAndTemplatesToJSONFile[momentaAssoc_, templates_, filename_] := Module[
   {someMomenta, someSourceSinkMomenta, gevp1, gevp2, gevp222, gevp3, gevp3C1, gevp3C2, gevpNumeric, json},
   someMomenta = ExtractMultiMomenta[momentaAssoc];

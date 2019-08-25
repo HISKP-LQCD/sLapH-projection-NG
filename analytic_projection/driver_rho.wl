@@ -20,10 +20,9 @@ relMomenta = {#} & /@ utm2Flat
 
 cutoffRelative = FilterRelativeMomenta[totalMomentum, relMomenta];
 
-filename = "prescriptions/gevp-rho-" <> MomentumToString[totalMomentum] <> "-" <> irrep <> ".js";
-Print @ filename
-
 timing1 = AbsoluteTiming[some = StructureButSingle[totalMomentum, irrep, cutoffRelative]][[1]];
 Print @ timing1
+
+filename = PrescriptionFilename[totalMomentum, irrep];
 timing2 = AbsoluteTiming[MomentaAndTemplatesToJSONFile[some, templates, filename]][[1]];
 Print @ timing2
