@@ -4,15 +4,29 @@
 # Copyright © 2019 Martin Ueding <dev@martin-ueding.de>
 
 import argparse
+import glob
 import json
 import os
+import re
 import sys
 
 import jinja2
 
 
+srcdir = os.path.dirname(os.path.dirname(__file__))
+
+
+def available_channels():
+    paths = glob.glob(os.path.join(srcdir, 'analytic_projection/driver_*.wl'))
+    drivers = []
+    for path in paths:
+        m = re.match(r'driver_(.*)\.wl', os.path.basename(path))
+        if m:
+            drivers.append(m.group(1))
+    return drivers
+
+
 def main(options):
-    srcdir = os.path.dirname(os.path.dirname(__file__))
 
     # Setting up Jinja
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(srcdir, 'jobscript_generator')))
@@ -27,7 +41,7 @@ def main(options):
 
     for momentum, irrep in pairs:
         if options.action == 'analytic':
-            rendered = template_analytic.render(momentum=momentum, irrep=irrep, srcdir=srcdir)
+            rendered = template_analytic.render(momentum=momentum, irrep=irrep, srcdir=srcdir, channel=options.channel)
             filename = 'slurm_analytic_{}{}{}_{}.sh'.format(momentum[0], momentum[1], momentum[2], irrep)
             path = os.path.join('jobscripts', filename)
             with open(path, "w") as f:
@@ -46,8 +60,11 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Creates job scripts for batch processing of analytic and numeric projection. Specify one of the actions and use `--help` to get further information about that particular action.')
     subparsers = parser.add_subparsers(title='actions')
 
+    channel_help = 'Channel to project. Only one channel can be selected per working directory as all the file names are the same. Available channels are: {}'.format(', '.join(available_channels()))
+
     analytic = subparsers.add_parser('analytic', help='analytic projection')
     analytic.set_defaults(action='analytic')
+    analytic.add_argument('channel', help=channel_help)
 
     numeric = subparsers.add_parser('numeric', help='numerical projection')
     numeric.set_defaults(action='numeric')
