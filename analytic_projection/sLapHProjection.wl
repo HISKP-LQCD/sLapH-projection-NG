@@ -123,10 +123,9 @@ UniqueTotalMomenta[momentumMag_] :=
     Values[# . MomentumRefScalar[momentumMag] & /@
       (EulerMatrix[#[[1]]] * #[[2]] &) /@ EulerAnglesParityAssoc[]];
 
-RelativeToIndividualMomenta[totalMomentum_, relMomenta_] := With[
-  {totalMomentumRef = MomentumRef @ totalMomentum},
+RelativeToIndividualMomenta[totalMomentum_, relMomenta_] :=
   MatrixRGTilde[totalMomentum] . # & /@
-    Catenate[{{MomentumRef[totalMomentumRef] - Total[relMomentaRef]}, relMomenta}]];
+    Catenate[{{MomentumRef[totalMomentum] - Total[relMomenta]}, relMomenta}];
 
 RelMomentaFromIndividual[momenta_] := Drop[momenta, 1];
 
@@ -154,7 +153,7 @@ ContractionMomentumCutoff[4] = 4;
 FilterRelativeMomenta[totalMomentum_, relMomenta_] :=
   RelMomentaRefFromIndividual /@
     Select[
-      RemoveRedundantMomenta @ Map[RelativeToIndividualMomenta[totalMomentum, #] &, relMomenta],
+      RemoveRedundantMomenta @ Map[RelativeToIndividualMomenta[MomentumRef @ totalMomentum, #] &, relMomenta],
       MomentaSumNormSq @ # <= ContractionMomentumCutoff[Norm[totalMomentum]^2] &&
       MomentaMaxNormSq @ # <= 4 &];
 
