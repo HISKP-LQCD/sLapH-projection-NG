@@ -11,7 +11,7 @@ irrep = $ScriptCommandLine[[5]]
 
 wc = WickContract[
   \[Pi]\[Pi]\[Pi]I3Bar[s1, s2, s3, s4, s5, s6, c1, c2, c3, so[1], so[2], so[3]] **
-  \[Pi]\[Pi]\[Pi]I3[s5, s6, s7, s8, s9, s10, c4, c5, c7, si[1], si[2], si[3]]];
+  \[Pi]\[Pi]\[Pi]I3[s7, s8, s9, s10, s11, s12, c4, c5, c6, si[1], si[2], si[3]]];
 
 templates = WickContractionToTemplates @ wc;
 
