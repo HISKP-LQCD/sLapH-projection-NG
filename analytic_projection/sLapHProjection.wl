@@ -348,6 +348,10 @@ FlavorSwitchRules[] = {
     Conjugate @ qct`trace[qct`Gamma^5 . prop["up", so[so1]] . qct`Gamma^5 . prop["dn", si[si1]] . qct`Gamma^5 . prop["up", si[si2]] . qct`Gamma^5 . prop["dn", so[so2]]]
   };
 
+WickContractionToTemplates[wc_] := With[
+  {normalized = NormalizeTraceRecursive @ ReplacePropagators @ QuarkContract @ wc},
+  normalized /. FlavorSwitchRules[] /. FlowReversalRules[] /. DatasetNameRules[]];
+
 
 (* Wick contractions *)
 
