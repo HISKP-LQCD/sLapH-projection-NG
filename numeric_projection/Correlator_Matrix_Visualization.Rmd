@@ -17,25 +17,9 @@ debug_mode = TRUE
 ```
 
 ```{r}
-total_momentum_str_to_vec <- function (total_momentum_str) {
-  parts <- stringr::str_match(total_momentum_str, '(-?\\d)(-?\\d)(-?\\d)')
-  sapply(parts[1, 2:4], as.integer)
-}
-```
+source('numeric_utils.R')
 
-
-```{r}
-workdir_candidates <- c(
-  '~/Lattice/NG2',
-  '~/NG2'
-)
-
-for (path in workdir_candidates) {
-  if (dir.exists(path)) {
-    workdir <- path
-    break
-  }
-}
+workdir <- get_workdir()
 ```
 
 ```{r}

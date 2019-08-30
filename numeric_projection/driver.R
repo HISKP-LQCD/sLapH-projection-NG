@@ -1,15 +1,5 @@
 #!/usr/bin/env Rscript
 
-options(echo = TRUE)
-
-print(getwd())
-
-library(ggplot2)
-library(dplyr)
-library(magrittr)
-
-theme_set(theme_light())
-
 lapplyn <- function (container, f, n, ...) {
   if (n == 1) {
     result <- lapply(container, f, ...)
@@ -18,6 +8,14 @@ lapplyn <- function (container, f, n, ...) {
   }
   return (result)
 }
+
+print(getwd())
+
+library(ggplot2)
+library(dplyr)
+library(magrittr)
+
+theme_set(theme_light())
 
 args <- commandArgs(trailingOnly = TRUE)
 print(args)
@@ -131,9 +129,24 @@ resolve <- function (prescription) {
 
 resolved <- lapplyn(filtered_prescriptions, resolve, 6)
 
+drop_small <- function (corr_list) {
+  firsts <- sapply(corr_list, function (corr) corr[1])
+  corr_list[abs(firsts) > 1.0e-8]
+}
+
+drop_empty <- function (l) {
+  lengths <- sapply(l, length)
+  l[lengths > 0]
+}
+
+filtered <- resolved %>%
+  lapplyn(drop_small, 5) %>%
+  lapplyn(drop_empty, 4) %>%
+  lapplyn(drop_empty, 3)
+
 path <- 'projected'
 if (!dir.exists(path)) {
   dir.create(path)
 }
 resolved_filename <- sprintf('%s/resolved_%s_%s_%04d.js', path, total_momentum_str, irrep, config_number)
-jsonlite::write_json(resolved, resolved_filename, pretty = TRUE)
+jsonlite::write_json(filtered, resolved_filename, pretty = TRUE)
