@@ -22,7 +22,7 @@ split_filename <- function (path) {
 
 
 ```{r}
-workdir <- '~/Lattice/NG2'
+workdir <- '~/Lattice/Three-Pions/wdir_3pi_I3/'
 ```
 
 ```{r}
