@@ -50,9 +50,7 @@ def generate_start_script(action, pairs, env, config_numbers=None):
             f.write(rendered)
 
 
-
 def main(options):
-
     # Setting up Jinja
     env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(srcdir, 'jobscript_generator')))
     template_analytic = env.get_template('template_slurm_analytic.sh')
@@ -63,7 +61,6 @@ def main(options):
 
     os.makedirs('batch_output', exist_ok=True)
     os.makedirs('jobscripts', exist_ok=True)
-
 
     if options.action == 'analytic':
         generate_start_script(options.action, pairs, env)
@@ -79,13 +76,22 @@ def main(options):
         config_numbers = list(range(options.first, options.last + 1, options.step))
         generate_start_script(options.action, pairs, env, config_numbers)
 
-        for momentum, irrep in pairs:
-            for config_number in config_numbers:
-                rendered = template_numeric.render(momentum=momentum, irrep=irrep, srcdir=srcdir, config_number=config_number)
-                filename = 'slurm_numeric_{}{}{}_{}_{:04d}.sh'.format(momentum[0], momentum[1], momentum[2], irrep, config_number)
-                path = os.path.join('jobscripts', filename)
-                with open(path, "w") as f:
-                    f.write(rendered)
+        extended_pairs = [
+            (sum(p**2 for p in momentum), irrep, ''.join(map(str, momentum)))
+            for momentum, irrep in pairs]
+        extended_pairs.sort()
+
+        grouped = itertools.groupby(extended_pairs, lambda x: x[0])
+        grouped2 = [
+            (key, itertools.groupby([v[1:] for v in value], lambda x: x[0]))
+            for key, value in grouped]
+
+        for config_number in config_numbers:
+            rendered = template_numeric.render(grouped2=grouped2, srcdir=srcdir, config_number=config_number)
+            filename = 'slurm_numeric_{:04d}.sh'.format(config_number)
+            path = os.path.join('jobscripts', filename)
+            with open(path, "w") as f:
+                f.write(rendered)
 
 
 def parse_args():
