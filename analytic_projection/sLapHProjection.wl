@@ -413,8 +413,8 @@ DatasetNameRules[] = {
       "x2" -> "`psi" <> ToString @ si1 <> "`",
       "x3" -> "`pso" <> ToString @ so2 <> "`",
       "x4" -> "`psi" <> ToString @ si2 <> "`",
-      "x4" -> "`pso" <> ToString @ so3 <> "`",
-      "x5" -> "`psi" <> ToString @ si3 <> "`"|>],
+      "x5" -> "`pso" <> ToString @ so3 <> "`",
+      "x6" -> "`psi" <> ToString @ si3 <> "`"|>],
 
   (* C4cB *)
   qct`trace[qct`Gamma^g1_ . prop["up", so[so1_]].
