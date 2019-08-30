@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tibble)
 library(dplyr)
+
+source('numeric_utils.R')
 ```
 
 ```{r}
@@ -75,5 +77,45 @@ result <- df %>%
   arrange(total_momentum, irrep, config_number) %>%
   group_by(total_momentum, irrep) %>%
   do(make_merge(.))
+```
+
+```{r}
+merged2 <- result$merged %>%
+  lapply(drop_empty)
+l <- sapply(merged2, length)
+result2 <- result[l > 0, ]
+```
+
+```{r}
+saveRDS(result2, 'corr_matrix_3pi_I3_A40.24.Rdata')
+```
+
+```{r}
+library(hadron)
+```
+
+```{r}
+cfs <- result2$merged %>%
+  lapplyn(function (data) { cf_orig(cf_meta(Time = ncol(data)), cf = data) }, 5)
+```
+
+```{r}
+cf_boots <- lapplyn(cfs, function (cf) { bootstrap.cf(cf) }, 5)
+```
+
+```{r}
+lapplyn(cfs, plot, 5)
+```
+
+```{r}
+cf_boot <- bootstrap.cf(cfs[[1]][['1']][['1']][[1]][[1]], boot.l = 100)
+```
+
+```{r}
+plot(cf_boot,
+     main = 'A40.24; P² = 1; A2; P = -100; boot.l = 100; elem 000,000 → 000,000',
+     xlab = 'Time',
+     ylab = 'Correlator',
+     log = 'y')
 ```
 
