@@ -19,7 +19,8 @@ debug_mode = TRUE
 ```{r}
 source('numeric_utils.R')
 
-workdir <- '~/Lattice/Three-Pions/wdir_2pi_I2'
+#workdir <- '~/Lattice/Three-Pions/wdir_2pi_I2'
+workdir <- '~/Lattice/Three-Pions/wdir_3pi_I3'
 ```
 
 ```{r}

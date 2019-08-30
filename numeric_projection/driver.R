@@ -53,11 +53,6 @@ names(files_list) <- diagrams
 load_dataset <- function (datasetname) {
     diagram <- strsplit(datasetname, '_')[[1]][1]
     
-    # TODO: Remove this once the test against Markus works.
-    if (diagram == 'C4cV') {
-      return (NA)
-    }
-    
     filename <- files_list[[diagram]]
     
     #print(sprintf('Fetching %s (a %s) from %s.\n', datasetname, diagram, filename))
@@ -82,7 +77,7 @@ load_dataset <- function (datasetname) {
     if (ncol(dataset) == 2) {
       return (dataset$re + 1i * dataset$im)
     } else if (colnames(dataset)[1] == 'rere') {
-      return (dataset$rere - 0*dataset$imim + 1i * dataset$reim + 1i * dataset$imre)
+      return (dataset$rere - dataset$imim + 1i * dataset$reim + 1i * dataset$imre)
     } else {
       stop()
     }
