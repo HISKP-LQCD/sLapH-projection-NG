@@ -15,8 +15,16 @@ set -x
 hostname
 date -Iseconds
 
-{% for momentum, irrep in pairs -%}
+{% for momentum_sq, grouped in grouped2 %}
+###############################################################################
+#                                    P² = {{ momentum_sq }}                                   #
+###############################################################################
+{% for irrep, values in grouped %}
+# {{ irrep }}
+{% for _, momentum in values -%}
 /usr/bin/time {{ srcdir }}/numeric_projection/driver.R {{ momentum|join(' ') }} {{ irrep }} {{ config_number }}
+{% endfor -%}
+{% endfor -%}
 {% endfor -%}
 
 date -Iseconds

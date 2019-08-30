@@ -5,6 +5,7 @@
 
 import argparse
 import glob
+import pprint
 import itertools
 import json
 import os
@@ -27,25 +28,38 @@ def available_channels():
     return drivers
 
 
-def generate_start_script(action, pairs, env, config_numbers=None):
+def eager_grouped(grouped):
+    rval = [(key, list(val)) for key, val in grouped]
+    return rval
+
+
+def make_grouped(pairs):
     extended_pairs = [
-        (sum(p**2 for p in momentum), irrep, ''.join(map(str, momentum)))
+        (sum(p**2 for p in momentum), irrep, momentum)
         for momentum, irrep in pairs]
     extended_pairs.sort()
 
     grouped = itertools.groupby(extended_pairs, lambda x: x[0])
-    grouped2 = [
-        (key, itertools.groupby([v[1:] for v in value], lambda x: x[0]))
-        for key, value in grouped]
+    grouped = eager_grouped(grouped)
 
+    grouped2 = [
+        (key, eager_grouped(itertools.groupby([v[1:] for v in value], lambda x: x[0])))
+        for key, value in grouped]
+    grouped2 = eager_grouped(grouped2)
+
+    return grouped2
+
+
+def generate_start_script(action, grouped2, env, config_numbers=None):
     if action == 'analytic':
         template = env.get_template('template_submit_analytic_jobs.sh')
         rendered = template.render(grouped2=grouped2)
         with open('jobscripts/submit_analytic_jobs.sh'.format(action), 'w') as f:
             f.write(rendered)
+
     elif action == 'numeric':
         template = env.get_template('template_submit_numeric_jobs.sh')
-        rendered = template.render(grouped2=grouped2, config_numbers=config_numbers)
+        rendered = template.render(config_numbers=config_numbers)
         with open('jobscripts/submit_numeric_jobs.sh', 'w') as f:
             f.write(rendered)
 
@@ -62,8 +76,10 @@ def main(options):
     os.makedirs('batch_output', exist_ok=True)
     os.makedirs('jobscripts', exist_ok=True)
 
+    grouped2 = make_grouped(pairs)
+
     if options.action == 'analytic':
-        generate_start_script(options.action, pairs, env)
+        generate_start_script(options.action, grouped2, env)
 
         for momentum, irrep in pairs:
             rendered = template_analytic.render(momentum=momentum, irrep=irrep, srcdir=srcdir, channel=options.channel)
@@ -77,7 +93,7 @@ def main(options):
         generate_start_script(options.action, pairs, env, config_numbers)
 
         for config_number in config_numbers:
-            rendered = template_numeric.render(pairs=pairs, srcdir=srcdir, config_number=config_number)
+            rendered = template_numeric.render(grouped2=grouped2, srcdir=srcdir, config_number=config_number)
             filename = 'slurm_numeric_{:04d}.sh'.format(config_number)
             path = os.path.join('jobscripts', filename)
             with open(path, "w") as f:
