@@ -41,7 +41,7 @@ all_prescriptions <- jsonlite::read_json(prescription_filename)
 
 needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
 
-file_pattern <- sprintf('correlators/*_cnfg%d.h5', config_number)
+file_pattern <- sprintf('correlators/*_cnfg%04d.h5', config_number)
 files <- Sys.glob(file_pattern)
 
 diagrams <- sapply(files, function (file) strsplit(basename(file), '_')[[1]][1])
