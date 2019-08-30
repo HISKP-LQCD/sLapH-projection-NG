@@ -54,6 +54,7 @@ load_dataset <- function (datasetname) {
     diagram <- strsplit(datasetname, '_')[[1]][1]
     
     filename <- files_list[[diagram]]
+    stopifnot(file.exists(filename))
     
     #print(sprintf('Fetching %s (a %s) from %s.\n', datasetname, diagram, filename))
     
