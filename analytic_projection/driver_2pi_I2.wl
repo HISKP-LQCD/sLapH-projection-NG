@@ -15,11 +15,9 @@ wc = WickContract[
 
 templates = WickContractionToTemplates @ wc;
 
-utm1 = UniqueTotalMomenta /@ Range[0, 1];
-utm1Flat = Flatten[utm1, 1]
 utm2 = UniqueTotalMomenta /@ Range[0, 1];
-utm2Flat = Flatten[utm2, 1]
-relMomenta = Flatten[Outer[List, utm2Flat, utm2Flat, 1], 1]
+utm2Flat = Flatten[utm2, 1];
+relMomenta = {#} & /@ utm2Flat
 
 cutoffRelative = FilterRelativeMomenta[totalMomentum, relMomenta];
 
