@@ -155,7 +155,7 @@ FilterRelativeMomenta[totalMomentum_, relMomenta_] :=
     Select[
       RemoveRedundantMomenta @ Map[RelativeToIndividualMomenta[MomentumRef @ totalMomentum, #] &, relMomenta],
       MomentaSumNormSq @ # <= ContractionMomentumCutoff[Norm[totalMomentum]^2] &&
-      MomentaMaxNormSq @ # <= 4 &];
+      MomentaMaxNormSq @ # <= 1 &];
 
 
 (* Clebsch-Gordan coefficients *)
