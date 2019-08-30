@@ -19,11 +19,11 @@ debug_mode = TRUE
 ```{r}
 source('numeric_utils.R')
 
-workdir <- get_workdir()
+workdir <- '~/Lattice/Three-Pions/wdir_2pi_I2'
 ```
 
 ```{r}
-all_projected_paths <- Sys.glob(paste0(workdir, '/projected/resolved_*_*_2552.js'))
+all_projected_paths <- Sys.glob(paste0(workdir, '/projected/resolved_*_*_*.js'))
 all_jsons <- lapply(all_projected_paths, jsonlite::read_json, simplifyVector = TRUE)
 ```
 
