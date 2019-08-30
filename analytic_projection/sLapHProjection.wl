@@ -407,7 +407,7 @@ DatasetNameRules[] = {
     qct`Gamma^g3_ . prop["up", so[so2_]].
     qct`Gamma^g4_ . prop["dn", si[si2_]] ] :>
   TemplateApply[
-    "C4cCD_uuuuuu_" <> MakeTemplate[4],
+    "C6cCD_uuuuuu_" <> MakeTemplate[4],
     <|"g1" -> g1, "g2" -> g2, "g3" -> g3, "g4" -> g4, "g5" -> g5, "g6" -> g6,
       "x1" -> "`pso" <> ToString @ so1 <> "`",
       "x2" -> "`psi" <> ToString @ si1 <> "`",
