@@ -76,15 +76,17 @@ def main(options):
         config_numbers = list(range(options.first, options.last + 1, options.step))
         generate_start_script(options.action, pairs, env, config_numbers)
 
-        extended_pairs = [
+        extended_pairs = list([
             (sum(p**2 for p in momentum), irrep, ''.join(map(str, momentum)))
-            for momentum, irrep in pairs]
+            for momentum, irrep in pairs])
         extended_pairs.sort()
 
         grouped = itertools.groupby(extended_pairs, lambda x: x[0])
-        grouped2 = [
+        grouped = list([(key, list(value)) for key, value in grouped])
+        grouped2 = list([
             (key, itertools.groupby([v[1:] for v in value], lambda x: x[0]))
-            for key, value in grouped]
+            for key, value in grouped])
+        grouped2 = list([(key, list(value)) for key, value in grouped2])
 
         for config_number in config_numbers:
             rendered = template_numeric.render(grouped2=grouped2, srcdir=srcdir, config_number=config_number)
