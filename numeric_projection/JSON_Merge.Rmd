@@ -24,7 +24,7 @@ split_filename <- function (path) {
 
 
 ```{r}
-workdir <- '~/Lattice/Three-Pions/wdir_3pi_I3/'
+workdir <- '~/Lattice/Three-Pions/wdir_2pi_I2/'
 ```
 
 ```{r}
@@ -87,35 +87,11 @@ result2 <- result[l > 0, ]
 ```
 
 ```{r}
-saveRDS(result2, 'corr_matrix_3pi_I3_A40.24.Rdata')
+saveRDS(result2, 'corr_matrix_2pi_I2_A40.24.Rdata')
 ```
 
 ```{r}
-library(hadron)
-```
-
-```{r}
-cfs <- result2$merged %>%
-  lapplyn(function (data) { cf_orig(cf_meta(Time = ncol(data)), cf = data) }, 5)
-```
-
-```{r}
-cf_boots <- lapplyn(cfs, function (cf) { bootstrap.cf(cf) }, 5)
-```
-
-```{r}
-lapplyn(cfs, plot, 5)
-```
-
-```{r}
-cf_boot <- bootstrap.cf(cfs[[1]][['1']][['1']][[1]][[1]], boot.l = 100)
-```
-
-```{r}
-plot(cf_boot,
-     main = 'A40.24; P² = 1; A2; P = -100; boot.l = 100; elem 000,000 → 000,000',
-     xlab = 'Time',
-     ylab = 'Correlator',
-     log = 'y')
+corr2[1:2]
+corr3[1:2]
 ```
 
