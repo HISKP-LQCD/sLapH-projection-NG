@@ -1,7 +1,7 @@
 ---
 title: "JSON Merge"
 author: "Martin Ueding"
-date: "14 August 2019"
+date: "\\today"
 output: pdf_document
 ---
 

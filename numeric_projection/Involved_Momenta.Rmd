@@ -1,0 +1,52 @@
+---
+title: "Involved Momenta"
+author: "Martin Ueding"
+date: "\\today"
+output: pdf_document
+---
+
+```{r setup}
+source('numeric_utils.R')
+
+workdir <- '~/Lattice/Three-Pions/wdir_3pi_I3'
+
+library(dplyr)
+```
+
+```{r}
+paths <- Sys.glob(sprintf('%s/prescriptions/*.js', workdir))
+prescriptions <- lapply(paths, jsonlite::read_json)
+```
+
+```{r}
+long <- get_parts_long(prescriptions)
+```
+
+```{r}
+unlist(stringr::str_split('000,000,000,000', ','))
+```
+
+
+```{r}
+relative_strs_to_individual_sq <- function (total_momentum_str, rel_momenta_strs) {
+  total_momentum_vec <- momentum_str_to_vec(total_momentum_str)
+  rel_momenta_vecs <- lapply(unlist(stringr::str_split(rel_momenta_strs, ',')), momentum_str_to_vec)
+  n <- length(rel_momenta_vecs) + 1
+  
+  rel_momentum_sum_vec <- Reduce(`+`, rel_momenta_vecs, as.integer(c(0, 0, 0)))
+  momenta_vecs <- c(list(total_momentum_vec - rel_momentum_sum_vec), rel_momenta_vecs)
+  
+  res <- tibble(
+    particle = 1:n,
+    individual_momentum_sq = sapply(momenta_vecs, momentum_vec_to_sq, USE.NAMES = FALSE)
+  )
+}
+
+str(relative_strs_to_individual_sq('001', '010,100'))
+```
+
+```{r}
+long2 <- long %>%
+  mutate(nested = mapply(relative_strs_to_individual_sq, total_momentum_str, rel_momenta_str, SIMPLIFY = FALSE, USE.NAMES = FALSE))
+long3 <- tidyr::unnest(long2)
+```

@@ -23,6 +23,8 @@ take his projected correlators in the form of TSV files to compare to.
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
+source('numeric_utils.R')
+
 library(dplyr)
 library(ggplot2)
 library(paramvalf)
@@ -31,46 +33,13 @@ library(tibble)
 debug_mode = TRUE
 ```
 
-```{r}
-total_momentum_ref <- function (total_momentum_sq) {
-  if (total_momentum_sq == 0)
-    c(0, 0, 0)
-  else if (total_momentum_sq == 1)
-    c(0, 0, 1)
-  else if (total_momentum_sq == 2)
-    c(1, 1, 0)
-  else if (total_momentum_sq == 3)
-    c(1, 1, 1)
-  else if (total_momentum_sq == 4)
-    c(0, 0, 2)
-}
-
-momentum_to_string <- function (momentum) {
-  paste0(sprintf("%d", momentum), collapse = '')
-}
-
-total_momentum_str_to_vec <- function (total_momentum_str) {
-  parts <- stringr::str_match(total_momentum_str, '(-?\\d)(-?\\d)(-?\\d)')
-  sapply(parts[1, 2:4], as.integer)
-}
-```
 
 This comparison will use paramvalf within a single notebook. Users of it might miss the `pv_load` and `pv_save` calls but we are just using it as a library and not as a fully fleged framework here.
 
 The data resides in the “work” directory where as the working directory of this notebook is the source directory. Therefore we first need to find it. This is different on the various machines, so we will just try a few candidates.
 
 ```{r}
-workdir_candidates <- c(
-  '~/Lattice/NG2',
-  '~/NG2'
-)
-
-for (path in workdir_candidates) {
-  if (dir.exists(path)) {
-    workdir <- path
-    break
-  }
-}
+workdir <- get_workdir()
 ```
 
 # Reading actual data
