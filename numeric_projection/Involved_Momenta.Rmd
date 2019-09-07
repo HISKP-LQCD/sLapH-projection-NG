@@ -55,6 +55,16 @@ long3 <- tidyr::unnest(long2)
 ```
 
 ```{r}
+write.table(long3, sprintf('%s/spectrum_long.txt', workdir))
+```
+
+```{r}
+wide <- tidyr::spread(select(long3, -individual_momentum_str), particle, individual_momentum_sq, sep = '_')
+write.table(wide, sprintf('%s/spectrum_wide.txt', workdir))
+```
+
+
+```{r}
 extent_space = 32
 pion_mass = 0.14492
 
