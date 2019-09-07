@@ -9,12 +9,14 @@ output: pdf_document
 source('numeric_utils.R')
 
 workdir <- '~/Lattice/Three-Pions/wdir_3pi_I3'
+workdir <- '~/Lattice/NG2'
 
 library(dplyr)
+library(ggplot2)
 ```
 
 ```{r}
-paths <- Sys.glob(sprintf('%s/prescriptions/*.js', workdir))
+paths <- Sys.glob(sprintf('%s/prescriptions/prescription_*.js', workdir))
 prescriptions <- lapply(paths, jsonlite::read_json)
 ```
 
@@ -38,7 +40,8 @@ relative_strs_to_individual_sq <- function (total_momentum_str, rel_momenta_strs
   
   res <- tibble(
     particle = 1:n,
-    individual_momentum_sq = sapply(momenta_vecs, momentum_vec_to_sq, USE.NAMES = FALSE)
+    individual_momentum_sq = sapply(momenta_vecs, momentum_vec_to_sq, USE.NAMES = FALSE),
+    individual_momentum_str = sapply(momenta_vecs, momentum_vec_to_str, USE.NAMES = FALSE)
   )
 }
 
@@ -50,3 +53,36 @@ long2 <- long %>%
   mutate(nested = mapply(relative_strs_to_individual_sq, total_momentum_str, rel_momenta_str, SIMPLIFY = FALSE, USE.NAMES = FALSE))
 long3 <- tidyr::unnest(long2)
 ```
+
+```{r}
+extent_space = 32
+pion_mass = 0.14492
+
+energies <- long3 %>%
+  mutate(energy = sqrt(pion_mass^2 + individual_momentum_sq * (2 * pi / extent_space)^2))
+  
+spectrum <- energies %>%
+  group_by(total_momentum_sq, total_momentum_str, irrep, irrep_row, irrep_col, rel_momenta_str) %>%
+  summarize(total_energy = sum(energy)) %>%
+  ungroup() %>%
+  mutate(total_energy_cm = sqrt(total_energy^2 - total_momentum_sq * (2 * pi / extent_space)^2)) %>%
+  select(total_momentum_sq, irrep, irrep_row, irrep_col, rel_momenta_str, total_energy, total_energy_cm)
+```
+
+```{r}
+spectrum2 <- spectrum %>%
+  select(total_momentum_sq, irrep, total_energy, total_energy_cm) %>%
+  distinct()
+```
+
+```{r}
+spectrum2 %>%
+  mutate(x = interaction(total_momentum_sq, irrep, lex.order = TRUE)) %>%
+  ggplot(aes(x = x,
+             y = total_energy_cm)) +
+  geom_point() +
+  labs(title = sprintf('Spectrum for 2pi I=2 at Mpi=%f L=%d', pion_mass, extent_space),
+       x = 'P², irrep',
+       y = expression(a * E['cm']))
+```
+
