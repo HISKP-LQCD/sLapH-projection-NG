@@ -8,8 +8,10 @@ output: pdf_document
 ```{r setup}
 source('numeric_utils.R')
 
-workdir <- '~/Lattice/Three-Pions/wdir_3pi_I3'
-workdir <- '~/Lattice/NG2'
+channel <- '3pi_I3'
+channel <- '2pi_I2'
+
+workdir <- sprintf('~/Lattice/Three-Pions/wdir_%s', channel)
 
 library(dplyr)
 library(ggplot2)
@@ -53,5 +55,10 @@ write.table(long3, sprintf('%s/spectrum_long.txt', workdir), row.names = FALSE)
 
 ```{r}
 wide <- tidyr::spread(select(long3, -individual_momentum_str), particle, individual_momentum_sq, sep = '_')
-write.table(wide, sprintf('%s/spectrum_wide.txt', workdir), row.names = FALSE)
+write.table(wide, sprintf('%s/momenta_wide_%s.txt', workdir, channel), row.names = FALSE)
+```
+
+```{r}
+wide2 <- tidyr::spread(select(long3, -individual_momentum_sq), particle, individual_momentum_str, sep = '_')
+jsonlite::write_json(wide2, sprintf('%s/momenta_wide2_%s.js', workdir, channel))
 ```
