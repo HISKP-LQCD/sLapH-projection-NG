@@ -144,10 +144,10 @@ MomentaMaxNormSq[momenta_] := Max[Norm[#]^2 & /@ momenta];
 
 MomentaSumNormSq[momenta_] := Total[Norm[#]^2 & /@ momenta];
 
-ContractionMomentumCutoff[0] = 4;
-ContractionMomentumCutoff[1] = 5;
-ContractionMomentumCutoff[2] = 6;
-ContractionMomentumCutoff[3] = 7;
+ContractionMomentumCutoff[0] = 2;
+ContractionMomentumCutoff[1] = 1;
+ContractionMomentumCutoff[2] = 2;
+ContractionMomentumCutoff[3] = 3;
 ContractionMomentumCutoff[4] = 4;
 
 FilterRelativeMomenta[totalMomentum_, relMomenta_] :=
