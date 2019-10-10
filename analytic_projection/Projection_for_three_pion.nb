@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    172266,       2437]
-NotebookOptionsPosition[    169523,       2386]
-NotebookOutlinePosition[    169880,       2402]
-CellTagsIndexPosition[    169837,       2399]
+NotebookDataLength[     26980,        680]
+NotebookOptionsPosition[     24523,        632]
+NotebookOutlinePosition[     24880,        648]
+CellTagsIndexPosition[     24837,        645]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -33,18 +33,19 @@ Cell[BoxData[{
    3.7585615621980867`*^9, 3.758561567174244*^9}, {3.7589693928527718`*^9, 
    3.75896939312507*^9}, 3.758971449118018*^9, {3.758971955007695*^9, 
    3.758971995289641*^9}},
- CellLabel->"In[7]:=",ExpressionUUID->"ee6f5cbb-d494-4f1c-91d8-47d963a7df22"],
+ CellLabel->
+  "In[103]:=",ExpressionUUID->"ee6f5cbb-d494-4f1c-91d8-47d963a7df22"],
 
 Cell[BoxData[
  TemplateBox[{
   "Remove","rmnsm",
    "\"There are no symbols matching \\\"\\!\\(\\*RowBox[{\\\"\\\\\\\"Global`*\
-\\\\\\\"\\\"}]\\)\\\".\"",2,7,5,19309285145853990245,"Local"},
+\\\\\\\"\\\"}]\\)\\\".\"",2,103,10,19335315135404838888,"Local"},
   "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.775722780976963*^9},
+ CellChangeTimes->{3.77968664620331*^9},
  CellLabel->
   "During evaluation of \
-In[7]:=",ExpressionUUID->"e84bb3c0-4737-491a-8a6f-019945e2fdbe"]
+In[103]:=",ExpressionUUID->"8a4a228a-02da-4edc-9f81-bbdc7e686c9c"]
 }, Open  ]],
 
 Cell["We load our package and the Quark Contraction Tool (QCT).", "Text",
@@ -70,40 +71,17 @@ Cell[BoxData[{
    3.75896939312507*^9}, 3.758971449118018*^9, {3.758971955007695*^9, 
    3.758972000288733*^9}, 3.7589722351664762`*^9, 3.7592174378208942`*^9, {
    3.775722790264102*^9, 3.775722801859857*^9}},
- CellLabel->"In[16]:=",ExpressionUUID->"2a4b4219-58c9-498d-bb51-5bbf12896416"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Remove","rmnsm",
-   "\"There are no symbols matching \
-\\\"\\!\\(\\*RowBox[{\\\"\\\\\\\"sLapHProjection`*\\\\\\\"\\\"}]\\)\\\".\"",2,
-   16,9,19309285145853990245,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{{3.775722799137487*^9, 3.775722802126837*^9}},
  CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"7d294439-e286-470e-a27b-aedbb9cbb099"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Remove","rmnsm",
-   "\"There are no symbols matching \
-\\\"\\!\\(\\*RowBox[{\\\"\\\\\\\"qct`*\\\\\\\"\\\"}]\\)\\\".\"",2,17,10,
-   19309285145853990245,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{{3.775722799137487*^9, 3.775722802176579*^9}},
- CellLabel->
-  "During evaluation of \
-In[16]:=",ExpressionUUID->"a92ec649-207d-4acf-a4e9-7260381f6454"],
+  "In[105]:=",ExpressionUUID->"2a4b4219-58c9-498d-bb51-5bbf12896416"],
 
 Cell[BoxData["\<\"QuarkContractionTool (QCT) \"\>"], "Print",
- CellChangeTimes->{3.775722802189722*^9},
+ CellChangeTimes->{
+  3.775722802189722*^9, 3.779686491658222*^9, 3.779686561519104*^9, {
+   3.77968660849962*^9, 3.779686646362186*^9}},
  CellLabel->
   "During evaluation of \
-In[16]:=",ExpressionUUID->"75397068-f4ca-4c6c-a601-f912e03fba93"]
+In[105]:=",ExpressionUUID->"377eb937-f194-49ee-adf5-242553e58db0"]
 }, Open  ]],
-
-Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"<<", "sLapHProjection`"}]], "Input",
@@ -117,23 +95,8 @@ Cell[BoxData[
    3.75896939312507*^9}, 3.758971449118018*^9, {3.758971955007695*^9, 
    3.758972000288733*^9}, 3.7589722351664762`*^9, {3.775722786437228*^9, 
    3.775722805108094*^9}},
- CellLabel->"In[19]:=",ExpressionUUID->"1ac89cfb-3835-4bbc-888d-45287bcf0f69"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Gamma","shdw",
-   "\"Symbol \\!\\(\\*RowBox[{\\\"\\\\\\\"Gamma\\\\\\\"\\\"}]\\) appears in \
-multiple contexts \\!\\(\\*RowBox[{\\\"{\\\", \
-RowBox[{\\\"\\\\\\\"qct`\\\\\\\"\\\", \\\",\\\", \
-\\\"\\\\\\\"System`\\\\\\\"\\\"}], \\\"}\\\"}]\\); definitions in context \\!\
-\\(\\*RowBox[{\\\"\\\\\\\"qct`\\\\\\\"\\\"}]\\) may shadow or be shadowed by \
-other definitions.\"",2,19,11,19309285145853990245,"Local","qct`Gamma"},
-  "MessageTemplate2"]], "Message", "MSG",
- CellChangeTimes->{{3.77572276531627*^9, 3.7757228079072647`*^9}},
  CellLabel->
-  "During evaluation of \
-In[19]:=",ExpressionUUID->"5f3c348e-40fc-452b-973e-244eee06b70a"]
-}, Open  ]],
+  "In[128]:=",ExpressionUUID->"1ac89cfb-3835-4bbc-888d-45287bcf0f69"],
 
 Cell[BoxData[{
  RowBox[{
@@ -172,13 +135,17 @@ Cell[BoxData[{
    3.759575744348928*^9, 3.759575744857637*^9}, 3.759575813526701*^9, {
    3.763391447953779*^9, 3.7633914702491837`*^9}, {3.76339208455355*^9, 
    3.763392101336791*^9}, {3.775722813761867*^9, 3.775722815265394*^9}},
- CellLabel->"In[20]:=",ExpressionUUID->"36a65885-53af-46c2-8edc-aefa55ffa6ce"],
+ CellLabel->
+  "In[109]:=",ExpressionUUID->"36a65885-53af-46c2-8edc-aefa55ffa6ce"],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"replaced", " ", "=", " ", 
    RowBox[{"ReplacePropagators", " ", "@", " ", "qc"}]}], ";"}]], "Input",
- CellLabel->"In[22]:=",ExpressionUUID->"8d37b5b1-96dd-4761-9441-9ecc49c87df9"],
+ CellLabel->
+  "In[111]:=",ExpressionUUID->"8d37b5b1-96dd-4761-9441-9ecc49c87df9"],
+
+Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
@@ -199,14 +166,98 @@ Cell[BoxData[{
  CellChangeTimes->{{3.763392600882012*^9, 3.763392606497593*^9}, {
    3.763392728471031*^9, 3.763392762650498*^9}, 3.763393117283174*^9, 
    3.763393420467804*^9, {3.7757227392557373`*^9, 3.77572274603666*^9}},
- CellLabel->"In[23]:=",ExpressionUUID->"5a0f1df5-8038-4eb7-beab-e16fbb7e4a3a"],
+ CellLabel->
+  "In[112]:=",ExpressionUUID->"5a0f1df5-8038-4eb7-beab-e16fbb7e4a3a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi1`.d000.g5_p`pso2`.d000.g5_p`\
+psi2`.d000.g5_p`pso3`.d000.g5_p`psi3`.d000.g5\"\>"}], 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi1`.d000.g5_p`pso2`.d000.g5_p`\
+psi3`.d000.g5_p`pso3`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi1`.d000.g5_p`pso3`.d000.g5_p`\
+psi2`.d000.g5_p`pso2`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi1`.d000.g5_p`pso3`.d000.g5_p`\
+psi3`.d000.g5_p`pso2`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi2`.d000.g5_p`pso2`.d000.g5_p`\
+psi1`.d000.g5_p`pso3`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi2`.d000.g5_p`pso2`.d000.g5_p`\
+psi3`.d000.g5_p`pso3`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi2`.d000.g5_p`pso3`.d000.g5_p`\
+psi1`.d000.g5_p`pso2`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi2`.d000.g5_p`pso3`.d000.g5_p`\
+psi3`.d000.g5_p`pso2`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi3`.d000.g5_p`pso2`.d000.g5_p`\
+psi1`.d000.g5_p`pso3`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi3`.d000.g5_p`pso2`.d000.g5_p`\
+psi2`.d000.g5_p`pso3`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi3`.d000.g5_p`pso3`.d000.g5_p`\
+psi1`.d000.g5_p`pso2`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso1`.d000.g5_p`psi3`.d000.g5_p`pso3`.d000.g5_p`\
+psi2`.d000.g5_p`pso2`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso2`.d000.g5_p`psi1`.d000.g5_p`pso3`.d000.g5_p`\
+psi2`.d000.g5_p`pso1`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso2`.d000.g5_p`psi1`.d000.g5_p`pso3`.d000.g5_p`\
+psi3`.d000.g5_p`pso1`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso2`.d000.g5_p`psi2`.d000.g5_p`pso3`.d000.g5_p`\
+psi1`.d000.g5_p`pso1`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso2`.d000.g5_p`psi2`.d000.g5_p`pso3`.d000.g5_p`\
+psi3`.d000.g5_p`pso1`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso2`.d000.g5_p`psi3`.d000.g5_p`pso3`.d000.g5_p`\
+psi1`.d000.g5_p`pso1`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "-", "\<\"C6cCD_uuuuuu_p`pso2`.d000.g5_p`psi3`.d000.g5_p`pso3`.d000.g5_p`\
+psi2`.d000.g5_p`pso1`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi1`.d000.g5_p`pso2`.d000.g5_p`\
+psi2`.d000.g5_p`pso3`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi1`.d000.g5_p`pso2`.d000.g5_p`\
+psi3`.d000.g5_p`pso3`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi1`.d000.g5_p`pso3`.d000.g5_p`\
+psi2`.d000.g5_p`pso2`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi1`.d000.g5_p`pso3`.d000.g5_p`\
+psi3`.d000.g5_p`pso2`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi2`.d000.g5_p`pso2`.d000.g5_p`\
+psi1`.d000.g5_p`pso3`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi2`.d000.g5_p`pso2`.d000.g5_p`\
+psi3`.d000.g5_p`pso3`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi2`.d000.g5_p`pso3`.d000.g5_p`\
+psi1`.d000.g5_p`pso2`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi2`.d000.g5_p`pso3`.d000.g5_p`\
+psi3`.d000.g5_p`pso2`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi3`.d000.g5_p`pso2`.d000.g5_p`\
+psi1`.d000.g5_p`pso3`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi3`.d000.g5_p`pso2`.d000.g5_p`\
+psi2`.d000.g5_p`pso3`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi3`.d000.g5_p`pso3`.d000.g5_p`\
+psi1`.d000.g5_p`pso2`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "+", "\<\"C6cC_uuuuuu_p`pso1`.d000.g5_p`psi3`.d000.g5_p`pso3`.d000.g5_p`\
+psi2`.d000.g5_p`pso2`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "+", "\<\"C6cD_uuuuuu_p`pso1`.d000.g5_p`psi1`.d000.g5_p`pso2`.d000.g5_p`\
+psi2`.d000.g5_p`pso3`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "+", "\<\"C6cD_uuuuuu_p`pso1`.d000.g5_p`psi1`.d000.g5_p`pso2`.d000.g5_p`\
+psi3`.d000.g5_p`pso3`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "+", "\<\"C6cD_uuuuuu_p`pso1`.d000.g5_p`psi2`.d000.g5_p`pso2`.d000.g5_p`\
+psi1`.d000.g5_p`pso3`.d000.g5_p`psi3`.d000.g5\"\>", 
+  "+", "\<\"C6cD_uuuuuu_p`pso1`.d000.g5_p`psi2`.d000.g5_p`pso2`.d000.g5_p`\
+psi3`.d000.g5_p`pso3`.d000.g5_p`psi1`.d000.g5\"\>", 
+  "+", "\<\"C6cD_uuuuuu_p`pso1`.d000.g5_p`psi3`.d000.g5_p`pso2`.d000.g5_p`\
+psi1`.d000.g5_p`pso3`.d000.g5_p`psi2`.d000.g5\"\>", 
+  "+", "\<\"C6cD_uuuuuu_p`pso1`.d000.g5_p`psi3`.d000.g5_p`pso2`.d000.g5_p`\
+psi2`.d000.g5_p`pso3`.d000.g5_p`psi1`.d000.g5\"\>"}]], "Output",
+ CellChangeTimes->{
+  3.7796864995750093`*^9, 3.779686564189644*^9, {3.779686611039209*^9, 
+   3.779686649122213*^9}},
+ CellLabel->
+  "Out[115]=",ExpressionUUID->"cd76a835-174b-403c-998d-6081d9983d2c"]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{
   RowBox[{"templates2", "=", 
    RowBox[{"WickContractionToTemplates", "@", "wc"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.775723889700149*^9, 3.775723891630188*^9}},
- CellLabel->"In[43]:=",ExpressionUUID->"36ce5550-2a85-4595-8b03-f43364148afe"],
+ CellLabel->
+  "In[116]:=",ExpressionUUID->"36ce5550-2a85-4595-8b03-f43364148afe"],
 
 Cell[CellGroupData[{
 
@@ -215,7 +266,7 @@ Cell[BoxData[{
   RowBox[{"utm1", " ", "=", " ", 
    RowBox[{"UniqueTotalMomenta", " ", "/@", " ", 
     RowBox[{"Range", "[", 
-     RowBox[{"0", ",", "1"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"0", ",", "4"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"utm1Flat", " ", "=", " ", 
   RowBox[{"Flatten", "[", 
    RowBox[{"utm1", ",", " ", "1"}], "]"}]}], "\[IndentingNewLine]", 
@@ -223,14 +274,16 @@ Cell[BoxData[{
   RowBox[{"utm2", " ", "=", " ", 
    RowBox[{"UniqueTotalMomenta", " ", "/@", " ", 
     RowBox[{"Range", "[", 
-     RowBox[{"0", ",", "1"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"0", ",", "4"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"utm2Flat", " ", "=", " ", 
   RowBox[{"Flatten", "[", 
    RowBox[{"utm2", ",", " ", "1"}], "]"}]}]}], "Input",
  CellChangeTimes->{{3.763393743625876*^9, 3.763393743677002*^9}, 
    3.763393933203741*^9, {3.76339444807202*^9, 3.7633944511751013`*^9}, {
-   3.7757228253483267`*^9, 3.7757228264537697`*^9}},
- CellLabel->"In[27]:=",ExpressionUUID->"8cc44ede-605d-47ff-b3d0-575311483203"],
+   3.7757228253483267`*^9, 3.7757228264537697`*^9}, {3.779686554811488*^9, 
+   3.7796865558160963`*^9}, {3.7796865875384817`*^9, 3.779686588843362*^9}},
+ CellLabel->
+  "In[117]:=",ExpressionUUID->"8cc44ede-605d-47ff-b3d0-575311483203"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -251,11 +304,92 @@ Cell[BoxData[
     RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{"0", ",", 
-     RowBox[{"-", "1"}], ",", "0"}], "}"}]}], "}"}]], "Output",
+     RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "1", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "0", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "1", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", 
+     RowBox[{"-", "2"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "2"}], ",", "0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "2", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", "2"}], ",", "0"}], "}"}]}], "}"}]], "Output",
  CellChangeTimes->{
   3.763393744506114*^9, 3.763393933618012*^9, {3.763394448992141*^9, 
-   3.7633944516274757`*^9}, 3.775722827597684*^9},
- CellLabel->"Out[28]=",ExpressionUUID->"73a5c39d-ed12-4823-bc58-ffba5f95120e"],
+   3.7633944516274757`*^9}, 3.775722827597684*^9, 3.779686500197508*^9, 
+   3.779686564874813*^9, {3.779686611907751*^9, 3.779686650062894*^9}},
+ CellLabel->
+  "Out[118]=",ExpressionUUID->"99c77944-3fff-450c-b43f-4e65a97c2da9"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -276,11 +410,92 @@ Cell[BoxData[
     RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{"0", ",", 
-     RowBox[{"-", "1"}], ",", "0"}], "}"}]}], "}"}]], "Output",
+     RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "1", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}], ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "1", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "0", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "0", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "1", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", 
+     RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "1", ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", "1", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}], ",", 
+     RowBox[{"-", "1"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "2"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", 
+     RowBox[{"-", "2"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2", ",", "0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "2"}], ",", "0", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", "2", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"0", ",", 
+     RowBox[{"-", "2"}], ",", "0"}], "}"}]}], "}"}]], "Output",
  CellChangeTimes->{
   3.763393744506114*^9, 3.763393933618012*^9, {3.763394448992141*^9, 
-   3.7633944516274757`*^9}, 3.7757228277535763`*^9},
- CellLabel->"Out[30]=",ExpressionUUID->"c98142ff-8eb5-4240-9468-8df25f360adf"]
+   3.7633944516274757`*^9}, 3.775722827597684*^9, 3.779686500197508*^9, 
+   3.779686564874813*^9, {3.779686611907751*^9, 3.7796866504259233`*^9}},
+ CellLabel->
+  "Out[120]=",ExpressionUUID->"16d8096a-0c9a-40ec-88be-9791b93e4050"]
 }, Open  ]],
 
 Cell[BoxData[
@@ -292,9 +507,9 @@ Cell[BoxData[
       RowBox[{"List", ",", " ", "utm2Flat", ",", "utm2Flat", ",", "1"}], 
       "]"}], ",", " ", "1"}], "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.7633939556318703`*^9, 3.763393958886272*^9}, {
-  3.77572285183016*^9, 
-  3.7757228703513517`*^9}},ExpressionUUID->"96e3d98f-490b-4824-97bc-\
-6480e1aa8751"],
+  3.77572285183016*^9, 3.7757228703513517`*^9}},
+ CellLabel->
+  "In[121]:=",ExpressionUUID->"96e3d98f-490b-4824-97bc-6480e1aa8751"],
 
 Cell[CellGroupData[{
 
@@ -302,17 +517,20 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"totalMomentum", " ", "=", " ", 
    RowBox[{"{", 
-    RowBox[{"0", ",", " ", "0", ",", " ", "1"}], "}"}]}], 
+    RowBox[{"0", ",", " ", "0", ",", " ", "0"}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"irrep", " ", "=", " ", "\"\<B1\>\""}], 
+  RowBox[{"irrep", " ", "=", " ", "\"\<A1u\>\""}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{"cutoffRelative", " ", "=", " ", 
   RowBox[{"FilterRelativeMomenta", "[", 
    RowBox[{"totalMomentum", ",", "relMomenta"}], "]"}]}]}], "Input",
  CellChangeTimes->{{3.7633939556318703`*^9, 3.763393958886272*^9}, {
-  3.77572285183016*^9, 3.77572288865941*^9}},
- CellLabel->"In[36]:=",ExpressionUUID->"3f86c14d-21e4-485b-9703-64f78c7c44d4"],
+  3.77572285183016*^9, 3.77572288865941*^9}, {3.779686404393898*^9, 
+  3.779686408126796*^9}, {3.779686487099896*^9, 3.7796864875227003`*^9}, {
+  3.779686833104909*^9, 
+  3.779686833633548*^9}},ExpressionUUID->"3f86c14d-21e4-485b-9703-\
+64f78c7c44d4"],
 
 Cell[BoxData[
  RowBox[{"{", 
@@ -334,33 +552,19 @@ Cell[BoxData[
      RowBox[{"{", 
       RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", 
-       RowBox[{"-", "1"}]}], "}"}]}], "}"}], ",", 
+      RowBox[{"1", ",", "1", ",", "0"}], "}"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
       RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"1", ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "1"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
+      RowBox[{"1", ",", "1", ",", "1"}], "}"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
       RowBox[{"0", ",", "0", ",", "1"}], "}"}], ",", 
      RowBox[{"{", 
       RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "1"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", 
-       RowBox[{"-", "1"}]}], "}"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
@@ -370,53 +574,33 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", 
-       RowBox[{"-", "1"}]}], "}"}], ",", 
+      RowBox[{"0", ",", "0", ",", "1"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
+      RowBox[{"1", ",", "1", ",", "0"}], "}"}]}], "}"}], ",", 
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", 
-       RowBox[{"-", "1"}]}], "}"}], ",", 
+      RowBox[{"1", ",", "1", ",", "0"}], "}"}], ",", 
      RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{
-       RowBox[{"-", "1"}], ",", "0", ",", "0"}], "}"}]}], "}"}], ",", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{"{", 
-      RowBox[{"1", ",", "0", ",", "0"}], "}"}], ",", 
-     RowBox[{"{", 
-      RowBox[{"0", ",", "1", ",", "0"}], "}"}]}], "}"}]}], "}"}]], "Output",
- CellChangeTimes->{3.775722889033242*^9},
- CellLabel->"Out[38]=",ExpressionUUID->"5daf7108-9c2f-4b2e-b820-e6e9c4c7f04f"]
+      RowBox[{"0", ",", 
+       RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.775722889033242*^9, 3.779686500500242*^9, 3.779686565859543*^9, {
+   3.7796866144739437`*^9, 3.779686677291007*^9}},
+ CellLabel->
+  "Out[131]=",ExpressionUUID->"fdea6237-acd5-4a5b-9c1b-21d85e958fff"]
 }, Open  ]],
 
 Cell[BoxData[
- RowBox[{"some", " ", "=", " ", 
-  RowBox[{"StructureButSingle", "[", 
-   RowBox[{"totalMomentum", ",", "irrep", ",", "cutoffRelative"}], 
-   "]"}]}]], "Input",
- CellChangeTimes->{{3.7757230099978867`*^9, 3.775723029345234*^9}},
- CellLabel->"In[39]:=",ExpressionUUID->"ec9e668e-1baf-4d18-a026-4e7437e82bb3"],
+ RowBox[{
+  RowBox[{"some", " ", "=", " ", 
+   RowBox[{"StructureButSingle", "[", 
+    RowBox[{"totalMomentum", ",", "irrep", ",", "cutoffRelative"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.7757230099978867`*^9, 3.775723029345234*^9}, 
+   3.7796866402853813`*^9},
+ CellLabel->
+  "In[132]:=",ExpressionUUID->"ec9e668e-1baf-4d18-a026-4e7437e82bb3"],
 
 Cell[BoxData[
  RowBox[{
@@ -425,7 +609,8 @@ Cell[BoxData[
     RowBox[{"totalMomentum", ",", "irrep"}], "]"}]}], ";"}]], "Input",
  CellChangeTimes->{{3.775723017269548*^9, 3.775723017283307*^9}, {
   3.7757230567683*^9, 3.775723059912735*^9}},
- CellLabel->"In[41]:=",ExpressionUUID->"2f44efeb-133a-41eb-aa47-f49bd6cb7c27"],
+ CellLabel->
+  "In[133]:=",ExpressionUUID->"2f44efeb-133a-41eb-aa47-f49bd6cb7c27"],
 
 Cell[CellGroupData[{
 
@@ -433,1959 +618,20 @@ Cell[BoxData[
  RowBox[{"MomentaAndTemplatesToJSONFile", "[", 
   RowBox[{"some", ",", "templates", ",", "filename"}], "]"}]], "Input",
  CellChangeTimes->{{3.775723022769535*^9, 3.775723022784202*^9}},
- CellLabel->"In[42]:=",ExpressionUUID->"7b719f9a-9ee1-4584-b7a5-de32f40c4a3d"],
-
-Cell[BoxData[
- TemplateBox[{
-  "WriteString","noopen",
-   "\"Cannot open \
-\\!\\(\\*RowBox[{\\\"\\\\\\\"prescriptions/prescription_001_B1.js\\\\\\\"\\\"}\
-]\\).\"",2,42,12,19309285145853990245,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{3.7757237236859293`*^9},
  CellLabel->
-  "During evaluation of \
-In[42]:=",ExpressionUUID->"7d5615ed-c76c-47b3-90e3-7c98059b45b4"],
+  "In[134]:=",ExpressionUUID->"7b719f9a-9ee1-4584-b7a5-de32f40c4a3d"],
 
-Cell[BoxData["\<\"{\\n\\t\\\"001\\\":{\\n\\t\\t\\\"B1\\\":{\\n\\t\\t\\t\\\"1\\\
-\":{\\n\\t\\t\\t\\t\\\"1\\\":{\\n\\t\\t\\t\\t\\t\\\"100,010\\\":{\\n\\t\\t\\t\
-\\t\\t\\t\\\"100,010\\\":[\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p0-10.d000.g5_p-1-1-1.d000.g5_p-100.\
-d000.g5_p111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p0-10.d000.g5_p-1-1-1.d000.g5_p100.\
-d000.g5_p-111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p0-10.d000.g5_p-11-1.d000.g5_p-100.\
-d000.g5_p111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p0-10.d000.g5_p-11-1.d000.g5_p100.\
-d000.g5_p-111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p0-10.d000.g5_p1-1-1.d000.g5_p-100.\
-d000.g5_p111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p0-10.d000.g5_p1-1-1.d000.g5_p100.\
-d000.g5_p-111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p0-10.d000.g5_p11-1.d000.g5_p-100.\
-d000.g5_p111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p0-10.d000.g5_p11-1.d000.g5_p100.\
-d000.g5_p-111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p010.d000.g5_p-1-1-1.d000.g5_p-100.\
-d000.g5_p1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p010.d000.g5_p-1-1-1.d000.g5_p100.\
-d000.g5_p-1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\"\
-:false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p010.d000.g5_p-11-1.d000.g5_p-100.\
-d000.g5_p1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p010.d000.g5_p-11-1.d000.g5_p100.\
-d000.g5_p-1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p010.d000.g5_p1-1-1.d000.g5_p-100.\
-d000.g5_p1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p010.d000.g5_p1-1-1.d000.g5_p100.\
-d000.g5_p-1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p010.d000.g5_p11-1.d000.g5_p-100.\
-d000.g5_p1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p010.d000.g5_p11-1.d000.g5_p100.\
-d000.g5_p-1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\"\
-:false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-100.d000.g5_p-1-1-1.d000.g5_p0-\
-10.d000.g5_p111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-100.d000.g5_p-1-1-1.d000.g5_\
-p010.d000.g5_p1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-100.d000.g5_p-11-1.d000.g5_\
-p0-10.d000.g5_p111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-100.d000.g5_p-11-1.d000.g5_\
-p010.d000.g5_p1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-100.d000.g5_p1-1-1.d000.g5_\
-p0-10.d000.g5_p111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-100.d000.g5_p1-1-1.d000.g5_\
-p010.d000.g5_p1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-100.d000.g5_p11-1.d000.g5_p0-\
-10.d000.g5_p111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-100.d000.g5_p11-1.d000.g5_\
-p010.d000.g5_p1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p100.d000.g5_p-1-1-1.d000.g5_\
-p0-10.d000.g5_p-111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p100.d000.g5_p-1-1-1.d000.g5_\
-p010.d000.g5_p-1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p100.d000.g5_p-11-1.d000.\
-g5_p0-10.d000.g5_p-111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.\
-25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p100.d000.g5_p-11-1.d000.\
-g5_p010.d000.g5_p-1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.\
-25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p100.d000.g5_p1-1-1.d000.\
-g5_p0-10.d000.g5_p-111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.\
-25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p100.d000.g5_p1-1-1.d000.\
-g5_p010.d000.g5_p-1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.\
-25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p100.d000.g5_p11-1.d000.\
-g5_p0-10.d000.g5_p-111.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.\
-25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p100.d000.g5_p11-1.d000.\
-g5_p010.d000.g5_p-1-11.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.\
-25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-1-11.d000.g5_p-1-1-1.\
-d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-\
-0.125,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-1-11.d000.g5_p-11-1.\
-d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.\
-125,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-1-11.d000.g5_p1-1-1.\
-d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.\
-125,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-1-11.d000.g5_p11-1.d000.\
-g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-111.d000.g5_p-1-1-1.d000.g5_\
-p0-10.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-111.d000.g5_p-11-1.d000.g5_p0-\
-10.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-111.d000.g5_p1-1-1.d000.g5_p0-10.\
-d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-111.d000.g5_p11-1.d000.g5_p0-10.\
-d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p1-11.d000.g5_p-1-1-1.d000.g5_p010.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p1-11.d000.g5_p-11-1.d000.g5_p010.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p1-11.d000.g5_p1-1-1.d000.g5_p010.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p1-11.d000.g5_p11-1.d000.g5_p010.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p111.d000.g5_p-1-1-1.d000.g5_p0-10.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p111.d000.g5_p-11-1.d000.g5_p0-10.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p111.d000.g5_p1-1-1.d000.g5_p0-10.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p111.d000.g5_p11-1.d000.g5_p0-10.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-1-11.d000.g5_p-1-1-1.d000.g5_\
-p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-1-11.d000.g5_p-11-1.d000.g5_\
-p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\"\
-:false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-1-11.d000.g5_p1-1-1.d000.g5_\
-p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\"\
-:false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-1-11.d000.g5_p11-1.d000.g5_p100.\
-d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-111.d000.g5_p-1-1-1.d000.g5_p100.\
-d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-111.d000.g5_p-11-1.d000.g5_p100.\
-d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-111.d000.g5_p1-1-1.d000.g5_p100.\
-d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p-111.d000.g5_p11-1.d000.g5_p100.\
-d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p1-11.d000.g5_p-1-1-1.d000.g5_p-\
-100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p1-11.d000.g5_p-11-1.d000.g5_p-100.\
-d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p1-11.d000.g5_p1-1-1.d000.g5_p-100.\
-d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p1-11.d000.g5_p11-1.d000.g5_p-100.\
-d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p111.d000.g5_p-1-1-1.d000.g5_p-100.\
-d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p111.d000.g5_p-11-1.d000.g5_p-100.\
-d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p111.d000.g5_p1-1-1.d000.g5_p-100.\
-d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":0.125,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C4cCD_uuuuuu_p111.d000.g5_p11-1.d000.g5_p-100.\
-d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-0.125,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p0-10.d000.g5_p010.\
-d000.g5_p-100.d000.g5_p100.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\\
-t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.\
-d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.g5_p100.d000.g5_p-11-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\
-\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p010.d000.g5_p010.d000.g5_p-100.d000.g5_\
-p100.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p010.d000.\
-g5_p010.d000.g5_p100.d000.g5_p100.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\\
-t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_\
-p-111.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.d000.g5_p11-1.\
-d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\\
-t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p0-10.d000.g5_p0-10.d000.g5_\
-p100.d000.g5_p100.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_\
-p010.d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.d000.g5_p1-1-1.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\"\
-:0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cC_uuuuuu_p-111.d000.g5_p010.d000.g5_p0-10.d000.g5_p100.d000.g5_p100.d000.\
-g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p0-10.d000.g5_p010.\
-d000.g5_p-100.d000.g5_p-100.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.\
-d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.g5_p-100.d000.g5_p-11-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\\
-t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cC_uuuuuu_p1-11.d000.g5_p010.d000.g5_p010.d000.g5_p-100.d000.g5_p-100.\
-d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p010.d000.g5_p010.\
-d000.g5_p100.d000.g5_p-100.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.\
-d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.d000.g5_p11-1.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cC_uuuuuu_p111.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p100.d000.g5_p-\
-100.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p010.d000.g5_p0-10.\
-d000.g5_p-100.d000.g5_p-100.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.\
-d000.g5_p010.d000.g5_p0-10.d000.g5_p100.d000.g5_p-100.d000.g5_p-1-1-1.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p0-10.d000.g5_p010.d000.g5_p-11-1.d000.g5_\
-p100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p0-10.d000.g5_\
-p010.d000.g5_p11-1.d000.g5_p100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\
-\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-\
-11.d000.g5_p010.d000.g5_p010.d000.g5_p-1-1-1.d000.g5_p100.d000.g5_p100.d000.\
-g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p010.d000.g5_p010.d000.g5_p1-1-\
-1.d000.g5_p100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p0-10.\
-d000.g5_p0-10.d000.g5_p-11-1.d000.g5_p100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-111.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p11-1.d000.g5_p100.d000.g5_p-\
-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p010.d000.g5_p0-10.d000.g5_p-1-\
-1-1.d000.g5_p100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p010.\
-d000.g5_p0-10.d000.g5_p1-1-1.d000.g5_p100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p1-11.d000.g5_p0-10.d000.g5_p010.d000.g5_p-11-1.d000.g5_p-100.d000.g5_\
-p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p0-10.d000.g5_p010.d000.g5_p11-\
-1.d000.g5_p-100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p010.\
-d000.g5_p010.d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p1-11.d000.g5_p010.d000.g5_p010.d000.g5_p1-1-1.d000.g5_p-100.d000.g5_p-\
-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-11-\
-1.d000.g5_p-100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p0-10.\
-d000.g5_p0-10.d000.g5_p11-1.d000.g5_p-100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p111.d000.g5_p010.d000.g5_p0-10.d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_\
-p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p010.d000.g5_p0-10.d000.g5_p1-1-\
-1.d000.g5_p-100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p0-\
-10.d000.g5_p100.d000.g5_p-100.d000.g5_p010.d000.g5_p11-1.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-1-11.d000.g5_p0-10.d000.g5_p100.d000.g5_p100.d000.g5_p010.d000.g5_p-\
-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p010.d000.g5_p100.d000.g5_p-\
-100.d000.g5_p010.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_\
-p010.d000.g5_p100.d000.g5_p100.d000.g5_p010.d000.g5_p-1-1-1.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\"\
-:0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cC_uuuuuu_p-111.d000.g5_p0-10.d000.g5_p100.d000.g5_p-100.d000.g5_p0-10.d000.\
-g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p0-10.d000.g5_p100.\
-d000.g5_p100.d000.g5_p0-10.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\
-\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.\
-d000.g5_p010.d000.g5_p100.d000.g5_p-100.d000.g5_p0-10.d000.g5_p1-1-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\\
-t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cC_uuuuuu_p-111.d000.g5_p010.d000.g5_p100.d000.g5_p100.d000.g5_p0-10.\
-d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p0-10.d000.g5_p-\
-100.d000.g5_p-100.d000.g5_p010.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\\
-t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-\
-11.d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.d000.g5_p010.d000.g5_p-11-1.d000.\
-g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p010.d000.g5_p-100.d000.g5_p-\
-100.d000.g5_p010.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p010.\
-d000.g5_p-100.d000.g5_p100.d000.g5_p010.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p111.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.d000.g5_p0-10.d000.g5_\
-p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.\
-d000.g5_p0-10.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p010.d000.\
-g5_p-100.d000.g5_p-100.d000.g5_p0-10.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\\
-t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p111.d000.g5_p010.d000.g5_p-100.d000.g5_p100.d000.g5_p0-10.d000.g5_p-1-\
-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p0-10.d000.g5_p100.d000.g5_p-\
-11-1.d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p0-\
-10.d000.g5_p100.d000.g5_p11-1.d000.g5_p010.d000.g5_p-100.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-1-11.d000.g5_p010.d000.g5_p100.d000.g5_p-1-1-1.d000.g5_p010.d000.g5_\
-p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p010.d000.g5_p100.d000.g5_p1-1-\
-1.d000.g5_p010.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p0-10.\
-d000.g5_p100.d000.g5_p-11-1.d000.g5_p0-10.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-111.d000.g5_p0-10.d000.g5_p100.d000.g5_p11-1.d000.g5_p0-10.d000.g5_p-\
-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p010.d000.g5_p100.d000.g5_p-1-1-\
-1.d000.g5_p0-10.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p010.\
-d000.g5_p100.d000.g5_p1-1-1.d000.g5_p0-10.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p1-11.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-11-1.d000.g5_p010.d000.g5_\
-p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p0-10.d000.g5_p-100.d000.g5_p11-\
-1.d000.g5_p010.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p010.\
-d000.g5_p-100.d000.g5_p-1-1-1.d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p1-11.d000.g5_p010.d000.g5_p-100.d000.g5_p1-1-1.d000.g5_p010.d000.g5_p-\
-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-11-\
-1.d000.g5_p0-10.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p0-10.\
-d000.g5_p-100.d000.g5_p11-1.d000.g5_p0-10.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p111.d000.g5_p010.d000.g5_p-100.d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_\
-p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p010.d000.g5_p-100.d000.g5_p1-1-\
-1.d000.g5_p0-10.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-\
-100.d000.g5_p010.d000.g5_p0-10.d000.g5_p100.d000.g5_p11-1.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-1-11.d000.g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5_p100.d000.g5_p1-\
-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p100.d000.g5_p010.d000.g5_p0-\
-10.d000.g5_p100.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p100.\
-d000.g5_p010.d000.g5_p010.d000.g5_p100.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-111.d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p100.d000.g5_\
-p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p-100.d000.g5_p0-10.d000.g5_\
-p010.d000.g5_p100.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_\
-p100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p100.d000.g5_p-11-1.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\"\
-:0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cC_uuuuuu_p-111.d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.\
-g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p-100.d000.g5_p010.\
-d000.g5_p0-10.d000.g5_p-100.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.\
-d000.g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5_p-100.d000.g5_p1-1-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\\
-t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cC_uuuuuu_p1-11.d000.g5_p100.d000.g5_p010.d000.g5_p0-10.d000.g5_p-100.\
-d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p100.d000.g5_p010.\
-d000.g5_p010.d000.g5_p-100.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.\
-d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-100.d000.g5_p11-1.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cC_uuuuuu_p111.d000.g5_p-100.d000.g5_p0-10.d000.g5_p010.d000.g5_p-\
-100.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p100.d000.g5_p0-10.\
-d000.g5_p0-10.d000.g5_p-100.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.\
-d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5_p-100.d000.g5_p-1-1-1.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-100.d000.g5_p010.d000.g5_p1-1-1.d000.g5_\
-p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-100.d000.g5_\
-p010.d000.g5_p11-1.d000.g5_p100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\
-\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-\
-11.d000.g5_p100.d000.g5_p010.d000.g5_p-1-1-1.d000.g5_p100.d000.g5_p010.d000.\
-g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p100.d000.g5_p010.d000.g5_p-11-\
-1.d000.g5_p100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p-100.\
-d000.g5_p0-10.d000.g5_p1-1-1.d000.g5_p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-111.d000.g5_p-100.d000.g5_p0-10.d000.g5_p11-1.d000.g5_p100.d000.g5_\
-p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p100.d000.g5_p0-10.d000.g5_p-\
-1-1-1.d000.g5_p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_\
-p100.d000.g5_p0-10.d000.g5_p-11-1.d000.g5_p100.d000.g5_p0-10.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\"\
-:0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cC_uuuuuu_p1-11.d000.g5_p-100.d000.g5_p010.d000.g5_p1-1-1.d000.g5_p-100.\
-d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p-100.d000.g5_p010.\
-d000.g5_p11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.\
-d000.g5_p100.d000.g5_p010.d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_p010.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\
-\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p100.d000.g5_p010.d000.g5_p-11-1.d000.g5_p-\
-100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p-100.d000.g5_p0-10.\
-d000.g5_p1-1-1.d000.g5_p-100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.\
-d000.g5_p-100.d000.g5_p0-10.d000.g5_p11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cC_uuuuuu_p111.d000.g5_p100.d000.g5_p0-10.d000.g5_p-1-1-1.d000.g5_p-\
-100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p100.d000.g5_p0-10.\
-d000.g5_p-11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.\
-d000.g5_p-100.d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5_p11-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\\
-t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-100.d000.g5_p100.d000.g5_p010.d000.g5_p010.\
-d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\"\
-:false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p100.d000.g5_p100.\
-d000.g5_p0-10.d000.g5_p010.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.\
-d000.g5_p100.d000.g5_p100.d000.g5_p010.d000.g5_p010.d000.g5_p-1-1-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\\
-t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cC_uuuuuu_p-111.d000.g5_p-100.d000.g5_p100.d000.g5_p0-10.d000.g5_p0-10.\
-d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p-100.d000.g5_p100.\
-d000.g5_p010.d000.g5_p0-10.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\
-\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.\
-d000.g5_p100.d000.g5_p100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-11-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\\
-t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cC_uuuuuu_p-111.d000.g5_p100.d000.g5_p100.d000.g5_p010.d000.g5_p0-10.\
-d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p-100.d000.g5_p-\
-100.d000.g5_p0-10.d000.g5_p010.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\\
-t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-\
-11.d000.g5_p-100.d000.g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5_p1-1-1.d000.\
-g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p100.d000.g5_p-100.d000.g5_p0-\
-10.d000.g5_p010.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p100.\
-d000.g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p111.d000.g5_p-100.d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_\
-p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p-100.d000.g5_p-100.d000.g5_p010.\
-d000.g5_p0-10.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p100.d000.\
-g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\\
-t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p111.d000.g5_p100.d000.g5_p-100.d000.g5_p010.d000.g5_p0-10.d000.g5_p-1-\
-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-100.d000.g5_p100.d000.g5_p1-\
-1-1.d000.g5_p010.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-\
-100.d000.g5_p100.d000.g5_p11-1.d000.g5_p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-1-11.d000.g5_p100.d000.g5_p100.d000.g5_p-1-1-1.d000.g5_p010.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p100.d000.g5_p100.d000.g5_p-11-\
-1.d000.g5_p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p-100.\
-d000.g5_p100.d000.g5_p1-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-111.d000.g5_p-100.d000.g5_p100.d000.g5_p11-1.d000.g5_p0-10.d000.g5_\
-p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p100.d000.g5_p100.d000.g5_p-1-\
-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p100.\
-d000.g5_p100.d000.g5_p-11-1.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p1-11.d000.g5_p-100.d000.g5_p-100.d000.g5_p1-1-1.d000.g5_p010.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p-100.d000.g5_p-100.d000.g5_p11-\
-1.d000.g5_p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p100.\
-d000.g5_p-100.d000.g5_p-1-1-1.d000.g5_p010.d000.g5_p010.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p1-11.d000.g5_p100.d000.g5_p-100.d000.g5_p-11-1.d000.g5_p010.d000.g5_\
-p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p-100.d000.g5_p-100.d000.g5_p1-1-\
-1.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p-100.\
-d000.g5_p-100.d000.g5_p11-1.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p111.d000.g5_p100.d000.g5_p-100.d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p100.d000.g5_p-100.d000.g5_p-11-\
-1.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-1-\
-1-1.d000.g5_p010.d000.g5_p010.d000.g5_p100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-1-11.d000.g5_p-11-1.d000.g5_p010.d000.g5_p0-10.d000.g5_p100.d000.g5_\
-p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p1-1-1.d000.g5_p010.d000.g5_\
-p010.d000.g5_p100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_\
-p11-1.d000.g5_p010.d000.g5_p0-10.d000.g5_p100.d000.g5_p-100.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\"\
-:0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cC_uuuuuu_p-111.d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5_p100.\
-d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p-11-1.d000.g5_p0-10.\
-d000.g5_p0-10.d000.g5_p100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\
-\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.\
-g5_p1-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.g5_p-100.d000.g5\\\",\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\
-\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\\
-t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\
-\"C6cC_uuuuuu_p-111.d000.g5_p11-1.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p100.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p-1-1-1.d000.g5_p010.\
-d000.g5_p010.d000.g5_p-100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\\
-t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.\
-d000.g5_p-11-1.d000.g5_p010.d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\\
-t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cC_uuuuuu_p1-11.d000.g5_p1-1-1.d000.g5_p010.d000.g5_p010.d000.g5_p-100.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p11-1.d000.g5_p010.\
-d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.\
-d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5_p-100.d000.g5_p100.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cC_uuuuuu_p111.d000.g5_p-11-1.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-\
-100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p1-1-1.d000.g5_p0-\
-10.d000.g5_p010.d000.g5_p-100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\
-\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.\
-d000.g5_p11-1.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-1-1-1.d000.g5_p010.d000.g5_p100.d000.g5_\
-p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-11-1.d000.g5_\
-p010.d000.g5_p100.d000.g5_p100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\\
-t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-\
-11.d000.g5_p1-1-1.d000.g5_p010.d000.g5_p-100.d000.g5_p100.d000.g5_p010.d000.\
-g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p11-1.d000.g5_p010.d000.g5_p-\
-100.d000.g5_p100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p-1-1-\
-1.d000.g5_p0-10.d000.g5_p100.d000.g5_p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-111.d000.g5_p-11-1.d000.g5_p0-10.d000.g5_p100.d000.g5_p100.d000.g5_\
-p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p1-1-1.d000.g5_p0-10.d000.g5_p-\
-100.d000.g5_p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p11-1.\
-d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p1-11.d000.g5_p-1-1-1.d000.g5_p010.d000.g5_p100.d000.g5_p-100.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p-11-1.d000.g5_p010.d000.g5_\
-p100.d000.g5_p-100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p1-\
-1-1.d000.g5_p010.d000.g5_p-100.d000.g5_p-100.d000.g5_p010.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p1-11.d000.g5_p11-1.d000.g5_p010.d000.g5_p-100.d000.g5_p-100.d000.g5_\
-p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_\
-p100.d000.g5_p-100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p-11-1.\
-d000.g5_p0-10.d000.g5_p100.d000.g5_p-100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p111.d000.g5_p1-1-1.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p11-1.d000.g5_p0-10.d000.g5_p-\
-100.d000.g5_p-100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-1-\
-1-1.d000.g5_p100.d000.g5_p010.d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-1-11.d000.g5_p-11-1.d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5_\
-p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p1-1-1.d000.g5_p100.d000.g5_\
-p010.d000.g5_p010.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_\
-p11-1.d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5_p-100.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\"\
-:0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cC_uuuuuu_p-111.d000.g5_p-1-1-1.d000.g5_p100.d000.g5_p010.d000.g5_p0-10.\
-d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p-11-1.d000.g5_p100.\
-d000.g5_p0-10.d000.g5_p0-10.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\\
-t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.\
-d000.g5_p1-1-1.d000.g5_p100.d000.g5_p010.d000.g5_p0-10.d000.g5_p-100.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\\
-t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cC_uuuuuu_p-111.d000.g5_p11-1.d000.g5_p100.d000.g5_p0-10.d000.g5_p0-10.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p-1-1-1.d000.g5_p-100.\
-d000.g5_p010.d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\\
-t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.\
-d000.g5_p-11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\\
-t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cC_uuuuuu_p1-11.d000.g5_p1-1-1.d000.g5_p-100.d000.g5_p010.d000.g5_p010.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p11-1.d000.g5_p-100.\
-d000.g5_p0-10.d000.g5_p010.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\
-\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.\
-d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_p010.d000.g5_p0-10.d000.g5_p100.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cC_uuuuuu_p111.d000.g5_p-11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-\
-10.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p1-1-1.d000.g5_p-\
-100.d000.g5_p010.d000.g5_p0-10.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\\
-t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_\
-p111.d000.g5_p11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-100.\
-d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\\
-t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-1-1-1.d000.g5_p100.d000.g5_\
-p100.d000.g5_p010.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p-11-\
-1.d000.g5_p100.d000.g5_p100.d000.g5_p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-1-11.d000.g5_p1-1-1.d000.g5_p100.d000.g5_p-100.d000.g5_p010.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-1-11.d000.g5_p11-1.d000.g5_p100.d000.g5_p-\
-100.d000.g5_p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p-1-1-\
-1.d000.g5_p100.d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p-111.d000.g5_p-11-1.d000.g5_p100.d000.g5_p100.d000.g5_p0-10.d000.g5_\
-p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p1-1-1.d000.g5_p100.d000.g5_p-\
-100.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p-111.d000.g5_p11-1.\
-d000.g5_p100.d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p1-11.d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_p100.d000.g5_p010.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p-11-1.d000.g5_p-100.d000.g5_\
-p100.d000.g5_p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p1-11.d000.g5_p1-1-\
-1.d000.g5_p-100.d000.g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p1-11.d000.g5_p11-1.d000.g5_p-100.d000.g5_p-100.d000.g5_p010.d000.g5_\
-p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_\
-p100.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p-11-1.\
-d000.g5_p-100.d000.g5_p100.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cC_\
-uuuuuu_p111.d000.g5_p1-1-1.d000.g5_p-100.d000.g5_p-100.d000.g5_p0-10.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-6.25e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cC_uuuuuu_p111.d000.g5_p11-1.d000.g5_p-100.d000.g5_p-\
-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":6.25e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p0-\
-10.d000.g5_p010.d000.g5_p-100.d000.g5_p100.d000.g5_p11-1.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p-1-11.d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.g5_p100.d000.\
-g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p010.d000.g5_p010.\
-d000.g5_p-100.d000.g5_p100.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.\
-d000.g5_p010.d000.g5_p010.d000.g5_p100.d000.g5_p100.d000.g5_p-1-1-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\
-\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-111.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-100.d000.g5_\
-p100.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p0-10.d000.\
-g5_p0-10.d000.g5_p100.d000.g5_p100.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\
-\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p-111.d000.g5_p010.d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.d000.g5_p1-\
-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p010.d000.g5_p0-10.d000.g5_p100.\
-d000.g5_p100.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p0-10.\
-d000.g5_p010.d000.g5_p-100.d000.g5_p-100.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p1-11.d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.g5_p-100.d000.g5_p-\
-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p010.d000.g5_p010.d000.g5_p-100.\
-d000.g5_p-100.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p010.\
-d000.g5_p010.d000.g5_p100.d000.g5_p-100.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p111.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.d000.\
-g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p0-10.d000.g5_p0-10.\
-d000.g5_p100.d000.g5_p-100.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.\
-d000.g5_p010.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.d000.g5_p1-1-1.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p010.d000.g5_p0-10.d000.g5_p100.\
-d000.g5_p-100.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p0-\
-10.d000.g5_p010.d000.g5_p-11-1.d000.g5_p100.d000.g5_p100.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p-1-11.d000.g5_p0-10.d000.g5_p010.d000.g5_p11-1.d000.g5_p100.d000.\
-g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p010.d000.g5_p010.\
-d000.g5_p-1-1-1.d000.g5_p100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.\
-d000.g5_p010.d000.g5_p010.d000.g5_p1-1-1.d000.g5_p100.d000.g5_p-100.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-111.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-11-1.d000.g5_\
-p100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p0-10.d000.g5_p0-\
-10.d000.g5_p11-1.d000.g5_p100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\\
-t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-\
-111.d000.g5_p010.d000.g5_p0-10.d000.g5_p-1-1-1.d000.g5_p100.d000.g5_p100.d000.\
-g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p010.d000.g5_p0-10.d000.g5_p1-1-\
-1.d000.g5_p100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p0-10.\
-d000.g5_p010.d000.g5_p-11-1.d000.g5_p-100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\
-\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p1-11.d000.g5_p0-10.d000.g5_p010.d000.g5_p11-1.d000.g5_p-100.d000.g5_p-\
-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p010.d000.g5_p010.d000.g5_p-1-1-\
-1.d000.g5_p-100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p010.\
-d000.g5_p010.d000.g5_p1-1-1.d000.g5_p-100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p111.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-11-1.d000.g5_p-100.d000.g5_\
-p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p0-10.d000.g5_p0-10.d000.g5_\
-p11-1.d000.g5_p-100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_\
-p010.d000.g5_p0-10.d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_p100.d000.g5\\\",\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\
-\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\\
-t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\
-\"C6cD_uuuuuu_p111.d000.g5_p010.d000.g5_p0-10.d000.g5_p1-1-1.d000.g5_p-100.\
-d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\"\
-:false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p0-10.d000.g5_p100.\
-d000.g5_p-100.d000.g5_p010.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\
-\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.\
-d000.g5_p0-10.d000.g5_p100.d000.g5_p100.d000.g5_p010.d000.g5_p-11-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p010.d000.g5_p100.d000.g5_p-100.d000.g5_\
-p010.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p010.d000.\
-g5_p100.d000.g5_p100.d000.g5_p010.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\
-\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p-111.d000.g5_p0-10.d000.g5_p100.d000.g5_p-100.d000.g5_p0-10.d000.g5_\
-p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p0-10.d000.g5_p100.d000.g5_\
-p100.d000.g5_p0-10.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_\
-p010.d000.g5_p100.d000.g5_p-100.d000.g5_p0-10.d000.g5_p1-1-1.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\
-\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\
-\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p-111.d000.g5_p010.d000.g5_p100.d000.g5_p100.d000.g5_p0-10.d000.\
-g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p0-10.d000.g5_p-100.\
-d000.g5_p-100.d000.g5_p010.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.\
-d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.d000.g5_p010.d000.g5_p-11-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\
-\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p010.d000.g5_p-100.d000.g5_p-100.d000.g5_\
-p010.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p010.d000.g5_\
-p-100.d000.g5_p100.d000.g5_p010.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\\
-t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_\
-p111.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.d000.g5_p0-10.d000.g5_p11-1.\
-d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\\
-t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.\
-d000.g5_p0-10.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p010.\
-d000.g5_p-100.d000.g5_p-100.d000.g5_p0-10.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p111.d000.g5_p010.d000.g5_p-100.d000.g5_p100.d000.g5_p0-10.d000.\
-g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p0-10.d000.g5_p100.\
-d000.g5_p-11-1.d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.\
-d000.g5_p0-10.d000.g5_p100.d000.g5_p11-1.d000.g5_p010.d000.g5_p-100.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\
-\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p010.d000.g5_p100.d000.g5_p-1-1-1.d000.g5_\
-p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p010.d000.g5_\
-p100.d000.g5_p1-1-1.d000.g5_p010.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\\
-t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_\
-p-111.d000.g5_p0-10.d000.g5_p100.d000.g5_p-11-1.d000.g5_p0-10.d000.g5_p100.\
-d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\\
-t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p0-10.d000.g5_p100.d000.g5_p11-\
-1.d000.g5_p0-10.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p010.\
-d000.g5_p100.d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_p100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p-111.d000.g5_p010.d000.g5_p100.d000.g5_p1-1-1.d000.g5_p0-10.d000.\
-g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p0-10.d000.g5_p-100.\
-d000.g5_p-11-1.d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\
-\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.\
-d000.g5_p0-10.d000.g5_p-100.d000.g5_p11-1.d000.g5_p010.d000.g5_p-100.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p010.d000.g5_p-100.d000.g5_p-1-1-1.d000.g5_\
-p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p010.d000.g5_p-\
-100.d000.g5_p1-1-1.d000.g5_p010.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\\
-t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_\
-p111.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-11-1.d000.g5_p0-10.d000.g5_p100.\
-d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\\
-t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p0-10.d000.g5_p-100.d000.g5_p11-\
-1.d000.g5_p0-10.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p010.\
-d000.g5_p-100.d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_p100.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p111.d000.g5_p010.d000.g5_p-100.d000.g5_p1-1-1.d000.g5_p0-10.d000.\
-g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p-100.d000.g5_p010.\
-d000.g5_p0-10.d000.g5_p100.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\
-\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.\
-d000.g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5_p100.d000.g5_p1-1-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p100.d000.g5_p010.d000.g5_p0-10.d000.g5_\
-p100.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p100.d000.\
-g5_p010.d000.g5_p010.d000.g5_p100.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\
-\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p-111.d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p100.d000.g5_\
-p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p-100.d000.g5_p0-10.d000.g5_\
-p010.d000.g5_p100.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_\
-p100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p100.d000.g5_p-11-1.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\
-\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\
-\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p-111.d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.\
-g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\
-\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-100.d000.g5_p010.\
-d000.g5_p0-10.d000.g5_p-100.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.\
-d000.g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5_p-100.d000.g5_p1-1-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\
-\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p100.d000.g5_p010.d000.g5_p0-10.d000.g5_p-\
-100.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p100.d000.g5_p010.\
-d000.g5_p010.d000.g5_p-100.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.\
-d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-100.d000.g5_p11-1.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p111.d000.g5_p-100.d000.g5_p0-10.d000.g5_p010.d000.g5_p-\
-100.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p100.d000.g5_\
-p0-10.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\\
-t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_\
-p111.d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5_p-100.d000.g5_p-1-1-1.\
-d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\\
-t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p-100.d000.g5_p010.d000.g5_p1-\
-1-1.d000.g5_p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p-\
-100.d000.g5_p010.d000.g5_p11-1.d000.g5_p100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p-1-11.d000.g5_p100.d000.g5_p010.d000.g5_p-1-1-1.d000.g5_p100.\
-d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p100.d000.g5_p010.\
-d000.g5_p-11-1.d000.g5_p100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.\
-d000.g5_p-100.d000.g5_p0-10.d000.g5_p1-1-1.d000.g5_p100.d000.g5_p010.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\
-\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-111.d000.g5_p-100.d000.g5_p0-10.d000.g5_p11-1.d000.g5_\
-p100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p100.d000.g5_\
-p0-10.d000.g5_p-1-1-1.d000.g5_p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\\
-t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_\
-p-111.d000.g5_p100.d000.g5_p0-10.d000.g5_p-11-1.d000.g5_p100.d000.g5_p0-10.\
-d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\\
-t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-100.d000.g5_p010.d000.g5_p1-1-\
-1.d000.g5_p-100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-100.\
-d000.g5_p010.d000.g5_p11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p1-11.d000.g5_p100.d000.g5_p010.d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p100.d000.g5_p010.d000.g5_p-\
-11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p-\
-100.d000.g5_p0-10.d000.g5_p1-1-1.d000.g5_p-100.d000.g5_p010.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\
-\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\
-\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p111.d000.g5_p-100.d000.g5_p0-10.d000.g5_p11-1.d000.g5_p-100.d000.\
-g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p100.d000.g5_p0-10.\
-d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.\
-d000.g5_p100.d000.g5_p0-10.d000.g5_p-11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p-100.d000.g5_p100.d000.g5_p0-\
-10.d000.g5_p010.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p-\
-100.d000.g5_p100.d000.g5_p010.d000.g5_p010.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p-1-11.d000.g5_p100.d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.\
-g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p100.d000.g5_p100.\
-d000.g5_p010.d000.g5_p010.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.\
-d000.g5_p-100.d000.g5_p100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p11-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-111.d000.g5_p-100.d000.g5_p100.d000.g5_p010.d000.g5_p0-\
-10.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p100.d000.g5_p100.\
-d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.\
-d000.g5_p100.d000.g5_p100.d000.g5_p010.d000.g5_p0-10.d000.g5_p-1-1-1.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-100.d000.g5_p-100.d000.g5_p0-10.d000.g5_\
-p010.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-100.d000.\
-g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5_p1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\
-\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p1-11.d000.g5_p100.d000.g5_p-100.d000.g5_p0-10.d000.g5_p010.d000.g5_p-\
-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p100.d000.g5_p-100.d000.g5_p010.\
-d000.g5_p010.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p-100.\
-d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p11-1.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p111.d000.g5_p-100.d000.g5_p-100.d000.g5_p010.d000.g5_p0-10.d000.g5_p1-\
-1-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p100.d000.g5_p-100.d000.g5_p0-10.\
-d000.g5_p0-10.d000.g5_p-11-1.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p100.\
-d000.g5_p-100.d000.g5_p010.d000.g5_p0-10.d000.g5_p-1-1-1.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p-1-11.d000.g5_p-100.d000.g5_p100.d000.g5_p1-1-1.d000.g5_p010.\
-d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p-100.d000.g5_p100.\
-d000.g5_p11-1.d000.g5_p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\
-\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.\
-d000.g5_p100.d000.g5_p100.d000.g5_p-1-1-1.d000.g5_p010.d000.g5_p010.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\
-\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p100.d000.g5_p100.d000.g5_p-11-1.d000.g5_\
-p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p-100.d000.\
-g5_p100.d000.g5_p1-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\
-\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\
-\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p-111.d000.g5_p-100.d000.g5_p100.d000.g5_p11-1.d000.g5_p0-10.d000.g5_\
-p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p100.d000.g5_p100.d000.g5_p-1-\
-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p100.\
-d000.g5_p100.d000.g5_p-11-1.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p1-11.d000.g5_p-100.d000.g5_p-100.d000.g5_p1-1-1.d000.g5_p010.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-100.d000.g5_p-100.d000.g5_p11-\
-1.d000.g5_p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\"\
-:-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p100.\
-d000.g5_p-100.d000.g5_p-1-1-1.d000.g5_p010.d000.g5_p010.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p1-11.d000.g5_p100.d000.g5_p-100.d000.g5_p-11-1.d000.g5_p010.d000.\
-g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p-100.d000.g5_p-100.\
-d000.g5_p1-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.\
-d000.g5_p-100.d000.g5_p-100.d000.g5_p11-1.d000.g5_p0-10.d000.g5_p0-10.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p111.d000.g5_p100.d000.g5_p-100.d000.g5_p-1-1-1.d000.g5_p0-\
-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\
-\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p100.d000.g5_p-100.\
-d000.g5_p-11-1.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.\
-d000.g5_p-1-1-1.d000.g5_p010.d000.g5_p010.d000.g5_p100.d000.g5_p100.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\
-\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p-11-1.d000.g5_p010.d000.g5_p0-10.d000.g5_\
-p100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p1-1-1.d000.g5_\
-p010.d000.g5_p010.d000.g5_p100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\\
-t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-\
-11.d000.g5_p11-1.d000.g5_p010.d000.g5_p0-10.d000.g5_p100.d000.g5_p-100.d000.\
-g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_\
-p010.d000.g5_p100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p-11-\
-1.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p-111.d000.g5_p1-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.g5_p-\
-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p11-1.d000.g5_p0-10.d000.g5_p0-\
-10.d000.g5_p100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-1-1-\
-1.d000.g5_p010.d000.g5_p010.d000.g5_p-100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p1-11.d000.g5_p-11-1.d000.g5_p010.d000.g5_p0-10.d000.g5_p-100.d000.g5_\
-p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p1-1-1.d000.g5_p010.d000.g5_\
-p010.d000.g5_p-100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_\
-p11-1.d000.g5_p010.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\
-\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\
-\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p111.d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5_p-100.\
-d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p-11-1.d000.g5_p0-10.\
-d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\\
-t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.\
-d000.g5_p1-1-1.d000.g5_p0-10.d000.g5_p010.d000.g5_p-100.d000.g5_p-100.d000.g5\
-\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\
-\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p11-1.d000.g5_p0-10.d000.g5_p0-\
-10.d000.g5_p-100.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p-1-\
-1-1.d000.g5_p010.d000.g5_p100.d000.g5_p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p-1-11.d000.g5_p-11-1.d000.g5_p010.d000.g5_p100.d000.g5_p100.d000.g5_\
-p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p1-1-1.d000.g5_p010.d000.g5_\
-p-100.d000.g5_p100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_\
-p11-1.d000.g5_p010.d000.g5_p-100.d000.g5_p100.d000.g5_p0-10.d000.g5\\\",\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\
-\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\
-\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p-111.d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_p100.d000.g5_p100.\
-d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p-11-1.d000.g5_p0-10.\
-d000.g5_p100.d000.g5_p100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\\
-t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.\
-d000.g5_p1-1-1.d000.g5_p0-10.d000.g5_p-100.d000.g5_p100.d000.g5_p010.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\
-\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-111.d000.g5_p11-1.d000.g5_p0-10.d000.g5_p-100.d000.g5_\
-p100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-1-1-1.d000.\
-g5_p010.d000.g5_p100.d000.g5_p-100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\\
-t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_\
-p1-11.d000.g5_p-11-1.d000.g5_p010.d000.g5_p100.d000.g5_p-100.d000.g5_p0-10.\
-d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\\
-t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p1-1-1.d000.g5_p010.d000.g5_p-\
-100.d000.g5_p-100.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p11-1.\
-d000.g5_p010.d000.g5_p-100.d000.g5_p-100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p111.d000.g5_p-1-1-1.d000.g5_p0-10.d000.g5_p100.d000.g5_p-100.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p-11-1.d000.g5_p0-10.d000.g5_\
-p100.d000.g5_p-100.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_\
-p1-1-1.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.d000.g5_p010.d000.g5\\\",\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\
-\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cD_uuuuuu_p111.d000.g5_p11-1.d000.g5_p0-10.d000.g5_p-100.d000.g5_p-100.\
-d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p-1-1-1.d000.g5_p100.\
-d000.g5_p010.d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\\
-t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.\
-d000.g5_p-11-1.d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p1-1-1.d000.g5_p100.d000.g5_p010.d000.g5_\
-p010.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-\
-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p11-1.d000.\
-g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\\
-t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_\
-p-111.d000.g5_p-1-1-1.d000.g5_p100.d000.g5_p010.d000.g5_p0-10.d000.g5_p100.\
-d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\\
-t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p-11-1.d000.g5_p100.d000.g5_p0-\
-10.d000.g5_p0-10.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p1-1-\
-1.d000.g5_p100.d000.g5_p010.d000.g5_p0-10.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p-111.d000.g5_p11-1.d000.g5_p100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-\
-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_\
-p010.d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-11-\
-1.d000.g5_p-100.d000.g5_p0-10.d000.g5_p010.d000.g5_p100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p1-11.d000.g5_p1-1-1.d000.g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5_p-\
-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\\
-t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p11-1.d000.g5_p-100.d000.g5_p0-\
-10.d000.g5_p010.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p-1-1-\
-1.d000.g5_p-100.d000.g5_p010.d000.g5_p0-10.d000.g5_p100.d000.g5\\\",\\n\\t\\t\
-\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p111.d000.g5_p-11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_\
-p100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p1-1-1.d000.g5_p-100.d000.g5_\
-p010.d000.g5_p0-10.d000.g5_p-100.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\
-\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_\
-p11-1.d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5_p-100.d000.g5\\\",\\n\
-\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\
-\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\\
-t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\
-\"C6cD_uuuuuu_p-1-11.d000.g5_p-1-1-1.d000.g5_p100.d000.g5_p100.d000.g5_p010.\
-d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p-11-1.d000.g5_p100.\
-d000.g5_p100.d000.g5_p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\\
-t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-1-11.\
-d000.g5_p1-1-1.d000.g5_p100.d000.g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5\\\
-\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\\
-t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\
-\":\\\"C6cD_uuuuuu_p-1-11.d000.g5_p11-1.d000.g5_p100.d000.g5_p-100.d000.g5_\
-p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\
-\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\\
-t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p-1-1-1.d000.g5_\
-p100.d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\\
-t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\\
-t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-\
-111.d000.g5_p-11-1.d000.g5_p100.d000.g5_p100.d000.g5_p0-10.d000.g5_p0-10.d000.\
-g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\\
-t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"\
-datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p1-1-1.d000.g5_p100.d000.g5_p-\
-100.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\
-\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p-111.d000.g5_p11-1.\
-d000.g5_p100.d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.\
-0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\\
-t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_\
-uuuuuu_p1-11.d000.g5_p-1-1-1.d000.g5_p-100.d000.g5_p100.d000.g5_p010.d000.g5_\
-p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\
-\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\\
-n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p-11-1.d000.g5_p-100.d000.g5_\
-p100.d000.g5_p010.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\
-\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\\
-n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p1-11.d000.g5_p1-\
-1-1.d000.g5_p-100.d000.g5_p-100.d000.g5_p010.d000.g5_p010.d000.g5\\\",\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":\
-0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\\
-n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"\
-C6cD_uuuuuu_p1-11.d000.g5_p11-1.d000.g5_p-100.d000.g5_p-100.d000.g5_p010.d000.\
-g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\\
-t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p-1-1-1.d000.g5_p-100.\
-d000.g5_p100.d000.g5_p0-10.d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\\
-t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\\
-t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\\
-t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.\
-g5_p-11-1.d000.g5_p-100.d000.g5_p100.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\
-\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\
-\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\\
-t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"datasetname\\\":\
-\\\"C6cD_uuuuuu_p111.d000.g5_p1-1-1.d000.g5_p-100.d000.g5_p-100.d000.g5_p0-10.\
-d000.g5_p010.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"re\\\":-3.125e-2,\\n\\\
-t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"conj\\\":\
-false\\n\\t\\t\\t\\t\\t\\t\\t},\\n\\t\\t\\t\\t\\t\\t\\t{\\n\\t\\t\\t\\t\\t\\t\
-\\t\\t\\\"datasetname\\\":\\\"C6cD_uuuuuu_p111.d000.g5_p11-1.d000.g5_p-100.\
-d000.g5_p-100.d000.g5_p0-10.d000.g5_p0-10.d000.g5\\\",\\n\\t\\t\\t\\t\\t\\t\\\
-t\\t\\\"re\\\":3.125e-2,\\n\\t\\t\\t\\t\\t\\t\\t\\t\\\"im\\\":0.0,\\n\\t\\t\\\
-t\\t\\t\\t\\t\\t\\\"conj\\\":false\\n\\t\\t\\t\\t\\t\\t\\t}\\n\\t\\t\\t\\t\\t\
-\\t]\\n\\t\\t\\t\\t\\t}\\n\\t\\t\\t\\t}\\n\\t\\t\\t}\\n\\t\\t}\\n\\t}\\n}\"\>\
-"], "Output",
- CellChangeTimes->{3.77572372370376*^9},
- CellLabel->"Out[42]=",ExpressionUUID->"475ecb06-0e16-4c7d-929a-87c370c6ae4a"]
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{
+  3.77572372370376*^9, 3.7796865008075247`*^9, 3.779686535523306*^9, 
+   3.7796865662149067`*^9, {3.779686614836917*^9, 3.77968665315829*^9}, 
+   3.779686826960692*^9},
+ CellLabel->
+  "Out[134]=",ExpressionUUID->"e987ee31-dcc0-473e-9794-c29a5101b068"]
 }, Open  ]]
 },
 WindowSize->{956, 1025},
-WindowMargins->{{0, Automatic}, {26, Automatic}},
+WindowMargins->{{4, Automatic}, {26, Automatic}},
 CellContext->Notebook,
 FrontEndVersion->"12.0 for Linux x86 (64-bit) (April 8, 2019)",
 StyleDefinitions->"Default.nb"
@@ -2402,42 +648,39 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 809, 13, 57, "Input",ExpressionUUID->"ee6f5cbb-d494-4f1c-91d8-47d963a7df22"],
-Cell[1392, 37, 377, 9, 23, "Message",ExpressionUUID->"e84bb3c0-4737-491a-8a6f-019945e2fdbe"]
+Cell[580, 22, 814, 14, 57, "Input",ExpressionUUID->"ee6f5cbb-d494-4f1c-91d8-47d963a7df22"],
+Cell[1397, 38, 381, 9, 23, "Message",ExpressionUUID->"8a4a228a-02da-4edc-9f81-bbdc7e686c9c"]
 }, Open  ]],
-Cell[1784, 49, 274, 5, 36, "Text",ExpressionUUID->"5b2e33d9-ade9-4963-84bf-05287a0fff0a",
+Cell[1793, 50, 274, 5, 36, "Text",ExpressionUUID->"5b2e33d9-ade9-4963-84bf-05287a0fff0a",
  InitializationCell->True],
 Cell[CellGroupData[{
-Cell[2083, 58, 917, 14, 82, "Input",ExpressionUUID->"2a4b4219-58c9-498d-bb51-5bbf12896416"],
-Cell[3003, 74, 416, 10, 23, "Message",ExpressionUUID->"7d294439-e286-470e-a27b-aedbb9cbb099"],
-Cell[3422, 86, 405, 10, 23, "Message",ExpressionUUID->"a92ec649-207d-4acf-a4e9-7260381f6454"],
-Cell[3830, 98, 208, 4, 25, "Print",ExpressionUUID->"75397068-f4ca-4c6c-a601-f912e03fba93"]
+Cell[2092, 59, 921, 15, 82, "Input",ExpressionUUID->"2a4b4219-58c9-498d-bb51-5bbf12896416"],
+Cell[3016, 76, 305, 6, 25, "Print",ExpressionUUID->"377eb937-f194-49ee-adf5-242553e58db0"]
 }, Open  ]],
-Cell[CellGroupData[{
-Cell[4075, 107, 771, 12, 47, "Input",ExpressionUUID->"1ac89cfb-3835-4bbc-888d-45287bcf0f69",
+Cell[3336, 85, 775, 13, 47, "Input",ExpressionUUID->"1ac89cfb-3835-4bbc-888d-45287bcf0f69",
  InitializationCell->True],
-Cell[4849, 121, 668, 13, 43, "Message",ExpressionUUID->"5f3c348e-40fc-452b-973e-244eee06b70a"]
-}, Open  ]],
-Cell[5532, 137, 1963, 37, 78, "Input",ExpressionUUID->"36a65885-53af-46c2-8edc-aefa55ffa6ce"],
-Cell[7498, 176, 215, 4, 31, "Input",ExpressionUUID->"8d37b5b1-96dd-4761-9441-9ecc49c87df9"],
-Cell[7716, 182, 955, 19, 101, "Input",ExpressionUUID->"5a0f1df5-8038-4eb7-beab-e16fbb7e4a3a"],
-Cell[8674, 203, 271, 5, 31, "Input",ExpressionUUID->"36ce5550-2a85-4595-8b03-f43364148afe"],
+Cell[4114, 100, 1967, 38, 78, "Input",ExpressionUUID->"36a65885-53af-46c2-8edc-aefa55ffa6ce"],
+Cell[6084, 140, 219, 5, 31, "Input",ExpressionUUID->"8d37b5b1-96dd-4761-9441-9ecc49c87df9"],
 Cell[CellGroupData[{
-Cell[8970, 212, 925, 20, 101, "Input",ExpressionUUID->"8cc44ede-605d-47ff-b3d0-575311483203"],
-Cell[9898, 234, 819, 23, 35, "Output",ExpressionUUID->"73a5c39d-ed12-4823-bc58-ffba5f95120e"],
-Cell[10720, 259, 821, 23, 35, "Output",ExpressionUUID->"c98142ff-8eb5-4240-9468-8df25f360adf"]
+Cell[6328, 149, 959, 20, 101, "Input",ExpressionUUID->"5a0f1df5-8038-4eb7-beab-e16fbb7e4a3a"],
+Cell[7290, 171, 4912, 79, 1669, "Output",ExpressionUUID->"cd76a835-174b-403c-998d-6081d9983d2c"]
 }, Open  ]],
-Cell[11556, 285, 440, 11, 31, "Input",ExpressionUUID->"96e3d98f-490b-4824-97bc-6480e1aa8751"],
+Cell[12217, 253, 275, 6, 31, "Input",ExpressionUUID->"36ce5550-2a85-4595-8b03-f43364148afe"],
 Cell[CellGroupData[{
-Cell[12021, 300, 617, 14, 78, "Input",ExpressionUUID->"3f86c14d-21e4-485b-9703-64f78c7c44d4"],
-Cell[12641, 316, 2879, 93, 105, "Output",ExpressionUUID->"5daf7108-9c2f-4b2e-b820-e6e9c4c7f04f"]
+Cell[12517, 263, 1029, 22, 101, "Input",ExpressionUUID->"8cc44ede-605d-47ff-b3d0-575311483203"],
+Cell[13549, 287, 3278, 104, 105, "Output",ExpressionUUID->"99c77944-3fff-450c-b43f-4e65a97c2da9"],
+Cell[16830, 393, 3280, 104, 105, "Output",ExpressionUUID->"16d8096a-0c9a-40ec-88be-9791b93e4050"]
 }, Open  ]],
-Cell[15535, 412, 321, 6, 31, "Input",ExpressionUUID->"ec9e668e-1baf-4d18-a026-4e7437e82bb3"],
-Cell[15859, 420, 355, 7, 31, "Input",ExpressionUUID->"2f44efeb-133a-41eb-aa47-f49bd6cb7c27"],
+Cell[20125, 500, 463, 11, 31, "Input",ExpressionUUID->"96e3d98f-490b-4824-97bc-6480e1aa8751"],
 Cell[CellGroupData[{
-Cell[16239, 431, 278, 4, 31, "Input",ExpressionUUID->"7b719f9a-9ee1-4584-b7a5-de32f40c4a3d"],
-Cell[16520, 437, 392, 10, 23, "Message",ExpressionUUID->"7d5615ed-c76c-47b3-90e3-7c98059b45b4"],
-Cell[16915, 449, 152592, 1934, 81295, "Output",ExpressionUUID->"475ecb06-0e16-4c7d-929a-87c370c6ae4a"]
+Cell[20613, 515, 745, 17, 78, "Input",ExpressionUUID->"3f86c14d-21e4-485b-9703-64f78c7c44d4"],
+Cell[21361, 534, 1780, 56, 59, "Output",ExpressionUUID->"fdea6237-acd5-4a5b-9c1b-21d85e958fff"]
+}, Open  ]],
+Cell[23156, 593, 372, 9, 31, "Input",ExpressionUUID->"ec9e668e-1baf-4d18-a026-4e7437e82bb3"],
+Cell[23531, 604, 359, 8, 31, "Input",ExpressionUUID->"2f44efeb-133a-41eb-aa47-f49bd6cb7c27"],
+Cell[CellGroupData[{
+Cell[23915, 616, 282, 5, 31, "Input",ExpressionUUID->"7b719f9a-9ee1-4584-b7a5-de32f40c4a3d"],
+Cell[24200, 623, 307, 6, 35, "Output",ExpressionUUID->"e987ee31-dcc0-473e-9794-c29a5101b068"]
 }, Open  ]]
 }
 ]
