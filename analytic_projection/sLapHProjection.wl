@@ -482,7 +482,7 @@ CombineIsospinAndSpin[corrTemplates_, momentaAssoc_] :=
 (* https://mathematica.stackexchange.com/a/191718/1507 *)
 StringExpressionToAssociation[expr_] := Module[
   {exprConj, keys},
-  exprConj = expr /. Conjugate[str_String] :> "conj:" <> str;
+  exprConj = Distribute[expr] /. Conjugate[str_String] :> "conj:" <> str;
   keys = Union @ Cases[exprConj, _String, Infinity];
   AssociationMap[Coefficient[exprConj, #, 1] &, keys]];
 
