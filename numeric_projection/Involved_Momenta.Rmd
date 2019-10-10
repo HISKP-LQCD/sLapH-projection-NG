@@ -50,15 +50,11 @@ long3 <- tidyr::unnest(long2)
 ```
 
 ```{r}
-write.table(long3, sprintf('%s/spectrum_long.txt', workdir), row.names = FALSE)
-```
+write.table(long3, sprintf('%s/momenta_long_%s.txt', workdir, channel), row.names = FALSE)
 
-```{r}
 wide <- tidyr::spread(select(long3, -individual_momentum_str), particle, individual_momentum_sq, sep = '_')
 write.table(wide, sprintf('%s/momenta_wide_%s.txt', workdir, channel), row.names = FALSE)
-```
 
-```{r}
 wide2 <- tidyr::spread(select(long3, -individual_momentum_sq), particle, individual_momentum_str, sep = '_')
 jsonlite::write_json(wide2, sprintf('%s/momenta_wide2_%s.js', workdir, channel))
 ```
