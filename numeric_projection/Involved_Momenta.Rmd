@@ -9,7 +9,7 @@ output: pdf_document
 source('numeric_utils.R')
 
 channel <- '3pi_I3'
-channel <- '2pi_I2'
+#channel <- '2pi_I2'
 
 workdir <- sprintf('~/Lattice/Three-Pions/wdir_%s', channel)
 
@@ -46,7 +46,10 @@ relative_strs_to_individual_sq <- function (total_momentum_str, rel_momenta_strs
 ```{r}
 long2 <- long %>%
   mutate(nested = mapply(relative_strs_to_individual_sq, total_momentum_str, rel_momenta_str, SIMPLIFY = FALSE, USE.NAMES = FALSE))
-long3 <- tidyr::unnest(long2)
+long3 <- long2 %>%
+  tidyr::unnest() %>%
+  distinct() %>%
+  arrange()
 ```
 
 ```{r}
