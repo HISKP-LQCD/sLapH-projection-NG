@@ -5,6 +5,7 @@
 
 import argparse
 import json
+import os
 import random
 import re
 import sys
@@ -71,36 +72,37 @@ def print_difference_table(names, new_names):
 def main():
     options = _parse_args()
 
-    with open(options.correlator_names) as f:
-        all_names = json.load(f)
+    if not os.path.isdir(options.out):
+        os.makedirs(options.out)
 
-    total_before = 0
-    total_after = 0
+    for path in options.prescription:
+        print(path)
+        with open(path) as f:
+            prescription = json.load(f)
 
-    for trace, spec in traces.items():
-        names = all_names[trace]
-        new_names = [process_name(name, spec) for name in names]
+        for total_momentum, value in prescription.items():
+            print(' ', total_momentum)
+            for irrep, value in value.items():
+                print('   ', irrep)
+                for irrep_col, value in value.items():
+                    for irrep_row, value in value.items():
+                        for gevp_row, value in value.items():
+                            for gevp_col, value in value.items():
+                                for i, value in enumerate(value):
+                                    kind = value['datasetname'].split('_')[0]
+                                    prescription[total_momentum][irrep][irrep_col][irrep_row][gevp_row][gevp_col][i]['datasetname'] = value['datasetname'] = process_name(value['datasetname'], traces[kind])
 
-        #print_difference_table(names, new_names)
+        basename = os.path.basename(path)
+        path_out = os.path.join(options.out, basename)
 
-        print('| {:6} | {:6} | {:6} |'.format(trace, len(names), len(set(new_names))))
-
-        total_before += len(names)
-        total_after += len(set(new_names))
-
-        all_names[trace] = list(set(new_names))
-
-    print()
-    print('Reduction: {} to {}, saving of {:.1f} %.'.format(total_before, total_after, 100 * (1 - total_after/total_before)))
-
-    with open(options.out, 'w') as f:
-        json.dump(all_names, f, indent=2)
+        with open(path_out, 'w') as f:
+            json.dump(prescription, f, indent=2)
 
 
 def _parse_args():
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('correlator_names')
-    parser.add_argument('out')
+    parser.add_argument('prescription', nargs='+')
+    parser.add_argument('--out', required=True)
     options = parser.parse_args()
 
     return options
