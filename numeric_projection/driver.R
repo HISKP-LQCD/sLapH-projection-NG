@@ -145,4 +145,4 @@ if (!dir.exists(path)) {
   dir.create(path)
 }
 resolved_filename <- sprintf('%s/resolved_%s_%s_%04d.js', path, total_momentum_str, irrep, config_number)
-jsonlite::write_json(filtered, resolved_filename, pretty = TRUE)
+jsonlite::write_json(filtered, resolved_filename, pretty = TRUE, digits = NA)
