@@ -2,7 +2,9 @@
 title: "Correlator Matrix Visualization"
 author: "Martin Ueding"
 date: "\\today"
-output: pdf_document
+output:
+  pdf_document:
+    fig_crop: false
 ---
 
 ```{r setup, include=FALSE}
@@ -44,7 +46,7 @@ for (total_momentum_idx in 1:length(data)) {
   total_momentum_str <- names(data)[[total_momentum_idx]]
   irreps <- data[[total_momentum_idx]]
   
-  total_momentum_vec <- total_momentum_str_to_vec(total_momentum_str)
+  total_momentum_vec <- momentum_str_to_vec(total_momentum_str)
   total_momentum_sq <- sum(total_momentum_vec^2)
   
   for (irrep_idx in 1:length(irreps)) {
