@@ -3,6 +3,7 @@
 # Copyright © 2019 Martin Ueding <dev@martin-ueding.de>
 
 import argparse
+import collections
 import glob
 import os
 import re
@@ -34,26 +35,41 @@ def main():
     date_pattern = re.compile('^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}$')
     output_pattern = re.compile('batch_output/numeric_(\d+)_slurm_(\d+).txt')
 
+    broken_hosts = collections.defaultdict(lambda: 0)
+    total_hosts = collections.defaultdict(lambda: 0)
+
     for path in glob.glob('batch_output/numeric_*.txt'):
         with open(path) as f:
             lines = list(f)
+
+            hostname = lines[1].strip()
+            total_hosts[hostname] += 1
+
             m = date_pattern.match(lines[-1])
             if m:
                 continue
+
+            broken_hosts[hostname] += 1
 
             m = output_pattern.match(path)
             assert m
             config = int(m.group(1))
             jobid = int(m.group(2))
 
+            #print(hostname)
+            #print(config, jobid)
 
             if config in running_jobs:
                 continue
 
-            print(config, jobid)
             jobscript = 'jobscripts/slurm_numeric_{:04d}.sh'.format(config)
             command = ['sbatch', jobscript]
             subprocess.run(command, check=True)
+
+    print('| Host | Broken | Total |')
+    print('| --- | ---: | ---: |')
+    for host, count in sorted(total_hosts.items()):
+        print('| {:15s} | {:3d} | {:3d} |'.format(host, broken_hosts[host], count))
 
 
 def parse_args():
