@@ -1,0 +1,67 @@
+#!/usr/bin/python3
+
+# Copyright © 2019 Martin Ueding <dev@martin-ueding.de>
+
+import argparse
+import glob
+import os
+import re
+import subprocess
+
+
+def extract_number(string):
+    m = re.search(r'(\d+)', string)
+    assert m
+    return int(m.group(0))
+
+
+def get_running_jobs():
+    command = ['squeue', '-o', '%o']
+    output = subprocess.run(command, capture_output=True, check=True)
+    lines = output.stdout.decode().strip().split('\n')[1:]
+
+    relpaths = [os.path.relpath(path) for path in lines]
+    ours = [extract_number(path) for path in relpaths if not path.startswith('..')]
+
+    return sorted(ours)
+
+
+def main():
+    options = parse_args()
+
+    running_jobs = get_running_jobs()
+
+    date_pattern = re.compile('^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}$')
+    output_pattern = re.compile('batch_output/numeric_(\d+)_slurm_(\d+).txt')
+
+    for path in glob.glob('batch_output/numeric_*.txt'):
+        with open(path) as f:
+            lines = list(f)
+            m = date_pattern.match(lines[-1])
+            if m:
+                continue
+
+            m = output_pattern.match(path)
+            assert m
+            config = int(m.group(1))
+            jobid = int(m.group(2))
+
+
+            if config in running_jobs:
+                continue
+
+            print(config, jobid)
+            jobscript = 'jobscripts/slurm_numeric_{:04d}.sh'.format(config)
+            command = ['sbatch', jobscript]
+            subprocess.run(command, check=True)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    options = parser.parse_args()
+
+    return options
+
+
+if __name__ == '__main__':
+    main()
