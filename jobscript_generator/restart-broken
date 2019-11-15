@@ -38,6 +38,8 @@ def main():
     broken_hosts = collections.defaultdict(lambda: 0)
     total_hosts = collections.defaultdict(lambda: 0)
 
+    started = 0
+
     for path in glob.glob('batch_output/numeric_*.txt'):
         with open(path) as f:
             lines = list(f)
@@ -70,6 +72,9 @@ def main():
             print(command)
             if not options.dry:
                 subprocess.run(command, check=True)
+                started += 1
+                if started > options.limit:
+                    break
 
     print('| Host | Broken | Total |')
     print('| --- | ---: | ---: |')
@@ -81,6 +86,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-x', help='SLURM nodelist')
     parser.add_argument('--dry', action='store_true')
+    parser.add_argument('--limit', type=int)
     options = parser.parse_args()
 
     return options
