@@ -33,10 +33,16 @@ needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$da
 file_pattern <- sprintf('correlators/*_cnfg%04d.h5', config_number)
 files <- Sys.glob(file_pattern)
 
+temps <- sapply(files, tempfile(tmpdir = '/storage/ueding/correlators'))
+
+for (i in length(files)) {
+    file.copy(files[i], temps[i])
+}
+
 diagrams <- sapply(files, function (file) strsplit(basename(file), '_')[[1]][1])
 names(diagrams) <- NULL
 
-files_list <- as.list(files)
+files_list <- as.list(temps)
 names(files_list) <- diagrams
 
 load_dataset <- function (datasetname) {
@@ -135,3 +141,7 @@ if (!dir.exists(path)) {
 }
 resolved_filename <- sprintf('%s/all_resolved_%04d.js', path, config_number)
 jsonlite::write_json(filtered, resolved_filename, pretty = TRUE, digits = NA)
+
+for (i in length(temps)) {
+    file.remove(temps[i])
+}
