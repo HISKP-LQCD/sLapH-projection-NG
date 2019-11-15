@@ -24,7 +24,12 @@ split_filename <- function (path) {
 
 
 ```{r}
-workdir <- '~/Lattice/Three-Pions/wdir_2pi_I2/'
+ensemble <- 'cA2.09.48'
+#channel <- '2pi_I2'
+channel <- '3pi_I3'
+
+workdir <- sprintf('~/Lattice/Three-Pions/projection_workdir/%s/%s', ensemble, channel)
+stopifnot(dir.exists(workdir))
 ```
 
 ```{r}
@@ -39,27 +44,6 @@ df$path <- all_projected_paths
 ```
 
 ```{r}
-recursive_merge <- function (data, config_numbers) {
-  first <- data[[1]]
-  
-  if (is.list(first)) {
-    names_first <- names(first)
-    res <- list()
-    for (name in names_first) {
-      elements <- lapply(data, function (elem) elem[[name]])
-      merged <- recursive_merge(elements, config_numbers)
-      res[[name]] <- merged
-    }
-    return (res)
-  } else if (is.vector(first)) {
-    res <- do.call(rbind, data)
-    rownames(res) <- config_numbers
-    return (res)
-  } else {
-    stop()
-  }
-}
-
 make_merge <- function (stuff) {
   data <- lapply(stuff$path, jsonlite::read_json, simplifyVector = TRUE)
   merged <- recursive_merge(data, stuff$config_number)[[1]]
@@ -87,11 +71,7 @@ result2 <- result[l > 0, ]
 ```
 
 ```{r}
-saveRDS(result2, 'corr_matrix_2pi_I2_A40.24.Rdata')
+saveRDS(result2, sprintf('%s/correlator_matrices/corr_matrix_%s_%s.Rdata', workdir, ensemble, channel))
 ```
 
-```{r}
-corr2[1:2]
-corr3[1:2]
-```
 

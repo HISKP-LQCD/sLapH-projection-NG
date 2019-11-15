@@ -20,23 +20,12 @@ theme_set(theme_light())
 args <- commandArgs(trailingOnly = TRUE)
 print(args)
 
-if (!exists('total_momentum')) {
-  stopifnot(length(args) == 5)
-  total_momentum <- as.integer(args[1:3])
-  irrep <- args[4]
-  config_number <- as.integer(args[5])
+if (!exists('config_number')) {
+  stopifnot(length(args) == 1)
+  config_number <- as.integer(args[1])
 }
 
-total_momentum_sq <- sum(total_momentum^2)
-total_momentum_str <- paste0(sprintf('%d', total_momentum), collapse = '')
-
-total_momentum_ref <- (if (total_momentum_sq == 0) c(0, 0, 0)
-else if (total_momentum_sq == 1) c(0, 0, 1)
-else if (total_momentum_sq == 2) c(1, 1, 0)
-else if (total_momentum_sq == 3) c(1, 1, 1)
-else if (total_momentum_sq == 1) c(0, 0, 2))
-
-prescription_filename <- sprintf('prescriptions/prescription_%s_%s.js', total_momentum_str, irrep)
+prescription_filename <- sprintf('prescriptions/all_prescriptions.js')
 all_prescriptions <- jsonlite::read_json(prescription_filename)
 
 needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
@@ -144,5 +133,5 @@ path <- 'projected'
 if (!dir.exists(path)) {
   dir.create(path)
 }
-resolved_filename <- sprintf('%s/resolved_%s_%s_%04d.js', path, total_momentum_str, irrep, config_number)
+resolved_filename <- sprintf('%s/all_resolved_%04d.js', path, config_number)
 jsonlite::write_json(filtered, resolved_filename, pretty = TRUE, digits = NA)
