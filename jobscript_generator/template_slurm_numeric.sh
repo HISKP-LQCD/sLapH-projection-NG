@@ -15,7 +15,7 @@ set -x
 hostname
 date -Iseconds
 
-config="{{ '%04d'|format(config_number) }}.h5"
+config="{{ '%04d'|format(config_number) }}"
 
 tempdir="/storage/ueding/correlators/${config}"
 mkdir -p "$tempdir"

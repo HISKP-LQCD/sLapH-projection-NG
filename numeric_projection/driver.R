@@ -34,7 +34,7 @@ files <- Sys.glob(file_pattern)
 diagrams <- sapply(files, function (file) strsplit(basename(file), '_')[[1]][1])
 names(diagrams) <- NULL
 
-files_list <- as.list(temps)
+files_list <- as.list(files)
 names(files_list) <- diagrams
 
 total_momentum_sq <- sum(total_momentum^2)
@@ -142,7 +142,3 @@ if (!dir.exists(path)) {
 }
 resolved_filename <- sprintf('%s/resolved_%s_%s_%04d.js', path, total_momentum_str, irrep, config_number)
 jsonlite::write_json(filtered, resolved_filename, pretty = TRUE, digits = NA)
-
-for (i in length(temps)) {
-    file.remove(temps[i])
-}
