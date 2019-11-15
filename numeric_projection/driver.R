@@ -36,7 +36,7 @@ files <- Sys.glob(file_pattern)
 if (!dir.exists('/storage/ueding/correlators')) {
     dir.create('/storage/ueding/correlators', recursive = TRUE)
 }
-temps <- sapply(files, tempfile(tmpdir = '/storage/ueding/correlators'))
+temps <- sapply(files, function (x) tempfile(tmpdir = '/storage/ueding/correlators'))
 
 
 cat('Copying files to scratch …\n')
