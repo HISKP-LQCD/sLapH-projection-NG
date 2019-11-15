@@ -3,6 +3,7 @@
 #SBATCH --job-name N_{{ '%04d'|format(config_number) }}
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=150MB
+#SBATCH --gres=disk:1
 #SBATCH --mail-user=ueding@hiskp.uni-bonn.de
 #SBATCH --mail-type=FAIL
 
