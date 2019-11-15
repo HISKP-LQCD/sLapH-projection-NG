@@ -124,26 +124,3 @@ sort_momenta_vec_list <- function (momenta_vec) {
   momenta_str <- sapply(momenta_vec, momentum_vec_to_str, USE.NAMES = FALSE)
   lapply(sort(momenta_str), momentum_str_to_vec)
 }
-
-recursive_merge <- function (data, config_numbers) {
-  first <- data[[1]]
-  
-  if (is.list(first)) {
-    names_first <- names(first)
-    res <- list()
-    for (name in names_first) {
-      elements <- lapply(data, function (elem) elem[[name]])
-      merged <- recursive_merge(elements, config_numbers)
-      res[[name]] <- merged
-    }
-    return (res)
-  } else if (is.vector(first)) {
-    res <- do.call(rbind, data)
-    if (!missing(config_numbers)) {
-      rownames(res) <- config_numbers
-    }
-    return (res)
-  } else {
-    stop()
-  }
-}
