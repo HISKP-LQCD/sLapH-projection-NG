@@ -21,42 +21,15 @@ args <- commandArgs(trailingOnly = TRUE)
 print(args)
 
 if (!exists('total_momentum')) {
-  stopifnot(length(args) == 5)
+  stopifnot(length(args) == 6)
   total_momentum <- as.integer(args[1:3])
   irrep <- args[4]
   config_number <- as.integer(args[5])
+  tempdir <- args[6]
 }
 
-total_momentum_sq <- sum(total_momentum^2)
-total_momentum_str <- paste0(sprintf('%d', total_momentum), collapse = '')
-
-total_momentum_ref <- (if (total_momentum_sq == 0) c(0, 0, 0)
-else if (total_momentum_sq == 1) c(0, 0, 1)
-else if (total_momentum_sq == 2) c(1, 1, 0)
-else if (total_momentum_sq == 3) c(1, 1, 1)
-else if (total_momentum_sq == 1) c(0, 0, 2))
-
-prescription_filename <- sprintf('prescriptions/prescription_%s_%s.js', total_momentum_str, irrep)
-all_prescriptions <- jsonlite::read_json(prescription_filename)
-
-needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
-
-file_pattern <- sprintf('correlators/*_cnfg%04d.h5', config_number)
+file_pattern <- sprintf('%s/*_cnfg%04d.h5', tempdir, config_number)
 files <- Sys.glob(file_pattern)
-
-if (!dir.exists('/storage/ueding/correlators')) {
-    dir.create('/storage/ueding/correlators', recursive = TRUE)
-}
-temps <- sapply(files, function (x) tempfile(tmpdir = '/storage/ueding/correlators'))
-
-print(files)
-cat('Copying files to scratch …\n')
-for (i in 1:length(files)) {
-    cat(' ', files[i], '\n')
-    file.copy(files[i], temps[i])
-}
-
-cat('Done.\n')
 
 diagrams <- sapply(files, function (file) strsplit(basename(file), '_')[[1]][1])
 names(diagrams) <- NULL
@@ -64,7 +37,11 @@ names(diagrams) <- NULL
 files_list <- as.list(temps)
 names(files_list) <- diagrams
 
-prescription_filename <- sprintf('prescriptions/all_prescriptions.js')
+total_momentum_sq <- sum(total_momentum^2)
+total_momentum_str <- paste0(sprintf('%d', total_momentum), collapse = '')
+
+
+prescription_filename <- sprintf('prescriptions/prescription_%s_%s.js', total_momentum_str, irrep)
 all_prescriptions <- jsonlite::read_json(prescription_filename)
 
 needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))

@@ -2,7 +2,7 @@
 
 #SBATCH --job-name N_{{ '%04d'|format(config_number) }}
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=2000MB
+#SBATCH --mem=150MB
 #SBATCH --mail-user=ueding@hiskp.uni-bonn.de
 #SBATCH --mail-type=FAIL
 
@@ -15,6 +15,19 @@ set -x
 hostname
 date -Iseconds
 
+config="{{ '%04d'|format(config_number) }}.h5"
+
+tempdir="/storage/ueding/correlators/${config}"
+mkdir -p "$tempdir"
+cp correlators/*_cnfg${config}.h5 "$tempdir"
+
+cleanup() {
+    rm -rf "$tempdir"
+}
+
+trap cleanup EXIT
+
+
 {% for momentum_sq, grouped in grouped2 %}
 ###############################################################################
 #                                    P² = {{ momentum_sq }}                                   #
@@ -22,7 +35,7 @@ date -Iseconds
 {% for irrep, values in grouped %}
 # {{ irrep }}
 {% for _, momentum in values -%}
-/usr/bin/time {{ srcdir }}/numeric_projection/driver.R {{ momentum|join(' ') }} {{ irrep }} {{ config_number }}
+/usr/bin/time {{ srcdir }}/numeric_projection/driver.R {{ momentum|join(' ') }} {{ irrep }} {{ config_number }} "$tempdir"
 {% endfor -%}
 {% endfor -%}
 {% endfor -%}
