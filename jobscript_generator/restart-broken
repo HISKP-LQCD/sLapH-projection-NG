@@ -63,7 +63,11 @@ def main():
                 continue
 
             jobscript = 'jobscripts/slurm_numeric_{:04d}.sh'.format(config)
-            command = ['sbatch', jobscript]
+            command = ['sbatch']
+            if options.x is not None:
+                command += ['-x', options.x]
+            command += [jobscript]
+            print(command)
             subprocess.run(command, check=True)
 
     print('| Host | Broken | Total |')
@@ -74,6 +78,7 @@ def main():
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument('-x', help='SLURM nodelist')
     options = parser.parse_args()
 
     return options
