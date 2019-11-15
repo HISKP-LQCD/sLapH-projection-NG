@@ -68,7 +68,8 @@ def main():
                 command += ['-x', options.x]
             command += [jobscript]
             print(command)
-            subprocess.run(command, check=True)
+            if not options.dry:
+                subprocess.run(command, check=True)
 
     print('| Host | Broken | Total |')
     print('| --- | ---: | ---: |')
@@ -79,6 +80,7 @@ def main():
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-x', help='SLURM nodelist')
+    parser.add_argument('--dry', action='store_true')
     options = parser.parse_args()
 
     return options
