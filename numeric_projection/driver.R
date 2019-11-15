@@ -35,9 +35,14 @@ files <- Sys.glob(file_pattern)
 
 temps <- sapply(files, tempfile(tmpdir = '/storage/ueding/correlators'))
 
+
+cat('Copying files to scratch …\n')
 for (i in length(files)) {
+    cat(' ', files[i], '\n')
     file.copy(files[i], temps[i])
 }
+
+cat('Done.\n')
 
 diagrams <- sapply(files, function (file) strsplit(basename(file), '_')[[1]][1])
 names(diagrams) <- NULL
