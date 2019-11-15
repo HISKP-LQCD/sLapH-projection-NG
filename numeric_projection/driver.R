@@ -25,11 +25,6 @@ if (!exists('config_number')) {
   config_number <- as.integer(args[1])
 }
 
-prescription_filename <- sprintf('prescriptions/all_prescriptions.js')
-all_prescriptions <- jsonlite::read_json(prescription_filename)
-
-needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
-
 file_pattern <- sprintf('correlators/*_cnfg%04d.h5', config_number)
 files <- Sys.glob(file_pattern)
 
@@ -38,9 +33,9 @@ if (!dir.exists('/storage/ueding/correlators')) {
 }
 temps <- sapply(files, function (x) tempfile(tmpdir = '/storage/ueding/correlators'))
 
-
+print(files)
 cat('Copying files to scratch …\n')
-for (i in length(files)) {
+for (i in 1:length(files)) {
     cat(' ', files[i], '\n')
     file.copy(files[i], temps[i])
 }
@@ -52,6 +47,11 @@ names(diagrams) <- NULL
 
 files_list <- as.list(temps)
 names(files_list) <- diagrams
+
+prescription_filename <- sprintf('prescriptions/all_prescriptions.js')
+all_prescriptions <- jsonlite::read_json(prescription_filename)
+
+needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
 
 load_dataset <- function (datasetname) {
     diagram <- strsplit(datasetname, '_')[[1]][1]
