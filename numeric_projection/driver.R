@@ -33,6 +33,9 @@ needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$da
 file_pattern <- sprintf('correlators/*_cnfg%04d.h5', config_number)
 files <- Sys.glob(file_pattern)
 
+if (!dir.exists('/storage/ueding/correlators')) {
+    dir.create('/storage/ueding/correlators', recursive = TRUE)
+}
 temps <- sapply(files, tempfile(tmpdir = '/storage/ueding/correlators'))
 
 
