@@ -36,7 +36,7 @@ trap cleanup EXIT
 {% for irrep, values in grouped %}
 # {{ irrep }}
 {% for _, momentum in values -%}
-if ! [[ -f "projected/resolved_{{ momentum|join('') }}_{{ irrep }}_{{ config_number }}.js" ]]; then
+if ! [[ -f "projected/resolved_{{ momentum|join('') }}_{{ irrep }}_{{ '%04d'|format(config_number) }}.js" ]]; then
     /usr/bin/time {{ srcdir }}/numeric_projection/driver.R {{ momentum|join(' ') }} {{ irrep }} {{ config_number }} "$tempdir"
 fi
 {% endfor -%}
