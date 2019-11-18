@@ -20,10 +20,18 @@ config="{{ '%04d'|format(config_number) }}"
 
 tempdir="/storage/ueding/correlators/${config}"
 mkdir -p "$tempdir"
-cp correlators/*_cnfg${config}.h5 "$tempdir"
 
 cleanup() {
     rm -rf "$tempdir"
+}
+
+has_copied=false
+
+copy-configs() {
+    if [[ "$has_copied" = "false" ]]; then
+        cp correlators/*_cnfg${config}.h5 "$tempdir"
+    fi
+    has_copied=true
 }
 
 trap cleanup EXIT
@@ -37,6 +45,7 @@ trap cleanup EXIT
 # {{ irrep }}
 {% for _, momentum in values -%}
 if ! [[ -f "projected/resolved_{{ momentum|join('') }}_{{ irrep }}_{{ '%04d'|format(config_number) }}.js" ]]; then
+    copy-configs
     /usr/bin/time {{ srcdir }}/numeric_projection/driver.R {{ momentum|join(' ') }} {{ irrep }} {{ config_number }} "$tempdir"
 fi
 {% endfor -%}
