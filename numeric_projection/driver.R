@@ -25,10 +25,9 @@ if (!exists('total_momentum')) {
   total_momentum <- as.integer(args[1:3])
   irrep <- args[4]
   config_number <- as.integer(args[5])
-  tempdir <- args[6]
 }
 
-file_pattern <- sprintf('%s/*_cnfg%04d.h5', tempdir, config_number)
+file_pattern <- sprintf('correlators/*_cnfg%04d.h5', config_number)
 files <- Sys.glob(file_pattern)
 
 diagrams <- sapply(files, function (file) strsplit(basename(file), '_')[[1]][1])
