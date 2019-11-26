@@ -21,7 +21,7 @@ args <- commandArgs(trailingOnly = TRUE)
 print(args)
 
 if (!exists('total_momentum')) {
-  stopifnot(length(args) == 6)
+  stopifnot(length(args) == 5)
   total_momentum <- as.integer(args[1:3])
   irrep <- args[4]
   config_number <- as.integer(args[5])
