@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #SBATCH --job-name N_{{ '%04d'|format(config_number) }}
+#SBATCH --time=1-00:00:00
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=950MB
 #SBATCH --mail-user=ueding@hiskp.uni-bonn.de
