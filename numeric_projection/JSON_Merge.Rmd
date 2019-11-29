@@ -25,8 +25,8 @@ split_filename <- function (path) {
 
 ```{r}
 ensemble <- 'cA2.09.48'
-#channel <- '2pi_I2'
-channel <- '3pi_I3'
+channel <- '2pi_I2'
+#channel <- '3pi_I3'
 
 workdir <- sprintf('~/Lattice/Three-Pions/projection_workdir/%s/%s', ensemble, channel)
 stopifnot(dir.exists(workdir))
