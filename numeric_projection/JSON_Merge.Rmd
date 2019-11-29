@@ -25,10 +25,11 @@ split_filename <- function (path) {
 
 ```{r}
 ensemble <- 'cA2.09.48'
+stride <- 'stride1'
 channel <- '2pi_I2'
 #channel <- '3pi_I3'
 
-workdir <- sprintf('~/Lattice/Three-Pions/projection_workdir/%s/%s', ensemble, channel)
+workdir <- sprintf('/hiskp4/ueding/three-pion/projections/%s/%s/%s', ensemble, stride, channel)
 stopifnot(dir.exists(workdir))
 ```
 
@@ -73,7 +74,7 @@ make_merge <- function (stuff) {
   if (!dir.exists(dirpath)) {
     dir.create(dirpath)
   }
-  saveRDS(merged, sprintf('%s/correlator_matrix_%s_%s.Rdata', dirpath, stuff$total_momentum[1], stuff$irrep[1]))
+  #saveRDS(merged, sprintf('%s/correlator_matrix_%s_%s.Rdata', dirpath, stuff$total_momentum[1], stuff$irrep[1]))
                           
   tibble(merged = merged)
 }
@@ -92,7 +93,7 @@ result2 <- result[l > 0, ]
 ```
 
 ```{r}
-saveRDS(result2, sprintf('%s/correlator_matrices/corr_matrix_%s_%s.Rdata', workdir, ensemble, channel))
+saveRDS(result2, sprintf('%s/correlator_matrices/corr_matrix_%s_%s_%s.Rdata', workdir, ensemble, stride, channel))
 ```
 
 
