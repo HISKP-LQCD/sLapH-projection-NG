@@ -40,7 +40,9 @@ def main():
 
     started = 0
 
-    for path in glob.glob('batch_output/numeric_*.txt'):
+    print(running_jobs)
+
+    for path in sorted(glob.glob('batch_output/numeric_*.txt')):
         with open(path) as f:
             lines = list(f)
 
@@ -59,10 +61,12 @@ def main():
             jobid = int(m.group(2))
 
             #print(hostname)
-            #print(config, jobid)
+            print(config, jobid)
 
             if config in running_jobs:
                 continue
+
+            #return
 
             jobscript = 'jobscripts/slurm_numeric_{:04d}.sh'.format(config)
             command = ['sbatch']
@@ -75,6 +79,7 @@ def main():
                 started += 1
                 if started > options.limit:
                     break
+            running_jobs.append(config)
 
     print('| Host | Broken | Total |')
     print('| --- | ---: | ---: |')
