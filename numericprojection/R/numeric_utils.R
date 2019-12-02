@@ -1,18 +1,3 @@
-get_workdir <- function () {
-  workdir_candidates <- c(
-    '~/Lattice/NG2',
-    '~/NG2'
-  )
-  
-  for (path in workdir_candidates) {
-    if (dir.exists(path)) {
-      return (path)
-    }
-  }
-  
-  return (NA)
-}
-
 get_parts_long <- function (prescriptions) {
   data <- do.call(c, prescriptions)
   parts <- list()
