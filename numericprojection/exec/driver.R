@@ -1,22 +1,10 @@
 #!/usr/bin/env Rscript
 
-lapplyn <- function (container, f, n, ...) {
-  if (n == 1) {
-    result <- lapply(container, f, ...)
-  } else {
-    result <- lapply(container, function (x) lapplyn(x, f, n - 1, ...))
-  }
-  return (result)
-}
-
-print(getwd())
-
 library(ggplot2)
 library(dplyr)
 library(magrittr)
 library(rhdf5)
-
-theme_set(theme_light())
+library(numericprojection)
 
 args <- commandArgs(trailingOnly = TRUE)
 cat('Command line arguments:\n  ')
@@ -136,16 +124,6 @@ resolve <- function (prescription) {
 cat('Projecting …\n')
 resolved <- lapplyn(filtered_prescriptions, resolve, 6)
 cat('  Done\n')
-
-drop_small <- function (corr_list) {
-  firsts <- sapply(corr_list, function (corr) corr[1])
-  corr_list[abs(firsts) > 1.0e-8]
-}
-
-drop_empty <- function (l) {
-  lengths <- sapply(l, length)
-  l[lengths > 0]
-}
 
 filtered <- resolved %>%
   lapplyn(drop_small, 5) %>%
