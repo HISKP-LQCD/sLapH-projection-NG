@@ -1,0 +1,13 @@
+Package: numericprojection
+Title: sLapH Numeric Projection
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Martin",
+           family = "Ueding",
+           role = c("aut", "cre"),
+           email = "dev@martin-ueding.de",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Numerically projects raw correlation function into lattice irreps.
+License: MIT
+Encoding: UTF-8
+LazyData: true
