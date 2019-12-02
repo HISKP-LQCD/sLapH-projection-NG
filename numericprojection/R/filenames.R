@@ -1,4 +1,3 @@
-#' @export
 split_filename <- function (path) {
   filename <- basename(path)
   parts <- stringr::str_match(filename, 'resolved_(.*)_(.*)_(.*)\\.js')

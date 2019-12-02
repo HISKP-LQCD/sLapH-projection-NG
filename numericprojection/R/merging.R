@@ -1,4 +1,3 @@
-#' @export
 recursive_merge <- function (data, config_numbers) {
   first <- data[[1]]
   
