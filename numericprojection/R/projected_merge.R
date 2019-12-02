@@ -14,7 +14,7 @@ projected_merge <- function () {
     data <- lapply(stuff$path, jsonlite::read_json, simplifyVector = TRUE)
     merged <- recursive_merge(data, stuff$config_number)[[1]]
     
-    dirpath <- sprintf('%s/correlator_matrices', workdir)
+    dirpath <- 'correlator_matrices'
     if (!dir.exists(dirpath)) {
       dir.create(dirpath)
     }
