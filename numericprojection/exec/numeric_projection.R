@@ -1,10 +1,10 @@
 #!/usr/bin/env Rscript
 
-library(ggplot2)
 library(dplyr)
+library(ggplot2)
 library(magrittr)
-library(rhdf5)
 library(numericprojection)
+library(rhdf5)
 
 args <- commandArgs(trailingOnly = TRUE)
 cat('Command line arguments:\n  ')
