@@ -3,18 +3,7 @@
 #' @import rhdf5
 #'
 #' @export
-numeric_projection <- function () {
-  args <- commandArgs(trailingOnly = TRUE)
-  cat('Command line arguments:\n  ')
-  print(args)
-
-  if (!exists('total_momentum')) {
-    stopifnot(length(args) == 5)
-    total_momentum <- as.integer(args[1:3])
-    irrep <- args[4]
-    config_number <- as.integer(args[5])
-  }
-
+numeric_projection <- function (total_momentum, irrep, config_number) {
   file_pattern <- sprintf('correlators/*_cnfg%04d.h5', config_number)
   files <- Sys.glob(file_pattern)
 

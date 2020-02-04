@@ -24,7 +24,7 @@ date -Iseconds
 # {{ irrep }}
 {% for _, momentum in values -%}
 if ! [[ -f "projected/resolved_{{ momentum|join('') }}_{{ irrep }}_{{ '%04d'|format(config_number) }}.js" ]]; then
-    /usr/bin/time {{ srcdir }}/numeric_projection/driver.R {{ momentum|join(' ') }} {{ irrep }} {{ config_number }}
+  /usr/bin/time Rscript -e 'numericprojection::numeric_projection(c({{ momentum|join(', ') }}), "{{ irrep }}", {{ config_number }})'
 fi
 {% endfor -%}
 {% endfor -%}
