@@ -1,0 +1,123 @@
+---
+title: "Subduction Coefficients"
+author: "Martin Ueding"
+date: \today
+output:
+  pdf_document:
+    fig_crop: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+coeff <- read.csv('subduction_coefficients.csv', header = FALSE, stringsAsFactors = FALSE)
+colnames(coeff) <- c('total_momentum_sq', 'irrep', 'irrep_row', 'irrep_col', 'spin_j', 'spin_m1', 'spin_m2', 're', 'im')
+```
+
+```{r}
+ggplot(coeff, aes(x = irrep, y = total_momentum_sq)) +
+  geom_point(position = position_jitter(width = 0.1, height = 0.1))
+```
+
+```{r fig.height=7}
+ggplot(coeff, aes(x = re, y = im)) +
+  geom_point(aes(color = interaction(spin_j, spin_m2),
+                 shape = factor(spin_m1))) +
+  facet_wrap(~ total_momentum_sq + irrep, labeller = label_both)
+```
+
+```{r}
+plots <- coeff %>%
+  group_by(total_momentum_sq, irrep) %>%
+  do(plot = ggplot(., aes(x = re, y = im)) +
+       geom_point(aes(color = interaction(spin_m2),
+                      shape = interaction(spin_m1)),
+                  position = position_dodge(width = 0.01)) +
+       #expand_limits(x = c(-1, 1), y = c(-1, 1)) +
+       facet_wrap(~ spin_j, labeller = label_both) +
+       labs(title = 'Subduction coefficients',
+            subtitle = sprintf('P²=%s irrep=%s',
+                               .$total_momentum_sq[1],
+                               .$irrep[1]),
+            x = 'Real',
+            y = 'Imaginary',
+            color = expression(m[2]),
+            shape = expression(m[1]))
+  )
+
+for (plot in plots$plot) {
+  print(plot)
+  cat('\n\n')
+}
+```
+
+```{r}
+plots <- coeff %>%
+  group_by(total_momentum_sq, irrep) %>%
+  do(plot = ggplot(., aes(x = re, y = im)) +
+       geom_point(aes(color = interaction(spin_m2)),
+                  position = position_dodge(width = 0.01)) +
+       #expand_limits(x = c(-1, 1), y = c(-1, 1)) +
+       facet_grid(spin_m1 ~ spin_j, labeller = label_both) +
+       labs(title = 'Subduction coefficients',
+            subtitle = sprintf('P²=%s irrep=%s',
+                               .$total_momentum_sq[1],
+                               .$irrep[1]),
+            x = 'Real',
+            y = 'Imaginary',
+            color = expression(m[2]))
+  )
+
+for (plot in plots$plot) {
+  print(plot)
+  cat('\n\n')
+}
+```
+
+```{r}
+plots <- coeff %>%
+  group_by(total_momentum_sq, irrep, irrep_row, irrep_col, spin_j, spin_m2) %>%
+  summarize(re = mean(re),
+            im = mean(im)) %>%
+  group_by(total_momentum_sq, irrep) %>%
+  do(plot = ggplot(., aes(x = re, y = im)) +
+       geom_point(aes(color = interaction(spin_m2))) +
+       #expand_limits(x = c(-1, 1), y = c(-1, 1)) +
+       facet_wrap(~ spin_j, labeller = label_both) +
+       labs(title = 'Subduction coefficients',
+            subtitle = sprintf('P²=%s irrep=%s',
+                               .$total_momentum_sq[1],
+                               .$irrep[1]),
+            x = 'Real',
+            y = 'Imaginary',
+            color = expression(m[2]))
+  )
+
+for (plot in plots$plot) {
+  print(plot)
+  cat('\n\n')
+}
+```
+
+```{r}
+coeff %>%
+  group_by(total_momentum_sq, irrep, irrep_row, irrep_col, spin_j, spin_m2) %>%
+  summarize(max_spin_m1 = max(spin_m1)) %>%
+  ungroup()
+```
+
+
+```{r}
+coeff_mean <- coeff %>%
+  group_by(total_momentum_sq, irrep, irrep_row, irrep_col, spin_j, spin_m2) %>%
+  filter(spin_m1 == max(spin_m1)) %>%
+  ungroup()
+
+write.csv(coeff_mean, 'subduction_meson_ng.csv', row.names = FALSE)
+```
+
