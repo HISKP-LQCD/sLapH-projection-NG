@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Copyright © 2019 Martin Ueding <martin-ueding.de>
+# Copyright © 2019 Martin Ueding <mu@martin-ueding.de>
 
 import argparse
 import collections
