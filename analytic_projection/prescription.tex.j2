@@ -127,19 +127,35 @@ baseline=(base.base)
 
 \begin{document}
 
+\begin{large}
 {% for total_momentum, data in data.items() -%}
-{{ total_momentum }}
+$P = \text{ {{ total_momentum }} }$,
 {% for irrep, data in data.items() -%}
-{{ irrep }}
+$\Gamma = \text{ {{ irrep }} }$,
 {% for irrep_col, data in data.items() -%}
-{{ irrep_col }}
+$\beta = {{ irrep_col }}$,
 {% for irrep_row, data in data.items() -%}
-{{ irrep_row }}
+$\alpha = {{ irrep_row }}$
+\end{large}
+
+\[
+\begin{pmatrix}
 {% for gevp_row, data in data.items() -%}
-{% if loop.first %}
-{{ gevp_row }}
 {% for gevp_col, data in data.items() -%}
-{{ gevp_col }}
+C(\text{ {{ gevp_row }} }, \text{ {{ gevp_col }} })
+{% if not loop.last -%}
+&
+{% endif -%}
+{% endfor -%}
+{% if not loop.last -%}
+\\
+{% endif -%}
+{% endfor -%}
+\end{pmatrix}
+\]
+
+{% for gevp_row, data in data.items() -%}
+{% for gevp_col, data in data.items() -%}
 
 \begin{multline*}
 C(\text{ {{ gevp_row }} }, \text{ {{ gevp_col }} }) =
@@ -162,7 +178,6 @@ C(\text{ {{ gevp_row }} }, \text{ {{ gevp_col }} }) =
 \end{multline*}
 
 {% endfor -%}
-{% endif -%}
 {% endfor -%}
 {% endfor -%}
 {% endfor -%}
