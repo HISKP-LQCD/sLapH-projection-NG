@@ -1,0 +1,172 @@
+\documentclass[english, 11pt, DIV=15]{scrartcl}
+
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+{% macro diagram(type, momenta) -%}
+{% if type == 'C2c' -%}
+{{ C2c(momenta) }}
+{% elif type == 'C4cC' -%}
+{{ C4cC(momenta) }}
+{% elif type == 'C4cD' -%}
+{{ C4cD(momenta) }}
+{% elif type == 'C6cC' -%}
+{{ C6cC(momenta) }}
+{% elif type == 'C6cCD' -%}
+{{ C6cCD(momenta) }}
+{% elif type == 'C6cD' -%}
+{{ C6cD(momenta) }}
+{% endif -%}
+{% endmacro -%}
+
+{% macro tikzpicture() -%}
+\begin{tikzpicture}[%
+vertex/.style={
+draw,
+rectangle,
+fill=black!20
+},
+baseline=(base.base)
+]
+    {{ caller() }}
+\end{tikzpicture}
+{%- endmacro -%}
+
+{% macro C2c(momenta) -%}
+{% call tikzpicture() -%}
+\node (base) at (0, -0) {\phantom 0};
+\node[vertex] (so1) at (0, -0) { {{ momenta[0] }} };
+\node[vertex] (si1) at (2, -0) { {{ momenta[1] }} };
+\draw[->, >=Latex, out=30, in=150] (so1) to (si1);
+\draw[->, >=Latex, out=210, in=330] (si1) to (so1);
+{%- endcall -%}
+{%- endmacro -%}
+
+{% macro C4cC(momenta) -%}
+{% call tikzpicture() -%}
+\node (base) at (0, -0.5) {\phantom 0};
+\node[vertex] (so1) at (0, 0) { {{ momenta[0] }} };
+\node[vertex] (si1) at (2, 0) { {{ momenta[1] }} };
+\node[vertex] (so2) at (0, -1) { {{ momenta[2] }} };
+\node[vertex] (si2) at (2, -1) { {{ momenta[3] }} };
+\draw[->, >=Latex] (so1) to (si1);
+\draw[->, >=Latex] (si1) to (so2);
+\draw[->, >=Latex] (so2) to (si2);
+\draw[->, >=Latex] (si2) to (so1);
+{%- endcall -%}
+{%- endmacro -%}
+
+{% macro C4cD(momenta) -%}
+{% call tikzpicture() -%}
+\node (base) at (0, -0.5) {\phantom 0};
+\node[vertex] (so1) at (0, -0) { {{ momenta[0] }} };
+\node[vertex] (si1) at (2, -0) { {{ momenta[1] }} };
+\node[vertex] (so2) at (0, -1) { {{ momenta[2] }} };
+\node[vertex] (si2) at (2, -1) { {{ momenta[3] }} };
+\draw[->, >=Latex, out=30, in=150] (so1) to (si1);
+\draw[->, >=Latex, out=210, in=330] (si1) to (so1);
+\draw[->, >=Latex, out=30, in=150] (so2) to (si2);
+\draw[->, >=Latex, out=210, in=330] (si2) to (so2);
+{%- endcall -%}
+{%- endmacro -%}
+
+{% macro C6cC(momenta) -%}
+{% call tikzpicture() -%}
+\node (base) at (0, -1) {\phantom 0};
+\node[vertex] (so1) at (0, -0) { {{ momenta[0] }} };
+\node[vertex] (si1) at (2, -0) { {{ momenta[1] }} };
+\node[vertex] (so2) at (0, -1) { {{ momenta[2] }} };
+\node[vertex] (si2) at (2, -1) { {{ momenta[3] }} };
+\node[vertex] (so3) at (0, -2) { {{ momenta[4] }} };
+\node[vertex] (si3) at (2, -2) { {{ momenta[5] }} };
+\draw[->, >=Latex] (so1) to (si1);
+\draw[->, >=Latex] (si1) to (so2);
+\draw[->, >=Latex] (so2) to (si2);
+\draw[->, >=Latex] (si2) to (so3);
+\draw[->, >=Latex] (so3) to (si3);
+\draw[->, >=Latex] (si3) to (so1);
+{%- endcall -%}
+{%- endmacro -%}
+
+{% macro C6cCD(momenta) -%}
+{% call tikzpicture() -%}
+\node (base) at (0, -1) {\phantom 0};
+\node[vertex] (so1) at (0, -0) { {{ momenta[0] }} };
+\node[vertex] (si1) at (2, -0) { {{ momenta[1] }} };
+\node[vertex] (so2) at (0, -1) { {{ momenta[2] }} };
+\node[vertex] (si2) at (2, -1) { {{ momenta[3] }} };
+\node[vertex] (so3) at (0, -2) { {{ momenta[4] }} };
+\node[vertex] (si3) at (2, -2) { {{ momenta[5] }} };
+\draw[->, >=Latex] (so1) to (si1);
+\draw[->, >=Latex] (si1) to (so2);
+\draw[->, >=Latex] (so2) to (si2);
+\draw[->, >=Latex] (si2) to (so1);
+\draw[->, >=Latex, out=30, in=150] (so3) to (si3);
+\draw[->, >=Latex, out=210, in=330] (si3) to (so3);
+{%- endcall -%}
+{%- endmacro -%}
+
+{% macro C6cD(momenta) -%}
+{% call tikzpicture() -%}
+\node (base) at (0, -1) {\phantom 0};
+\node[vertex] (so1) at (0, -0) { {{ momenta[0] }} };
+\node[vertex] (si1) at (2, -0) { {{ momenta[1] }} };
+\node[vertex] (so2) at (0, -1) { {{ momenta[2] }} };
+\node[vertex] (si2) at (2, -1) { {{ momenta[3] }} };
+\node[vertex] (so3) at (0, -2) { {{ momenta[4] }} };
+\node[vertex] (si3) at (2, -2) { {{ momenta[5] }} };
+\draw[->, >=Latex, out=30, in=150] (so1) to (si1);
+\draw[->, >=Latex, out=210, in=330] (si1) to (so1);
+\draw[->, >=Latex, out=30, in=150] (so2) to (si2);
+\draw[->, >=Latex, out=210, in=330] (si2) to (so2);
+\draw[->, >=Latex, out=30, in=150] (so3) to (si3);
+\draw[->, >=Latex, out=210, in=330] (si3) to (so3);
+{%- endcall -%}
+{%- endmacro -%}
+
+\begin{document}
+
+{% for total_momentum, data in data.items() -%}
+{{ total_momentum }}
+{% for irrep, data in data.items() -%}
+{{ irrep }}
+{% for irrep_col, data in data.items() -%}
+{{ irrep_col }}
+{% for irrep_row, data in data.items() -%}
+{{ irrep_row }}
+{% for gevp_row, data in data.items() -%}
+{% if loop.first %}
+{{ gevp_row }}
+{% for gevp_col, data in data.items() -%}
+{{ gevp_col }}
+
+\begin{multline*}
+C(\text{ {{ gevp_row }} }, \text{ {{ gevp_col }} }) =
+{% for prescription in data -%}
+( {{ prescription.re|round(4) }} + {{ prescription.im|round(4) }} \mathrm i) \,
+{% if prescription.conj -%}
+\left(
+{% endif -%}
+{{ diagram(prescription.type, prescription.momenta) }}
+{%- if prescription.conj -%}
+\right)^\dagger
+{% endif -%}
+{% if not loop.last -%}
+{% if loop.index0 % 2 == 1 -%}
+\\
+{% endif -%}
++
+{% endif -%}
+{% endfor -%}
+\end{multline*}
+
+{% endfor -%}
+{% endif -%}
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
+{% endfor -%}
+
+\end{document}

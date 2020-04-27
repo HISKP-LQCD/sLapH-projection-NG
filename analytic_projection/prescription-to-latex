@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+# Copyright © 2020 Martin Ueding <dev@martin-ueding.de>
+
+import argparse
+import json
+import os
+import re
+import subprocess
+
+import jinja2
+
+
+srcdir = os.path.dirname(os.path.dirname(__file__))
+
+
+def nested_map(function, sequence, level):
+    if level == 1:
+        return [function(elem) for elem in sequence]
+    else:
+        return {key: nested_map(function, value, level - 1) for key, value in sequence.items()}
+
+
+def process_prescription(prescription):
+    prescription['type'] =  re.match(r'^([^_]+)', prescription['datasetname']).group(1)
+    prescription['momenta'] =  get_momenta(prescription['datasetname'])
+    prescription['reim'] =  prescription['re'] + prescription['im'] * 1.0j
+    return prescription
+
+
+def get_momenta(datasetname):
+    return re.findall(r'p(-?\d-?\d-?\d)', datasetname)
+
+
+def main():
+    options = _parse_args()
+
+    with open(options.prescription) as f:
+        prescription = json.load(f)
+
+    res = nested_map(process_prescription, prescription, 7)
+
+
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(srcdir)))
+    template = env.get_template('prescription.tex.j2')
+
+    rendered = template.render(data = res)
+    with open(options.o, 'w') as f:
+        f.write(rendered)
+    subprocess.call(['pdflatex', '-halt-on-error', options.o])
+
+
+def _parse_args():
+    parser = argparse.ArgumentParser(description='')
+    parser.add_argument('prescription')
+    parser.add_argument('-o', default='prescription.tex')
+    options = parser.parse_args()
+
+    return options
+
+
+if __name__ == '__main__':
+    main()
