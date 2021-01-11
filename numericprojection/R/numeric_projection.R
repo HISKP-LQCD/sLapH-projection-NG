@@ -6,6 +6,8 @@
 numeric_projection <- function (total_momentum, irrep, config_number) {
   file_pattern <- sprintf('correlators/*_cnfg%04d.h5', config_number)
   files <- Sys.glob(file_pattern)
+  cat('Found the following correlators:\n')
+  print(files)
 
   diagrams <- sapply(files, function (file) strsplit(basename(file), '_')[[1]][1])
   names(diagrams) <- NULL
@@ -24,6 +26,7 @@ numeric_projection <- function (total_momentum, irrep, config_number) {
   cat('Building list of needed dataset names …\n')
   needed_names <- unique(unlist(lapplyn(all_prescriptions, function (rule) rule$datasetname, 7)))
   cat('  Done\n')
+  print(head(needed_names))
 
   cat('Opening HDF5 files …\n')
   file_handles <- list()
@@ -37,6 +40,9 @@ numeric_projection <- function (total_momentum, irrep, config_number) {
 
   load_dataset <- function (datasetname) {
       diagram <- strsplit(datasetname, '_')[[1]][1]
+      if (!diagram %in% names(file_handles)) {
+          stop('One of the HDF5 files was not opened.')
+      }
       
       skip_h5_errors <- FALSE
       

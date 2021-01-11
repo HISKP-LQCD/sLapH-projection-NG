@@ -3,13 +3,13 @@
 #SBATCH --job-name N_{{ '%04d'|format(config_number) }}
 #SBATCH --time=1-00:00:00
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=950MB
-#SBATCH --mail-user=ueding@hiskp.uni-bonn.de
+#SBATCH --mem=5GB
+#SBATCH --mail-user=fischer@hiskp.uni-bonn.de
 #SBATCH --mail-type=FAIL
 
 #SBATCH --output=batch_output/numeric_{{ config_number }}_slurm_%j.txt
 
-set -e
+#set -e
 set -u
 set -x
 
@@ -24,7 +24,8 @@ date -Iseconds
 # {{ irrep }}
 {% for _, momentum in values -%}
 if ! [[ -f "projected/resolved_{{ momentum|join('') }}_{{ irrep }}_{{ '%04d'|format(config_number) }}.js" ]]; then
-  /usr/bin/time Rscript -e 'numericprojection::numeric_projection(c({{ momentum|join(', ') }}), "{{ irrep }}", {{ config_number }})'
+    /usr/bin/time Rscript -e 'numericprojection::numeric_projection(c({{ momentum|join(', ') }}), "{{ irrep }}", {{ config_number }})'
+    echo "Status: ${?}"
 fi
 {% endfor -%}
 {% endfor -%}
